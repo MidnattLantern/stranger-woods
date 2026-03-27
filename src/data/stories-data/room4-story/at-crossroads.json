@@ -1,0 +1,33 @@
+[
+    {
+        "textEvent": "You walk deeper..."
+    },
+    {
+        "textEvent": "To your left, you notice a ravine, and something peculiar on the other side.\nIn front of you, there's a strange monument.\nTo your right, there's a cliff. What's on top of the cliff? ",
+        "eventMarker": "at-crossroads",
+        "buttonEvents": [
+            {
+                "label": "Approach the ravine",
+                "buttonMarker": "approach-ravine"
+            },
+            {
+                "label": "Approach the monument",
+                "buttonMarker": "approach-crossroads-monument"
+            },
+            {
+                "label": "Approach the cliff",
+                "buttonMarker": "approach-cliff"
+            },
+            {
+                "label": "use the rubber duck artifact's buoyancy",
+                "buttonMarker": "use-rubber-duck-artifact",
+                "conditionalMarker": "need-rubber-duck-artifact"
+            },
+            {
+                "label": "use the fish statue artifact's buoyancy",
+                "buttonMarker": "use-fish-statue-artifact",
+                "conditionalMarker": "need-fish-statue-artifact"
+            }
+        ]
+    }
+]

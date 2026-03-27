@@ -1,0 +1,12 @@
+[
+    {
+        "textEvent": "The slippery algae on the overgrown branches makes it impossible to climb, you fall down.",
+        "eventMarker": "cannot-climb-tree",
+        "buttonEvents": [
+            {
+                "label": "Get up",
+                "buttonMarker": "continue"
+            }
+        ]
+    }
+]

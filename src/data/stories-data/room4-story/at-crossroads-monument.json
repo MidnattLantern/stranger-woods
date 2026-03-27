@@ -1,0 +1,17 @@
+[
+    {
+        "textEvent": "The monument has some strange interactive tablet. To its left, a large chest. The chest is locked.",
+        "eventMarker": "crossroads-monument",
+        "buttonEvents": [
+            {
+                "label": "Turn around",
+                "buttonMarker": "turn-around"
+            },
+            {
+                "label": "Inspect tablet",
+                "buttonMarker": "inspect-tablet",
+                "conditionalMarker": "crossroads-monument-is-beaten"
+            }
+        ]
+    }
+]

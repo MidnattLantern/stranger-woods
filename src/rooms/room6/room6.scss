@@ -1,0 +1,237 @@
+// TODO: refine again after fetching updated progress on room 6
+.room-6 {
+    background-image: url('/roompic/room6ending.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.pick-art-style {
+    position: absolute;
+    bottom: 1rem;    
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pick-art-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.warning-text,
+.progress-text {
+    padding: 5px;
+    width: 100%;
+    max-width: 490px;
+    background-color: var(--color-surface-body);
+    backdrop-filter: blur(50px);
+    text-align: center;
+}
+
+.book {
+    // position: absolute;
+    // top: 50px;
+    width: 100%;
+    max-width: 500px;
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 3rem;
+
+    h2 {
+        background: var(--color-surface-body);
+        backdrop-filter: blur(50px);
+        color: var(--color-text-body);
+        width: 100%;
+        border: none;
+    }
+}
+
+.book-text {
+    font-size: 1.2rem;
+}
+
+.bookNav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.room-6 .event-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+    margin: 0;
+    margin-bottom: 20px;
+    width: calc(100% - 40px);
+    min-height: 375px;
+    span {
+        display: inline;
+        line-height: 2.6;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--font-sans);
+        padding-bottom: 20px;
+        height: fit-content;
+    }
+}
+
+.warning-text {
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+//drop
+.drop-zone {
+  width: 60px;
+  height: 60px;
+
+  border: 2px dashed rgba(255,255,255,0.6);
+  border-radius: 50%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.65rem;
+  text-align: center;
+
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(4px);
+
+  margin: 0 6px;
+  vertical-align: middle;
+
+  transition: all 0.25s ease;
+}
+
+.drop-zone:hover {
+  border-color: #fffdfd;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.correct-artifact {
+  border: 3px solid #4caf50;
+  box-shadow: 0 0 12px #4caf50;
+  border-radius: 50%;
+}
+
+.placed-artifact {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.placed-artifact img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* tooltip */
+
+.placed-artifact::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.placed-artifact:hover::after {
+  opacity: 1;
+}
+
+// animation for artifact pop when placed in correct zone
+
+.artifact-pop {
+  animation: artifactPop 0.25s ease;
+}
+
+@keyframes artifactPop {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+// progress styling
+
+.progress-complete {
+  color: #6cff9a;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(108,255,154,0.8);
+}
+
+// escape ready animation
+
+.escape-ready {
+  animation: escapeGlow 1.2s ease-in-out infinite alternate;
+  border: 2px solid #6cff9a;
+}
+
+@keyframes escapeGlow {
+  from {
+    box-shadow: 0 0 4px rgba(108,255,154,0.4);
+  }
+  to {
+    box-shadow: 0 0 14px rgba(108,255,154,1);
+  }
+}
+
+//escape not ready
+
+#escapeBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(60%);
+}
+
+// artefact correct animation
+
+.correct-artifact {
+    animation: correctPulse 1.2s infinite;
+    border-radius: 50%;
+}
+
+@keyframes correctPulse {
+
+    0% {
+        box-shadow: 0 0 0px rgba(0,255,100,0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(0,255,100,0.9);
+    }
+
+    100% {
+        box-shadow: 0 0 0px rgba(0,255,100,0.4);
+    }
+}

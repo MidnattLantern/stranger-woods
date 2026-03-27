@@ -1,0 +1,91 @@
+.room-3 {
+    background-image: url("/roompic/aldaroom3.png");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+.room3-overlay {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    button {
+        position: absolute;
+        bottom: 0;
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+}
+
+.story,
+.hint {
+    background: var(--color-surface-body);
+    backdrop-filter: blur(50px);
+    color: var(--color-text-body);
+    padding: 20px;
+    margin: 20px;
+    margin-top: 0;
+    width: auto;
+    border: 1px solid var(--color-border-transparent);
+}
+
+
+.hint {
+    color: #aac8b8;
+}
+
+#quiz {
+    height: 100%;
+    position: relative;
+
+    #question {
+        margin: 20px;
+        padding: 20px;
+        width: calc(100% - 80px);
+        background-color: var(--color-surface-body);
+        backdrop-filter: blur(50px);
+        border: 1px solid var(--color-border-transparent);
+    }
+
+    .options {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .option {
+        margin: 20px;
+        margin-top: 0;
+        position: relative;
+        text-align: center;
+        background-color: var(--color-interactive-body);
+
+        &:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+    }
+
+    #message:not(:empty) {
+        font-style: italic;
+        background-color: var(--color-surface-body);
+        backdrop-filter: blur(50px);
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid var(--color-border-transparent);
+    }
+}
+
+#approachBtn,
+#startBtn {
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+}
+
+/*
+.hidden {
+    display: none !important;
+}
+*/

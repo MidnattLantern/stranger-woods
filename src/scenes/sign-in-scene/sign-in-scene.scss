@@ -1,0 +1,88 @@
+.sign-in-wrapper {
+    --padding: 20px;
+
+    width: calc(100vw - (var(--padding) * 2));
+    max-width: 700px;
+    height: calc(100vh - (var(--padding) * 2));
+    padding: var(--padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 1rem;
+        font-style: italic;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label { // exist to satisfy accessibility demands, but hide from UI
+        position: fixed;
+        left: 0;
+        top: -100px;
+    }
+
+    input {
+        margin-bottom: 20px;
+        height: 50px;
+    }
+}
+
+.error-span {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: #ffaaaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem;
+
+    svg {
+        margin-right: 5px;
+    }
+}
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-text-body);
+    z-index: 1;
+    background-color: var(--color-dim);
+    backdrop-filter: blur(1px);
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+
+    span {
+        position: relative;
+        top: 150px;
+    }
+
+    .popup-timer {
+        position: relative;
+        top: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 4rem;
+        height: 4rem;
+        background-color: var(--color-void);
+        border-radius: 2rem;
+    }
+}
+
+.error-span-hidden {
+    display: none;
+}

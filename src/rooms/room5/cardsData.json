@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "pairId": 1,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/1.jpg",
+        "alt": "A red dragon flying through cloudy sky"
+    },
+    {
+        "id": 2,
+        "pairId": 1,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/1.jpg",
+        "alt": "A red dragon flying through cloudy sky"
+    },
+    {
+        "id": 3,
+        "pairId": 2,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/2.jpg",
+        "alt": "A dark phantom horse in fog"
+    },
+    {
+        "id": 4,
+        "pairId": 2,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/2.jpg",
+        "alt": "A dark phantom horse in fog"
+    },
+    {
+        "id": 5,
+        "pairId": 3,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/3.jpg",
+        "alt": "Two glowing fairies dancing over a dark pond"
+    },
+    {
+        "id": 6,
+        "pairId": 3,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/3.jpg",
+        "alt": "Two glowing fairies dancing over a dark pond"
+    },
+    {
+        "id": 7,
+        "pairId": 4,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/4.jpg",
+        "alt": "A glowing blue tiger prowling through a dark pond with water lilies"
+    },
+    {
+        "id": 8,
+        "pairId": 4,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/4.jpg",
+        "alt": "A glowing blue tiger prowling through a dark pond with water lilies"
+    },
+    {
+        "id": 9,
+        "pairId": 5,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/5.jpg",
+        "alt": "A fawn standing in a snowy moonlit forest with glowing fireflies"
+    },
+    {
+        "id": 10,
+        "pairId": 5,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/5.jpg",
+        "alt": "A fawn standing in a snowy moonlit forest with glowing fireflies"
+    },
+    {
+        "id": 11,
+        "pairId": 6,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/6.jpg",
+        "alt": "A glowing ghost fox on a tree stump with two small fox cubs below"
+    },
+    {
+        "id": 12,
+        "pairId": 6,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/6.jpg",
+        "alt": "A glowing ghost fox on a tree stump with two small fox cubs below"
+    },
+    {
+        "id": 13,
+        "pairId": 7,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/7.jpg",
+        "alt": "A white dragon looming over boats on a forest river"
+    },
+    {
+        "id": 14,
+        "pairId": 7,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/7.jpg",
+        "alt": "A white dragon looming over boats on a forest river"
+    },
+    {
+        "id": 15,
+        "pairId": 8,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/8.jpg",
+        "alt": "A white deer with glowing crystal antlers"
+    },
+    {
+        "id": 16,
+        "pairId": 8,
+        "value": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/8.jpg",
+        "alt": "A white deer with glowing crystal antlers"
+    }
+]

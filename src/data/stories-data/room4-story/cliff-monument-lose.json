@@ -1,0 +1,16 @@
+[
+    {
+        "textEvent": "You failed.",
+        "eventMarker": "cliff-monument-failed",
+        "buttonEvents": [
+            {
+                "label": "Exit",
+                "buttonMarker": "exit"
+            },
+            {
+                "label": "Try again",
+                "buttonMarker": "try-again"
+            }
+        ]
+    }
+]

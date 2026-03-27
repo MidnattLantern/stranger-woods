@@ -1,0 +1,23 @@
+[
+    {
+        "textEvent": "You place the ladder on the wall, then climb up..."
+    },
+    {
+        "textEvent": "As you reach the top, to your dissapointment, this is the peak. However..."
+    },
+    {
+        "textEvent": "There's another monument and a chest, just like the one at the crossroads.",
+        "eventMarker": "cliff-summit",
+        "buttonEvents": [
+            {
+                "label": "Turn around and climb down",
+                "buttonMarker": "turn-around"
+            },
+            {
+                "label": "Inspect monument",
+                "buttonMarker": "inspect-monument",
+                "conditionalMarker": "cliff-monument-is-beaten"
+            }
+        ]
+    }
+]

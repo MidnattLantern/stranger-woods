@@ -1,0 +1,330 @@
+.room-2 {
+    background-image: url("/roompic/isabelleroom2.png");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+
+    .event-text {
+        margin: 10px;
+        padding: 10px;
+        width: calc(100% - 40px);
+        height: fit-content;
+        backdrop-filter: blur(50px);
+        text-align: center;
+    }
+}
+
+.game-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.fragment-found-wrapper {
+    width: 100%;
+    position: relative;
+    height: 100%;
+
+    p {
+        height: 100%;
+    }
+}
+
+.sequence-game-wrapper {
+    button {
+        position: relative;
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+}
+
+.artifact-wrapper button {
+    width: calc(100% - 40px);
+    margin: 20px;
+}
+
+.game-message {
+    font-style: italic;
+}
+
+.fragment-found-text {
+    display: block;
+    text-align: center;
+}
+
+.fragment-found-wrapper .fragment-found-text span {
+    display: inline;
+    text-align: center;
+}
+
+.fragment-found-text strong {
+    display: inline;
+    text-align: inherit;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.start-journey-btn {
+    width: calc(100% - 20px);
+    margin: 10px;
+}
+
+.show-start-wrapper {
+    p {
+        text-align: center;
+    }
+}
+
+.choose-path-wrapper {
+    top: 20%;
+
+    p .event-text {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        backdrop-filter: blur(50px);
+    }
+
+    .option-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 10px;
+    }
+}
+
+.riddle-game-wrapper {
+    top: 20%;
+
+    .riddle-game-btns {
+        margin: 10px;
+
+        button {
+            margin-top: 10px;
+        }
+    }
+}
+
+.sequence-overlay-wrapper {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(50px);
+    background: var(--color-heavy-dim);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    position: relative;
+
+    & p {
+        height: 100px;
+        max-height: 100px;
+    }
+}
+
+.sequence-wrapper {
+    width: 350px;
+    height: auto;
+    position: relative;
+
+    img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .invisible-btn {
+        position: absolute;
+        background: var(--color-clear);
+        backdrop-filter: none;
+        border-color: var(--color-border);
+        border-radius: var(--pillify);
+        font-size: 2rem;
+    }
+
+    .invisible-btn:hover,
+    .invisible-btn:focus {
+        background-color: var(--color-heavy-dim);
+    }
+
+    .invisible-btn:hover::after,
+    .invisible-btn:focus::after {
+        content: "!";
+    }
+
+    #flower {
+        bottom: 90px;
+        left: 70px;
+        width: 60px;
+        height: 60px;
+    }
+
+    #lilyLeaf {
+        bottom: 170px;
+        right: 80px;
+        width: 140px;
+        height: 80px;
+    }
+
+    #ceiling {
+        top: 5px;
+        right: 5px;
+        width: 150px;
+        height: 110px;
+    }
+
+    #hangingFern {
+        top: 160px;
+        left: 30px;
+        width: 90px;
+        height: 90px;
+    }
+
+    #sign {
+        bottom: 180px;
+        right: 30px;
+        width: 40px;
+        height: 70px;
+    }
+
+    #redPlant {
+        top: 5px;
+        left: 125px;
+        width: 70px;
+        height: 70px;
+    }
+}
+
+.number-guess-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .input-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 20px;
+        width: calc(100% - 40px);
+        gap: 10px;
+    }
+}
+
+.guess-input {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.continue-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 20px;
+    width: calc(100% - 40px);
+}
+
+.final-code-wrapper {
+
+    .event-text {
+        min-height: 120px;
+    }
+
+    p {
+        display: flex;
+        justify-content: center;
+    }
+
+    span {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    input {
+        background-color: var(--color-surface-body);
+    }
+
+    .exit-fragment-text {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+    }
+
+    .final-exit-inputs {
+        margin: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+
+        input {
+            width: 40px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: var(--color-interactive-body);
+        }
+    }
+
+    button {
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .invisible-btn {
+        border: none;
+        box-shadow: none;
+    }
+
+    .sequence-wrapper {
+        width: 420px;
+
+        #flower {
+            bottom: 105px;
+            left: 85px;
+            width: 80px;
+            height: 80px;
+        }
+
+        #lilyLeaf {
+            bottom: 205px;
+            right: 100px;
+            width: 170px;
+            height: 90px;
+        }
+
+        #ceiling {
+            top: 5px;
+            right: 5px;
+            width: 180px;
+            height: 130px;
+        }
+
+        #hangingFern {
+            top: 180px;
+            left: 30px;
+            width: 130px;
+            height: 130px;
+        }
+
+        #sign {
+            bottom: 220px;
+            right: 35px;
+            width: 55px;
+            height: 80px;
+        }
+
+        #redPlant {
+            top: 5px;
+            left: 155px;
+            width: 80px;
+            height: 80px;
+        }
+    }
+}

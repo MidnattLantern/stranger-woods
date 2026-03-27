@@ -1,0 +1,18 @@
+[
+    {
+        "textEvent": "You won!"
+    },
+    {
+        "textEvent": "A click comes from the chest. You open the chest and find a buoyant artifact!"
+    },
+    {
+        "textEvent": "You turn around and go back to the crossroads.",
+        "eventMarker": "ravine-monument-win-turn-back",
+        "buttonEvents": [
+            {
+                "label": "Ok",
+                "buttonMarker": "continue"
+            }
+        ]
+    }
+]

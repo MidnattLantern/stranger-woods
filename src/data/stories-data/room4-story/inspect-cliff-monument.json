@@ -1,0 +1,12 @@
+[
+    {
+        "textEvent": "Mini Sudoku: Each row, both horizontal and vertical, has to feature one of each number: 1 through 6. (for keyboard, use the left and right arrow)",
+        "eventMarker": "inspect-cliff-monument",
+        "buttonEvents": [
+            {
+                "label": "Check",
+                "buttonMarker": "check"
+            }
+        ]
+    }
+]

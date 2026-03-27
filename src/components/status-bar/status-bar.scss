@@ -1,0 +1,156 @@
+.status-bar-wrapper {
+    --border-width: 1px;
+
+    width: 100%;
+    height: calc(var(--status-bar-height) - var(--border-width));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    justify-content: space-around;
+    backdrop-filter: blur(50px);
+    border-bottom: var(--border-width) dashed var(--color-border-transparent);
+
+    & section {
+        & span {
+            color: var(--color-text-body);
+            font-family: var(--font-serif);
+            height: inherit;
+
+            & select {
+                width: 100%;
+                height: inherit;
+            }
+        }
+    }
+}
+
+.timers-container {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: calc(100% - 10px);
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.lower-status-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+
+    & select {
+        margin-left: 10px;
+        min-height: 30px;
+        max-width: calc(100% - 15px);
+        background-color: var(--color-clear);
+        border: 1px solid var(--color-clear);
+        color: var(--color-interactive-text-body);
+        font-family: var(--font-seif);
+
+        &:hover,
+        &:focus {
+            border: 1px solid var(--color-interactive-text-body);
+            outline: none;
+        }
+    }
+}
+
+//Artefact
+.status-bar-artifacts {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.artifact-slot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.status-bar-artifact {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artifact-slot.draggable {
+    cursor: grab;
+    &:active {
+        cursor: grabbing;
+    }
+}
+
+.logout-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    background-color: var(--color-clear);
+    border-color: var(--color-border-transparent);
+
+    &:hover,
+    &:focus {
+        background: var(--color-surface-body);
+    }
+}
+
+// status-bar h1 style
+.title-main {
+    font-family: "strangerwoods";
+    color: var(--color-stranger-logo);
+}
+
+.title-sub {
+    font-family: "strangerwoods2";
+}
+
+.title-sub {
+    color: var(--color-stranger-logo);
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 5px var(--color-stranger-logo);
+
+}
+
+// title glow animation
+
+
+.title-main {
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+  0%, 100% {
+    transform: scale(1);
+    text-shadow:
+        0 0 4px var(--color-stranger-logo),
+        0 0 8px var(--color-stranger-logo-transparent);
+  }
+
+  50% {
+    transform: scale(1.01);
+    text-shadow:
+        0 0 6px var(--color-stranger-logo),
+        0 0 12px var(--color-stranger-logo-transparent);
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+    .status-bar-wrapper {
+        & section {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: calc(100vw - 20px);
+            max-width: 700px;
+            height: 100%;
+        }
+    }
+}

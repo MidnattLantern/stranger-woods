@@ -1,0 +1,12 @@
+[
+    {
+        "textEvent": "You try to swim towards the surface, but despite being underwater, your strokes act as if you were on land",
+        "eventMarker": "cannot-swim-towards-surface",
+        "buttonEvents": [
+            {
+                "label": "Ok",
+                "buttonMarker": "continue"
+            }
+        ]
+    }
+]

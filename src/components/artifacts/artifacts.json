@@ -1,0 +1,61 @@
+{
+    "room1": [
+        {
+            "id": "feather",
+            "name": "feather",
+            "image": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/artifacts/feather.webp",
+            "description": "",
+            "alt": "A white feather on a dark background"
+        }
+    ],
+    "room2": [
+        {
+            "id": "key",
+            "name": "key",
+            "image": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/artifacts/key.webp",
+            "description": "It is The Watcher's Key. You pick it up and feel its cold metal — on instinct, you press it into the lock. It fits perfectly.",
+            "alt": "An ornate bronze key with a dragon eye in the center"
+        }
+    ],
+    "room3": [
+        {
+            "id": "walking-pot",
+            "name": "walking-pot",
+            "image": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/artifacts/walking-pot.webp",
+            "description": "",
+            "alt": "A succulent in an ornate pot with monster claw legs"
+        }
+    ],
+    "room4": [
+        {
+            "id": "fish-statue",
+            "name": "fish-statue",
+            "image": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/artifacts/fish-statue.webp",
+            "description": "This item is surprisingly light for being a statue, at least underwater.",
+            "alt": "A bronze sculpture of two swirling betta fish"
+        },
+        {
+            "id": "ladder",
+            "name": "ladder",
+            "image": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/artifacts/ladder.webp",
+            "description": "This invention is useful for accessing places gated by gaps and heights.",
+            "alt": "A rustic wooden ladder on a white background"
+        },
+        {
+            "id": "rubber-duck",
+            "name": "rubber-duck",
+            "image": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/artifacts/rubber-duck.webp",
+            "description": "Its buoyancy can make the holder levitate underwater.",
+            "alt": "A cool rubber duck with sunglasses and gold chain in a float ring"
+        }
+    ],
+    "room5": [
+        {
+            "id": "amethyst",
+            "name": "amethyst",
+            "image": "/fed25d-js-intro-grupparbete-the-dopefish-admirers/artifacts/amethyst.webp",
+            "description": "The mystical creatures grant you the Amethyst.",
+            "alt": "A purple amethyst crystal pendant on a gold chain"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+[
+    {
+        "textEvent": "As you pull out the artifact, its buoyancy makes you levitate towards the water's surface...",
+        "eventMarker": "escape",
+        "buttonEvents": [
+            {
+                "label": "Next",
+                "buttonMarker": "continue"
+            }
+        ]
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "textEvent": "You rest both ends of the ladder across the ravine, forming a bridge, then cross the ravine, approaching the peculiar object..."
+    },
+    {
+        "textEvent": "You spot another monument and a chest, just like the one at the crossroads.",
+        "eventMarker": "across-ravine",
+        "buttonEvents": [
+            {
+                "label": "Turn around and cross ravine",
+                "buttonMarker": "turn-around"
+            },
+            {
+                "label": "Inspect monument",
+                "buttonMarker": "inspect-monument",
+                "conditionalMarker": "ravine-monument-is-beaten"
+            }
+        ]
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "textEvent": "Perhaps the cliff's peak can reach above the water, but how will you climb it?",
+        "eventMarker": "at-cliff",
+        "buttonEvents": [
+            {
+                "label": "Turn around",
+                "buttonMarker": "turn-around"
+            },
+            {
+                "label": "Place the ladder on the wall",
+                "buttonMarker": "place-ladder-on-wall",
+                "conditional": true,
+                "conditionalMarker": "has-ladder"
+            }
+        ]
+    }
+]

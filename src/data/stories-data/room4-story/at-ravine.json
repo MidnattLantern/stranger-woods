@@ -1,0 +1,21 @@
+[
+    {
+        "textEvent": "The gap of the ravine is big. Attempting to jump across would be a death sentance.",
+        "eventMarker": "at-ravine",
+        "buttonEvents": [
+            {
+                "label": "Attempt to jump across",
+                "buttonMarker": "attempt-jump-across"
+            },
+            {
+                "label": "Turn around",
+                "buttonMarker": "turn-around"
+            },
+            {
+                "label": "Use the ladder as a bridge",
+                "buttonMarker": "use-ladder-as-bridge",
+                "conditionalMarker": "has-ladder"
+            }
+        ]
+    }
+]

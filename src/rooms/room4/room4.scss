@@ -1,0 +1,57 @@
+.room-4 {
+    background-image: url("/roompic/almaroom4.png");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.room-4-scene-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-4-event-text {
+    min-height: fit-content;
+    margin: 20px;
+    padding: 20px;
+    width: calc(100% - 80px);
+    background-color: var(--color-surface-body);
+    backdrop-filter: blur(50px);
+}
+
+.escape-room-4-button {
+    z-index: 2;
+    position: absolute;
+    left: calc(50% - 100px);
+    bottom: 300px;
+    width: 200px;
+}
+
+.room-4-interaction-button {
+    padding: 16px;
+}
+
+.room-4-story-event-buttons-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 40px);
+    z-index: 2;
+}
+
+.room-4-interaction-button:disabled,
+.escape-room-4-button:disabled {
+    top: 0;
+    left: 0;
+    border: none;
+    cursor: default;
+    visibility: hidden;
+    position: fixed;
+}

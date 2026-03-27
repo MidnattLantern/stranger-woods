@@ -1,0 +1,18 @@
+[
+    {
+        "textEvent": "You won!"
+    },
+    {
+        "textEvent": "A click comes from the chest. You open the chest and find a ladder."
+    },
+    {
+        "textEvent": "You turn around and go back to the crossroads with your new ladder.",
+        "eventMarker": "crossroads-monument-win-turn-back",
+        "buttonEvents": [
+            {
+                "label": "Ok",
+                "buttonMarker": "continue"
+            }
+        ]
+    }
+]

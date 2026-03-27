@@ -1,0 +1,68 @@
+.artifact-overlay {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 430px;
+    z-index: 10000;
+}
+
+.artifact-card {
+    background: linear-gradient(90deg, #0d0d0d, #141f1af2, #0d0d0d);
+    backdrop-filter: blur(50px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    text-align: center;
+    max-width: 300px;
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.5),
+        0 0 15px rgba(#ffffff, 0.2);
+}
+
+.artifact-title {
+    margin-top: 20px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.artifact-image-container {
+    margin-bottom: 1rem;
+
+    .artifact-img-large {
+        width: 100px;
+        height: auto;
+        filter: drop-shadow(0 0 20px rgba(#ffffff, 0.4));
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.7);
+        }
+    }
+
+    button {
+        background-color: var(--color-clear);
+        border: none;
+        box-shadow: none;
+    }
+}
+
+.artifact-name {
+    font-size: 0.85rem;
+    margin-top: 50px;
+}
+
+.artifact-desc {
+    font-style: italic;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    padding-inline: 15px;
+}
+
+.arifact-p {
+    font-size: 0.85rem;
+    margin-bottom: 50px;
+    padding-inline: 20px;
+}

@@ -1,0 +1,13 @@
+@use '../rooms/baseroom/rooms.scss'; // base styles for all rooms;
+@use './phone'; // also dictates initial rules
+@use './desktop';
+
+@font-face {
+    font-family: "strangerwoods";
+    src: url("/fonts/StrangerThings.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "strangerwoods2";
+    src: url("/fonts/StrangerThingsOu.ttf") format("truetype");
+}

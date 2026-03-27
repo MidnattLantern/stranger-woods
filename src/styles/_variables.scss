@@ -1,0 +1,40 @@
+:root {
+    // colors
+    --color-void: rgb(0,0,0);
+    --color-clear: rgb(0,0,0,0);
+    --color-dim: rgba(0,0,0,0.2);
+    --color-heavy-dim: rgba(0,0,0,0.7);
+    --color-border: rgb(200, 220, 180);
+    --color-border-transparent: rgba(200, 220, 200, 0.2);
+    --color-text-body: rgb(220, 230, 220);
+    --color-interactive-text-body: rgb(240, 250, 240);
+    --color-text-body-transparent: rgba(200, 220, 180, 0.8);
+    --color-shadow: rgb(20, 18, 22);
+    --color-input-body: rgba(100, 120, 110, 0.1);
+    --color-interactive-body: rgba(45, 75, 55, 0.7);
+    --color-interactive-body-highlighted: rgb(100, 130, 110);
+    --color-surface-body: rgba(10, 11, 12, 0.65);
+    --color-stranger-logo: #ff0000;
+    --color-stranger-logo-transparent: #ff000080;
+
+
+    //  --color-stranger-logo: rgb(110, 230, 105);
+    //  --color-stranger-logo-transparent: rgba(110, 230, 105, 0.5);
+
+    // --color-stranger-logo: rgb(175, 235, 70);
+    // --color-stranger-logo-transparent: rgba(175, 235, 70, 0.5);
+
+    // --color-stranger-logo: rgb(15, 240, 210);
+    // --color-stranger-logo-transparent: rgba(15, 240, 210, 0.5);
+
+    // --color-stranger-logo: rgb(10, 210, 50);
+    // --color-stranger-logo-transparent: rgba(10, 210, 50, 0.5);
+
+    // fonts
+    --font-sans: 'Modern Antiqua', sans-serif; // Immersion, diegetic
+    --font-serif: 'Jost', serif; // Clarity, non-diegetic
+
+    // other
+    --pillify: 100vmax;
+    --status-bar-height: 100px;
+}

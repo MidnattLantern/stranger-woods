@@ -1,0 +1,13 @@
+ul {
+    list-style: none;
+}
+
+.highscore-list {
+    padding-left: 0;
+}
+
+.highscore-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,26 @@
+[
+    {
+        "textEvent": "The sky shift more distorted as you step deeper into the woods. Not unusual at this point, you say to yourself. But why is the air so thick?\nThe sky above seem to be unusually close. Did the sky always have a border? And why is the border so warped?"
+    },
+    {
+        "textEvent": "No, that's not the sky, that's the water's surface. Despite being underwater, you can still breathe, but not for long, you can feel the air, or rather the oxygen level getting thicker.\nYou have to find your way out before choking underwater."
+    },
+    {
+        "textEvent": "The air is getting thicker, what will you do?",
+        "eventMarker": "enter-silent-tide",
+        "buttonEvents": [
+            {
+                "label": "Attempt to swim towards the surface",
+                "buttonMarker": "attempt-swim"
+            },
+            {
+                "label": "Climb the nearest best tree",
+                "buttonMarker": "climb-tree"
+            },
+            {
+                "label": "Walk deeper",
+                "buttonMarker": "go-to-crossroads"
+            }
+        ]
+    }
+]

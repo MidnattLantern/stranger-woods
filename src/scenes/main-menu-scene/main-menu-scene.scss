@@ -1,0 +1,17 @@
+.main-menu {
+    --padding: 20px;
+
+    width: calc(100vw - (var(--padding) * 2));
+    max-width: 700px;
+    height: calc(100vh - (var(--padding) * 2));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .menu-buttons {
+        & button {
+            width: 100%;
+            margin-top: 15px;
+        }
+    }
+}

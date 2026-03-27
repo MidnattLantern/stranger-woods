@@ -1,0 +1,15 @@
+[
+    {
+        "textEvent": "You take the gamble, step five steps back, then rush with all your might..."
+    },
+    {
+        "textEvent": "You trip over a branch, and fall down the ravine, down your death.",
+        "eventMarker": "ravine-trip",
+        "buttonEvents": [
+            {
+                "label": "Ok",
+                "buttonMarker": "continue"
+            }
+        ]
+    }
+]
