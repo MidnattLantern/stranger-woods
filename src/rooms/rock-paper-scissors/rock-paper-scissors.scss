@@ -19,31 +19,6 @@
   }
 }
 
-.dialogue-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  p {
-    margin: 20px;
-    padding: 20px;
-    width: calc(100% - 80px);
-    min-height: 100px;
-    background-color: var(--color-surface-body);
-    backdrop-filter: blur(50px);
-    border: 1px ridge var(--color-border-transparent);
-  }
-
-  button {
-    position: absolute;
-    bottom: 0;
-    margin: 2rem;
-    width: calc(100% - 20px);
-    z-index: 1;
-  }
-}
-
 .choices {
   display: flex;
   flex-direction: column;

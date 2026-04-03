@@ -1,0 +1,9 @@
+.dialogue-box {
+    margin: 20px;
+    padding: 20px;
+    width: calc(100% - 80px);
+    min-height: 100px;
+    background-color: var(--color-surface-body);
+    backdrop-filter: blur(50px);
+    border: 1px ridge var(--color-border-transparent);
+}

@@ -11,7 +11,7 @@ import { renderVictoryScene } from './scenes/victory-scene/victory-scene';
 import { getSecondsElapsed, renderStatusBar, stopAllStatusBarTimers, removeArtifactByRoomIndex, roomArtifactIds } from './components/status-bar/status-bar';
 import { saveHighscore } from './components/high-score/high-score';
 import { saveGameToLocalStorage, clearLocalStorageSave } from './store/database/local-storage-database';
-import { rockPaperScissors } from './rooms/rock-paper-scissors/rock-paper-scissors.ui';
+import { rockPaperScissors } from './rooms/rock-paper-scissors/rock-paper-scissors';
 import { riddles } from './rooms/riddles/riddles';
 import { sudoku } from './rooms/sudoku/sudoku';
 import { memory } from './rooms/memory/memory';
@@ -42,20 +42,13 @@ export function render() {
 
     // show & hide h1
     const h1Element = document.querySelector('h1');
-    // const statusBarElement = document.getElementById('statusBarWrapper');
     if (state.screen === 'room' || state.screen === 'about' || state.screen === 'gameover' || state.screen === 'victory') {
         if (h1Element) h1Element.classList.add('hidden');
     } else {
         if (h1Element) h1Element.classList.remove('hidden');
     }
 
-    // if (state.screen === 'room') {
-    //    if (statusBarElement) statusBarElement.classList.remove('hidden');
-    // } else {
-    //     if (statusBarElement) statusBarElement.classList.add('hidden');
-    // }
-
-    renderStatusBar();
+    // renderStatusBar();
 }
 
 const allRooms = [rockPaperScissors, room2, riddles, sudoku, memory, strangersBook];
