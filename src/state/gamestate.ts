@@ -2,7 +2,6 @@ import type { Artifact } from '../components/artifacts/artifactSystem';
 
 export type Screen = 'login' | 'menu' | 'room' | 'savedgame' | 'settings' | 'about' | 'victory' | 'gameover';
 
-
 export type GameState = {
     screen: Screen;
     username: string;
@@ -59,7 +58,7 @@ export function getRoomStates() {
     return roomStates;
 }
 
-export function setRoomTime(targetIndex:number, newValue: number) {
+export function setRoomTime(targetIndex: number, newValue: number) {
     if (roomStates[targetIndex]) {
         roomStates[targetIndex].roomTime = newValue;
     }

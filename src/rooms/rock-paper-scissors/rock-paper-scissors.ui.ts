@@ -1,11 +1,11 @@
-import './room1.scss';
+import "./rock-paper-scissors.scss";
 import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
 import { startStatusBarTimers, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
 import { showRoomIntro } from '../../components/room-intro/room-intro';
 import { state } from '../../state/gamestate';
 
-export function room1(sceneWrapper: HTMLDivElement | null, next: () => void) {
+export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () => void) {
   if (!sceneWrapper) return;
   showRoomIntro(
     1,
@@ -23,8 +23,8 @@ export function room1(sceneWrapper: HTMLDivElement | null, next: () => void) {
       <h2>The Gravity Glitch</h2>
 
         <div id="dialogueBox" class="dialogue-box">
-          <p id="dialogueText"></p>
-          <button id="nextBtn">Next</button>
+            <p id="dialogueText"></p>
+            <button id="nextBtn">Next</button>
         </div>
     
         <div class="game-session-wrapper">

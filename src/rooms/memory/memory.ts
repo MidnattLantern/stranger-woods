@@ -1,5 +1,5 @@
-import './room5.scss';
-import cardsData from '../../rooms/room5/cardsData.json';
+import './memory.scss';
+import cardsData from './cardsData.json';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
 import { showRoomIntro } from '../../components/room-intro/room-intro';
 import {
@@ -435,7 +435,7 @@ function showCompleted(sceneWrapper: HTMLDivElement, next: () => void): void {
 // ---------------------------------------------------------------
 // -------------------------- Export  ----------------------------
 // ---------------------------------------------------------------
-export function room5(
+export function memory(
     sceneWrapper: HTMLDivElement | null,
     next: () => void,
 ): void {

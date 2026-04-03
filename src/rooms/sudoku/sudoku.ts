@@ -1,9 +1,9 @@
-import './room4.scss';
-import { getRoom4CliffMonumentIsBeaten, getRoom4CrossroadsMonumentIsBeaten, getRoom4EventMarker, getRoom4HasRubberDuckArtifact, getRoom4HasLadder, getRoom4HasFishStatueArtifact, getRoom4RavineMonumentIsBeaten, getRoom4StoryEventButtons, getRoom4TextEvent, getRoom4TitleText, handleRoom4ClickStoryEventButton, traverseResetRoom4 } from './room4-story-controller';
+import './sudoku.scss';
+import { getRoom4CliffMonumentIsBeaten, getRoom4CrossroadsMonumentIsBeaten, getRoom4EventMarker, getRoom4HasRubberDuckArtifact, getRoom4HasLadder, getRoom4HasFishStatueArtifact, getRoom4RavineMonumentIsBeaten, getRoom4StoryEventButtons, getRoom4TextEvent, getRoom4TitleText, handleRoom4ClickStoryEventButton, traverseResetRoom4 } from './sudoku-story-controller';
 import { startStatusBarTimers, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
 import { showRoomIntro } from '../../components/room-intro/room-intro';
 
-export function room4(sceneWrapper: HTMLDivElement | null, nextRoom: () => void) {
+export function sudoku(sceneWrapper: HTMLDivElement | null, nextRoom: () => void) {
     if (!sceneWrapper) return;
 
     traverseResetRoom4();

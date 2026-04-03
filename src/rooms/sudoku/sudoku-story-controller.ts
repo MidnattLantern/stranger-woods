@@ -1,5 +1,5 @@
 import type { IButtonEvent, IScriptEvent } from './models';
-import { reRenderRoom4 } from './room4';
+import { reRenderRoom4 } from './sudoku';
 import { closeMiniSudokuGameSession, renderMiniSudoku } from './puzzle/mini-sudoku';
 import { setTableToUse } from './puzzle/mini-sudoku-setup';
 import { getGameSessionBeatenState } from './puzzle/mini-sudoku-states';

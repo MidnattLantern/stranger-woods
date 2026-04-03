@@ -12,7 +12,7 @@ import { render } from '../../main';
 import { getHighScores, saveHighscore } from '../high-score/high-score';
 import { renderVictoryScene } from '../../scenes/victory-scene/victory-scene';
 import { triggerArtifact } from '../artifacts/artifactSystem';
-import { setRoom4CliffMonumentIsBeaten, setRoom4CrossroadsMonumentIsBeaten, setRoom4HasFishStatueArtifact, setRoom4HasLadder, setRoom4HasRubberDuckArtifact, setRoom4RavineMonumentIsBeaten } from '../../rooms/room4/room4-story-controller';
+import { setRoom4CliffMonumentIsBeaten, setRoom4CrossroadsMonumentIsBeaten, setRoom4HasFishStatueArtifact, setRoom4HasLadder, setRoom4HasRubberDuckArtifact, setRoom4RavineMonumentIsBeaten } from '../../rooms/sudoku/sudoku-story-controller';
 
 let showCheatCodes: boolean = false;
 const showCheatCodesButton = document.getElementById(

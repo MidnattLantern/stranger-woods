@@ -1,9 +1,9 @@
-@use '../room1/room1.scss';
+@use '../rock-paper-scissors/rock-paper-scissors.scss';
 @use '../room2/room2.scss';
-@use '../room3/room3.scss';
-@use '../room4/room4.scss';
-@use '../room5/room5.scss';
-@use '../room6/room6.scss';
+@use '../riddles/riddles.scss';
+@use '../sudoku/sudoku.scss';
+@use '../memory/memory.scss';
+@use '../strangers-book/strangers-book.scss';
 
 .room {
     height: calc(100vh - var(--status-bar-height));

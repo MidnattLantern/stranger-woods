@@ -1,4 +1,4 @@
-import './room6.scss';
+import './strangers-book.scss';
 import { showRoomIntro } from '../../components/room-intro/room-intro';
 import {
     room6Book,
@@ -17,7 +17,7 @@ import { renderVictoryScene } from '../../scenes/victory-scene/victory-scene';
 import { render } from '../../main';
 import { state } from '../../state/gamestate';
 
-export function room6(sceneWrapper: HTMLDivElement | null) {
+export function strangersBook(sceneWrapper: HTMLDivElement | null) {
     if (!sceneWrapper) return;
 
     showRoomIntro(

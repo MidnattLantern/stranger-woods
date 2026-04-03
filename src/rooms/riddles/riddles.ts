@@ -1,4 +1,4 @@
-import './room3.scss';
+import './riddles.scss';
 import { state } from '../../state/gamestate';
 import { render } from '../../main';
 import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
@@ -39,7 +39,7 @@ const questions = [
     }
 ];
 
-export function room3(sceneWrapper: HTMLDivElement | null, next: () => void) {
+export function riddles(sceneWrapper: HTMLDivElement | null, next: () => void) {
     if (!sceneWrapper) return;
     
     showRoomIntro(

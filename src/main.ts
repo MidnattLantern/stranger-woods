@@ -4,30 +4,18 @@ import { state } from './state/gamestate';
 import { renderSignInScene } from './scenes/sign-in-scene/sign-in-scene';
 import { renderMainMenuScene } from './scenes/main-menu-scene/main-menu-scene';
 import { renderGameOverScene } from './scenes/game-over-scene/game-over-scene';
-import { room1 } from './rooms/room1/room1';
 import { room2 } from './rooms/room2/room2';
-import { room3 } from './rooms/room3/room3';
-import { room4 } from './rooms/room4/room4';
-import { room5 } from './rooms/room5/room5';
-import { room6 } from './rooms/room6/room6';
 import { renderAboutScene } from './scenes/about-scene/about-scene';
 import './components/high-score/high-score';
 import { renderVictoryScene } from './scenes/victory-scene/victory-scene';
 import { getSecondsElapsed, renderStatusBar, stopAllStatusBarTimers, removeArtifactByRoomIndex, roomArtifactIds } from './components/status-bar/status-bar';
 import { saveHighscore } from './components/high-score/high-score';
 import { saveGameToLocalStorage, clearLocalStorageSave } from './store/database/local-storage-database';
-
-
-// please check the document in this link:
-// https://medieinstitutet-my.sharepoint.com/:w:/g/personal/alda_catovic_medieinstitutet_se/IQApMQpuaX8YToqheHZBk5Y4AQvnQa3uXsRg0XzjSP18ehU?rtime=AQuzKQlr3kg
-
-/** Session states
- * room x is unlocked boolean
- * You can only revisit previous rooms after beating room 6, and all the hourglasses are remembered
- * Session states and localstrage memory not to be confused with each other
- * Session states is like the RAM
- * Localstorage is like the SSD
- */
+import { rockPaperScissors } from './rooms/rock-paper-scissors/rock-paper-scissors.ui';
+import { riddles } from './rooms/riddles/riddles';
+import { sudoku } from './rooms/sudoku/sudoku';
+import { memory } from './rooms/memory/memory';
+import { strangersBook } from './rooms/strangers-book/strangers-book';
 
 const sceneWrapper: HTMLDivElement | null = document.querySelector('#sceneWrapper');
 
@@ -54,23 +42,23 @@ export function render() {
 
     // show & hide h1
     const h1Element = document.querySelector('h1');
-    const statusBarElement = document.getElementById('statusBarWrapper');
+    // const statusBarElement = document.getElementById('statusBarWrapper');
     if (state.screen === 'room' || state.screen === 'about' || state.screen === 'gameover' || state.screen === 'victory') {
         if (h1Element) h1Element.classList.add('hidden');
     } else {
         if (h1Element) h1Element.classList.remove('hidden');
     }
 
-    if (state.screen === 'room') {
-        if (statusBarElement) statusBarElement.classList.remove('hidden');
-    } else {
-        if (statusBarElement) statusBarElement.classList.add('hidden');
-    }
+    // if (state.screen === 'room') {
+    //    if (statusBarElement) statusBarElement.classList.remove('hidden');
+    // } else {
+    //     if (statusBarElement) statusBarElement.classList.add('hidden');
+    // }
 
     renderStatusBar();
 }
 
-const allRooms = [room1, room2, room3, room4, room5, room6];
+const allRooms = [rockPaperScissors, room2, riddles, sudoku, memory, strangersBook];
 
 export function renderNextRoom() {
 
@@ -111,11 +99,11 @@ export function renderNextRoom() {
 }
 
 function enableKeyboardNavigation() {
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', (event) => {
         const focused = document.activeElement as HTMLElement;
 
-        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-            e.preventDefault();
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
             const buttons = Array.from(
                 document.querySelectorAll<HTMLButtonElement>(
                     '#sceneWrapper button:not(:disabled), .room-intro-overlay button:not(:disabled)'
@@ -123,11 +111,11 @@ function enableKeyboardNavigation() {
             ).filter(btn => {
                 const rect = btn.getBoundingClientRect();
                 return rect.width > 0 && rect.height > 0;
-            }); // filtrerar bort dolda knappar
+            });
 
             const currentIndex = buttons.indexOf(focused as HTMLButtonElement);
 
-            if (e.key === 'ArrowDown') {
+            if (event.key === 'ArrowDown') {
                 const next = buttons[currentIndex + 1] ?? buttons[0];
                 next?.focus();
                 next?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -138,10 +126,10 @@ function enableKeyboardNavigation() {
             }
         }
 
-        if (e.key === 'Enter') {
+        if (event.key === 'Enter') {
             if (focused?.tagName === 'BUTTON' && !focused.hasAttribute('disabled')) {
-                e.preventDefault();
-                e.stopPropagation();
+                event.preventDefault();
+                event.stopPropagation();
                 focused.click();
             }
         }
@@ -164,8 +152,8 @@ function enableKeyboardNavigation() {
 enableKeyboardNavigation();
 
 // Log out 
-document.getElementById('statusBarWrapper')?.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
+document.getElementById('statusBarWrapper')?.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
     if (target.id === 'logOutBtn') {
         saveGameToLocalStorage();
         stopAllStatusBarTimers();

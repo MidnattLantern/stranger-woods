@@ -62,7 +62,7 @@ If the correct password (dopefish) is entered, the entire highscore list is perm
 
 ---
 
-#### Developed by The Dopefish Admirers team:
+#### The Dopefish Admirers team:
 
 [Alma Isaksson](https://github.com/MidnattLantern),
 [Linn Boekhout](https://github.com/Linboe),
@@ -70,39 +70,3 @@ If the correct password (dopefish) is entered, the entire highscore list is perm
 [Isabelle Reynolds](https://github.com/isabelletherese),
 [Kimi Leminaho](https://github.com/Prxjec-t),
 [Rasmus Fransson](https://github.com/RasmusFranssonHub)
-
-#### Screenshots: 
-
-Tillgänglighetsanalys: 
-
-Screenshot av tillgänglighetsanalys i Chrome Lighthouse, desktop-läge:
-![Screenshot av tillgänglighetsanalys i Lighthouse, desktop-läge](src/screenshots/lighthouse_accessibility_desktop.png)
-
-Screenshot av tillgänglighetsanalys i Chrome Lighthouse, mobilt läge:
-![Screenshot av tillgänglighetsanalys i Lighthouse, mobilt läge](src/screenshots/lighthouse_accessibility_mobile.png)
-
-Screenshots av spelet: 
-![Screenshot av main page](src/screenshots/screenshot_main.png)
-
-![Screenshot av about page](src/screenshots/screenshot_about_page.png)
-
-![Screenshot av intro till rum](src/screenshots/screenshot_roomintro.png)
-
-![Screenshot av artifact](src/screenshots/screenshot_artifact_collect.png)
-
-![Screenshot av highscorelista](src/screenshots/screenshot_highscore.png)
-
-![Screenshot av minispel inuti rum](src/screenshots/screenshot_game1.png)
-
-![Screenshot av interaktivt minispel inuti rum](src/screenshots/screenshot_interactive_game.png)
-
-![Screenshot av minispel inuti rum](src/screenshots/screenshot_game.png)
-
-![Screenshot av sudoko minispel inuti rum](src/screenshots/screenshot_sudoko.png)
-
-![Screenshot av memory minispel inuti rum](src/screenshots/screenshot_memory_game.png)
-
-![Screenshot av drag and drop finalspel](src/screenshots/screenshot_draganddrop_game.png)
-
-
-
