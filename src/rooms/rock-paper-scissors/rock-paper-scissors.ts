@@ -7,8 +7,6 @@ import { state } from '../../state/gamestate';
 import { rockPaperScissorsUI } from "./rock-paper-scissors.ui";
 import { overwriteDialogueTextContent, renderDialogueBox } from "../../components/dialogue-box/dialogue-box";
 
-//const sceneWrapper = document.getElementById("sceneWrapper");
-
 export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () => void) {
   if (!sceneWrapper) return;
   showRoomIntro( 1,
@@ -21,10 +19,11 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
     () => {
         rockPaperScissorsUI.clearSceneWrapper();
         const rockPaperScissorsSceneWrapper = rockPaperScissorsUI.rockPaperScissorsSceneWrapper();
-        const testDialogue = renderDialogueBox("test init");
+        const testDialogue = renderDialogueBox();
 
         rockPaperScissorsSceneWrapper.append(testDialogue);
         sceneWrapper.append(rockPaperScissorsSceneWrapper);
+        rockPaperScissorsSceneWrapper.append(rockPaperScissorsUI.gameSessionWrapper());
 
                 //     sceneWrapper.innerHTML = `
                 // <section class="room room-1">
@@ -76,7 +75,7 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
         ];
 
         let currentLine = 0;
-        const nextBtn = document.getElementById('dialogueBox') as HTMLButtonElement;
+        const nextBtn = document.getElementById('dialogueNextButton') as HTMLButtonElement;
         const dialogueBox = document.getElementById('#dialogueBox') as HTMLDivElement;
         const gameSession = document.getElementById('#gameSession') as HTMLDivElement;
 

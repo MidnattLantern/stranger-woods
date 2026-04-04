@@ -6,22 +6,21 @@ function clearSceneWrapper() {
 }
 
 function rockPaperScissorsSceneWrapper() {
-    /*
-    section
-        div
-        ...
-    */
-    const sceneWrapperContainer = document.createElement("section");
-    sceneWrapperContainer.classList.add("room", "room1");
-
     const sceneWrapper = document.createElement("div");
-    sceneWrapper.classList.add("room-frame");
+    sceneWrapper.classList.add("room-frame", "rock-paper-scissors-wallpaper");
 
-    sceneWrapperContainer.append(sceneWrapper);
-    return sceneWrapperContainer;
+    return sceneWrapper;
+}
+
+function gameSessionWrapper() {
+    const gameSessionWrapper = document.createElement("div");
+    gameSessionWrapper.classList.add("rock-paper-scissors__game-session-wrapper");
+
+    return gameSessionWrapper;
 }
 
 export const rockPaperScissorsUI = {
     clearSceneWrapper,
-    rockPaperScissorsSceneWrapper
+    rockPaperScissorsSceneWrapper,
+    gameSessionWrapper
 }

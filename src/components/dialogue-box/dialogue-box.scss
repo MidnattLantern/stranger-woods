@@ -6,4 +6,21 @@
     background-color: var(--color-surface-body);
     backdrop-filter: blur(50px);
     border: 1px ridge var(--color-border-transparent);
+
+    & > button {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 25px;
+        background: var(--color-clear);
+        transition: all 0s ease;
+
+        &:hover,
+        &:focus {
+            background: var(--color-clear);
+        }
+    }
 }
