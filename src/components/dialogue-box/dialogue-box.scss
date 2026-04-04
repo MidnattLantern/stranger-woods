@@ -1,11 +1,12 @@
 .dialogue-box {
+    position: relative;
     margin: 20px;
     padding: 20px;
-    width: calc(100% - 80px);
+    width: calc(100% - 40px);
     min-height: 100px;
     background-color: var(--color-surface-body);
     backdrop-filter: blur(50px);
-    border: 1px ridge var(--color-border-transparent);
+    border: 2px solid var(--color-border-transparent);
 
     & > button {
         position: absolute;
@@ -22,5 +23,16 @@
         &:focus {
             background: var(--color-clear);
         }
+    }
+}
+
+.dialogue-box__hidden {
+    position: absolute;
+    opacity: 0%;
+    border-color: rgb(250, 0, 0);
+    transition: all 0.1s ease;
+    
+    & p {
+        color: rgb(250, 0, 0);
     }
 }

@@ -6,9 +6,24 @@
 }
 
 .rock-paper-scissors__game-session-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: end;
+    padding: 20px;
     width: 100%;
     height: 100%;
-    border: 1px solid red;
+}
+
+.rock-paper-scissors__buttons-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.rock-paper-scissors__duel-status-table {
+    width: 100%;
 }
 
 .artifact-display {
@@ -71,4 +86,8 @@
 
 .score-display {
     font-size: 1.35rem;
+}
+
+.hidden {
+    visibility: hidden;
 }
