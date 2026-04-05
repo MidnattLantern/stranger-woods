@@ -15,11 +15,19 @@
     height: 100%;
 }
 
-.rock-paper-scissors__buttons-container {
+.rock-paper-scissors__buttons-table {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+
+    & .rock-paper-scissors__player-buttons-container,
+    & .rock-paper-scissors__computer-buttons-container {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 20px;
+}
 }
 
 .rock-paper-scissors__duel-status-table {
@@ -90,4 +98,8 @@
 
 .hidden {
     visibility: hidden;
+}
+
+@media screen and (min-width: 768px) {
+
 }

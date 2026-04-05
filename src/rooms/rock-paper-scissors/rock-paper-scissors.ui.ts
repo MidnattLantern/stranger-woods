@@ -19,24 +19,61 @@ function gameSessionWrapper() {
     return gameSessionWrapper;
 }
 
-function rockPaperScissorsButtons() {
+function buttonsTable() {
+    const container = document.createElement("section");
+    container.classList.add("rock-paper-scissors__buttons-table");
+
+    return container;
+}
+
+function rpsPlayerButtons() {
     const container = document.createElement("div");
-    container.classList.add("rock-paper-scissors__buttons-container");
-    container.id = "rpsContainer";
+    container.classList.add("rock-paper-scissors__player-buttons-container");
+    container.id = "rpsPlayerButtons";
+
+    const name = document.createElement("h2");
+    name.textContent = "Player";
 
     const rock = document.createElement("button");
     rock.textContent = "Rock";
-    rock.id = "rpsRockButton";
+    rock.id = "rpsPlayerRockButton";
 
     const paper = document.createElement("button");
     paper.textContent = "Paper";
-    paper.id = "rpsPaperButton";
+    paper.id = "rpsPlayerPaperButton";
 
     const scissors = document.createElement("button");
     scissors.textContent = "Scissors";
-    scissors.id = "rpsScissorsButton";
+    scissors.id = "rpsPlayerScissorsButton";
 
-    container.append(rock, paper, scissors);
+    container.append(name, rock, paper, scissors);
+    return container;
+}
+
+function rpsComputerButtons() {
+    const container = document.createElement("div");
+    container.classList.add("rock-paper-scissors__computer-buttons-container");
+    container.id = "rpsComputerButtons";
+
+    const name = document.createElement("h2");
+    name.textContent = "Strange man";
+
+    const rock = document.createElement("button");
+    rock.textContent = "Rock";
+    rock.id = "rpsComputerRockButton";
+    rock.setAttribute("disabled", "true");
+
+    const paper = document.createElement("button");
+    paper.textContent = "Paper";
+    paper.id = "rpsComputerPaperButton";
+    paper.setAttribute("disabled", "true");
+
+    const scissors = document.createElement("button");
+    scissors.textContent = "Scissors";
+    scissors.id = "rpsComputerScissorsButton";
+    scissors.setAttribute("disabled", "true");
+
+    container.append(name, rock, paper, scissors);
     return container;
 }
 
@@ -48,16 +85,20 @@ function duelStatusTable() {
     const playerSection = document.createElement("tr");
     const playerName = document.createElement("td");
     playerName.textContent = "Player";
+    const playerChoice = document.createElement("td");
+    playerChoice.id = "rpsPlayerChoice";
     const playerScore = document.createElement("td");
     playerScore.id = "rpsPlayerScore";
-    playerSection.append(playerName, playerScore);
+    playerSection.append(playerName, playerChoice, playerScore);
     
     const computerSection = document.createElement("tr");
     const computerName = document.createElement("td");
     computerName.textContent = "Strange man";
+    const computerChoice = document.createElement("td");
+    computerChoice.id = "rpsComputerChoice";
     const computerScore = document.createElement("td");
     computerScore.id = "rpsComputerScore";
-    computerSection.append(computerName, computerScore);
+    computerSection.append(computerName, computerChoice, computerScore);
 
     container.append(playerSection, computerSection);
     return container;
@@ -67,6 +108,8 @@ export const rpsUI = {
     clearSceneWrapper,
     rockPaperScissorsSceneWrapper,
     gameSessionWrapper,
-    rockPaperScissorsButtons,
+    buttonsTable,
+    rpsPlayerButtons,
+    rpsComputerButtons,
     duelStatusTable
 }

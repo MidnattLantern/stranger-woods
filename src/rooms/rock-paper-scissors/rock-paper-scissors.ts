@@ -20,7 +20,9 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
         rpsUI.clearSceneWrapper();
         const rockPaperScissorsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
         const gameSessionWrapper = rpsUI.gameSessionWrapper();
-        const rpsButtons = rpsUI.rockPaperScissorsButtons();
+        const buttonsTable = rpsUI.buttonsTable();
+        const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
+        const rpsComputerButtons = rpsUI.rpsComputerButtons();
         const duelStatusTable = rpsUI.duelStatusTable();
 
         const testDialogue = renderDialogueBox();
@@ -29,7 +31,8 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
         sceneWrapper.append(rockPaperScissorsSceneWrapper);
         rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
         gameSessionWrapper.classList.add("hidden");
-        gameSessionWrapper.append(rpsButtons, duelStatusTable);
+        gameSessionWrapper.append(buttonsTable, duelStatusTable);
+        buttonsTable.append(rpsPlayerButtons, rpsComputerButtons);
 
                 //     sceneWrapper.innerHTML = `
                 // <section class="room room-1">
@@ -82,11 +85,15 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
 
         let currentLine = 0;
         const nextBtn = document.getElementById('dialogueNextButton') as HTMLButtonElement;
-        // const gameSession = document.getElementById('#rpsContainer') as HTMLDivElement;
+        // const gameSession = document.getElementById('#rpsPlayerButtons') as HTMLDivElement;
 
         overwriteDialogueTextContent(lines[0]);
 
-        nextBtn.addEventListener('click', () => {
+        nextBtn.addEventListener('click', handleNextLine);
+        rockPaperScissorsSceneWrapper.addEventListener("click", handleNextLine);
+        
+        function handleNextLine() {
+            if (nextBtn.disabled) return;
             currentLine++;
             if (currentLine < lines.length) {
                 overwriteDialogueTextContent(lines[currentLine]);
@@ -96,19 +103,19 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
                 // gameSession.classList.remove('hidden');
                 gameSessionWrapper.classList.remove('hidden');
             }
-        });
+        }
 
-        const rockBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsRockButton');
-        const paperBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPaperButton');
-        const scissorsBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsScissorsButton');
+        const rockBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPlayerRockButton');
+        const paperBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPlayerPaperButton');
+        const scissorsBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPlayerScissorsButton');
         const actionBtn = sceneWrapper.querySelector('#actionBtn') as HTMLButtonElement;
 
-        const playerDisplay = document.getElementById('rpsPlayerScore') as HTMLTableElement;
-        const computerDisplay = document.getElementById('rpsComputerScore') as HTMLTableElement;
+        const playerDisplay = document.getElementById('rpsPlayerChoice') as HTMLTableElement;
+        const computerDisplay = document.getElementById('rpsComputerChoice') as HTMLTableElement;
         // const resultDisplay = sceneWrapper.querySelector('#resultDisplay') as HTMLDivElement;
 
-        // const playerScoreDisplay = sceneWrapper.querySelector('#playerScoreDisplay') as HTMLSpanElement;
-        // const computerScoreDisplay = sceneWrapper.querySelector('#computerScoreDisplay') as HTMLSpanElement;
+        const playerScoreDisplay = document.getElementById('rpsPlayerScore') as HTMLSpanElement;
+        const computerScoreDisplay = document.getElementById('rpsComputerScore') as HTMLSpanElement;
 
         if (!rockBtn || !paperBtn || !scissorsBtn) {
             console.error('Buttons not found');
@@ -147,11 +154,11 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
             switch (result) {
                 case 'YOU WIN!':
                     playerScore++;
-                    // playerScoreDisplay.textContent = playerScore.toString();
+                    playerScoreDisplay.textContent = playerScore.toString();
                     break;
                 case 'YOU LOSE!':
                     computerScore++;
-                    // computerScoreDisplay.textContent = computerScore.toString();
+                    computerScoreDisplay.textContent = computerScore.toString();
                     break;
             }
 
@@ -178,8 +185,8 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
             playerScore = 0;
             computerScore = 0;
 
-            // playerScoreDisplay.textContent = '0';
-            // computerScoreDisplay.textContent = '0';
+            playerScoreDisplay.textContent = '0';
+            computerScoreDisplay.textContent = '0';
 
             playerDisplay.textContent = 'Player: ';
             computerDisplay.textContent = 'Computer: ';
