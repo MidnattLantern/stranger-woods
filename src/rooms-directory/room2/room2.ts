@@ -1,10 +1,10 @@
 import './room2.scss';
 import { state } from '../../state/gamestate';
-import { render } from '../../main';
 import { showRoomIntro } from '../../components/room-intro/room-intro';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
 import { startStatusBarTimers, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
 import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
+import { renderScene } from '../../scenes/scene-handler';
 
 export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
     if (!sceneWrapper) return;
@@ -312,7 +312,7 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
                         state.gameOverReason = 'too-many-attempts';
                         saveGameToLocalStorage();
                         state.screen = 'gameover';
-                        render();
+                        renderScene();
                     }, 3000);
 
                 } else if (inputValue < 12) {
@@ -417,7 +417,7 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
                         state.gameOverReason = 'too-many-attempts';
                         saveGameToLocalStorage();
                         state.screen = 'gameover';
-                        render();
+                        renderScene();
                     }, 2000);
                 }
 

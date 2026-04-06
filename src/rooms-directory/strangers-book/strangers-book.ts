@@ -13,9 +13,8 @@ import {
 
 import { setRoom6Mode } from '../../components/status-bar/status-bar';
 import { renderVictoryScene } from '../../scenes/victory-scene/victory-scene';
-
-import { render } from '../../main';
 import { state } from '../../state/gamestate';
+import { renderScene } from '../../scenes/scene-handler';
 
 export function strangersBook(sceneWrapper: HTMLDivElement | null) {
     if (!sceneWrapper) return;
@@ -137,7 +136,7 @@ export function strangersBook(sceneWrapper: HTMLDivElement | null) {
                     if (attempts >= maxAttempts) {
                         state.gameOverReason = 'too-many-attempts';
                         state.screen = 'gameover';
-                        render();
+                        renderScene();
                     }
                 });
 

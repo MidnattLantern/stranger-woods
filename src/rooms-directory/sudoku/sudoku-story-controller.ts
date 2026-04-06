@@ -36,7 +36,7 @@ import inspectCliffMonumentStory from '../../data/stories-data/room4-story/inspe
 import cliffMonumentWinStory from '../../data/stories-data/room4-story/cliff-monument-win.json';
 import cliffMonumentLoseStory from '../../data/stories-data/room4-story/cliff-monument-lose.json';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
-import { render } from '../../main';
+import { renderScene } from '../../scenes/scene-handler';
 
 let room4StoryToUse: IScriptEvent[] = room4Story;
 let room4StoryIndex: number = 0;
@@ -368,7 +368,7 @@ export function handleRoom4ClickStoryEventButton(event: Event) {
             resetRoom4();
             state.gameOverReason = 'too-many-attempts';
             state.screen = 'gameover';
-            render();
+            renderScene();
             return;
         case 'across-ravine-turn-around':
             returnToCrossroads();

@@ -1,9 +1,9 @@
 import './riddles.scss';
 import { state } from '../../state/gamestate';
-import { render } from '../../main';
 import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
 import { startStatusBarTimers,stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
+import { renderScene } from '../../scenes/scene-handler';
 // import { showRoomIntro } from '../../components/room-intro/room-intro';
 
 let currentQuestionIndex = 0;
@@ -160,7 +160,7 @@ export function riddles(sceneWrapper: HTMLDivElement | null, next: () => void) {
                                 state.gameOverReason = 'too-many-attempts';
                                 saveGameToLocalStorage();
                                 state.screen = 'gameover';
-                                render();
+                                renderScene();
                             }, 1000);
                         }
                     }

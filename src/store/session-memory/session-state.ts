@@ -10,6 +10,19 @@ let sessionState: ISessionState = {
     userProfile: "",
 }
 
+function setScene(newScene: IScene) {
+    sessionState.scene = newScene;
+}
+
+function setUserProfile(newUserProfile: string) {
+    sessionState.userProfile = newUserProfile;
+}
+
 export function getSessionState() {
     return sessionState;
+}
+
+export const setSessionState = {
+    setScene,
+    setUserProfile,
 }

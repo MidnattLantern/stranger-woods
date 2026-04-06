@@ -3,23 +3,23 @@ import './styles/style.scss';
 import { state } from './state/gamestate';
 import { getSessionState } from './store/session-memory/session-state';
 import './components/high-score/high-score';
-import { getSecondsElapsed, stopAllStatusBarTimers, removeArtifactByRoomIndex, roomArtifactIds } from './components/status-bar/status-bar';
+import { getSecondsElapsed, removeArtifactByRoomIndex, roomArtifactIds } from './components/status-bar/status-bar';
 import { saveHighscore } from './components/high-score/high-score';
 import { saveGameToLocalStorage, clearLocalStorageSave } from './store/database/local-storage-database';
-import { rockPaperScissors } from './rooms/rock-paper-scissors/rock-paper-scissors';
-import { sudoku } from './rooms/sudoku/sudoku';
-import { memory } from './rooms/memory/memory';
-import { strangersBook } from './rooms/strangers-book/strangers-book';
+import { rockPaperScissors } from './rooms-directory/rock-paper-scissors/rock-paper-scissors';
+import { sudoku } from './rooms-directory/sudoku/sudoku';
+import { memory } from './rooms-directory/memory/memory';
+import { strangersBook } from './rooms-directory/strangers-book/strangers-book';
 import { renderScene } from './scenes/scene-handler';
 
 const sceneWrapper = document.getElementById('sceneWrapper') as HTMLDivElement;
 const sessionState = getSessionState();
 
-const allRooms = [rockPaperScissors, sudoku, memory, strangersBook];
+const roomsDirectory = [rockPaperScissors, sudoku, memory, strangersBook];
 
 export function renderNextRoom() {
 
-    if (state.currentRoom >= allRooms.length) { // handle complete game
+    if (state.currentRoom >= roomsDirectory.length) { // handle complete game
         saveHighscore(state.username, getSecondsElapsed());
         clearLocalStorageSave();
         sessionState.scene = 'victory';
@@ -31,7 +31,7 @@ export function renderNextRoom() {
         sceneWrapper.innerHTML = '';
     }
 
-    const room = allRooms[state.currentRoom];
+    const room = roomsDirectory[state.currentRoom];
     const isRevisiting = state.completed[state.currentRoom]; // consider session memory?
 
     if (isRevisiting) { // consider session memory?
@@ -53,16 +53,5 @@ export function renderNextRoom() {
         renderScene();
     });
 }
-
-// Log out 
-document.getElementById('statusBarWrapper')?.addEventListener('click', (event) => {
-    const target = event.target as HTMLElement;
-    if (target.id === 'logOutBtn') {
-        saveGameToLocalStorage();
-        stopAllStatusBarTimers();
-        state.screen = 'login';
-        renderScene();
-    }
-});
 
 renderScene();

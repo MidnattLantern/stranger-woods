@@ -1,5 +1,5 @@
 import { state } from '../../state/gamestate';
-import { render } from '../../main';
+import { renderScene } from '../scene-handler';
 import './about-scene.scss';
 
 const sceneWrapper = document.getElementById(
@@ -103,7 +103,7 @@ export function renderAboutScene() {
     backBtn.textContent = 'Back to main menu';
     backBtn.addEventListener('click', () => {
         state.screen = 'menu';
-        render();
+        renderScene();
     });
 
     // Lägg till alla sektioner i containern och sedan i wrapper

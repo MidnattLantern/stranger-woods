@@ -1,5 +1,3 @@
-// Cheat Codes is created for the development team to test the logic responsiveness of logic by clicking on buttons
-// Do not make this accessible for production
 import {
     renderStatusBar,
     startStatusBarTimers,
@@ -8,11 +6,18 @@ import {
 import './cheat-code-styles.scss';
 import { createCheatButton } from './cheat-codes-helper';
 import { state } from '../../state/gamestate';
-import { render } from '../../main';
 import { getHighScores, saveHighscore } from '../high-score/high-score';
 import { renderVictoryScene } from '../../scenes/victory-scene/victory-scene';
 import { triggerArtifact } from '../artifacts/artifactSystem';
-import { setRoom4CliffMonumentIsBeaten, setRoom4CrossroadsMonumentIsBeaten, setRoom4HasFishStatueArtifact, setRoom4HasLadder, setRoom4HasRubberDuckArtifact, setRoom4RavineMonumentIsBeaten } from '../../rooms/sudoku/sudoku-story-controller';
+import {
+    setRoom4CliffMonumentIsBeaten,
+    setRoom4CrossroadsMonumentIsBeaten,
+    setRoom4HasFishStatueArtifact,
+    setRoom4HasLadder,
+    setRoom4HasRubberDuckArtifact,
+    setRoom4RavineMonumentIsBeaten
+} from '../../rooms-directory/sudoku/sudoku-story-controller';
+import { renderScene } from '../../scenes/scene-handler';
 
 let showCheatCodes: boolean = false;
 const showCheatCodesButton = document.getElementById(
@@ -29,33 +34,33 @@ const cheatButtons = {
 
     cheatRenderSignInScene: createCheatButton('render sign in scene', () => {
         state.screen = 'login';
-        render();
+        renderScene();
     }),
 
     cheatRenderMainMenuScene: createCheatButton(
         'render main menu scene',
         () => {
             state.screen = 'menu';
-            render();
+            renderScene();
         },
     ),
 
     cheatRenderAboutScene: createCheatButton('render about scene', () => {
         state.screen = 'about';
-        render();
+        renderScene();
     }),
 
     cheatRenderGameOverScene: createCheatButton(
         'render game over scene',
         () => {
             state.screen = 'gameover';
-            render();
+            renderScene();
         },
     ),
 
     cheatRenderVictoryScene: createCheatButton('render victory scene', () => {
         state.screen = 'victory';
-        render();
+        renderScene();
     }),
 
     cheatRenderRoom1: createCheatButton(
@@ -64,7 +69,7 @@ const cheatButtons = {
             stopAllStatusBarTimers();
             state.currentRoom = 0;
             state.screen = 'room';
-            render();
+            renderScene();
             startStatusBarTimers();
         }
     ),
@@ -75,7 +80,7 @@ const cheatButtons = {
             stopAllStatusBarTimers();
             state.currentRoom = 1;
             state.screen = 'room';
-            render();
+            renderScene();
             startStatusBarTimers();
         }
     ),
@@ -85,7 +90,7 @@ const cheatButtons = {
             stopAllStatusBarTimers();
             state.currentRoom = 2;
             state.screen = 'room';
-            render();
+            renderScene();
             startStatusBarTimers();
         }
     ),
@@ -95,7 +100,7 @@ const cheatButtons = {
             stopAllStatusBarTimers();
             state.currentRoom = 3;
             state.screen ='room';
-            render();
+            renderScene();
             startStatusBarTimers();
         }
     ),
@@ -105,7 +110,7 @@ const cheatButtons = {
             stopAllStatusBarTimers();
             state.currentRoom = 4;
             state.screen ='room';
-            render();
+            renderScene();
             startStatusBarTimers();
         }
     ),
@@ -115,7 +120,7 @@ const cheatButtons = {
             stopAllStatusBarTimers();
             state.currentRoom = 5;
             state.screen = 'room';
-            render();
+            renderScene();
             startStatusBarTimers();
         }
     ),

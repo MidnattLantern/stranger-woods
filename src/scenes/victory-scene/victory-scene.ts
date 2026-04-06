@@ -2,10 +2,10 @@
 import './victory-scene.scss';
 import { renderHighScore, saveHighscore } from '../../components/high-score/high-score';
 import { getSecondsElapsed, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
-import { render } from '../../main';
 import { state } from '../../state/gamestate';
 import { attachHack } from '../../components/high-score/high-score';
 import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
+import { renderScene } from '../scene-handler';
 
 const sceneWrapper: HTMLDivElement | null =
     document.querySelector('#sceneWrapper');
@@ -45,7 +45,7 @@ export function renderVictoryScene() {
     mainMenuButton.addEventListener('click', () => {
         saveGameToLocalStorage();
         state.screen = 'menu';
-        render();
+        renderScene();
     });
 
     const highScoreWrapper = document.createElement('div');
@@ -71,7 +71,7 @@ export function renderVictoryScene() {
     backToMenuBtn?.addEventListener('click', () => {
         state.currentRoom = 0;
         state.screen = 'menu';
-        render();
+        renderScene();
     });
 }
 

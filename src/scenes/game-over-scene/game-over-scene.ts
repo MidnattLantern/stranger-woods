@@ -1,8 +1,8 @@
 import './game-over-scene.scss';
 import { roomTimes, state, setRoomTime } from '../../state/gamestate';
-import { render } from '../../main';
 import { loadGameFromLocalStorage, saveGameToLocalStorage, clearLocalStorageSave } from '../../store/database/local-storage-database';
 import { refetchGamestate, stopAllStatusBarTimers, startStatusBarTimers, resetStatusBarProgress } from '../../components/status-bar/status-bar';
+import { renderScene } from '../scene-handler';
 
 const sceneWrapper = document.getElementById('sceneWrapper') as HTMLDivElement | null;
 
@@ -46,7 +46,7 @@ export function renderGameOverScene() {
         }
 
         state.screen = 'room';
-        render();
+        renderScene();
         startStatusBarTimers(); // startar timers igen när spelare klickat på retry
     });
 
@@ -59,7 +59,7 @@ export function renderGameOverScene() {
             saveGameToLocalStorage();
         }
         state.screen = 'menu';
-        render();
+        renderScene();
     });
 
     const logOutButton = document.createElement('button');
@@ -72,7 +72,7 @@ export function renderGameOverScene() {
             saveGameToLocalStorage();
         }
         state.screen = 'login';
-        render();
+        renderScene();
     });
 
     const title = document.createElement('h2');

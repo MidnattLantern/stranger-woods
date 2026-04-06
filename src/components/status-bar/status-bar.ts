@@ -3,8 +3,8 @@ import { state } from '../../state/gamestate';
 import type { Artifact } from '../artifacts/artifactSystem';
 import { getRoomStates, getGameState, setRoomTime } from '../../state/gamestate';
 import { renderGameOverScene } from '../../scenes/game-over-scene/game-over-scene';
-import { render } from '../../main';
 import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
+import { renderScene } from '../../scenes/scene-handler';
 
 // ===============
 // Timer variables
@@ -353,7 +353,7 @@ roomSelectElement.addEventListener('change', () => {
                 refetchGamestate();
                 saveGameToLocalStorage();
                 startStatusBarTimers();
-                render();
+                renderScene();
             },
             () => {
                 roomSelectElement.value = String(state.currentRoom);
@@ -365,7 +365,7 @@ roomSelectElement.addEventListener('change', () => {
         refetchGamestate();
         saveGameToLocalStorage();
         startStatusBarTimers();
-        render();
+        renderScene();
     }
 });
 
