@@ -178,7 +178,7 @@ export function renderStatusBar() {
     labelElement.textContent = `Progress: ${state.currentRoom}/6`;
 
     roomSelectElement.innerHTML = '';
-    const roomNames = ['The Gravity Glitch', 'Victoria House', 'Inner Jungle', 'Escape The Silent Tide', 'Shadows of the Grove', 'Final Trial'];
+    const roomNames = ['The Gravity Glitch', 'Escape The Silent Tide', 'Shadows of the Grove', 'Final Trial'];
 
     for (let i = 0; i < 6; i++) {
         const option = document.createElement('option');

@@ -4,7 +4,6 @@ import { state } from './state/gamestate';
 import { renderSignInScene } from './scenes/sign-in-scene/sign-in-scene';
 import { renderMainMenuScene } from './scenes/main-menu-scene/main-menu-scene';
 import { renderGameOverScene } from './scenes/game-over-scene/game-over-scene';
-import { room2 } from './rooms/room2/room2';
 import { renderAboutScene } from './scenes/about-scene/about-scene';
 import './components/high-score/high-score';
 import { renderVictoryScene } from './scenes/victory-scene/victory-scene';
@@ -12,7 +11,6 @@ import { getSecondsElapsed, renderStatusBar, stopAllStatusBarTimers, removeArtif
 import { saveHighscore } from './components/high-score/high-score';
 import { saveGameToLocalStorage, clearLocalStorageSave } from './store/database/local-storage-database';
 import { rockPaperScissors } from './rooms/rock-paper-scissors/rock-paper-scissors';
-import { riddles } from './rooms/riddles/riddles';
 import { sudoku } from './rooms/sudoku/sudoku';
 import { memory } from './rooms/memory/memory';
 import { strangersBook } from './rooms/strangers-book/strangers-book';
@@ -48,10 +46,10 @@ export function render() {
         if (h1Element) h1Element.classList.remove('hidden');
     }
 
-    // renderStatusBar();
+    renderStatusBar();
 }
 
-const allRooms = [rockPaperScissors, room2, riddles, sudoku, memory, strangersBook];
+const allRooms = [rockPaperScissors, sudoku, memory, strangersBook];
 
 export function renderNextRoom() {
 

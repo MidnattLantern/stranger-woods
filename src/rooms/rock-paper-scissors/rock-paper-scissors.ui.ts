@@ -82,25 +82,28 @@ function duelStatusTable() {
     container.classList.add("rock-paper-scissors__duel-status-table");
     container.id = "rpsDuelStatusTable";
 
-    const playerSection = document.createElement("tr");
+    const nameSection = document.createElement("tr");
     const playerName = document.createElement("td");
     playerName.textContent = "Player";
+    const computerName = document.createElement("td");
+    computerName.textContent = "Strange man";    
+    nameSection.append(playerName, computerName);
+
+    const choiceSection = document.createElement("tr");
     const playerChoice = document.createElement("td");
     playerChoice.id = "rpsPlayerChoice";
-    const playerScore = document.createElement("td");
-    playerScore.id = "rpsPlayerScore";
-    playerSection.append(playerName, playerChoice, playerScore);
-    
-    const computerSection = document.createElement("tr");
-    const computerName = document.createElement("td");
-    computerName.textContent = "Strange man";
     const computerChoice = document.createElement("td");
     computerChoice.id = "rpsComputerChoice";
+    choiceSection.append(playerChoice, computerChoice);
+    
+    const scoreSection = document.createElement("tr");
+    const playerScore = document.createElement("td");
+    playerScore.id = "rpsPlayerScore";
     const computerScore = document.createElement("td");
     computerScore.id = "rpsComputerScore";
-    computerSection.append(computerName, computerChoice, computerScore);
+    scoreSection.append(playerScore, computerScore);
 
-    container.append(playerSection, computerSection);
+    container.append(nameSection, choiceSection, scoreSection);
     return container;
 }
 

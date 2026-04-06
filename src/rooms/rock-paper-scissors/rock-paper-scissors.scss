@@ -32,6 +32,15 @@
 
 .rock-paper-scissors__duel-status-table {
     width: 100%;
+    padding: 1rem;
+    background-color: var(--color-surface-body);
+    backdrop-filter: blur(50px);
+    border: 1px solid var(--color-border-transparent);
+
+    td {
+        width: 50%;
+        text-align: center;
+    }
 }
 
 .artifact-display {
@@ -96,10 +105,10 @@
     font-size: 1.35rem;
 }
 
-.hidden {
-    visibility: hidden;
-}
-
 @media screen and (min-width: 768px) {
 
+}
+
+.hidden {
+    visibility: hidden;
 }

@@ -19,9 +19,9 @@ export type GameState = {
 };
 
 export let state: GameState = {
-    screen: 'room',
+    screen: 'login',
     username: 'testuser',
-    step: 1,
+    step: 0,
     currentRoom: 0,
     message: '',
     codes: [],

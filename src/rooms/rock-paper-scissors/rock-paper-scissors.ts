@@ -7,7 +7,7 @@ import { state } from '../../state/gamestate';
 import { rpsUI } from "./rock-paper-scissors.ui";
 import { hideDialogueBox, overwriteDialogueTextContent, renderDialogueBox } from "../../components/dialogue-box/dialogue-box";
 
-export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () => void) {
+export function rockPaperScissors(sceneWrapper: HTMLDivElement | null) {
   if (!sceneWrapper) return;
   showRoomIntro( 1,
     () => {
@@ -24,58 +24,14 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
         const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
         const rpsComputerButtons = rpsUI.rpsComputerButtons();
         const duelStatusTable = rpsUI.duelStatusTable();
-
         const testDialogue = renderDialogueBox();
 
+        gameSessionWrapper.classList.add("hidden");
         rockPaperScissorsSceneWrapper.append(testDialogue);
         sceneWrapper.append(rockPaperScissorsSceneWrapper);
         rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
-        gameSessionWrapper.classList.add("hidden");
         gameSessionWrapper.append(buttonsTable, duelStatusTable);
         buttonsTable.append(rpsPlayerButtons, rpsComputerButtons);
-
-                //     sceneWrapper.innerHTML = `
-                // <section class="room room-1">
-                //   <div class="room-frame">
-                //     <h2>The Gravity Glitch</h2>
-
-                //       <div id="dialogueBox" class="dialogue-box">
-                //           <p id="dialogueText"></p>
-                //           <button id="nextBtn">Next</button>
-                //       </div>
-                    
-                //       <div class="game-session-wrapper">
-                //           <div id="gameSession" class="game-session-style hidden">
-                //             <div class="game-info-container">
-                //               <div id="playerDisplay" class="player-display">You:</div>
-                //               <div id="computerDisplay" class="computer-display">Strange Man:</div>
-                //                   <div id="resultDisplay" class="result-display"></div>
-                                    
-                //                   <div class="score-display">
-                //                       Your Score:
-                //                       <span id="playerScoreDisplay" class="player-score-display">0</span>
-                //                     </div>
-                                    
-                //                   <div class="score-display">
-                //                       Strange Man's Score:
-                //                       <span id="computerScoreDisplay" class="computer-score-display">0</span>
-                //                     </div>
-                //                  </div>
-
-                //                     <div class="action-btn-container">
-                //                         <button id="actionBtn" class="action-btn hidden"></button>
-                //                       </div>
-                            
-                //               <div class="choices">
-                //                 <button id="rockBtn">Rock</button>
-                //                 <button id="paperBtn">Paper</button>
-                //                 <button id="scissorsBtn">Scissors</button>
-                //               </div>
-                //           </div>
-                //       </div>
-                //   </div>
-                // </section>
-                //       `;
 
         const lines = [
             'Hello there, traveler!',
@@ -85,7 +41,6 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
 
         let currentLine = 0;
         const nextBtn = document.getElementById('dialogueNextButton') as HTMLButtonElement;
-        // const gameSession = document.getElementById('#rpsPlayerButtons') as HTMLDivElement;
 
         overwriteDialogueTextContent(lines[0]);
 
@@ -100,7 +55,6 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
             } else {
                 startStatusBarTimers();
                 hideDialogueBox();
-                // gameSession.classList.remove('hidden');
                 gameSessionWrapper.classList.remove('hidden');
             }
         }
@@ -112,7 +66,6 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
 
         const playerDisplay = document.getElementById('rpsPlayerChoice') as HTMLTableElement;
         const computerDisplay = document.getElementById('rpsComputerChoice') as HTMLTableElement;
-        // const resultDisplay = sceneWrapper.querySelector('#resultDisplay') as HTMLDivElement;
 
         const playerScoreDisplay = document.getElementById('rpsPlayerScore') as HTMLSpanElement;
         const computerScoreDisplay = document.getElementById('rpsComputerScore') as HTMLSpanElement;
@@ -149,7 +102,6 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
 
             playerDisplay.textContent = `${playerChoice}`;
             computerDisplay.textContent = `${computerChoice}`;
-            // resultDisplay.textContent = result;
 
             switch (result) {
                 case 'YOU WIN!':
@@ -162,45 +114,14 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null, next: () 
                     break;
             }
 
-            if (playerScore >= WIN_SCORE) {
-                // resultDisplay.textContent = 'You won!';
-                actionBtn.textContent = 'Go to the next room';
-                actionBtn.classList.remove('hidden');
-                disableGameButtons(true);
+            if (playerScore == WIN_SCORE) {
                 triggerArtifact('room1', 'feather', 0);
                 state.completed[0] = true;
                 saveGameToLocalStorage();
                 stopAllStatusBarTimers();
-                actionBtn.onclick = () => next();
-            } else if (computerScore >= WIN_SCORE) {
-                // resultDisplay.textContent = 'You lost!';
-                actionBtn.textContent = 'Try again';
-                actionBtn.classList.remove('hidden');
-                disableGameButtons(true);
-                actionBtn.onclick = () => restartGame();
-            }
-        }
-
-        function restartGame() {
-            playerScore = 0;
-            computerScore = 0;
-
-            playerScoreDisplay.textContent = '0';
-            computerScoreDisplay.textContent = '0';
-
-            playerDisplay.textContent = 'Player: ';
-            computerDisplay.textContent = 'Computer: ';
-            // resultDisplay.textContent = '';
-
-            disableGameButtons(false);
-            actionBtn.classList.add('hidden');
-        }
-
-        function disableGameButtons(disabled: boolean) {
-            if (rockBtn && paperBtn && scissorsBtn) {
-                rockBtn.disabled = disabled;
-                paperBtn.disabled = disabled;
-                scissorsBtn.disabled = disabled;
+                gameSessionWrapper.classList.add("hidden");
+                gameSessionWrapper.innerHTML = "";
+                state.currentRoom = 1;
             }
         }
 
