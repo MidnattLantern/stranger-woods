@@ -1,6 +1,6 @@
 import './profile-selection.scss';
 
-export function profileSelection() {
+function profileSelection() {
     const inputFieldID: string = "usernameInput";
 
     const container = document.createElement("div");
@@ -26,5 +26,5 @@ export function profileSelection() {
 }
 
 export const profileSelectionUI = {
-    // profileSelection
+    profileSelection
 }
