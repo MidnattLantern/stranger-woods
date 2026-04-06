@@ -1,98 +1,82 @@
-import './profile-selection.scss';
 import { state } from '../../state/gamestate';
 import { saveGameToLocalStorage, hasSaveGame } from '../../store/database/local-storage-database';
 import { resetStatusBarProgress } from '../../components/status-bar/status-bar';
+import { setSessionState } from '../../store/session-memory/session-state';
+import { profileSelection, profileSelectionUI } from './profile-selection.ui';
 
-export function renderProfileSelectionScene(
-    sceneWrapper: HTMLDivElement | null,
-    render: () => void
-) {
-
+export function renderProfileSelectionScene() {
+    const sceneWrapper = document.getElementById("sceneWrapper") as HTMLDivElement | null;
     if (!sceneWrapper) return;
 
-    sceneWrapper.innerHTML = `
-      <div class="sign-in-wrapper">
-        <h2>Save profiles</h2>
-        <label for="usernameInput">Username</label>
-        <input id="usernameInput" placeholder="Username"/>
-        <button id="signInBtn">Start Game</button>
-      </div>
-      `;
+    // sceneWrapper.append(profileSelectionUI.profileSelection());
+    sceneWrapper.append(profileSelection());
 
-    // --------------- DOM ELEMENTS ----------------
-    // ----------------------------------------------
+    // const usernameInput: HTMLInputElement | null = document.querySelector('#usernameInput');
+    // const signInBtn: HTMLButtonElement | null = document.querySelector('#signInBtn');
+    // const errorSpan: HTMLElement | null = document.querySelector('#errorSpan');
 
-    const usernameInput: HTMLInputElement | null = document.querySelector('#usernameInput');
-    const signInBtn: HTMLButtonElement | null = document.querySelector('#signInBtn');
-    const errorSpan: HTMLElement | null = document.querySelector('#errorSpan');
+    // // Enter on input triggers sign in
+    // usernameInput?.addEventListener('keydown', (e) => {
+    //     if (e.key === 'Enter') {
+    //         e.preventDefault();
+    //         signInBtn?.click();
+    //     }
+    // });
 
-    // ------ EVENT HANDLERS & FUNCTIONS ---------
-    // ----------------------------------------------
+    // signInBtn?.addEventListener('click', () => {
 
-    // Enter on input triggers sign in
-    usernameInput?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            signInBtn?.click();
-        }
-    });
+    //     if (usernameInput && usernameInput.value.trim() !== '') {
+    //         errorSpan?.classList.add('hidden');
+    //         const enteredUsername = usernameInput.value.trim();
 
+    //         state.codes = [];
+    //         state.completed = [false, false, false, false, false, false];
+    //         state.currentRoom = 0;
+    //         state.highestRoom = 0;
+    //         state.artifacts = [];
+    //         state.questionIndex = [];
+    //         state.room2Path = null;
 
-    signInBtn?.addEventListener('click', () => {
+    //         state.username = enteredUsername;
+    //         state.isReturningPlayer = hasSaveGame();
+    //         resetStatusBarProgress();
 
-        if (usernameInput && usernameInput.value.trim() !== '') {
-            errorSpan?.classList.add('hidden');
-            const enteredUsername = usernameInput.value.trim();
+    //         let popupTimerInterval: ReturnType<typeof setInterval> | null = null;
+    //         let popupTimerValue: number = 2;
 
-            state.codes = [];
-            state.completed = [false, false, false, false, false, false];
-            state.currentRoom = 0;
-            state.highestRoom = 0;
-            state.artifacts = [];
-            state.questionIndex = [];
-            state.room2Path = null;
+    //         const popupContainerElement = document.createElement('div');
+    //         popupContainerElement.classList.add('popup-container');
 
-            state.username = enteredUsername;
-            state.isReturningPlayer = hasSaveGame();
-            resetStatusBarProgress();
+    //         const popupTextContentElement = document.createElement('span');
+    //         const popupTimerElement = document.createElement('span');
+    //         popupTimerElement.classList.add('popup-timer');
+    //         popupTimerElement.textContent = String(popupTimerValue);
 
-            let popupTimerInterval: ReturnType<typeof setInterval> | null = null;
-            let popupTimerValue: number = 2;
+    //         if (state.isReturningPlayer) {
+    //             popupTextContentElement.textContent = `Welcome back, ${state.username}! Your progress has been saved.`;
+    //         } else {
+    //             popupTextContentElement.textContent = `Welcome, ${state.username} !`;
+    //             saveGameToLocalStorage();
+    //         }
 
-            const popupContainerElement = document.createElement('div');
-            popupContainerElement.classList.add('popup-container');
+    //         popupContainerElement.append(popupTextContentElement, popupTimerElement);
+    //         document.body.appendChild(popupContainerElement);
 
-            const popupTextContentElement = document.createElement('span');
-            const popupTimerElement = document.createElement('span');
-            popupTimerElement.classList.add('popup-timer');
-            popupTimerElement.textContent = String(popupTimerValue);
+    //         popupTimerInterval = setInterval(() => {
+    //             popupTimerValue--;
+    //             popupTimerElement.textContent = String(popupTimerValue);
+    //         }, 1000);
 
-            if (state.isReturningPlayer) {
-                popupTextContentElement.textContent = `Welcome back, ${state.username}! Your progress has been saved.`;
-            } else {
-                popupTextContentElement.textContent = `Welcome, ${state.username} !`;
-                saveGameToLocalStorage();
-            }
-
-            popupContainerElement.append(popupTextContentElement, popupTimerElement);
-            document.body.appendChild(popupContainerElement);
-
-            popupTimerInterval = setInterval(() => {
-                popupTimerValue--;
-                popupTimerElement.textContent = String(popupTimerValue);
-            }, 1000);
-
-            setTimeout(() => {
-                clearInterval(popupTimerInterval!);
-                popupTimerInterval = null;
-                popupContainerElement.remove();
-                state.screen = 'menu';
-                render();
-            }, 2000);
+    //         setTimeout(() => {
+    //             clearInterval(popupTimerInterval!);
+    //             popupTimerInterval = null;
+    //             popupContainerElement.remove();
+    //             setSessionState.setScene("menu");
+    //         }, 2000);
 
 
-        } else {
-            errorSpan?.classList.remove('hidden');
-        }
-    });
+    //     } else {
+    //         errorSpan?.classList.remove('hidden');
+    //     }
+    // });
 };

@@ -6,12 +6,19 @@ import { renderMainMenuScene } from "./main-menu-scene/main-menu-scene";
 import { renderProfileSelectionScene } from "./profile-selection/profile-selection";
 import { renderVictoryScene } from "./victory-scene/victory-scene";
 
+function clearScene() {
+    const sceneWrapper = document.getElementById("sceneWrapper") as HTMLDivElement | null;
+    if (sceneWrapper) sceneWrapper.innerHTML = "";
+}
+
 export function renderScene() {
+    clearScene();
     const sessionState = getSessionState();
     const sceneWrapper = document.getElementById('sceneWrapper') as HTMLDivElement;
+    
     switch (sessionState.scene) {
         case 'profileSelection':
-            renderProfileSelectionScene(sceneWrapper, renderScene);
+            renderProfileSelectionScene();
             break;
         case 'menu':
             renderMainMenuScene(sceneWrapper, renderScene);

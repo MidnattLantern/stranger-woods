@@ -23,7 +23,7 @@ export function renderNextRoom() {
         saveHighscore(state.username, getSecondsElapsed());
         clearLocalStorageSave();
         sessionState.scene = 'victory';
-        renderScene();
+        // renderScene();
         return;
     }
 
@@ -50,7 +50,7 @@ export function renderNextRoom() {
 
         saveGameToLocalStorage();
         if (state.screen === 'victory') return;
-        renderScene();
+        // renderScene();
     });
 }
 
