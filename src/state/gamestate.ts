@@ -1,6 +1,8 @@
+// Depricated, migrating to session-state
+
 import type { Artifact } from '../components/artifacts/artifactSystem';
 
-export type Screen = 'login' | 'menu' | 'room' | 'savedgame' | 'settings' | 'about' | 'victory' | 'gameover';
+export type Screen = 'login' | 'menu' | 'room' | 'savedgame' | 'settings' | 'about' | 'victory' | 'gameover'; // depricated
 
 export type GameState = {
     screen: Screen;
@@ -32,7 +34,6 @@ export let state: GameState = {
     highestRoom: 0,
     gameOverReason: 'room-timeout',
     room2Path: null,
-    
 };
 
 export function getGameState() {

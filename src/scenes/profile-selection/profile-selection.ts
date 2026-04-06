@@ -1,9 +1,9 @@
-import './sign-in-scene.scss';
+import './profile-selection.scss';
 import { state } from '../../state/gamestate';
 import { saveGameToLocalStorage, hasSaveGame } from '../../store/database/local-storage-database';
 import { resetStatusBarProgress } from '../../components/status-bar/status-bar';
 
-export function renderSignInScene(
+export function renderProfileSelectionScene(
     sceneWrapper: HTMLDivElement | null,
     render: () => void
 ) {

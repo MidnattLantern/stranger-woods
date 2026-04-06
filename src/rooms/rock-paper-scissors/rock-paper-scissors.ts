@@ -62,7 +62,6 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null) {
         const rockBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPlayerRockButton');
         const paperBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPlayerPaperButton');
         const scissorsBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPlayerScissorsButton');
-        const actionBtn = sceneWrapper.querySelector('#actionBtn') as HTMLButtonElement;
 
         const playerDisplay = document.getElementById('rpsPlayerChoice') as HTMLTableElement;
         const computerDisplay = document.getElementById('rpsComputerChoice') as HTMLTableElement;
