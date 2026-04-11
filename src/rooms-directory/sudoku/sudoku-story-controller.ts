@@ -4,7 +4,6 @@ import { closeMiniSudokuGameSession, renderMiniSudoku } from './puzzle/mini-sudo
 import { setTableToUse } from './puzzle/mini-sudoku-setup';
 import { getGameSessionBeatenState } from './puzzle/mini-sudoku-states';
 import { validateTable } from './puzzle/mini-sudoku-helper';
-import { state } from '../../state/gamestate';
 
 // enter silent tide stories
 import room4Story from '../../data/stories-data/room4-story/room4-story.json';
@@ -366,8 +365,10 @@ export function handleRoom4ClickStoryEventButton(event: Event) {
             return;
         case 'ravine-trip-continue':
             resetRoom4();
+            /*
             state.gameOverReason = 'too-many-attempts';
             state.screen = 'gameover';
+            */
             renderScene();
             return;
         case 'across-ravine-turn-around':
@@ -450,6 +451,7 @@ function checkCompleted() {
     setRoom4RavineMonumentIsBeaten(false);
     setRoom4CliffMonumentIsBeaten(false);
 
+    /*
     const artefactsData = state.artifacts;
     for (let i = 0; i < artefactsData.length; i++) {
         const artefactItem = artefactsData[i];
@@ -466,6 +468,7 @@ function checkCompleted() {
             setRoom4CliffMonumentIsBeaten(true);
         }
     }
+    */
 }
 
 function updateRoom4StoryController() {

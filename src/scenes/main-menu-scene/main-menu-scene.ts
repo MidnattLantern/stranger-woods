@@ -1,7 +1,8 @@
 import './main-menu-scene.scss';
-import { state } from '../../state/gamestate';
+
 import { loadGameFromLocalStorage, clearLocalStorageSave } from '../../store/database/local-storage-database';
-import { startStatusBarTimers, stopAllStatusBarTimers, refetchGamestate, resetStatusBarProgress } from '../../components/status-bar/status-bar';
+import { startStatusBarTimers, stopAllStatusBarTimers, resetStatusBarProgress } from '../../components/status-bar/status-bar';
+import { getSessionState } from '../../store/session-memory/session-state';
 
 export function renderMainMenuScene(
     sceneWrapper: HTMLDivElement | null,
@@ -15,7 +16,6 @@ export function renderMainMenuScene(
         <div class="main-menu">
             <div class="menu-buttons">
                 <button id="startGame" class="menu-btn primary">New game</button>
-                ${state.isReturningPlayer ? '<button id="loadGame" class="menu-btn">Load game</button>' : ''}
                 <button id="about" class="menu-btn">About</button>
                 <button id="logout" class="menu-btn secondary">Log out</button>
             </div>
@@ -32,35 +32,37 @@ export function renderMainMenuScene(
 
     // ------ EVENT HANDLERS & FUNCTIONS ---------
     // ----------------------------------------------
+    const currentScene = getSessionState();
 
-    startGameBtn?.addEventListener('click', () => { //? betyder om det inte är null
-        if (state.screen === 'menu') {
+    startGameBtn?.addEventListener('click', () => {
+
+        if (currentScene.scene === 'menu') {
             resetStatusBarProgress();
             clearLocalStorageSave();
 
-            state.currentRoom = 0; // Starta från första rummet
-            state.completed = [false, false, false, false, false, false];
-            state.highestRoom = 0;
-            state.codes = [];
-            state.artifacts = [];
-            state.questionIndex = [];
-            state.room2Path = null;
+//            state.currentRoom = 0; // Starta från första rummet
+//            state.completed = [false, false, false, false, false, false];
+//            state.highestRoom = 0;
+//            state.codes = [];
+//            state.artifacts = [];
+//            state.questionIndex = [];
+//            state.room2Path = null;
 
-            state.screen = 'room';
-            render();               // Kör render() som kommer anropa renderNextRoom()
+//            state.screen = 'room';
+            render();
 
             startStatusBarTimers();
         }
     });
 
     loadGameBtn?.addEventListener('click', () => {
-        if (state.screen === 'menu') {
+        if (currentScene.scene === 'menu') {
             loadGameFromLocalStorage();
-            refetchGamestate();
+            //refetchGamestate();
 
             stopAllStatusBarTimers();
 
-            state.screen = 'room';
+            currentScene.scene = 'room';
             render();
 
             startStatusBarTimers();
@@ -68,15 +70,14 @@ export function renderMainMenuScene(
     });
 
     aboutBtn?.addEventListener('click', () => {
-        if (state.screen === 'menu') {
-            state.screen = 'about';
+        if (currentScene.scene === 'menu') {
+            currentScene.scene = 'about';
             render();
         }
     });
 
     logoutBtn?.addEventListener('click', () => {
-        if (state.screen === 'menu') {
-            state.screen = 'login';  // Byt till login skärmen
+        if (currentScene.scene === 'menu') {
             render();
         }
     });

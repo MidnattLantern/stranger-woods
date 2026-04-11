@@ -1,7 +1,7 @@
 import artifactDataRaw from './artifacts.json';
 import './artifacts.scss';
 import { addArtifactToStatusBar } from '../status-bar/status-bar';
-import { state } from '../../state/gamestate';
+
 import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 
 export interface Artifact {
@@ -91,9 +91,11 @@ export function triggerArtifact(
             addArtifactToStatusBar(artifact); // visa artefakt i statusbar
 
             // Lägg till i state om artfekten inte redan finns (förhindrar dubbletter)
+            /*
             if (!state.artifacts.find(a => a.id === artifact.id)) {
                 state.artifacts.push(artifact);
             }
+            */
             saveGameToLocalStorage(); 
         });
     }, delay); // Här används fördröjningen (i millisekunder)

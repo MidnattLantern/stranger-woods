@@ -1,4 +1,3 @@
-import { state } from '../../state/gamestate';
 import { saveGameToLocalStorage, hasSaveGame } from '../../store/database/local-storage-database';
 import { resetStatusBarProgress } from '../../components/status-bar/status-bar';
 import { setSessionState } from '../../store/session-memory/session-state';
@@ -29,14 +28,14 @@ export function renderProfileSelectionScene() {
         if (usernameInput && usernameInput.value.trim() !== '') {
             const enteredUsername = usernameInput.value.trim();
 
-            state.currentRoom = 0;
-            state.highestRoom = 0;
-            state.artifacts = [];
-            state.questionIndex = [];
-            state.room2Path = null;
+//            state.currentRoom = 0;
+//            state.highestRoom = 0;
+//            state.artifacts = [];
+//            state.questionIndex = [];
+//            state.room2Path = null;
 
-            state.username = enteredUsername;
-            state.isReturningPlayer = hasSaveGame();
+//            state.username = enteredUsername;
+//            state.isReturningPlayer = hasSaveGame();
             resetStatusBarProgress();
 
             let popupTimerInterval: ReturnType<typeof setInterval> | null = null;
@@ -50,12 +49,14 @@ export function renderProfileSelectionScene() {
             popupTimerElement.classList.add('popup-timer');
             popupTimerElement.textContent = String(popupTimerValue);
 
+            /*
             if (state.isReturningPlayer) {
                 popupTextContentElement.textContent = `Welcome back, ${state.username}! Your progress has been saved.`;
             } else {
                 popupTextContentElement.textContent = `Welcome, ${state.username} !`;
                 saveGameToLocalStorage();
             }
+            */
 
             popupContainerElement.append(popupTextContentElement, popupTimerElement);
             document.body.appendChild(popupContainerElement);

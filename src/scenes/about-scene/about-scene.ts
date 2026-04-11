@@ -1,4 +1,4 @@
-import { state } from '../../state/gamestate';
+
 import { renderScene } from '../scene-handler';
 import './about-scene.scss';
 
@@ -102,7 +102,7 @@ export function renderAboutScene() {
     backBtn.id = 'backToMenuBtn';
     backBtn.textContent = 'Back to main menu';
     backBtn.addEventListener('click', () => {
-        state.screen = 'menu';
+        //state.screen = 'menu';
         renderScene();
     });
 

@@ -1,10 +1,11 @@
 import './status-bar.scss';
-import { state } from '../../state/gamestate';
+//import { state } from '../../state/gamestate';
 import type { Artifact } from '../artifacts/artifactSystem';
-import { getRoomStates, getGameState, setRoomTime } from '../../state/gamestate';
+//import { getRoomStates, getGameState, setRoomTime } from '../../state/gamestate';
 import { renderGameOverScene } from '../../scenes/game-over-scene/game-over-scene';
 import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 import { renderScene } from '../../scenes/scene-handler';
+import { getSessionState } from '../../store/session-memory/session-state';
 
 // ===============
 // Timer variables
@@ -12,9 +13,9 @@ import { renderScene } from '../../scenes/scene-handler';
 
 // variable values are initial
 let secondsElapsed: number = 0;
-let roomStates = getRoomStates();
-let gameState = getGameState();
-let hourglassState = roomStates[gameState.currentRoom].roomTime; // how many seconds left for said room
+//let roomStates = getRoomStates();
+//let gameState = getGameState();
+//let hourglassState = roomStates[gameState.currentRoom].roomTime; // how many seconds left for said room
 export function getSecondsElapsed() {
     return secondsElapsed;
 }
@@ -166,26 +167,29 @@ export function startStatusBarTimers() {
     startCountdown();
 }
 
+const sessionState = getSessionState();
+
 export function renderStatusBar() {
     const statusBarWrapper = document.getElementById('statusBarWrapper') as HTMLDivElement;
     if (!statusBarWrapper) return;
 
-    if (state.screen === 'login' || state.screen === 'menu') {
+    if (sessionState.scene === 'profileSelection' || sessionState.scene === 'menu') {
         statusBarWrapper.innerHTML = '';
         return;
     }
 
-    labelElement.textContent = `Progress: ${state.currentRoom}/6`;
+//    labelElement.textContent = `Progress: ${state.currentRoom}/6`;
 
     roomSelectElement.innerHTML = '';
-    const roomNames = ['The Gravity Glitch', 'Escape The Silent Tide', 'Shadows of the Grove', 'Final Trial'];
+//    const roomNames = ['The Gravity Glitch', 'Escape The Silent Tide', 'Shadows of the Grove', 'Final Trial'];
 
     for (let i = 0; i < 6; i++) {
         const option = document.createElement('option');
         option.value = String(i);
 
-        const isUnlocked = i <= state.currentRoom;
+//        const isUnlocked = i <= state.currentRoom;
 
+        /*
         if (isUnlocked) {
             option.textContent = `${i + 1}. ${roomNames[i]}`;
             option.disabled = false;
@@ -196,8 +200,8 @@ export function renderStatusBar() {
 
         if (i === state.currentRoom) {
             option.selected = true;
-
         }
+        */
         roomSelectElement.appendChild(option);
     }
 
@@ -224,9 +228,10 @@ const maxRoomTime = 50 * 60; // 50 minutes in seconds
 // ticks
 function handleCountdownTick() {
     secondsElapsed++;
-    updateCountdownTextContent();
-    setRoomTime(gameState.currentRoom, hourglassState);
+//    updateCountdownTextContent();
+//    setRoomTime(gameState.currentRoom, hourglassState);
 
+/*
     if (--hourglassState < 0) {
         stopCountdown();
         stopCountup();
@@ -234,6 +239,7 @@ function handleCountdownTick() {
         state.gameOverReason = 'room-timeout';
         renderGameOverScene();
     }
+*/
 }
 function handleCountupTick() {
     updateCountupTextContent();
@@ -242,7 +248,7 @@ function handleCountupTick() {
         stopCountdown();
         stopCountup();
         countupSpanElement.textContent = 'Total time is up!';
-        state.gameOverReason = 'total-timeout';
+//        state.gameOverReason = 'total-timeout';
         renderGameOverScene();
     }
 }
@@ -251,7 +257,7 @@ function handleCountupTick() {
 function startCountdown() {
     if (countdownIntervalState) return; // only run once
     countdownIntervalState = setInterval(handleCountdownTick, 1000);
-    refetchGamestate();
+//    refetchGamestate();
 }
 function stopCountdown() {
     clearInterval(countdownIntervalState!);
@@ -260,7 +266,7 @@ function stopCountdown() {
 function startCountUp() {
     if (countupIntervalState) return; // only run once
     countupIntervalState = setInterval(handleCountupTick, 1000);
-    refetchGamestate();
+//    refetchGamestate();
 }
 function stopCountup() {
     clearInterval(countupIntervalState!);
@@ -274,12 +280,14 @@ function updateCountupTextContent() {
     const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     countupSpanElement.textContent = `Elapsed Time: ${formattedTime}`;
 }
+/*
 function updateCountdownTextContent() {
     const minutes = Math.floor(hourglassState / 60);
     const seconds = hourglassState % 60;
     const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     spanTimerElement.textContent = 'Room Time Left: ' + formattedTime;
 }
+*/
 
 // pause
 export function pauseCountdown() {
@@ -294,11 +302,13 @@ export function stopAllStatusBarTimers(): void {
 }
 
 // refresh i.e when switching rooms
+/*
 export function refetchGamestate() {
     roomStates = getRoomStates();
     gameState = getGameState();
     hourglassState = roomStates[gameState.currentRoom].roomTime;
 }
+*/
 
 export function setSecondsElapsed(value: number) {
     secondsElapsed = value; // Gör att den återstående tiden visas i statusbar istället för att visa 0 när spelar trycker på retry
@@ -337,7 +347,7 @@ function showConfirmDialog(message: string, onConfirm: () => void, onCancel: () 
     });
 }
 
-
+/*
 roomSelectElement.addEventListener('change', () => {
     const selectedRoomIndex = Number(roomSelectElement.value);
 
@@ -368,6 +378,7 @@ roomSelectElement.addEventListener('change', () => {
         renderScene();
     }
 });
+*/
 
 // reset progress 
 

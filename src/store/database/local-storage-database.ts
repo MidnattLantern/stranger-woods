@@ -1,19 +1,21 @@
-import { state } from '../../state/gamestate';
 import { setCollectedArtifacts, getSecondsElapsed, setSecondsElapsed } from '../../components/status-bar/status-bar';
-import { getRoomStates, setRoomTime } from '../../state/gamestate';
 
-
+/*
 function getStorageKey(): string {
     return `escape-room-save-${state.username}`;
 }
+*/
 
 // SAVE
 export function saveGameToLocalStorage() { // sparar data till localstorage
+    /*
     if (!state.username || state.username.trim() === '') {
         console.warn('Save aborted: No username found in state.');
         return;
     }
+    */
     
+    /*
     const data = {
         currentRoom: state.currentRoom, // rummet som spelaren befinner sig i
         username: state.username, // spelarens användarnamn
@@ -26,15 +28,17 @@ export function saveGameToLocalStorage() { // sparar data till localstorage
         highestRoom: state.highestRoom, // högsta rummet spelaren kommit till
         room2Path: state.room2Path, // vald väg i rum 2
     };
+    */
 
-    localStorage.setItem(getStorageKey(), JSON.stringify(data));
+    //localStorage.setItem(getStorageKey(), JSON.stringify(data));
 }
 
 // LOAD
 export function loadGameFromLocalStorage() { // läser in data från localstorage och gör om till objekt igen
-    const raw = localStorage.getItem(getStorageKey());
-    if (!raw) return;
+    //const raw = localStorage.getItem(getStorageKey());
+    //if (!raw) return;
 
+    /*
     try {
         const data = JSON.parse(raw);
 
@@ -58,21 +62,26 @@ export function loadGameFromLocalStorage() { // läser in data från localstorag
     } catch (error) {
         console.error('Failed to parse save data from localStorage', error);
     }
+    */
 }
 
-export function hasSaveGame(): boolean {
-    const raw = localStorage.getItem(getStorageKey());
-    if (!raw) return false;
+export function hasSaveGame() {
+    return null;
+    //const raw = localStorage.getItem(getStorageKey());
+    //if (!raw) return false;
 
+    /*
     try {
         const data = JSON.parse(raw);
         return data.username === state.username;
     } catch {
         return false;
     }
+    */
 }
 
 // RESET
 export function clearLocalStorageSave() {
-    localStorage.removeItem(getStorageKey());
+    return null;
+    //localStorage.removeItem(getStorageKey());
 }

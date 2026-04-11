@@ -3,7 +3,6 @@ import { saveGameToLocalStorage } from '../../store/database/local-storage-datab
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
 import { startStatusBarTimers, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
 import { showRoomIntro } from '../../components/room-intro/room-intro';
-import { state } from '../../state/gamestate';
 import { rpsUI } from "./rock-paper-scissors.ui";
 import { hideDialogueBox, overwriteDialogueTextContent, renderDialogueBox } from "../../components/dialogue-box/dialogue-box";
 
@@ -115,12 +114,10 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null) {
 
             if (playerScore == WIN_SCORE) {
                 triggerArtifact('room1', 'feather', 0);
-                state.completed[0] = true;
                 saveGameToLocalStorage();
                 stopAllStatusBarTimers();
                 gameSessionWrapper.classList.add("hidden");
                 gameSessionWrapper.innerHTML = "";
-                state.currentRoom = 1;
             }
         }
 

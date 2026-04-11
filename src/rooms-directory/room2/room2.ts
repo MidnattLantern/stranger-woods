@@ -1,5 +1,4 @@
 import './room2.scss';
-import { state } from '../../state/gamestate';
 import { showRoomIntro } from '../../components/room-intro/room-intro';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
 import { startStatusBarTimers, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
@@ -11,11 +10,13 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
 
     let collectedCodes: string[] = [];
 
+    /*
     if (state.codes[state.currentRoom]) {
         collectedCodes = state.codes[state.currentRoom];
     }
 
     let currentPath: 'A' | 'B' | null = state.room2Path;
+    */
 
     //------------------ 1. FLOW CONTROL --------------------
 
@@ -83,15 +84,16 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
             const lilyPads: HTMLButtonElement | null = sceneWrapper.querySelector('#lilyPads');
 
             ferns?.addEventListener('click', () => {
-                choosePath('A');
+                //choosePath('A');
             });
 
             lilyPads?.addEventListener('click', () => {
-                choosePath('B');
+                //choosePath('B');
             });
         });
     }
 
+    /*
     function choosePath(choice: 'A' | 'B') {
         currentPath = choice;
         state.room2Path = choice;
@@ -102,6 +104,7 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
             sequenceGame();
         }
     }
+    */
 
     function nextGame() {
         if (!sceneWrapper) return;
@@ -111,6 +114,7 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
             return;
         }
 
+        /*
         if (currentPath === 'A') {
             if (collectedCodes.length === 1) sequenceGame();
             else if (collectedCodes.length === 2) numberGuessGame();
@@ -118,13 +122,16 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
             if (collectedCodes.length === 1) numberGuessGame();
             else if (collectedCodes.length === 2) riddleGame();
         }
+        */
     }
 
     function saveCode(code: string) {
+        /*
         if (!state.codes[state.currentRoom]) state.codes[state.currentRoom] = [];
         state.codes[state.currentRoom].push(code);
         collectedCodes = state.codes[state.currentRoom];
         saveGameToLocalStorage();
+        */
     }
 
     //-------------- 2. MINI GAMES - in order they appear on path A ---------------
@@ -309,9 +316,9 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
                     }
                     setTimeout(() => {
                         stopAllStatusBarTimers();
-                        state.gameOverReason = 'too-many-attempts';
+                        //state.gameOverReason = 'too-many-attempts';
                         saveGameToLocalStorage();
-                        state.screen = 'gameover';
+                        //state.screen = 'gameover';
                         renderScene();
                     }, 3000);
 
@@ -389,7 +396,7 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
                     `);
 
                 triggerArtifact('room2', 'key', 0);
-                state.completed[state.currentRoom] = true;
+                //state.completed[state.currentRoom] = true;
                 saveGameToLocalStorage();
 
                 setTimeout(() => {
@@ -414,9 +421,9 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
 
                     setTimeout(() => {
                         stopAllStatusBarTimers();
-                        state.gameOverReason = 'too-many-attempts';
+                        //state.gameOverReason = 'too-many-attempts';
                         saveGameToLocalStorage();
-                        state.screen = 'gameover';
+                        //state.screen = 'gameover';
                         renderScene();
                     }, 2000);
                 }

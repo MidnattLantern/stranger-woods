@@ -1,4 +1,3 @@
-import { renderNextRoom } from "../main";
 import { getSessionState } from "../store/session-memory/session-state";
 import { renderAboutScene } from "./about-scene/about-scene";
 import { renderGameOverScene } from "./game-over-scene/game-over-scene";
@@ -24,7 +23,7 @@ export function renderScene() {
             renderMainMenuScene(sceneWrapper, renderScene);
             break;
         case 'room':
-            renderNextRoom();
+            //renderNextRoom();
             break;
         case 'victory':
             renderVictoryScene();
