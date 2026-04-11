@@ -3,8 +3,6 @@ import './status-bar.scss';
 import type { Artifact } from '../artifacts/artifactSystem';
 //import { getRoomStates, getGameState, setRoomTime } from '../../state/gamestate';
 import { renderGameOverScene } from '../../scenes/game-over-scene/game-over-scene';
-import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
-import { renderScene } from '../../scenes/scene-handler';
 import { getSessionState } from '../../store/session-memory/session-state';
 
 // ===============

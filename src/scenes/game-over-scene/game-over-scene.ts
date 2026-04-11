@@ -1,6 +1,5 @@
 import './game-over-scene.scss';
-import { loadGameFromLocalStorage, saveGameToLocalStorage, clearLocalStorageSave } from '../../store/database/local-storage-database';
-import { stopAllStatusBarTimers, startStatusBarTimers, resetStatusBarProgress } from '../../components/status-bar/status-bar';
+import { stopAllStatusBarTimers, startStatusBarTimers } from '../../components/status-bar/status-bar';
 import { renderScene } from '../scene-handler';
 
 const sceneWrapper = document.getElementById('sceneWrapper') as HTMLDivElement | null;

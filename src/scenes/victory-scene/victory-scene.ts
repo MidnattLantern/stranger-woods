@@ -3,7 +3,6 @@ import './victory-scene.scss';
 import { renderHighScore, saveHighscore } from '../../components/high-score/high-score';
 import { getSecondsElapsed, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
 import { attachHack } from '../../components/high-score/high-score';
-import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 import { renderScene } from '../scene-handler';
 
 const sceneWrapper: HTMLDivElement | null =
@@ -42,8 +41,7 @@ export function renderVictoryScene() {
     const mainMenuButton = document.createElement('button');
     mainMenuButton.textContent = 'Main Menu';
     mainMenuButton.addEventListener('click', () => {
-        saveGameToLocalStorage();
-        //state.screen = 'menu';
+
         renderScene();
     });
 

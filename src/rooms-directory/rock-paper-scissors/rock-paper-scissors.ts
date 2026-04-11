@@ -1,5 +1,4 @@
 import "./rock-paper-scissors.scss";
-import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
 import { startStatusBarTimers, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
 import { showRoomIntro } from '../../components/room-intro/room-intro';
@@ -114,7 +113,6 @@ export function rockPaperScissors(sceneWrapper: HTMLDivElement | null) {
 
             if (playerScore == WIN_SCORE) {
                 triggerArtifact('room1', 'feather', 0);
-                saveGameToLocalStorage();
                 stopAllStatusBarTimers();
                 gameSessionWrapper.classList.add("hidden");
                 gameSessionWrapper.innerHTML = "";

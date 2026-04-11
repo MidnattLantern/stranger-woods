@@ -1,5 +1,4 @@
 import './riddles.scss';
-import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
 import { startStatusBarTimers,stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
 import { renderScene } from '../../scenes/scene-handler';
@@ -127,13 +126,8 @@ export function riddles(sceneWrapper: HTMLDivElement | null, next: () => void) {
                     if (btn.textContent === current.correct) {
                         message.textContent = 'Correct. The jungle shifts slightly...';
                         currentQuestionIndex++;
-                        //state.questionIndex[state.currentRoom] = currentQuestionIndex;
-                        saveGameToLocalStorage();
 
                         if (currentQuestionIndex === questions.length) {
-                            //state.questionIndex[state.currentRoom] = 0;
-                            //state.completed[state.currentRoom] = true;
-                            saveGameToLocalStorage();
                             stopAllStatusBarTimers();
 
                             triggerArtifact('room3', 'walking-pot', 0);
@@ -156,9 +150,6 @@ export function riddles(sceneWrapper: HTMLDivElement | null, next: () => void) {
                             buttons.forEach((b) => (b.disabled = true));
                             setTimeout(() => {
                                 stopAllStatusBarTimers();
-                                //state.gameOverReason = 'too-many-attempts';
-                                saveGameToLocalStorage();
-                                //state.screen = 'gameover';
                                 renderScene();
                             }, 1000);
                         }

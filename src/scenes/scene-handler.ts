@@ -23,7 +23,7 @@ export function renderScene() {
             renderMainMenuScene(sceneWrapper, renderScene);
             break;
         case 'room':
-            //renderNextRoom();
+
             break;
         case 'victory':
             renderVictoryScene();

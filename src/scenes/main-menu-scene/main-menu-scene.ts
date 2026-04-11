@@ -1,6 +1,4 @@
 import './main-menu-scene.scss';
-
-import { loadGameFromLocalStorage, clearLocalStorageSave } from '../../store/database/local-storage-database';
 import { startStatusBarTimers, stopAllStatusBarTimers, resetStatusBarProgress } from '../../components/status-bar/status-bar';
 import { getSessionState } from '../../store/session-memory/session-state';
 
@@ -38,7 +36,7 @@ export function renderMainMenuScene(
 
         if (currentScene.scene === 'menu') {
             resetStatusBarProgress();
-            clearLocalStorageSave();
+            //clearLocalStorageSave();
 
 //            state.currentRoom = 0; // Starta från första rummet
 //            state.completed = [false, false, false, false, false, false];
@@ -57,8 +55,6 @@ export function renderMainMenuScene(
 
     loadGameBtn?.addEventListener('click', () => {
         if (currentScene.scene === 'menu') {
-            loadGameFromLocalStorage();
-            //refetchGamestate();
 
             stopAllStatusBarTimers();
 

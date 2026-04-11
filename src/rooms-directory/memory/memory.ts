@@ -6,7 +6,6 @@ import {
     startStatusBarTimers,
     stopAllStatusBarTimers, 
 } from '../../components/status-bar/status-bar';
-import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 
 const COLUMNS = 4;
 
@@ -418,8 +417,7 @@ function showCompleted(sceneWrapper: HTMLDivElement, next: () => void): void {
   `;
 
         triggerArtifact('room5', 'amethyst');
-        stopAllStatusBarTimers(); //OBS - all tid stannar
-        saveGameToLocalStorage();
+        stopAllStatusBarTimers();
 
         // 3. Knapp för att faktiskt lämna rummet och gå till nästa (next)
         document

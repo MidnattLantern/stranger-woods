@@ -2,7 +2,6 @@ import './room2.scss';
 import { showRoomIntro } from '../../components/room-intro/room-intro';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
 import { startStatusBarTimers, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
-import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 import { renderScene } from '../../scenes/scene-handler';
 
 export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
@@ -316,9 +315,6 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
                     }
                     setTimeout(() => {
                         stopAllStatusBarTimers();
-                        //state.gameOverReason = 'too-many-attempts';
-                        saveGameToLocalStorage();
-                        //state.screen = 'gameover';
                         renderScene();
                     }, 3000);
 
@@ -396,8 +392,6 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
                     `);
 
                 triggerArtifact('room2', 'key', 0);
-                //state.completed[state.currentRoom] = true;
-                saveGameToLocalStorage();
 
                 setTimeout(() => {
                     const closeBtn = document.querySelector('#close-artifact-btn');
@@ -421,9 +415,6 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
 
                     setTimeout(() => {
                         stopAllStatusBarTimers();
-                        //state.gameOverReason = 'too-many-attempts';
-                        saveGameToLocalStorage();
-                        //state.screen = 'gameover';
                         renderScene();
                     }, 2000);
                 }
