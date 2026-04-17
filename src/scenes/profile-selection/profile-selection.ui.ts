@@ -20,30 +20,41 @@ function buildProfileItems(profiles: ISaveProfile[]): HTMLLIElement[] {
         const nameTagButton = document.createElement("button");
         nameTagButton.textContent = profile.name
 
-        wrapper.append(nameTagButton);
+        const settingsButton = document.createElement("button");
+        settingsButton.textContent = "settings";
+
+        wrapper.append(nameTagButton, settingsButton);
         return wrapper;
     });
+}
+
+function updateSaveProfileDirectory() {
+    const saveProfilesData = localstorageDB.getSaveProfiles();
+    const items = buildProfileItems(saveProfilesData);
+    saveProfilesDirectoryContainer.innerHTML = "";
+    saveProfilesDirectoryContainer.append(...items);
 }
 // ==============
 
 // ========
 // Elements
 // ========
-function container() {
-    const container = document.createElement("div");
-    container.classList.add("profile-selection");
-    return container;
+// Keep the createElement container const at an accessible scope
+const masterContainerElement = document.createElement("div");
+function masterContainer() {
+    masterContainerElement.classList.add("profile-selection");
+    return masterContainerElement;
 }
 
+const headingElement = document.createElement("h2");
 function heading() {
-    const heading = document.createElement("h2");
-    heading.textContent = "Save profiles";
-    return heading;
+    headingElement.textContent = "Save profiles";
+    return headingElement;
 }
 
-function newSaveProfileCreator() {
-    const container = document.createElement("form");
-    container.classList.add("profile-selection__new-save-profile");
+const newSaveProfileCreatorContainer = document.createElement("form");
+function newSaveProfileCreator() {    
+    newSaveProfileCreatorContainer.classList.add("profile-selection__new-save-profile");
 
     const submitButton = document.createElement("button");
     submitButton.textContent = "Create Save Profile";
@@ -61,23 +72,18 @@ function newSaveProfileCreator() {
         handleUpdateNewSaveProfileInput(event, submitButton);
     });
 
-    container.append(nameFormLablel, nameFormField, submitButton);
-    return container;
+    newSaveProfileCreatorContainer.append(nameFormLablel, nameFormField, submitButton);
+    return newSaveProfileCreatorContainer;
 }
 
+const saveProfilesDirectoryContainer = document.createElement("ul");
 function saveProfilesDirectory() {
-    const container = document.createElement("ul");
-    container.id = "saveProfilesContainer";
-
-    const saveProfilesData = localstorageDB.getSaveProfiles();
-    const items = buildProfileItems(saveProfilesData);
-
-    container.append(...items);
-    return container;
+    updateSaveProfileDirectory();
+    return saveProfilesDirectoryContainer;
 }
 
 export const profileSelectionUI = {
-    container,
+    masterContainer,
     heading,
     newSaveProfileCreator,
     saveProfilesDirectory
@@ -102,14 +108,6 @@ function handleSubmitNewSaveProfile(event: Event, inputField: HTMLInputElement) 
     localstorageDB.createSaveProfile(currentNewProfileInput);
     currentNewProfileInput = "";
     inputField.value = "";
-
-    const saveProfilesContainer = document.getElementById("saveProfilesContainer") as HTMLUListElement;
-    if (!saveProfilesContainer) return;
-    saveProfilesContainer.innerHTML = "";
-
-    const saveProfilesData = localstorageDB.getSaveProfiles();
-    const items = buildProfileItems(saveProfilesData);
-
-    saveProfilesContainer.append(...items);
+    updateSaveProfileDirectory();
 }
 // ========
