@@ -6,10 +6,25 @@ type ISaveProfile = {
     id: string
 }
 
-const SUBMIT_NEW_SAVE_PROFILE_BUTTON_ID: string = "submitNewSaveProfileButton";
 const NAME_FORM_FIELD_ID: string = "usernameInputField";
-const SAVE_PROFILES_DIRECTORY_ID: string = "saveProfilesDirectory";
 let currentNewProfileInput: string = "";
+
+// ==============
+// Local elements
+// ==============
+function buildProfileItems(profiles: ISaveProfile[]): HTMLLIElement[] {
+    return profiles.map((profile) => {
+        const wrapper = document.createElement("li");
+        wrapper.dataset.uuid = profile.id;
+
+        const nameTagButton = document.createElement("button");
+        nameTagButton.textContent = profile.name
+
+        wrapper.append(nameTagButton);
+        return wrapper;
+    });
+}
+// ==============
 
 // ========
 // Elements
@@ -30,18 +45,21 @@ function newSaveProfileCreator() {
     const container = document.createElement("form");
     container.classList.add("profile-selection__new-save-profile");
 
+    const submitButton = document.createElement("button");
+    submitButton.textContent = "Create Save Profile";
+    submitButton.disabled = true;
+    submitButton.addEventListener("click", (event: Event) => {
+        handleSubmitNewSaveProfile(event, nameFormField);
+    });
+
     const nameFormLablel = document.createElement("label");
     nameFormLablel.setAttribute("for", NAME_FORM_FIELD_ID);
 
     const nameFormField = document.createElement("input");
     nameFormField.id = NAME_FORM_FIELD_ID;
-    nameFormField.addEventListener("input", handleUpdateNewSaveProfileInput);
-
-    const submitButton = document.createElement("button");
-    submitButton.textContent = "Create Save Profile";
-    submitButton.id = SUBMIT_NEW_SAVE_PROFILE_BUTTON_ID;
-    submitButton.disabled = true;
-    submitButton.addEventListener("click", handleSubmitNewSaveProfile);
+    nameFormField.addEventListener("input", (event: Event) => {
+        handleUpdateNewSaveProfileInput(event, submitButton);
+    });
 
     container.append(nameFormLablel, nameFormField, submitButton);
     return container;
@@ -49,15 +67,10 @@ function newSaveProfileCreator() {
 
 function saveProfilesDirectory() {
     const container = document.createElement("ul");
-    container.id = SAVE_PROFILES_DIRECTORY_ID;
+    container.id = "saveProfilesContainer";
 
     const saveProfilesData = localstorageDB.getSaveProfiles();
-    const items = saveProfilesData.map((profile: ISaveProfile) => {
-        const saveProfile = document.createElement("li");
-        saveProfile.textContent = profile.name;
-        saveProfile.dataset.uuid = profile.id;
-        return saveProfile;
-    })
+    const items = buildProfileItems(saveProfilesData);
 
     container.append(...items);
     return container;
@@ -74,31 +87,29 @@ export const profileSelectionUI = {
 // ========
 // Handlers
 // ========
-function toggleSubmitButton() {
-    const submitButton = document.getElementById(SUBMIT_NEW_SAVE_PROFILE_BUTTON_ID) as HTMLButtonElement;
+function toggleSubmitButton(submitButton: HTMLButtonElement) {
     submitButton.disabled = !currentNewProfileInput;
 }
 
-function handleUpdateNewSaveProfileInput(event: Event) {
+function handleUpdateNewSaveProfileInput(event: Event, submitButton: HTMLButtonElement) {
     const input = event.target as HTMLInputElement;
     currentNewProfileInput = input.value.trim();
-    toggleSubmitButton();
+    toggleSubmitButton(submitButton);
 }
 
-function handleSubmitNewSaveProfile(event: Event) {
+function handleSubmitNewSaveProfile(event: Event, inputField: HTMLInputElement) {
     event.preventDefault();
-    const saveProfilesDirectory = document.getElementById(SAVE_PROFILES_DIRECTORY_ID) as HTMLUListElement;
     localstorageDB.createSaveProfile(currentNewProfileInput);
     currentNewProfileInput = "";
-    saveProfilesDirectory.innerHTML = "";
+    inputField.value = "";
+
+    const saveProfilesContainer = document.getElementById("saveProfilesContainer") as HTMLUListElement;
+    if (!saveProfilesContainer) return;
+    saveProfilesContainer.innerHTML = "";
 
     const saveProfilesData = localstorageDB.getSaveProfiles();
-    const items = saveProfilesData.map((profile: ISaveProfile) => {
-        const saveProfile = document.createElement("li");
-        saveProfile.textContent = profile.name;
-        saveProfile.dataset.uuid = profile.id;
-        return saveProfile;
-    })
-    saveProfilesDirectory.append(...items);
+    const items = buildProfileItems(saveProfilesData);
+
+    saveProfilesContainer.append(...items);
 }
 // ========
