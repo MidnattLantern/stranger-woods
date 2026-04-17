@@ -1,4 +1,6 @@
 import { localstorageDB } from '../../store/database/localstorage-db';
+import { getSessionState, setSessionState } from '../../store/session-memory/session-state';
+import { renderScene } from '../scene-handler';
 import './profile-selection.scss';
 
 type ISaveProfile = {
@@ -18,7 +20,10 @@ function buildProfileItems(profiles: ISaveProfile[]): HTMLLIElement[] {
         wrapper.dataset.uuid = profile.id;
 
         const nameTagButton = document.createElement("button");
-        nameTagButton.textContent = profile.name
+        nameTagButton.textContent = profile.name;
+        nameTagButton.addEventListener("click", () => {
+            handleSelectUserProfile(profile.id);
+        });
 
         const settingsButton = document.createElement("button");
         settingsButton.textContent = "delete"; // temporary delete only, add settings as future feature
@@ -117,5 +122,13 @@ function handleSubmitNewSaveProfile(event: Event, inputField: HTMLInputElement) 
 function handleDeleteSaveProfile(id: string) {
     localstorageDB.deleteSaveProfile(id);
     updateSaveProfileDirectory();
+}
+
+function handleSelectUserProfile(targetID: string) {
+    setSessionState.setUserProfileID(targetID);
+    const currentUser = getSessionState();
+    console.log(currentUser.userProfileID);
+    setSessionState.setScene("menu");
+    renderScene();
 }
 // ========

@@ -15,7 +15,7 @@ type IInventoryItem = {
 
 type ISessionState = {
     scene: IScene,
-    userProfile: string,
+    userProfileID: string,
     roomState: Record<IRoomName, IRoomState>,
     currentRoom: IRoomName | null;
     inventory: IInventoryItem[]
@@ -23,7 +23,7 @@ type ISessionState = {
 
 let sessionState: ISessionState = {
     scene: "profileSelection",
-    userProfile: "",
+    userProfileID: "",
     roomState: {
         silentTide: {
             beaten: false,
@@ -50,8 +50,8 @@ function setScene(newScene: IScene) {
     sessionState.scene = newScene;
 }
 
-function setUserProfile(newUserProfile: string) {
-    sessionState.userProfile = newUserProfile;
+function setUserProfileID(newUserProfile: string) {
+    sessionState.userProfileID = newUserProfile;
 }
 
 function setRoomBeaten(room: IRoomName) {
@@ -72,7 +72,7 @@ export function getSessionState() {
 
 export const setSessionState = {
     setScene,
-    setUserProfile,
+    setUserProfileID,
     setRoomBeaten,
     decrementHourglass,
     pushToInventory

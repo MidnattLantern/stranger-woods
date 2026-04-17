@@ -13,6 +13,7 @@ export function renderMainMenuScene(
     sceneWrapper.innerHTML = `
         <div class="main-menu">
             <div class="menu-buttons">
+            <h2 id="currentUserHeading"></h2>
                 <button id="startGame" class="menu-btn primary">New game</button>
                 <button id="about" class="menu-btn">About</button>
                 <button id="logout" class="menu-btn secondary">Log out</button>
@@ -20,35 +21,22 @@ export function renderMainMenuScene(
         </div>
     `;
 
-    // --------------- DOM ELEMENTS ----------------
-    // ----------------------------------------------
-
+    const currentUserHeading = document.getElementById("currentUserHeading");
     const startGameBtn = document.getElementById('startGame') as HTMLButtonElement | null;
     const loadGameBtn = document.getElementById('loadGame') as HTMLButtonElement | null;
     const aboutBtn = document.getElementById('about') as HTMLButtonElement | null;
     const logoutBtn = document.getElementById('logout') as HTMLButtonElement | null;
-
-    // ------ EVENT HANDLERS & FUNCTIONS ---------
-    // ----------------------------------------------
     const currentScene = getSessionState();
+
+    if (!currentUserHeading) return;
+    const userID = getSessionState();
+    currentUserHeading.textContent = userID.userProfileID;
 
     startGameBtn?.addEventListener('click', () => {
 
         if (currentScene.scene === 'menu') {
             resetStatusBarProgress();
-            //clearLocalStorageSave();
-
-//            state.currentRoom = 0; // Starta från första rummet
-//            state.completed = [false, false, false, false, false, false];
-//            state.highestRoom = 0;
-//            state.codes = [];
-//            state.artifacts = [];
-//            state.questionIndex = [];
-//            state.room2Path = null;
-
-//            state.screen = 'room';
             render();
-
             startStatusBarTimers();
         }
     });
