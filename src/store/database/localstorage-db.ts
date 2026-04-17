@@ -43,8 +43,15 @@ function getSaveProfiles() {
     return JSON.parse(saveProfileData);
 }
 
+function deleteSaveProfile(targetID: string) {
+    const saveProfiles = getSaveProfiles();
+    const updatedDirectory = saveProfiles.filter((profile: ISaveProfile) => profile.id !== targetID )
+    localStorage.setItem("saveProfiles", JSON.stringify(updatedDirectory));
+}
+
 export const localstorageDB = {
     setMockData,
     getSaveProfiles,
-    createSaveProfile
+    createSaveProfile,
+    deleteSaveProfile
 }

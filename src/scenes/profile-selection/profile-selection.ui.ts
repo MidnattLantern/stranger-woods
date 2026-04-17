@@ -21,7 +21,10 @@ function buildProfileItems(profiles: ISaveProfile[]): HTMLLIElement[] {
         nameTagButton.textContent = profile.name
 
         const settingsButton = document.createElement("button");
-        settingsButton.textContent = "settings";
+        settingsButton.textContent = "delete"; // temporary delete only, add settings as future feature
+        settingsButton.addEventListener("click", () => {
+            handleDeleteSaveProfile(profile.id);
+        })
 
         wrapper.append(nameTagButton, settingsButton);
         return wrapper;
@@ -108,6 +111,11 @@ function handleSubmitNewSaveProfile(event: Event, inputField: HTMLInputElement) 
     localstorageDB.createSaveProfile(currentNewProfileInput);
     currentNewProfileInput = "";
     inputField.value = "";
+    updateSaveProfileDirectory();
+}
+
+function handleDeleteSaveProfile(id: string) {
+    localstorageDB.deleteSaveProfile(id);
     updateSaveProfileDirectory();
 }
 // ========

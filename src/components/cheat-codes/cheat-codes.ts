@@ -19,8 +19,7 @@ const cheatButtons = {
     // ===================================
     cheatRenderSignInScene: createCheatButton("Render sign in scene", handleRenderSignIn),
     cheatSetMockSaveProfileData: createCheatButton("Create mock save data", handleCreateMockSaveData),
-    cheatGetSaveProfileData: createCheatButton("Get save profile data", handleGetSaveProfileData),
-    cheatCreateTwivianSaveProfile: createCheatButton("Create Twivian save profile", handleCreateTwivianSaveProfile)
+    cheatGetSaveProfileData: createCheatButton("Get save profile data", handleGetSaveProfileData)
     // ===================================
 };
 
@@ -39,10 +38,6 @@ function handleCreateMockSaveData() {
 function handleGetSaveProfileData() {
     console.log(localstorageDB.getSaveProfiles());
 }
-
-function handleCreateTwivianSaveProfile() {
-    localstorageDB.createSaveProfile("twivian");
-}
 // =============================
 
 showCheatCodesButton?.addEventListener('click', toggleCheatCodeButtons);
@@ -56,8 +51,7 @@ function toggleCheatCodeButtons() {
             // ==================================================
             cheatButtons.cheatRenderSignInScene,
             cheatButtons.cheatSetMockSaveProfileData,
-            cheatButtons.cheatGetSaveProfileData,
-            cheatButtons.cheatCreateTwivianSaveProfile
+            cheatButtons.cheatGetSaveProfileData
             // ==================================================
         );
     } else {
