@@ -61,7 +61,8 @@ function heading() {
 }
 
 const newSaveProfileCreatorContainer = document.createElement("form");
-function newSaveProfileCreator() {    
+function newSaveProfileCreator() {
+    newSaveProfileCreatorContainer.innerHTML = "";
     newSaveProfileCreatorContainer.classList.add("profile-selection__new-save-profile");
 
     const submitButton = document.createElement("button");

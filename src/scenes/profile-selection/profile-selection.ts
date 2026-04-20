@@ -10,9 +10,7 @@ export function renderProfileSelectionScene() {
     const uiSaveProfilesDirectory = profileSelectionUI.saveProfilesDirectory();
 
     sceneWrapper.append(uiMasterContainer);
-    uiMasterContainer.append(uiHeading);
-    uiMasterContainer.append(uiNewSaveProfileCreator);
-    uiMasterContainer.append(uiSaveProfilesDirectory);
+    uiMasterContainer.append(uiHeading, uiNewSaveProfileCreator, uiSaveProfilesDirectory);
 
     profileSelectionUI.saveProfilesDirectory();
 };
