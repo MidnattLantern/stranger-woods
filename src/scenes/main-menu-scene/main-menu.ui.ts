@@ -50,6 +50,6 @@ function handlePressProfileSelectionButton() {
 }
 
 function handlePressStartGameButton() {
-    setSessionState.setScene("room");
+    setSessionState.setScene("game-session");
     renderScene();
 }

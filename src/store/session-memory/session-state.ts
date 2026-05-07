@@ -1,4 +1,4 @@
-type IScene = 'profileSelection' | 'menu' | 'room' |'about' | 'victory' | 'gameover';
+type IScene = 'profileSelection' | 'menu' | 'game-session' |'about' | 'victory' | 'gameover';
 
 type IRoomName = "silentTide" | "memory" | "strangerBook" | "gravityGlitch"
 
