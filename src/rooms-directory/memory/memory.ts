@@ -1,7 +1,6 @@
 import './memory.scss';
 import cardsData from './cardsData.json';
 import { triggerArtifact } from '../../components/artifacts/artifactSystem';
-import { showRoomIntro } from '../../components/room-intro/room-intro';
 import {
     startStatusBarTimers,
     stopAllStatusBarTimers, 
@@ -15,7 +14,7 @@ type Card = {
     value: string;
     isFlipped: boolean;
     isMatched: boolean;
-    justMatched?: boolean; //puls-animation
+    justMatched?: boolean;
 };
 
 type Room5State =
@@ -26,59 +25,39 @@ type Room5State =
     | 'game'
     | 'completed';
 
-// ---------------------------------------------------------------
-// --------------------------- State -----------------------------
-// ---------------------------------------------------------------
-
-
 let selectedCards: Card[] = [];
 let cards: Card[] = [];
 
-// ---------------------------------------------------------------
-// ----------------------- setState ------------------------------
-// ---------------------------------------------------------------
-function setState(
-    state: Room5State,
-    sceneWrapper: HTMLDivElement,
-    next: () => void,
-): void {
-
+function setState( state: Room5State, sceneWrapper: HTMLDivElement ): void {
     switch (state) {
         case 'story':
-            showStory(sceneWrapper, next);
+            showStory(sceneWrapper);
             break;
         case 'options':
-            showOptions(sceneWrapper, next);
+            showOptions(sceneWrapper);
             break;
         case 'wrong-choice':
-            showWrongChoice(sceneWrapper, next);
+            showWrongChoice(sceneWrapper);
             break;
         case 'right-choice':
-            showRightChoice(sceneWrapper, next);
+            showRightChoice(sceneWrapper);
             break;
         case 'game':
-            showGame(sceneWrapper, next);
+            showGame(sceneWrapper);
             break;
         case 'completed':
-            showCompleted(sceneWrapper, next);
+            showCompleted(sceneWrapper);
             break;
     }
 }
 
-// ---------------------------------------------------------------
-// ------------- Function returning array of cards  --------------
-// ---------------------------------------------------------------
-
 function initCards(): Card[] {
     return cardsData.map((card) => ({
-        ...card, // kopiera id, pairId, value från JSON ...=spread operator - kopierar ut alla fält från ett objekt
+        ...card,
         isFlipped: false,
         isMatched: false,
     }));
 }
-// ---------------------------------------------------------------
-// ----------------------- Shuffle cards  ------------------------
-// ---------------------------------------------------------------
 
 function shuffleCards(cards: Card[]): Card[] {
     const arr = [...cards];
@@ -86,57 +65,49 @@ function shuffleCards(cards: Card[]): Card[] {
 
     while (arr.length > 0) {
         const randomIndex = Math.floor(Math.random() * arr.length);
-        shuffled.push(arr.splice(randomIndex, 1)[0]); //fortsätter loopa sålänge det finns kort kvar i arr
+        shuffled.push(arr.splice(randomIndex, 1)[0]);
     }
 
     return shuffled;
 }
 
-// Vänd kort
 function flipCard(
     card: Card,
-    sceneWrapper: HTMLDivElement,
-    next: () => void,
-): void {
+    sceneWrapper: HTMLDivElement
+) {
     if (card.isFlipped || card.isMatched) return;
-    if (selectedCards.length === 2) return; //kan vända max 2 kort i taget
+    if (selectedCards.length === 2) return;
 
     card.isFlipped = true;
     selectedCards.push(card);
-    renderCards(cards, sceneWrapper, next); //visar att kortet vänds
+    renderCards(cards, sceneWrapper);
 
     if (selectedCards.length === 2) {
-        checkMatch(sceneWrapper, next); //skickar med sceneWrapper och next
+        checkMatch(sceneWrapper);
     }
 }
 
-// ---------------------------------------------------------------
-// ------------------------ Check match --------------------------
-// ---------------------------------------------------------------
-function checkMatch(sceneWrapper: HTMLDivElement, next: () => void): void {
-    const [first, second] = selectedCards; //plockar ut de vända korten ur arrayen
+function checkMatch(sceneWrapper: HTMLDivElement) {
+    const [first, second] = selectedCards;
     if (!first || !second) return;
 
     if (first.pairId === second.pairId) {
-        first.isMatched = true; //markeras som matchad så de EJ kan väljas igen
+        first.isMatched = true;
         second.isMatched = true;
 
-        // trigga puls-animation
         first.justMatched = true;
         second.justMatched = true;
 
-        selectedCards = []; //tömmer listan på valda kort så anv kan välja 2 nya
-        renderCards(cards, sceneWrapper, next); // visa framsida på matchade kort
+        selectedCards = [];
+        renderCards(cards, sceneWrapper);
 
-        // Ta bort puls efter animationen (för att kunna trigga igen om behövs)
         setTimeout(() => {
             first.justMatched = false;
             second.justMatched = false;
-            renderCards(cards, sceneWrapper, next);
+            renderCards(cards, sceneWrapper);
 
-            //när alla kort är matchade går det till completed-state
             if (cards.every((card) => card.isMatched)) {
-                setState('completed', sceneWrapper, next);
+                setState('completed', sceneWrapper);
             }
         }, 600);
     } else {
@@ -144,25 +115,20 @@ function checkMatch(sceneWrapper: HTMLDivElement, next: () => void): void {
             first.isFlipped = false;
             second.isFlipped = false;
             selectedCards = [];
-            renderCards(cards, sceneWrapper, next);
+            renderCards(cards, sceneWrapper);
         }, 1000);
     }
 }
 
-// ---------------------------------------------------------------
-// ------------------------ Render cards  ------------------------
-// ---------------------------------------------------------------
 function renderCards(
     cards: Card[],
-    sceneWrapper: HTMLDivElement,
-    next: () => void,
+    sceneWrapper: HTMLDivElement
 ): void {
     const board = document.getElementById('board') as HTMLDivElement;
     const cardBack =
-        '/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/cardBack2.jpg'; // bild kort-baksida
+        '/fed25d-js-intro-grupparbete-the-dopefish-admirers/img/cardBack2.jpg';
 
     if (board.childElementCount === 0) {
-        // Skapa korten EN gång pga endast dess state/visuella ska uppdateras - om ej denna, skapas alla kort om från scratch = massa problem
         board.innerHTML = cards
             .map(
                 (card) => `<div class="card" data-id="${card.id}"
@@ -175,51 +141,45 @@ function renderCards(
             )
             .join('');
 
-        // Wave-animation
         board.querySelectorAll('.card').forEach((el, i) => {
-            const row = Math.floor(i / COLUMNS); // vilken rad kortet befinner sig på
-            const col = i % COLUMNS; // vilken kolumn kortet befinner sig på
-            const delay = row * 0.5 + col * 0.08; // rad-fördröjning + kolumn-fördröjning = wave-effekt
+            const row = Math.floor(i / COLUMNS);
+            const col = i % COLUMNS;
+            const delay = row * 0.5 + col * 0.08;
 
             const card = el as HTMLElement;
-            card.style.animationDelay = `${delay}s`; // applicera fördröjningen på kortet
-            card.classList.add('reveal'); // starta animationen
+            card.style.animationDelay = `${delay}s`;
+            card.classList.add('reveal');
 
-            // sätt visible efter att animationen är klar (delay + animationens längd 0.35s)
             setTimeout(
                 () => {
                     card.classList.remove('reveal');
-                    card.classList.add('visible'); // håller kortet synligt permanent
+                    card.classList.add('visible');
                     card.style.animationDelay = '';
                 },
                 (delay + 0.35) * 1000,
             );
         });
 
-        // Lägg på click-event en gång
         const cardElements = board.querySelectorAll('.card');
         cardElements.forEach((el) => {
-            //el - enskilda kort-elementet som loopen jobbar med, el=html-kort
-            const id = Number((el as HTMLElement).dataset.id); //Hämtar kortets data-id från HTML-elementet (som sattes när korten skapades) och omvandlar det till ett nummer
-            const card = cards.find((c) => c.id === id); //Letar upp rätt Card-objekt i arrayen som matchar det id:t. Kopplar alltså ihop HTML-elementet med sitt Card-objekt
+            const id = Number((el as HTMLElement).dataset.id);
+            const card = cards.find((c) => c.id === id);
             if (card) {
                 el.addEventListener('click', () =>
-                    flipCard(card, sceneWrapper, next),
+                    flipCard(card, sceneWrapper),
                 );
 
-                //A11y
                 el.addEventListener('keydown', (e: Event) => {
                     const ke = e as KeyboardEvent;
                     if (ke.key === 'Enter' || ke.key === ' ') {
                         ke.preventDefault();
-                        flipCard(card, sceneWrapper, next);
+                        flipCard(card, sceneWrapper);
                     }
                 });
             }
         });
     }
 
-    // Uppdatera bilder baserat på state
     cards.forEach((card) => {
         const img = board.querySelector(
             `.card[data-id="${card.id}"] img`,
@@ -231,26 +191,21 @@ function renderCards(
                 img.src = cardBack;
             }
 
-            // Lägg till animation och glow utan att ändra img-query
-
             const cardElement = img.parentElement as HTMLDivElement;
             if (!cardElement) return;
 
-            // Permanent glow på matchade kort
             cardElement.classList.toggle('matched', card.isMatched);
 
-            // Puls-animation ENDAST om kortet just matchades
             if (card.justMatched) {
                 cardElement.classList.add('pulse');
             } else {
                 cardElement.classList.remove('pulse');
             }
 
-            //A11y
             if (card.isMatched) {
                 cardElement.setAttribute('aria-label', 'Card matched');
                 cardElement.setAttribute('aria-disabled', 'true');
-                cardElement.setAttribute('tabindex', '-1'); // Ta bort från tab-ordning när matchat
+                cardElement.setAttribute('tabindex', '-1');
             } else if (card.isFlipped) {
                 cardElement.setAttribute('aria-label', 'Card flipped');
                 cardElement.setAttribute('aria-pressed', 'true');
@@ -262,10 +217,7 @@ function renderCards(
     });
 }
 
-// ---------------------------------------------------------------
-// ------------- show-funktioner för varje state -----------------
-// ---------------------------------------------------------------
-function showStory(sceneWrapper: HTMLDivElement, next: () => void): void {
+function showStory(sceneWrapper: HTMLDivElement) {
     sceneWrapper.innerHTML = `
     <section class="room room-5">
       <div class="room-frame">
@@ -289,11 +241,11 @@ function showStory(sceneWrapper: HTMLDivElement, next: () => void): void {
     document
         .getElementById('continue-btn')!
         .addEventListener('click', () =>
-            setState('options', sceneWrapper, next),
+            setState('options', sceneWrapper),
         );
 }
 
-function showOptions(sceneWrapper: HTMLDivElement, next: () => void): void {
+function showOptions(sceneWrapper: HTMLDivElement) {
     sceneWrapper.innerHTML = `
     <section class="room room-5">
       <div class="room-frame">
@@ -313,16 +265,16 @@ function showOptions(sceneWrapper: HTMLDivElement, next: () => void): void {
     document
         .getElementById('wrong-btn')!
         .addEventListener('click', () =>
-            setState('wrong-choice', sceneWrapper, next),
+            setState('wrong-choice', sceneWrapper),
         );
     document
         .getElementById('right-btn')!
         .addEventListener('click', () =>
-            setState('right-choice', sceneWrapper, next),
+            setState('right-choice', sceneWrapper),
         );
 }
 
-function showWrongChoice(sceneWrapper: HTMLDivElement, next: () => void): void {
+function showWrongChoice(sceneWrapper: HTMLDivElement) {
     sceneWrapper.innerHTML = `
     <section class="room room-5">
       <div class="room-frame">
@@ -345,11 +297,11 @@ function showWrongChoice(sceneWrapper: HTMLDivElement, next: () => void): void {
     document
         .getElementById('back-btn')!
         .addEventListener('click', () =>
-            setState('options', sceneWrapper, next),
+            setState('options', sceneWrapper),
         );
 }
 
-function showRightChoice(sceneWrapper: HTMLDivElement, next: () => void): void {
+function showRightChoice(sceneWrapper: HTMLDivElement) {
     sceneWrapper.innerHTML = `
     <section class="room room-5">
       <div class="room-frame">
@@ -373,10 +325,10 @@ function showRightChoice(sceneWrapper: HTMLDivElement, next: () => void): void {
 
     document
         .getElementById('start-memory-btn')!
-        .addEventListener('click', () => setState('game', sceneWrapper, next));
+        .addEventListener('click', () => setState('game', sceneWrapper));
 }
 
-function showGame(sceneWrapper: HTMLDivElement, next: () => void): void {
+function showGame(sceneWrapper: HTMLDivElement) {
     sceneWrapper.innerHTML = `
     <section class="room room-5">
       <div class="room-frame">
@@ -392,11 +344,11 @@ function showGame(sceneWrapper: HTMLDivElement, next: () => void): void {
 
     cards = shuffleCards(initCards());
     selectedCards = [];
-    renderCards(cards, sceneWrapper, next);
-    startStatusBarTimers(); //OBS tiden rullar redan när man kommer till rummet
+    renderCards(cards, sceneWrapper);
+    startStatusBarTimers();
 }
 
-function showCompleted(sceneWrapper: HTMLDivElement, next: () => void): void {
+function showCompleted(sceneWrapper: HTMLDivElement) {
     setTimeout(() => {
         sceneWrapper.innerHTML = `
     <section class="room room-5">
@@ -419,29 +371,16 @@ function showCompleted(sceneWrapper: HTMLDivElement, next: () => void): void {
         triggerArtifact('room5', 'amethyst');
         stopAllStatusBarTimers();
 
-        // 3. Knapp för att faktiskt lämna rummet och gå till nästa (next)
         document
             .getElementById('finish-room-btn')
             ?.addEventListener('click', () => {
-                next();
+
             });
     }, 2000);
 }
 
-// ---------------------------------------------------------------
-// -------------------------- Export  ----------------------------
-// ---------------------------------------------------------------
-export function memory(
-    sceneWrapper: HTMLDivElement | null,
-    next: () => void,
-): void {
+export function memory() {
+    const sceneWrapper = document.getElementById("sceneWrapper") as HTMLDivElement | null;
     if (!sceneWrapper) return;
-    showRoomIntro(
-        5,
-        () => { /* pauseTimer */ },
-        () => { /* resumeTimer */ },
-        () => {
-            setState('story', sceneWrapper, next);
-        }
-    );
+    setState('story', sceneWrapper);
 }
