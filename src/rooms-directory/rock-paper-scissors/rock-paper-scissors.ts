@@ -1,8 +1,7 @@
 import "./rock-paper-scissors.scss";
-import { triggerArtifact } from '../../components/artifacts/artifactSystem';
-import { startStatusBarTimers, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
 import { rpsUI } from "./rock-paper-scissors.ui";
 import { hideDialogueBox, overwriteDialogueTextContent, renderDialogueBox } from "../../components/dialogue-box/dialogue-box";
+import testData from "@rps-story/intro.json";
 
 export function rockPaperScissors() {
     const sceneWrapper = document.getElementById("sceneWrapper") as HTMLDivElement | null;
@@ -24,16 +23,10 @@ export function rockPaperScissors() {
     gameSessionWrapper.append(buttonsTable, duelStatusTable);
     buttonsTable.append(rpsPlayerButtons, rpsComputerButtons);
 
-    const lines = [
-        'Hello there, traveler!',
-        'If you want to keep moving you will have to beat me in rock paper scissors.',
-        'First one to get 3 points wins. Good Luck!',
-    ];
-
     let currentLine = 0;
     const nextBtn = document.getElementById('dialogueNextButton') as HTMLButtonElement;
 
-    overwriteDialogueTextContent(lines[0]);
+    overwriteDialogueTextContent(testData[0].textEvent);
 
     nextBtn.addEventListener('click', handleNextLine);
     rockPaperScissorsSceneWrapper.addEventListener("click", handleNextLine);
@@ -41,10 +34,9 @@ export function rockPaperScissors() {
     function handleNextLine() {
         if (nextBtn.disabled) return;
         currentLine++;
-        if (currentLine < lines.length) {
-            overwriteDialogueTextContent(lines[currentLine]);
+        if (currentLine < testData.length) {
+            overwriteDialogueTextContent(testData[currentLine].textEvent);
         } else {
-            startStatusBarTimers();
             hideDialogueBox();
             gameSessionWrapper.classList.remove('hidden');
         }
@@ -67,7 +59,6 @@ export function rockPaperScissors() {
 
     let playerScore = 0;
     let computerScore = 0;
-    const WIN_SCORE = 3;
 
     function playGame(playerChoice: string) {
         const choices = ['Rock', 'Paper', 'Scissors'];
@@ -102,13 +93,6 @@ export function rockPaperScissors() {
                 computerScore++;
                 computerScoreDisplay.textContent = computerScore.toString();
                 break;
-        }
-
-        if (playerScore == WIN_SCORE) {
-            triggerArtifact('room1', 'feather', 0);
-            stopAllStatusBarTimers();
-            gameSessionWrapper.classList.add("hidden");
-            gameSessionWrapper.innerHTML = "";
         }
     }
 

@@ -1,8 +1,12 @@
+# Strange Woods
 Live link: [MidnattLantern.github.io/stranger-woods](https://MidnattLantern.github.io/stranger-woods/)
 
-# Strange Woods
-
-> _Enter if you dare — but beware, not all who wander return._
+## Table of contents
+1. [Initial source & acknowledgement](#initial-source--acknowledgement)
+2. [About the game](#about-the-game)
+3. [How to play](#how-to-play)
+4. [Code base & architectire](#code-base--architectire)
+5. [Technologies](#technologies)
 
 ## Initial source & acknowledgement
 This is Midnatt Lantern's forked edition, expanded and refactored solo according to their direction. The initial source can be found at: [github.com/Medieinstitutet/fed25d-js-intro-grupparbete-the-dopefish-admirers](https://github.com/Medieinstitutet/fed25d-js-intro-grupparbete-the-dopefish-admirers)
@@ -28,8 +32,9 @@ Stranger Woods is a part of vocational training in frontend development. This ga
 - Collect the artifacts hidden in each of the first five rooms. The artifacts are required to complete the Final Room.
 - Complete the game fast enough and you may earn a place on the Top 10 Highscore — and share your results with the world.
 
-## Getting Started
-- Log in with a username to start the game.
+## Code base & architectire
+### Dialogue handling
+Any dialogue should be stored as json data inside the stories-data directory.
 
 ## Technologies
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)

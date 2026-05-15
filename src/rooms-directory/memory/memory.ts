@@ -258,7 +258,7 @@ function showOptions(sceneWrapper: HTMLDivElement) {
             </div>
           </div>
         </div>
-      </div>
+      </div>a
     </section>
   `;
 

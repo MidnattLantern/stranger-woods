@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^5.8.0",
+    "@types/node": "^25.8.0",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/parser": "^8.55.0",
     "eslint": "^9.39.2",
