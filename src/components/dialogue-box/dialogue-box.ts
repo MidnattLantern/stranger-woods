@@ -1,29 +1,37 @@
 import "./dialogue-box.scss";
 
-export function renderDialogueBox(initText: string = "") {
-    const container = document.createElement("div");
-    container.id = "dialogueBox";
-    container.classList.add("dialogue-box");
-    showDialogueBox();
+// =============================================
+// Master, container to clear and append the box
+// =============================================
+const dialogueBoxContainer = document.createElement("div");
+dialogueBoxContainer.id = "dialogueBoxContainer";
+dialogueBoxContainer.className = "dialogue-box-container"; 
+// =============================================
 
-    const text = document.createElement("p");
-    text.id = "dialogueText";
+// =======
+// The box
+// =======
+const dialogueBoxView = document.createElement("div");
+dialogueBoxView.id = "dialogueBox";
+dialogueBoxView.classList.add("dialogue-box");
+
+const text = document.createElement("p");
+text.id = "dialogueText";
+
+const nextButton = document.createElement("button");
+nextButton.id = "dialogueNextButton";
+nextButton.textContent = "→";
+
+dialogueBoxView.append(text, nextButton);
+// =======
+
+function showDialogueBox(initText: string = "") {
     text.textContent = initText;
-
-    const nextButton = document.createElement("button");
-    nextButton.id = "dialogueNextButton";
-    nextButton.textContent = "→";
     nextButton.setAttribute("disabled", "true");
-
-    container.append(text, nextButton);
-    return container;
+    dialogueBoxContainer.append(dialogueBoxView);
 }
 
-export function overwriteDialogueTextContent(newText: string = "", useTypewriter: boolean = true) {
-    const text = document.getElementById("dialogueText");
-    if (!text) return;
-    const nextButton = document.getElementById("dialogueNextButton");
-
+function updateDialogueBox(newText: string = "", useTypewriter: boolean = true) {
     let i: number = 0;
     const speed = 10;
 
@@ -46,14 +54,13 @@ export function overwriteDialogueTextContent(newText: string = "", useTypewriter
     }
 }
 
-export function showDialogueBox() {
-    const dialogueBox = document.getElementById("dialogueBox");
-    if (!dialogueBox) return;
-    dialogueBox.classList.remove("dialogue-box__hidden");
+function hideDialogueBox() {
+    dialogueBoxContainer.innerHTML = '';
 }
 
-export function hideDialogueBox() {
-    const dialogueBox = document.getElementById("dialogueBox");
-    if (!dialogueBox) return;
-    dialogueBox.classList.add("dialogue-box__hidden");
+export const dialogueBox = {
+    dialogueBoxContainer, // container that can show and hide
+    showDialogueBox, // function
+    updateDialogueBox, // function
+    hideDialogueBox // function
 }

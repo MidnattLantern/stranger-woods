@@ -1,12 +1,16 @@
-import "./rock-paper-scissors.scss";
-import { rpsUI } from "./rock-paper-scissors.ui";
-import { hideDialogueBox, overwriteDialogueTextContent, renderDialogueBox } from "../../components/dialogue-box/dialogue-box";
-import testData from "@rps-story/intro.json";
+import "./rps.scss";
+import { rpsUI } from "./rps.ui";
+import storyData from "@rps-story/intro.json";
+import { rpsStoryController } from "./rps-story-controller";
+import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
+
+let currentStoryIndex: number = rpsStoryController.getStoryIndex();
 
 export function rockPaperScissors() {
     const sceneWrapper = document.getElementById("sceneWrapper") as HTMLDivElement | null;
     if (!sceneWrapper) return;
 
+    // assemblers
     rpsUI.clearSceneWrapper();
     const rockPaperScissorsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
     const gameSessionWrapper = rpsUI.gameSessionWrapper();
@@ -14,31 +18,32 @@ export function rockPaperScissors() {
     const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
     const rpsComputerButtons = rpsUI.rpsComputerButtons();
     const duelStatusTable = rpsUI.duelStatusTable();
-    const testDialogue = renderDialogueBox();
 
-    gameSessionWrapper.classList.add("hidden");
-    rockPaperScissorsSceneWrapper.append(testDialogue);
     sceneWrapper.append(rockPaperScissorsSceneWrapper);
-    rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
     gameSessionWrapper.append(buttonsTable, duelStatusTable);
     buttonsTable.append(rpsPlayerButtons, rpsComputerButtons);
 
-    let currentLine = 0;
+    // scene wrappers
+    rockPaperScissorsSceneWrapper.append(dialogueBox.dialogueBoxContainer);
+    dialogueBox.showDialogueBox();
+
     const nextBtn = document.getElementById('dialogueNextButton') as HTMLButtonElement;
 
-    overwriteDialogueTextContent(testData[0].textEvent);
+    dialogueBox.updateDialogueBox(storyData[0].textEvent);
 
     nextBtn.addEventListener('click', handleNextLine);
     rockPaperScissorsSceneWrapper.addEventListener("click", handleNextLine);
     
     function handleNextLine() {
         if (nextBtn.disabled) return;
-        currentLine++;
-        if (currentLine < testData.length) {
-            overwriteDialogueTextContent(testData[currentLine].textEvent);
+        rpsStoryController.setNextStoryIndex();
+        currentStoryIndex = rpsStoryController.getStoryIndex();
+
+        if (currentStoryIndex < storyData.length) {
+            dialogueBox.updateDialogueBox(storyData[currentStoryIndex].textEvent);
         } else {
-            hideDialogueBox();
-            gameSessionWrapper.classList.remove('hidden');
+            dialogueBox.hideDialogueBox();
+            rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
         }
     }
 

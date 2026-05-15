@@ -2,7 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "@rps-story/*": ["./src/data/stories-data/rock-paper-scissors-story/*"]
+      "@rps-story/*": ["./src/data/stories-data/rps-story/*"]
     },
     "target": "ES2022",
     "useDefineForClassFields": true,

@@ -1,5 +1,5 @@
 //import { memory } from "../../rooms-directory/memory/memory";
-import { rockPaperScissors } from "../../rooms-directory/rock-paper-scissors/rock-paper-scissors";
+import { rockPaperScissors } from "../../rooms-directory/rps/rps";
 
 export function renderGameSessionScene() {
     var roomDice: number;

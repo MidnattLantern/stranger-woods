@@ -6,7 +6,7 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
-            '@rps-story': path.resolve(__dirname, './src/data/stories-data/rock-paper-scissors-story')
+            '@rps-story': path.resolve(__dirname, './src/data/stories-data/rps-story')
         }
     }
 });
