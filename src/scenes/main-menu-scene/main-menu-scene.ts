@@ -2,11 +2,9 @@ import './main-menu-scene.scss';
 import { startStatusBarTimers, resetStatusBarProgress } from '../../components/status-bar/status-bar';
 import { getSessionState } from '../../store/session-memory/session-state';
 import { mainMenuUI } from './main-menu.ui';
+import { sceneWrapper } from '../scene-handler';
 
-export function renderMainMenuScene(
-    sceneWrapper: HTMLDivElement | null
-) {
-    if (!sceneWrapper) return;
+export function renderMainMenuScene() {
 
     const uiMasterContainer = mainMenuUI.masterContainer();
     const startGameButton = mainMenuUI.startGameButton();

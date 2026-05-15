@@ -56,10 +56,12 @@ function updateDialogueBox(newText: string = "", useTypewriter: boolean = true) 
 
 function hideDialogueBox() {
     dialogueBoxContainer.innerHTML = '';
+    text.textContent = '';
 }
 
 export const dialogueBox = {
     dialogueBoxContainer, // container that can show and hide
+    nextButton,
     showDialogueBox, // function
     updateDialogueBox, // function
     hideDialogueBox // function

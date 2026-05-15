@@ -6,22 +6,18 @@ import { renderMainMenuScene } from "./main-menu-scene/main-menu-scene";
 import { renderProfileSelectionScene } from "./profile-selection/profile-selection";
 import { renderVictoryScene } from "./victory-scene/victory-scene";
 
-function clearScene() {
-    const sceneWrapper = document.getElementById("sceneWrapper") as HTMLDivElement | null;
-    if (sceneWrapper) sceneWrapper.innerHTML = "";
-}
+export const sceneWrapper = document.getElementById("sceneWrapper") as HTMLDivElement;
 
 export function renderScene() {
-    clearScene();
+    sceneWrapper.innerHTML = "";
     const sessionState = getSessionState();
-    const sceneWrapper = document.getElementById('sceneWrapper') as HTMLDivElement;
     
     switch (sessionState.scene) {
         case 'profileSelection':
             renderProfileSelectionScene();
             break;
         case 'menu':
-            renderMainMenuScene(sceneWrapper);
+            renderMainMenuScene();
             break;
         case 'game-session':
             renderGameSessionScene();

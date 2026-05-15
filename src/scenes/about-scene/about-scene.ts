@@ -1,16 +1,8 @@
 
-import { renderScene } from '../scene-handler';
+import { renderScene, sceneWrapper } from '../scene-handler';
 import './about-scene.scss';
 
-const sceneWrapper = document.getElementById(
-    'sceneWrapper',
-) as HTMLDivElement | null;
-
 export function renderAboutScene() {
-    if (!sceneWrapper) {
-        console.error('sceneWrapper element not found');
-        return;
-    }
     sceneWrapper.innerHTML = ''; // reset
 
     // Container

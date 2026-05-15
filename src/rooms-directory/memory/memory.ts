@@ -5,6 +5,7 @@ import {
     startStatusBarTimers,
     stopAllStatusBarTimers, 
 } from '../../components/status-bar/status-bar';
+import { sceneWrapper } from '@/scenes/scene-handler';
 
 const COLUMNS = 4;
 
@@ -380,7 +381,5 @@ function showCompleted(sceneWrapper: HTMLDivElement) {
 }
 
 export function memory() {
-    const sceneWrapper = document.getElementById("sceneWrapper") as HTMLDivElement | null;
-    if (!sceneWrapper) return;
     setState('story', sceneWrapper);
 }

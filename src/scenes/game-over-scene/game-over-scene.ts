@@ -1,11 +1,8 @@
 import './game-over-scene.scss';
 import { stopAllStatusBarTimers, startStatusBarTimers } from '../../components/status-bar/status-bar';
-import { renderScene } from '../scene-handler';
-
-const sceneWrapper = document.getElementById('sceneWrapper') as HTMLDivElement | null;
+import { renderScene, sceneWrapper } from '../scene-handler';
 
 export function renderGameOverScene() {
-    if (!sceneWrapper) return;
     stopAllStatusBarTimers();
 
     sceneWrapper.innerHTML = ''; // reset

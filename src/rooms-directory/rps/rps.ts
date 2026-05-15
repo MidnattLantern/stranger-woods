@@ -3,105 +3,117 @@ import { rpsUI } from "./rps.ui";
 import storyData from "@rps-story/intro.json";
 import { rpsStoryController } from "./rps-story-controller";
 import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
-
-let currentStoryIndex: number = rpsStoryController.getStoryIndex();
+import { sceneWrapper } from "@/scenes/scene-handler";
 
 export function rockPaperScissors() {
-    const sceneWrapper = document.getElementById("sceneWrapper") as HTMLDivElement | null;
-    if (!sceneWrapper) return;
-
-    // assemblers
-    rpsUI.clearSceneWrapper();
     const rockPaperScissorsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
+    rockPaperScissorsSceneWrapper.append(dialogueBox.dialogueBoxContainer);
+    rockPaperScissorsSceneWrapper.addEventListener("click", handleNextLine);
+
     const gameSessionWrapper = rpsUI.gameSessionWrapper();
+
+    const nextBtn = dialogueBox.nextButton;
+    nextBtn.addEventListener('click', handleNextLine);
+
+    const playerRockButton = rpsUI.playerRockButton
+    playerRockButton.addEventListener("click", () => {
+        initiateDuel("rock");
+    });
+
+    const playerPaperButton = rpsUI.playerPaperButton
+    playerPaperButton.addEventListener("click", () => {
+        initiateDuel("paper");
+    });
+
+    const playerScissorsButton = rpsUI.playerScissorsButton
+    playerScissorsButton.addEventListener("click", () => {
+        initiateDuel("scissors");
+    });
+
+    let currentStoryIndex: number = rpsStoryController.getStoryIndex();
+
+    function handleSetNextStoryIndex() {
+        rpsStoryController.setNextStoryIndex();
+        currentStoryIndex = rpsStoryController.getStoryIndex();
+    }
+
+    function handleNextLine() {
+        function handleReadNextStoryLine() {
+            dialogueBox.updateDialogueBox(storyData[currentStoryIndex].textEvent);
+        }
+        function handleStartRPSGame() {
+            dialogueBox.hideDialogueBox();
+            rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
+        }
+
+        if (nextBtn.disabled) return;
+        handleSetNextStoryIndex();
+        if (currentStoryIndex < storyData.length) {
+            handleReadNextStoryLine();
+        } else {
+            handleStartRPSGame();
+        }
+    }
+
+    // core ui collectors
     const buttonsTable = rpsUI.buttonsTable();
     const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
     const rpsComputerButtons = rpsUI.rpsComputerButtons();
     const duelStatusTable = rpsUI.duelStatusTable();
-
+    // core ui assemblers
     sceneWrapper.append(rockPaperScissorsSceneWrapper);
     gameSessionWrapper.append(buttonsTable, duelStatusTable);
     buttonsTable.append(rpsPlayerButtons, rpsComputerButtons);
 
-    // scene wrappers
-    rockPaperScissorsSceneWrapper.append(dialogueBox.dialogueBoxContainer);
+    //initialization
     dialogueBox.showDialogueBox();
-
-    const nextBtn = document.getElementById('dialogueNextButton') as HTMLButtonElement;
-
     dialogueBox.updateDialogueBox(storyData[0].textEvent);
+}
 
-    nextBtn.addEventListener('click', handleNextLine);
-    rockPaperScissorsSceneWrapper.addEventListener("click", handleNextLine);
-    
-    function handleNextLine() {
-        if (nextBtn.disabled) return;
-        rpsStoryController.setNextStoryIndex();
-        currentStoryIndex = rpsStoryController.getStoryIndex();
+function initiateDuel(
+    playerInput: "rock" | "paper" | "scissors",
+    cpuDice: number = Math.random()
+) {
+    let cpuInput: "rock" | "paper" | "scissors" = "rock";
 
-        if (currentStoryIndex < storyData.length) {
-            dialogueBox.updateDialogueBox(storyData[currentStoryIndex].textEvent);
-        } else {
-            dialogueBox.hideDialogueBox();
-            rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
-        }
+    if (cpuDice <= 0.333) {
+        cpuInput = "rock";
+    } else if (cpuDice <= 0.666) {
+        cpuInput = "paper"
+    } else {
+        cpuInput = "scissors";
     }
 
-    const rockBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPlayerRockButton');
-    const paperBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPlayerPaperButton');
-    const scissorsBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#rpsPlayerScissorsButton');
-
-    const playerDisplay = document.getElementById('rpsPlayerChoice') as HTMLTableElement;
-    const computerDisplay = document.getElementById('rpsComputerChoice') as HTMLTableElement;
-
-    const playerScoreDisplay = document.getElementById('rpsPlayerScore') as HTMLSpanElement;
-    const computerScoreDisplay = document.getElementById('rpsComputerScore') as HTMLSpanElement;
-
-    if (!rockBtn || !paperBtn || !scissorsBtn) {
-        console.error('Buttons not found');
-        return;
-    }
-
-    let playerScore = 0;
-    let computerScore = 0;
-
-    function playGame(playerChoice: string) {
-        const choices = ['Rock', 'Paper', 'Scissors'];
-        const computerChoice = choices[Math.floor(Math.random() * 3)];
-        let result = '';
-
-        if (playerChoice === computerChoice) {
-            result = "It's a tie!";
-        } else {
-            switch (playerChoice) {
-                case 'Rock':
-                result = computerChoice === 'Scissors' ? 'You win!' : 'You lose!';
-                break;
-                case 'Paper':
-                result = computerChoice === 'Rock' ? 'You win!' : 'You lose!';
-                break;
-                case 'Scissors':
-                result = computerChoice === 'Paper' ? 'You win!' : 'You lose!';
-                break;
+    switch (playerInput) {
+        case "rock":
+            if (cpuInput == "rock") {
+                console.log("tie");
+            } else if (cpuInput == "paper") {
+                console.log("cpu win");
+            } else { // cpuInput is scissors
+                console.log("player win");
             }
-        }
-
-        playerDisplay.textContent = `${playerChoice}`;
-        computerDisplay.textContent = `${computerChoice}`;
-
-        switch (result) {
-            case 'YOU WIN!':
-                playerScore++;
-                playerScoreDisplay.textContent = playerScore.toString();
-                break;
-            case 'YOU LOSE!':
-                computerScore++;
-                computerScoreDisplay.textContent = computerScore.toString();
-                break;
-        }
+            break;
+        case "paper":
+            if (cpuInput == "rock") {
+                console.log("player win");
+            } else if (cpuInput == "paper") {
+                console.log("tie");
+            } else { // cpuInput is scissors
+                console.log("cpu win");
+            }
+            break;
+        case "scissors":
+            if (cpuInput == "rock") {
+                console.log("cpu win");
+            } else if (cpuInput == "paper") {
+                console.log("player win");
+            } else { // cpuInput is scissors
+                console.log("tie");
+            }
+            break;
+        default:
+            console.log("tie");
+            break;
     }
-
-    rockBtn.addEventListener('click', () => playGame('Rock'));
-    paperBtn.addEventListener('click', () => playGame('Paper'));
-    scissorsBtn.addEventListener('click', () => playGame('Scissors'));
 }

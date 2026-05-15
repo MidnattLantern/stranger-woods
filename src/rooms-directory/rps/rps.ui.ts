@@ -1,30 +1,32 @@
-const sceneWrapper = document.getElementById("sceneWrapper");
-
-function clearSceneWrapper() {
-    if (!sceneWrapper) return;
-    sceneWrapper.innerHTML = "";
-}
-
 function rockPaperScissorsSceneWrapper() {
-    const sceneWrapper = document.createElement("div");
-    sceneWrapper.classList.add("room-frame", "rock-paper-scissors-wallpaper");
-
-    return sceneWrapper;
+    const rpsSceneWrapper = document.createElement("div");
+    rpsSceneWrapper.classList.add("room-frame", "rock-paper-scissors-wallpaper");
+    return rpsSceneWrapper;
 }
 
 function gameSessionWrapper() {
     const gameSessionWrapper = document.createElement("div");
     gameSessionWrapper.classList.add("rock-paper-scissors__game-session-wrapper");
-
     return gameSessionWrapper;
 }
 
 function buttonsTable() {
     const container = document.createElement("section");
     container.classList.add("rock-paper-scissors__buttons-table");
-
     return container;
 }
+
+// ==========
+// player rps
+// ==========
+const playerRockButton = document.createElement("button");
+playerRockButton.textContent = "Rock";
+
+const playerPaperButton = document.createElement("button");
+playerPaperButton.textContent = "Paper";
+
+const playerScissorsButton = document.createElement("button");
+playerScissorsButton.textContent = "Scissors";
 
 function rpsPlayerButtons() {
     const container = document.createElement("div");
@@ -34,21 +36,25 @@ function rpsPlayerButtons() {
     const name = document.createElement("h2");
     name.textContent = "Player";
 
-    const rock = document.createElement("button");
-    rock.textContent = "Rock";
-    rock.id = "rpsPlayerRockButton";
-
-    const paper = document.createElement("button");
-    paper.textContent = "Paper";
-    paper.id = "rpsPlayerPaperButton";
-
-    const scissors = document.createElement("button");
-    scissors.textContent = "Scissors";
-    scissors.id = "rpsPlayerScissorsButton";
-
-    container.append(name, rock, paper, scissors);
+    container.append(name, playerRockButton, playerPaperButton, playerScissorsButton);
     return container;
 }
+// ==========
+
+// =======
+// cpu rps
+// =======
+const cpuRockButton = document.createElement("button");
+cpuRockButton.textContent = "Rock";
+cpuRockButton.setAttribute("disabled", "true");
+
+const cpuPaperButton = document.createElement("button");
+cpuPaperButton.textContent = "Paper";
+cpuPaperButton.setAttribute("disabled", "true");
+
+const cpuScissorsButton = document.createElement("button");
+cpuScissorsButton.textContent = "Scissors";
+cpuScissorsButton.setAttribute("disabled", "true");
 
 function rpsComputerButtons() {
     const container = document.createElement("div");
@@ -58,24 +64,10 @@ function rpsComputerButtons() {
     const name = document.createElement("h2");
     name.textContent = "Strange man";
 
-    const rock = document.createElement("button");
-    rock.textContent = "Rock";
-    rock.id = "rpsComputerRockButton";
-    rock.setAttribute("disabled", "true");
-
-    const paper = document.createElement("button");
-    paper.textContent = "Paper";
-    paper.id = "rpsComputerPaperButton";
-    paper.setAttribute("disabled", "true");
-
-    const scissors = document.createElement("button");
-    scissors.textContent = "Scissors";
-    scissors.id = "rpsComputerScissorsButton";
-    scissors.setAttribute("disabled", "true");
-
-    container.append(name, rock, paper, scissors);
+    container.append(name, cpuRockButton, cpuPaperButton, cpuScissorsButton);
     return container;
 }
+// =======
 
 function duelStatusTable() {
     const container = document.createElement("table");
@@ -108,7 +100,12 @@ function duelStatusTable() {
 }
 
 export const rpsUI = {
-    clearSceneWrapper,
+    playerRockButton,
+    playerPaperButton,
+    playerScissorsButton,
+    cpuRockButton,
+    cpuPaperButton,
+    cpuScissorsButton,
     rockPaperScissorsSceneWrapper,
     gameSessionWrapper,
     buttonsTable,

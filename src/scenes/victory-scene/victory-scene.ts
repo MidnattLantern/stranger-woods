@@ -1,15 +1,11 @@
 
 import './victory-scene.scss';
-import { renderHighScore, saveHighscore } from '../../components/high-score/high-score';
+import { renderHighScore } from '../../components/high-score/high-score';
 import { getSecondsElapsed, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
 import { attachHack } from '../../components/high-score/high-score';
-import { renderScene } from '../scene-handler';
-
-const sceneWrapper: HTMLDivElement | null =
-    document.querySelector('#sceneWrapper');
+import { renderScene, sceneWrapper } from '../scene-handler';
 
 export function renderVictoryScene() {
-    if (!sceneWrapper) return;
     stopAllStatusBarTimers();
     const minutes = Math.floor(getSecondsElapsed() / 60);
     const seconds = getSecondsElapsed() % 60;
