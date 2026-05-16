@@ -10,24 +10,39 @@
     flex-direction: column-reverse;
     justify-content: space-between;
     align-items: end;
-    padding: 20px;
     width: 100%;
     height: 100%;
 }
 
+.player-slot-1-image,
+.player-slot-2-image,
+.player-slot-3-image {
+    fill: none;
+}
+
 .rock-paper-scissors__buttons-table {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
+    justify-content: space-between;
     width: 100%;
+    height: 100%;
     gap: 20px;
 
     & .rock-paper-scissors__player-buttons-container,
     & .rock-paper-scissors__computer-buttons-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 20px;
-}
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+
+        button {
+            width: 70px;
+            height: 70px;
+            border-radius: 35px;
+        }
+    }
 }
 
 .rock-paper-scissors__duel-status-table {

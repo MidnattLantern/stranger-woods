@@ -4,6 +4,9 @@ import storyData from "@rps-story/intro.json";
 import { rpsStoryController } from "./rps-story-controller";
 import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
 import { sceneWrapper } from "@/scenes/scene-handler";
+import fireElement from "/elements/fire-icon.webp";
+import earthElement from "/elements/earth-icon.webp";
+import waterElement from "/elements/water-icon.webp";
 
 export function rockPaperScissors() {
     const rockPaperScissorsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
@@ -15,17 +18,17 @@ export function rockPaperScissors() {
     const nextBtn = dialogueBox.nextButton;
     nextBtn.addEventListener('click', handleNextLine);
 
-    const playerRockButton = rpsUI.playerRockButton
+    const playerRockButton = rpsUI.playerSlot1Button
     playerRockButton.addEventListener("click", () => {
         initiateDuel("rock");
     });
 
-    const playerPaperButton = rpsUI.playerPaperButton
+    const playerPaperButton = rpsUI.playerSlot2Button
     playerPaperButton.addEventListener("click", () => {
         initiateDuel("paper");
     });
 
-    const playerScissorsButton = rpsUI.playerScissorsButton
+    const playerScissorsButton = rpsUI.cpuSlot3Button
     playerScissorsButton.addEventListener("click", () => {
         initiateDuel("scissors");
     });
@@ -44,6 +47,48 @@ export function rockPaperScissors() {
         function handleStartRPSGame() {
             dialogueBox.hideDialogueBox();
             rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
+
+            const playerSlot1 = document.getElementById("playerSlot1");
+            const playerSlot1Image = document.getElementById("playerSlot1Image");
+            if (!playerSlot1) return;
+            if (!playerSlot1Image) return;
+            playerSlot1Image.setAttribute("href", fireElement);
+            playerSlot1.addEventListener("click", () => {
+                initiateDuel("rock");
+            });
+            playerSlot1.addEventListener("keydown", (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    initiateDuel("rock");
+                }
+            });
+
+            const playerSlot2 = document.getElementById("playerSlot2");
+            const playerSlot2Image = document.getElementById("playerSlot2Image");
+            if (!playerSlot2) return;
+            if (!playerSlot2Image) return;
+            playerSlot2Image.setAttribute("href", earthElement);
+            playerSlot2.addEventListener("click", () => {
+                initiateDuel("paper");
+            });
+            playerSlot2.addEventListener("keydown", (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    initiateDuel("paper");
+                }
+            });
+
+            const playerSlot3 = document.getElementById("playerSlot3");
+            const playerSlot3Image = document.getElementById("playerSlot3Image");
+            if (!playerSlot3) return;
+            if (!playerSlot3Image) return;
+            playerSlot3Image.setAttribute("href", waterElement);
+            playerSlot3.addEventListener("click", () => {
+                initiateDuel("scissors");
+            });
+            playerSlot3.addEventListener("keydown", (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    initiateDuel("scissors");
+                }
+            });
         }
 
         if (nextBtn.disabled) return;
@@ -76,40 +121,44 @@ function initiateDuel(
 ) {
     let cpuInput: "rock" | "paper" | "scissors" = "rock";
 
+    rpsUI.playerChoice.textContent = playerInput;
     if (cpuDice <= 0.333) {
         cpuInput = "rock";
+        rpsUI.cpuChoice.textContent = "rock";
     } else if (cpuDice <= 0.666) {
-        cpuInput = "paper"
+        cpuInput = "paper";
+        rpsUI.cpuChoice.textContent = "paper";
     } else {
         cpuInput = "scissors";
+        rpsUI.cpuChoice.textContent = "scissors";
     }
 
     switch (playerInput) {
         case "rock":
             if (cpuInput == "rock") {
-                console.log("tie");
+                // tie
             } else if (cpuInput == "paper") {
-                console.log("cpu win");
+                // cpu win
             } else { // cpuInput is scissors
-                console.log("player win");
+                // player win
             }
             break;
         case "paper":
             if (cpuInput == "rock") {
-                console.log("player win");
+                // player win
             } else if (cpuInput == "paper") {
-                console.log("tie");
+                // tie
             } else { // cpuInput is scissors
-                console.log("cpu win");
+                // cpu win
             }
             break;
         case "scissors":
             if (cpuInput == "rock") {
-                console.log("cpu win");
+                // cpu win
             } else if (cpuInput == "paper") {
-                console.log("player win");
+                // player win
             } else { // cpuInput is scissors
-                console.log("tie");
+                // tie
             }
             break;
         default:

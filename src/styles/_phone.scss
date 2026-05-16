@@ -139,23 +139,28 @@ button {
     &:focus,
     &:hover {
         background:
+        /*
         linear-gradient(90deg,
             var(--color-interactive-body) 0%,
             var(--color-interactive-body-highlighted) 50%,
             var(--color-interactive-body) 100%,
         );
-        transition: all 0.3s ease;
+        */
+        var(--color-interactive-body-highlighted);
+        transition: all 0.1s ease;
     }
 
    &:focus-visible {
     outline: 3px solid rgba(180, 210, 195, 1);
     outline-offset: 3px;
+    /*
     background:
         linear-gradient(90deg,
         var(--color-interactive-body) 0%,
         var(--color-interactive-body-highlighted) 50%,
         var(--color-interactive-body) 100%,
         );
+    */
     }
 
     &:active {

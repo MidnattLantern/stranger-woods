@@ -2,7 +2,8 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "@rps-story/*": ["./src/data/stories-data/rps-story/*"]
+      "@rps-story/*": ["./src/data/stories-data/rps-story/*"],
+      "@assets/*": ["./src/assets/*"]
     },
     "target": "ES2022",
     "useDefineForClassFields": true,
