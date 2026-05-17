@@ -8,39 +8,41 @@
                 <rect x="251.077" y="334.674" width="1976.05" height="499.089"/>
             </clipPath>
             <g clip-path="url(#_clip1)">
-                <g id="body" transform="matrix(0.930322,0,0,0.997177,86.338433,0.062567)">
-                    <circle cx="1240.157" cy="1753.937" r="1240.157"/>
-                </g>
-                <g id="playerSlot3" transform="matrix(0.924814,0,0,0.991274,514.861108,88.433105)" role="button" tabindex="0">
-                    <circle cx="1240.157" cy="513.78" r="178.22" class="player-slot-3-image"/>
-                    <clipPath id="_clip2">
-                        <circle cx="1240.157" cy="513.78" r="178.22"/>
-                    </clipPath>
-                    <g clip-path="url(#_clip2)">
-                        <g id="water-icon" transform="matrix(1.089263,0,0,1.089263,-1172.978203,-1895.25112)">
-                            <image id="playerSlot3Image" x="2047" y="2047" width="333px" height="330px"/>
+                <g id="trans-origin-container" transform="matrix(0.924012,0,0,0.990414,94.15641,11.924088)">
+                    <g id="test-body" transform="matrix(0.930322,0,0,0.997177,86.338433,0.062567)">
+                        <path d="M1234.102,2994.079C552.421,2990.814 -0,2436.379 0,1753.937C0,1071.495 552.421,517.06 1234.102,513.795L1234.102,2994.079ZM1244.102,513.786C1926.752,515.916 2480.314,1070.791 2480.314,1753.937C2480.314,2437.083 1926.752,2991.958 1244.102,2994.088L1244.102,513.786Z"/>
+                        <g id="playerSlot3" transform="matrix(0.924814,0,0,0.991274,514.861108,88.433105)" role="button" tabindex="0">
+                            <circle cx="1240.157" cy="513.78" r="178.22" class="player-slot-3-image"/>
+                            <clipPath id="_clip2">
+                                <circle cx="1240.157" cy="513.78" r="178.22"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip2)">
+                                <g id="water-icon" transform="matrix(1.089263,0,0,1.089263,-1172.978203,-1895.25112)">
+                                    <image id="playerSlot3Image" x="2047" y="2047" width="333px" height="330px"/>
+                                </g>
+                            </g>
                         </g>
-                    </g>
-                </g>
-                <g id="playerSlot2" transform="matrix(0.924814,0,0,0.991274,92.187349,2.043569)" role="button" tabindex="0">
-                    <circle cx="1240.157" cy="513.78" r="178.22" class="player-slot-2-image"/>
-                    <clipPath id="_clip4">
-                        <circle cx="1240.157" cy="513.78" r="178.22"/>
-                    </clipPath>
-                    <g clip-path="url(#_clip4)">
-                        <g id="earth-icon" transform="matrix(0.297034,0,0,0.297034,-2359.896063,-3086.274016)">
-                            <image id="playerSlot2Image" x="11519" y="11519" width="1202px" height="1202px"/>
+                        <g id="playerSlot2" transform="matrix(0.924814,0,0,0.991274,92.187349,2.043569)" role="button" tabindex="0">
+                            <circle cx="1240.157" cy="513.78" r="178.22" class="player-slot-2-image"/>
+                            <clipPath id="_clip4">
+                                <circle cx="1240.157" cy="513.78" r="178.22"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip4)">
+                                <g id="earth-icon" transform="matrix(0.297034,0,0,0.297034,-2359.896063,-3086.274016)">
+                                    <image id="playerSlot2Image" x="11519" y="11519" width="1202px" height="1202px"/>
+                                </g>
+                            </g>
                         </g>
-                    </g>
-                </g>
-                <g id="playerSlot1" transform="matrix(0.924814,0,0,0.991274,-330.48641,89.263046)" role="button" tabindex="0">
-                    <circle cx="1240.157" cy="513.78" r="178.22" class="player-slot-1-image"/>
-                    <clipPath id="_clip6">
-                        <circle cx="1240.157" cy="513.78" r="178.22"/>
-                    </clipPath>
-                    <g clip-path="url(#_clip6)">
-                        <g id="fire-icon" transform="matrix(0.363715,0,0,0.363715,317.048176,-410.167024)">
-                            <image id="playerSlot1Image" x="2047" y="2047" width="982" height="982" />
+                        <g id="playerSlot1" transform="matrix(0.924814,0,0,0.991274,-330.48641,89.263046)" role="button" tabindex="0">
+                            <circle cx="1240.157" cy="513.78" r="178.22" class="player-slot-1-image"/>
+                            <clipPath id="_clip6">
+                                <circle cx="1240.157" cy="513.78" r="178.22"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip6)">
+                                <g id="fire-icon" transform="matrix(0.363715,0,0,0.363715,317.048176,-410.167024)">
+                                    <image id="playerSlot1Image" x="2047" y="2047" width="982" height="982" />
+                                </g>
+                            </g>
                         </g>
                     </g>
                 </g>

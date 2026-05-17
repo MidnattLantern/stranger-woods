@@ -7,11 +7,12 @@ import { sceneWrapper } from "@/scenes/scene-handler";
 import fireElement from "/elements/fire-icon.webp";
 import earthElement from "/elements/earth-icon.webp";
 import waterElement from "/elements/water-icon.webp";
+import { rpsAnimate } from "./rps.animate";
 
 export function rockPaperScissors() {
     const rockPaperScissorsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
     rockPaperScissorsSceneWrapper.append(dialogueBox.dialogueBoxContainer);
-    rockPaperScissorsSceneWrapper.addEventListener("click", handleNextLine);
+    // rockPaperScissorsSceneWrapper.addEventListener("click", handleNextLine);
 
     const gameSessionWrapper = rpsUI.gameSessionWrapper();
 
@@ -40,57 +41,64 @@ export function rockPaperScissors() {
         currentStoryIndex = rpsStoryController.getStoryIndex();
     }
 
+    function handleStartRPSGame() {
+        dialogueBox.hideDialogueBox();
+        rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
+        rpsAnimate.spinPlayerElementalsDisc();
+
+        const playerSlot1 = document.getElementById("playerSlot1");
+        const playerSlot1Image = document.getElementById("playerSlot1Image");
+        if (!playerSlot1) return;
+        if (!playerSlot1Image) return;
+        playerSlot1Image.setAttribute("href", fireElement);
+        playerSlot1.addEventListener("click", (e) => {
+            e?.preventDefault();
+            initiateDuel("rock");
+        });
+        playerSlot1.addEventListener("keydown", (e) => {
+            e?.preventDefault();
+            if (e.key === 'Enter' || e.key === ' ') {
+                initiateDuel("rock");
+            }
+        });
+
+        const playerSlot2 = document.getElementById("playerSlot2");
+        const playerSlot2Image = document.getElementById("playerSlot2Image");
+        if (!playerSlot2) return;
+        if (!playerSlot2Image) return;
+        playerSlot2Image.setAttribute("href", earthElement);
+        playerSlot2.addEventListener("click", (e) => {
+            e?.preventDefault();
+            initiateDuel("paper");
+        });
+        playerSlot2.addEventListener("keydown", (e) => {
+            e?.preventDefault();
+            if (e.key === 'Enter' || e.key === ' ') {
+                initiateDuel("paper");
+            }
+        });
+
+        const playerSlot3 = document.getElementById("playerSlot3");
+        const playerSlot3Image = document.getElementById("playerSlot3Image");
+        if (!playerSlot3) return;
+        if (!playerSlot3Image) return;
+        playerSlot3Image.setAttribute("href", waterElement);
+        playerSlot3.addEventListener("click", (e) => {
+            e?.preventDefault();
+            initiateDuel("scissors");
+        });
+        playerSlot3.addEventListener("keydown", (e) => {
+            e?.preventDefault();
+            if (e.key === 'Enter' || e.key === ' ') {
+                initiateDuel("scissors");
+            }
+        });
+    }
+
     function handleNextLine() {
         function handleReadNextStoryLine() {
             dialogueBox.updateDialogueBox(storyData[currentStoryIndex].textEvent);
         }
-        function handleStartRPSGame() {
-            dialogueBox.hideDialogueBox();
-            rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
-
-            const playerSlot1 = document.getElementById("playerSlot1");
-            const playerSlot1Image = document.getElementById("playerSlot1Image");
-            if (!playerSlot1) return;
-            if (!playerSlot1Image) return;
-            playerSlot1Image.setAttribute("href", fireElement);
-            playerSlot1.addEventListener("click", () => {
-                initiateDuel("rock");
-            });
-            playerSlot1.addEventListener("keydown", (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    initiateDuel("rock");
-                }
-            });
-
-            const playerSlot2 = document.getElementById("playerSlot2");
-            const playerSlot2Image = document.getElementById("playerSlot2Image");
-            if (!playerSlot2) return;
-            if (!playerSlot2Image) return;
-            playerSlot2Image.setAttribute("href", earthElement);
-            playerSlot2.addEventListener("click", () => {
-                initiateDuel("paper");
-            });
-            playerSlot2.addEventListener("keydown", (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    initiateDuel("paper");
-                }
-            });
-
-            const playerSlot3 = document.getElementById("playerSlot3");
-            const playerSlot3Image = document.getElementById("playerSlot3Image");
-            if (!playerSlot3) return;
-            if (!playerSlot3Image) return;
-            playerSlot3Image.setAttribute("href", waterElement);
-            playerSlot3.addEventListener("click", () => {
-                initiateDuel("scissors");
-            });
-            playerSlot3.addEventListener("keydown", (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    initiateDuel("scissors");
-                }
-            });
-        }
-
         if (nextBtn.disabled) return;
         handleSetNextStoryIndex();
         if (currentStoryIndex < storyData.length) {
@@ -98,6 +106,7 @@ export function rockPaperScissors() {
         } else {
             handleStartRPSGame();
         }
+        handleStartRPSGame();
     }
 
     // core ui collectors
@@ -111,8 +120,9 @@ export function rockPaperScissors() {
     buttonsTable.append(rpsPlayerButtons, rpsComputerButtons);
 
     //initialization
-    dialogueBox.showDialogueBox();
-    dialogueBox.updateDialogueBox(storyData[0].textEvent);
+    // dialogueBox.showDialogueBox();
+    // dialogueBox.updateDialogueBox(storyData[0].textEvent);
+    handleStartRPSGame();
 }
 
 function initiateDuel(

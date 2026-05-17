@@ -22,7 +22,7 @@ type ISessionState = {
 }
 
 let sessionState: ISessionState = {
-    scene: "profileSelection",
+    scene: "game-session",
     userProfileID: "",
     roomState: {
         silentTide: {

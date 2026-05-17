@@ -1,4 +1,5 @@
-import testTableSVG from "@assets/pseudoelementals.svg?raw";
+// import testTableSVG from "@assets/pseudoelementals.svg?raw";
+ import testTableSVG from "@assets/pseudoelementals-new.svg?raw";
 
 function rockPaperScissorsSceneWrapper() {
     const rpsSceneWrapper = document.createElement("div");

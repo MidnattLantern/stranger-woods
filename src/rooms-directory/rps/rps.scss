@@ -20,6 +20,15 @@
     fill: none;
 }
 
+.player-elementals-disc {
+    fill: red;
+}
+
+#trans-origin-container {
+    stroke: red;
+    stroke-width: 10;
+}
+
 .rock-paper-scissors__buttons-table {
     display: flex;
     flex-direction: column-reverse;
