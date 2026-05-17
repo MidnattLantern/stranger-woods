@@ -46,6 +46,10 @@ The game board has six slots. One of which is water, fire, or earth. The goal of
 ### Dialogue handling
 Any dialogue should be stored as json data inside the stories-data directory.
 
+classnames used for styling are named in kebab-case
+
+id's used for identifying are names in pascalCase. CSS targeting id are discouraged, with exceptions. Keep in mind that SVG assets may have id's written in kebab-case, as they're exported in that format by default, and housekeeping that would mean too much job for little to no effect. This is left out until it's neccessary.
+
 ## Technologies
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)

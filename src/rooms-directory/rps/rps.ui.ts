@@ -1,5 +1,4 @@
-// import testTableSVG from "@assets/pseudoelementals.svg?raw";
- import testTableSVG from "@assets/pseudoelementals-new.svg?raw";
+ import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
 
 function rockPaperScissorsSceneWrapper() {
     const rpsSceneWrapper = document.createElement("div");
@@ -37,7 +36,7 @@ function rpsPlayerButtons() {
     container.id = "rpsPlayerButtons";
 
     // svg test
-    container.innerHTML = testTableSVG;
+    container.innerHTML = pseudoElementalsPlayerDisc;
 
 //    container.append(playerSlot1Button, playerSlot2Button, playerSlot3Button);
     return container;

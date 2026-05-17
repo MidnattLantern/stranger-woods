@@ -20,13 +20,9 @@
     fill: none;
 }
 
-.player-elementals-disc {
-    fill: red;
-}
-
-#trans-origin-container {
-    stroke: red;
-    stroke-width: 10;
+#body {
+    fill: var(--color-surface-body);
+    backdrop-filter: blur(5px);
 }
 
 .rock-paper-scissors__buttons-table {

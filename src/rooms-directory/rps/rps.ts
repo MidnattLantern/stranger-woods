@@ -44,7 +44,6 @@ export function rockPaperScissors() {
     function handleStartRPSGame() {
         dialogueBox.hideDialogueBox();
         rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
-        rpsAnimate.spinPlayerElementalsDisc();
 
         const playerSlot1 = document.getElementById("playerSlot1");
         const playerSlot1Image = document.getElementById("playerSlot1Image");
@@ -53,11 +52,13 @@ export function rockPaperScissors() {
         playerSlot1Image.setAttribute("href", fireElement);
         playerSlot1.addEventListener("click", (e) => {
             e?.preventDefault();
+            rpsAnimate.spinToSlot(1);
             initiateDuel("rock");
         });
         playerSlot1.addEventListener("keydown", (e) => {
             e?.preventDefault();
             if (e.key === 'Enter' || e.key === ' ') {
+                rpsAnimate.spinToSlot(1);
                 initiateDuel("rock");
             }
         });
@@ -68,12 +69,14 @@ export function rockPaperScissors() {
         if (!playerSlot2Image) return;
         playerSlot2Image.setAttribute("href", earthElement);
         playerSlot2.addEventListener("click", (e) => {
+            rpsAnimate.spinToSlot(2);
             e?.preventDefault();
             initiateDuel("paper");
         });
         playerSlot2.addEventListener("keydown", (e) => {
             e?.preventDefault();
             if (e.key === 'Enter' || e.key === ' ') {
+                rpsAnimate.spinToSlot(2);
                 initiateDuel("paper");
             }
         });
@@ -85,11 +88,13 @@ export function rockPaperScissors() {
         playerSlot3Image.setAttribute("href", waterElement);
         playerSlot3.addEventListener("click", (e) => {
             e?.preventDefault();
+            rpsAnimate.spinToSlot(3);
             initiateDuel("scissors");
         });
         playerSlot3.addEventListener("keydown", (e) => {
             e?.preventDefault();
             if (e.key === 'Enter' || e.key === ' ') {
+                rpsAnimate.spinToSlot(3);
                 initiateDuel("scissors");
             }
         });
