@@ -6,14 +6,15 @@ import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
 import { sceneWrapper } from "@/scenes/scene-handler";
 
 function rockPaperScissors() {
-    const rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
+    let rpsResources = null;
+    let rpsSceneWrapper: any = null;
 
     function initialize() {
+        rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
         rpsSceneWrapper.append(dialogueBox.dialogueBoxContainer);
         sceneWrapper.append(rpsSceneWrapper);
         rpsStoryController.handleInitializeStoryline();
-        //test
-        // handleBeginRpsGame();
+        rpsResources = { rpsSceneWrapper };
     }
 
     function handleBeginRpsGame() {   
@@ -27,6 +28,7 @@ function rockPaperScissors() {
         gameSessionWrapper.append(buttonsTable);
         buttonsTable.append(rpsPlayerButtons);
 
+        rpsResources = { gameSessionWrapper, buttonsTable, rpsPlayerButtons };
         rpsEvents.beginPlayerSlot1Lifecycle();
         rpsEvents.beginPlayerSlot2Lifecycle();
         rpsEvents.beginPlayerSlot3Lifecycle();
@@ -36,6 +38,10 @@ function rockPaperScissors() {
         rpsEvents.endPlayerSlot1Lifecycle();
         rpsEvents.endPlayerSlot2Lifecycle();
         rpsEvents.endPlayerSlot3Lifecycle();
+
+        rpsSceneWrapper.remove();
+        rpsSceneWrapper = null; // drop it
+        rpsResources = null;
     }
 
     return {
