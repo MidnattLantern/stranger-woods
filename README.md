@@ -46,9 +46,21 @@ The game board has six slots. One of which is water, fire, or earth. The goal of
 ### Dialogue handling
 Any dialogue should be stored as json data inside the stories-data directory.
 
+### id and class naming
 classnames used for styling are named in kebab-case
 
 id's used for identifying are names in pascalCase. CSS targeting id are discouraged, with exceptions. Keep in mind that SVG assets may have id's written in kebab-case, as they're exported in that format by default, and housekeeping that would mean too much job for little to no effect. This is left out until it's neccessary.
+
+### file naming
+The master file is simply named its identity, such as `tictactoe.ts`, the other files handling a specific task should have a dot notaiton; `tictactoe.game.ts` or `tictactoe.styles.scss`; the exception is `models.ts`.
+
+### Resource Acquisition Is Initialization
+Having studied some C++, I want to remain considerate about performance and memory leaks. It is encouraged to remove attributes and event listeners to elements before they're wiped away from the DOM.
+
+Functions may be called `beginTictactoeButtonLifecycle()` or `endTictactoeButtonLifecycle()`, and they live in a events file `tictactoe.events.ts`.
+
+### Minimizing anonymous functions
+Avoid arrow functions unless absolutely neccessary, they make it hard or even impossible to do memory cleanups, making the project prone to memory leaks and performance issues.
 
 ## Technologies
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)

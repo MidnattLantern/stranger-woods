@@ -1,4 +1,4 @@
- import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
+import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
 
 function rockPaperScissorsSceneWrapper() {
     const rpsSceneWrapper = document.createElement("div");
@@ -21,15 +21,6 @@ function buttonsTable() {
 // ==========
 // player rps
 // ==========
-const playerSlot1Button = document.createElement("button");
-playerSlot1Button.textContent = "Slot 1";
-
-const playerSlot2Button = document.createElement("button");
-playerSlot2Button.textContent = "Slot 2";
-
-const playerSlot3Button = document.createElement("button");
-playerSlot3Button.textContent = "Slot 3";
-
 function rpsPlayerButtons() {
     const container = document.createElement("div");
     container.classList.add("rock-paper-scissors__player-buttons-container");
@@ -99,9 +90,6 @@ function duelStatusTable() {
 // ============
 
 export const rpsUI = {
-    playerSlot1Button,
-    playerSlot2Button,
-    playerSlot3Button,
     cpuSlot1Button,
     cpuSlot2Button,
     cpuSlot3Button,
