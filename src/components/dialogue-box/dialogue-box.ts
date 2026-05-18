@@ -26,9 +26,8 @@ dialogueBoxView.append(text, nextButton);
 // =======
 
 function showDialogueBox(initText: string = "") {
-    text.textContent = initText;
-    nextButton.setAttribute("disabled", "true");
     dialogueBoxContainer.append(dialogueBoxView);
+    updateDialogueBox(initText, true);
 }
 
 function updateDialogueBox(newText: string = "", useTypewriter: boolean = true) {

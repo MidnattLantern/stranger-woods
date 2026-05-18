@@ -25,11 +25,7 @@ function rpsPlayerButtons() {
     const container = document.createElement("div");
     container.classList.add("rock-paper-scissors__player-buttons-container");
     container.id = "rpsPlayerButtons";
-
-    // svg test
     container.innerHTML = pseudoElementalsPlayerDisc;
-
-//    container.append(playerSlot1Button, playerSlot2Button, playerSlot3Button);
     return container;
 }
 // ==========

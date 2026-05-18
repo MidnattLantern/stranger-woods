@@ -1,18 +1,32 @@
 import { rpsEvents } from "./rps.events";
+import { rpsStoryController } from "./rps.story";
 import "./rps.styles.scss";
 import { rpsUI } from "./rps.ui";
 import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
 import { sceneWrapper } from "@/scenes/scene-handler";
 
-export function rockPaperScissors() {
-    const gameSessionWrapper = rpsUI.gameSessionWrapper();
+function rockPaperScissors() {
+    const rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
 
-    const rockPaperScissorsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
-    rockPaperScissorsSceneWrapper.append(dialogueBox.dialogueBoxContainer);
+    function initialize() {
+        rpsSceneWrapper.append(dialogueBox.dialogueBoxContainer);
+        sceneWrapper.append(rpsSceneWrapper);
+        rpsStoryController.handleInitializeStoryline();
+        //test
+        // handleBeginRpsGame();
+    }
 
-    function handleBeginRpsGame() {
+    function handleBeginRpsGame() {   
         dialogueBox.hideDialogueBox();
-        rockPaperScissorsSceneWrapper.append(gameSessionWrapper);
+
+        const gameSessionWrapper = rpsUI.gameSessionWrapper();
+        const buttonsTable = rpsUI.buttonsTable();
+        const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
+
+        rpsSceneWrapper.append(gameSessionWrapper);
+        gameSessionWrapper.append(buttonsTable);
+        buttonsTable.append(rpsPlayerButtons);
+
         rpsEvents.beginPlayerSlot1Lifecycle();
         rpsEvents.beginPlayerSlot2Lifecycle();
         rpsEvents.beginPlayerSlot3Lifecycle();
@@ -22,20 +36,13 @@ export function rockPaperScissors() {
         rpsEvents.endPlayerSlot1Lifecycle();
         rpsEvents.endPlayerSlot2Lifecycle();
         rpsEvents.endPlayerSlot3Lifecycle();
-        rockPaperScissorsSceneWrapper.innerHTML = '';
     }
 
-    // core ui collectors
-    const buttonsTable = rpsUI.buttonsTable();
-    const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
-    const rpsComputerButtons = rpsUI.rpsComputerButtons();
-    const duelStatusTable = rpsUI.duelStatusTable();
-
-    // core ui assemblers
-    sceneWrapper.append(rockPaperScissorsSceneWrapper);
-    gameSessionWrapper.append(buttonsTable, duelStatusTable);
-    buttonsTable.append(rpsPlayerButtons, rpsComputerButtons);
-
-    //initialization
-    handleBeginRpsGame();
+    return {
+        initialize,
+        handleBeginRpsGame,
+        handleEndRpsGame
+    }
 }
+
+export const rps = rockPaperScissors();
