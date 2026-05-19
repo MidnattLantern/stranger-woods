@@ -8,7 +8,7 @@ import { sceneWrapper } from "@/scenes/scene-handler";
 function rockPaperScissors() {
     let rpsResources = null;
     let rpsSceneWrapper: any = null;
-    let playerSelectedSlotIndex: number = 2;
+    let playerSelectedSlotIndex: number = 0;
 
     function initialize() {
         rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
@@ -16,7 +16,9 @@ function rockPaperScissors() {
         rpsSceneWrapper.setAttribute("tabindex", 0);
         sceneWrapper.append(rpsSceneWrapper);
         rpsStoryController.handleInitializeStoryline();
+        rpsEvents.beginFullscreenNextStorylineLifecycle();
         rpsResources = { rpsSceneWrapper };
+        rpsSceneWrapper.focus();
     }
 
     function getRpsSceneWrapper() {
@@ -32,6 +34,7 @@ function rockPaperScissors() {
     };
 
     function handleBeginRpsGame() {
+        rpsEvents.endFullscreenNextStorylineLifecycle();
         dialogueBox.hideDialogueBox();
         rpsSceneWrapper.focus();
 
@@ -44,18 +47,10 @@ function rockPaperScissors() {
         buttonsTable.append(rpsPlayerButtons);
 
         rpsResources = { gameSessionWrapper, buttonsTable, rpsPlayerButtons };
-        rpsEvents.beginPlayerSlot1Lifecycle();
-        rpsEvents.beginPlayerSlot2Lifecycle();
-        rpsEvents.beginPlayerSlot3Lifecycle();
-        rpsEvents.beginKeyboardInputLifecycle();        
+        rpsEvents.beginPlayerSlotsLifecycle();
     }
 
     function handleEndRpsGame() {
-        rpsEvents.endPlayerSlot1Lifecycle();
-        rpsEvents.endPlayerSlot2Lifecycle();
-        rpsEvents.endPlayerSlot3Lifecycle();
-        rpsEvents.endKeyboardInputLifecycle();
-
         rpsSceneWrapper.remove();
         rpsSceneWrapper = null;
         rpsResources = null;

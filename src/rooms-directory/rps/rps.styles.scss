@@ -20,9 +20,12 @@
     fill: none;
 }
 
-#body {
+#playerDiscBody {
     fill: var(--color-surface-body);
-    backdrop-filter: blur(5px);
+}
+
+#test {
+    fill: red;
 }
 
 .rock-paper-scissors__buttons-table {
@@ -36,17 +39,11 @@
     & .rock-paper-scissors__player-buttons-container,
     & .rock-paper-scissors__computer-buttons-container {
         display: flex;
-        flex-direction: row;
         justify-content: center;
         align-items: center;
         width: 100%;
-        gap: 20px;
-
-        button {
-            width: 70px;
-            height: 70px;
-            border-radius: 35px;
-        }
+        // height: 200px;
+        border: 1px solid red;
     }
 }
 

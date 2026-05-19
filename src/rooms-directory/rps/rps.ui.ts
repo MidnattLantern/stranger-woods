@@ -1,4 +1,5 @@
-import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
+// import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
+import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc-new.svg?raw";
 
 function rockPaperScissorsSceneWrapper() {
     const rpsSceneWrapper = document.createElement("div");

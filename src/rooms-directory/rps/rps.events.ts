@@ -1,50 +1,32 @@
 import fireElement from "/elements/fire-icon.webp";
-import earthElement from "/elements/earth-icon.webp";
-import waterElement from "/elements/water-icon.webp";
+// import earthElement from "/elements/earth-icon.webp";
+// import waterElement from "/elements/water-icon.webp";
 import { rpsAnimate } from "./rps.animate";
 import { rpsGame } from "./rps.game";
 import { rps } from "./rps";
+import { rpsStoryController } from "./rps.story";
 
 // ==============
 // event handlers
 // ==============
-function handleSelectSlot1(event: Event) {
-    event.preventDefault();
-    rpsAnimate.spinToSlot(1);
-    rpsGame.initiateDuel(1);
-}
-function handleSelectSlot1Keyboard(event: KeyboardEvent) {
-    event.preventDefault();
-    if (event.key === 'Enter' || event.key === ' ') {
-        rpsAnimate.spinToSlot(1);
-        rpsGame.initiateDuel(1);
+function handleKeyboardRotateDisc(event: KeyboardEvent) {
+    function handleRotate(indexDirectionMultiplier: 1 | -1) {
+        const currentPlayerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
+        rps.setPlayerSelectedIndex(currentPlayerSelectedSlotIndex + (1 * indexDirectionMultiplier));
+        rpsAnimate.spinToSlot();
     }
+    event.preventDefault();
+
+    if (event.key === "ArrowLeft") handleRotate(-1);
+    if (event.key === "ArrowRight") handleRotate(1);
 }
 
-function handleSelectSlot2(event: Event) {
+function handleFullscreenNextStoryline(event: KeyboardEvent) {
     event.preventDefault();
-    rpsAnimate.spinToSlot(2);
-    rpsGame.initiateDuel(2);
-}
-function handleSelectSlot2Keyboard(event: KeyboardEvent) {
-    event.preventDefault();
-    if (event.key === 'Enter' || event.key === ' ') {
-        rpsAnimate.spinToSlot(2);
-        rpsGame.initiateDuel(2);
+    if (event.key === "Enter" || event.key === " ") {
+        rpsStoryController.handleNextStoryline();
     }
-}
 
-function handleSelectSlot3(event: Event) {
-    event.preventDefault();
-    rpsAnimate.spinToSlot(3);
-    rpsGame.initiateDuel(3);
-}
-function handleSelectSlot3Keyboard(event: KeyboardEvent) {
-    event.preventDefault();
-    if (event.key === 'Enter' || event.key === ' ') {
-        rpsAnimate.spinToSlot(3);
-        rpsGame.initiateDuel(3);
-    }
 }
 
 function handleSelectSlot(event: KeyboardEvent) {
@@ -74,34 +56,19 @@ function handleSelectSlot(event: KeyboardEvent) {
 // =====
 // begin
 // =====
-function beginPlayerSlot1Lifecycle() {
-    const playerSlot1 = document.getElementById("playerSlot1");
-    const playerSlot1Image = document.getElementById("playerSlot1Image");
-    if (!playerSlot1) return;
-    if (!playerSlot1Image) return;
-    playerSlot1Image.setAttribute("href", fireElement);
-    playerSlot1.addEventListener("click", handleSelectSlot1);
-    playerSlot1.addEventListener("keydown", handleSelectSlot1Keyboard);
+function beginFullscreenNextStorylineLifecycle() {
+    rps.getRpsSceneWrapper().addEventListener("keydown", handleFullscreenNextStoryline);
 }
 
-function beginPlayerSlot2Lifecycle() {
-    const playerSlot2 = document.getElementById("playerSlot2");
-    const playerSlot2Image = document.getElementById("playerSlot2Image");
-    if (!playerSlot2) return;
-    if (!playerSlot2Image) return;
-    playerSlot2Image.setAttribute("href", earthElement);
-    playerSlot2.addEventListener("click", handleSelectSlot2);
-    playerSlot2.addEventListener("keydown", handleSelectSlot2Keyboard);
-}
-
-function beginPlayerSlot3Lifecycle() {
-    const playerSlot3 = document.getElementById("playerSlot3");
-    const playerSlot3Image = document.getElementById("playerSlot3Image");
-    if (!playerSlot3) return;
-    if (!playerSlot3Image) return;
-    playerSlot3Image.setAttribute("href", waterElement);
-    playerSlot3.addEventListener("click", handleSelectSlot3);
-    playerSlot3.addEventListener("keydown", handleSelectSlot3Keyboard);
+function beginPlayerSlotsLifecycle() {
+    for (let i: number = 0; i <= 11; i++) {
+        const playerSlotI = document.getElementById(`playerSlot${i}`);
+        const playerSlotIImage = document.getElementById(`playerSlot${i}Image`);
+        if (!playerSlotI) return;
+        if (!playerSlotIImage) return;
+        playerSlotIImage.setAttribute("href", fireElement);
+    }
+    rps.getRpsSceneWrapper().addEventListener("keydown", handleKeyboardRotateDisc);
 }
 
 function beginKeyboardInputLifecycle() {
@@ -112,25 +79,8 @@ function beginKeyboardInputLifecycle() {
 // ===
 // end
 // ===
-function endPlayerSlot1Lifecycle() {
-    const playerSlot1 = document.getElementById("playerSlot1");
-    if (!playerSlot1) return;
-    playerSlot1.removeEventListener("click", handleSelectSlot1);
-    playerSlot1.removeEventListener("keydown", handleSelectSlot1Keyboard);
-}
-
-function endPlayerSlot2Lifecycle() {
-    const playerSlot2 = document.getElementById("playerSlot2");
-    if (!playerSlot2) return;
-    playerSlot2.removeEventListener("click", handleSelectSlot2);
-    playerSlot2.removeEventListener("keydown", handleSelectSlot2Keyboard);
-}
-
-function endPlayerSlot3Lifecycle() {
-    const playerSlot3 = document.getElementById("playerSlot3");
-    if (!playerSlot3) return;
-    playerSlot3.removeEventListener("click", handleSelectSlot3);
-    playerSlot3.removeEventListener("keydown", handleSelectSlot3Keyboard);
+function endFullscreenNextStorylineLifecycle() {
+    rps.getRpsSceneWrapper().removeEventListener("keydown", handleFullscreenNextStoryline);
 }
 
 function endKeyboardInputLifecycle() {
@@ -139,12 +89,9 @@ function endKeyboardInputLifecycle() {
 // ===
 
 export const rpsEvents = {
-    beginPlayerSlot1Lifecycle,
-    beginPlayerSlot2Lifecycle,
-    beginPlayerSlot3Lifecycle,
+    beginPlayerSlotsLifecycle,
+    beginFullscreenNextStorylineLifecycle,
     beginKeyboardInputLifecycle,
-    endPlayerSlot1Lifecycle,
-    endPlayerSlot2Lifecycle,
-    endPlayerSlot3Lifecycle,
+    endFullscreenNextStorylineLifecycle,
     endKeyboardInputLifecycle
 }
