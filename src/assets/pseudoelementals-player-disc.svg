@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 701 701" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+<svg viewBox="0 0 701 701" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(1,0,0,1,-889.906407,-954.251074)">
         <g id="playerTransOriginPosition" transform="matrix(1.400641,0,0,1.400641,-495.640349,483.992692)">
             <rect x="989.224" y="335.745" width="500.13" height="500.13" style="fill:none;"/>
@@ -127,23 +127,23 @@
                                 </g>
                             </g>
                         </g>
-                        <g id="playerSlot10" class="playerSlotI" transform="matrix(0.782447,0,0,0.782447,122.353075,-60.801748)">
-                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
-                            <clipPath id="_clip14">
-                                <circle cx="1240.157" cy="523.251" r="70.749"/>
-                            </clipPath>
-                            <g clip-path="url(#_clip14)">
-                                <g id="Background10" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-900.502898,-1617.409298)">
-                                    <image id="playerSlot10Image" x="14335" y="14335" width="982px" height="982px"/>
-                                </g>
-                            </g>
-                        </g>
-                        <g id="playerSlot11" class="playerSlotI" transform="matrix(0.782447,0,0,0.782447,14.414413,47.136846)">
+                        <g id="playerSlot10" class="playerSlotI" transform="matrix(0.782447,0,0,0.782447,14.414413,47.136846)">
                             <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
                             <clipPath id="_clip15">
                                 <circle cx="1240.157" cy="523.251" r="70.749"/>
                             </clipPath>
                             <g clip-path="url(#_clip15)">
+                                <g id="Background10" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-900.502898,-1617.409298)">
+                                    <image id="playerSlot10Image" x="14335" y="14335" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="playerSlot11" class="playerSlotI" transform="matrix(0.782447,0,0,0.782447,122.353075,-60.801748)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip14">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip14)">
                                 <g id="Background11" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-900.502898,-1617.409298)">
                                     <image id="playerSlot11Image" x="14335" y="14335" width="982px" height="982px"/>
                                 </g>

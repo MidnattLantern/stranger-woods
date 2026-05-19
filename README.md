@@ -5,9 +5,10 @@ Live link: [MidnattLantern.github.io/stranger-woods](https://MidnattLantern.gith
 1. [Initial source & acknowledgement](#initial-source--acknowledgement)
 2. [About the game](#about-the-game)
 3. [How to play](#how-to-play)
-4. [Code base & architectire](#code-base--architectire)
-5. [Technologies](#technologies)
-6. [Acknowledgements](#acknowledgements)
+4. [Philosophy](#philosphy)
+5. [Code base & architectire](#code-base--architectire)
+6. [Technologies](#technologies)
+7. [Acknowledgements](#acknowledgements)
 
 ## Initial source & acknowledgement
 This is Midnatt Lantern's forked edition, expanded and refactored solo according to their direction. The initial source can be found at: [github.com/Medieinstitutet/fed25d-js-intro-grupparbete-the-dopefish-admirers](https://github.com/Medieinstitutet/fed25d-js-intro-grupparbete-the-dopefish-admirers)
@@ -32,6 +33,11 @@ Stranger Woods is a part of vocational training in frontend development. This ga
 - Each room has its own individual timer, solve the room before time runs out. If you fail, you must replay it and the lost time is deducted from your total.
 - Collect the artifacts hidden in each of the first five rooms. The artifacts are required to complete the Final Room.
 - Complete the game fast enough and you may earn a place on the Top 10 Highscore — and share your results with the world.
+
+## Philosphy
+
+### Kinesthesic oriented design
+As part of my mission to design digital experiences that can convince the user through instinct and no words, I've studied video games which has blurred the border between the controller and the physics behind the screen really well. With that inspiration, I've done the effort designing GUI elements to feel like they're part of the user inputs hardware.
 
 ### Pseudoelementals (Rock Paper Scissors)
 Pseudoelementals is rock paper scissors with a twist. Only one object is a rock, paper, scissors. By playing as many duels as the player wants, they have to identify aliases, to be either rock paper or scissors.

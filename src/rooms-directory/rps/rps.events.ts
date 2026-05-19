@@ -9,11 +9,21 @@ import { rpsStoryController } from "./rps.story";
 // ==============
 // event handlers
 // ==============
+function handleClickRotateDisc(event: MouseEvent) {
+    const target = event.currentTarget as HTMLElement;
+    const playerSlotIndex: number = Number(target.getAttribute("data-player-slot"));
+    rps.setPlayerSelectedIndex(playerSlotIndex);
+    rpsAnimate.spinToSlot();
+}
+
 function handleKeyboardRotateDisc(event: KeyboardEvent) {
-    function handleRotate(indexDirectionMultiplier: 1 | -1) {
-        const currentPlayerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-        rps.setPlayerSelectedIndex(currentPlayerSelectedSlotIndex + (1 * indexDirectionMultiplier));
+    // const MIN_EDGE_INDEX: number = 0;
+    // const MAX_EDGE_INDEX: number = 11;
+    function handleRotate(directionMultiplier: 1 | -1) {
+        const currentPlayerSelectedSlotIndex: number = rps.getPlayerSelectedSlotIndex();
+        rps.setPlayerSelectedIndex(currentPlayerSelectedSlotIndex + (1 * directionMultiplier));
         rpsAnimate.spinToSlot();
+        console.log(rps.getPlayerSelectedSlotIndex());
     }
     event.preventDefault();
 
@@ -61,12 +71,15 @@ function beginFullscreenNextStorylineLifecycle() {
 }
 
 function beginPlayerSlotsLifecycle() {
-    for (let i: number = 0; i <= 11; i++) {
+    const slotsRange: number = 12 -1; // -1 counters back to 0 base index
+    for (let i: number = 0; i <= slotsRange; i++) {
         const playerSlotI = document.getElementById(`playerSlot${i}`);
         const playerSlotIImage = document.getElementById(`playerSlot${i}Image`);
         if (!playerSlotI) return;
         if (!playerSlotIImage) return;
         playerSlotIImage.setAttribute("href", fireElement);
+        playerSlotI.dataset.playerSlot = i.toString();
+        playerSlotI.addEventListener("click", handleClickRotateDisc);
     }
     rps.getRpsSceneWrapper().addEventListener("keydown", handleKeyboardRotateDisc);
 }
