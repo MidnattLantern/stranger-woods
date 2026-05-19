@@ -17,13 +17,26 @@ function handleClickRotateDisc(event: MouseEvent) {
 }
 
 function handleKeyboardRotateDisc(event: KeyboardEvent) {
-    // const MIN_EDGE_INDEX: number = 0;
-    // const MAX_EDGE_INDEX: number = 11;
+    const MIN_EDGE_INDEX: number = 0;
+    const MAX_EDGE_INDEX: number = 11;
     function handleRotate(directionMultiplier: 1 | -1) {
         const currentPlayerSelectedSlotIndex: number = rps.getPlayerSelectedSlotIndex();
-        rps.setPlayerSelectedIndex(currentPlayerSelectedSlotIndex + (1 * directionMultiplier));
-        rpsAnimate.spinToSlot();
-        console.log(rps.getPlayerSelectedSlotIndex());
+        const currentPlayerDiscRotationIndex: number = rps.getPlayerDiscRotationIndex();
+        let newPlayerSelectedSlotIndex: number = currentPlayerSelectedSlotIndex + (1 * directionMultiplier);
+        const newPlayerDiscRotationIndex: number = currentPlayerDiscRotationIndex + (1 * directionMultiplier);
+
+        console.log(newPlayerSelectedSlotIndex);
+        rpsAnimate.spinToSlot(newPlayerDiscRotationIndex);
+        if (newPlayerSelectedSlotIndex < MIN_EDGE_INDEX) {
+            newPlayerSelectedSlotIndex = MAX_EDGE_INDEX;
+        }
+        if (newPlayerSelectedSlotIndex > MAX_EDGE_INDEX) {
+            newPlayerSelectedSlotIndex = MIN_EDGE_INDEX;
+        }
+        rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
+        rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
+        console.log("selected slot index", rps.getPlayerSelectedSlotIndex());
+        console.log("disc rotation index", newPlayerDiscRotationIndex);
     }
     event.preventDefault();
 
@@ -78,8 +91,8 @@ function beginPlayerSlotsLifecycle() {
         if (!playerSlotI) return;
         if (!playerSlotIImage) return;
         playerSlotIImage.setAttribute("href", fireElement);
-        playerSlotI.dataset.playerSlot = i.toString();
-        playerSlotI.addEventListener("click", handleClickRotateDisc);
+        // playerSlotI.dataset.playerSlot = i.toString();
+        // playerSlotI.addEventListener("click", handleClickRotateDisc);
     }
     rps.getRpsSceneWrapper().addEventListener("keydown", handleKeyboardRotateDisc);
 }

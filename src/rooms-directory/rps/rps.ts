@@ -9,6 +9,7 @@ function rockPaperScissors() {
     let rpsResources = null;
     let rpsSceneWrapper: any = null;
     let playerSelectedSlotIndex: number = 0;
+    let playerDiscRotationIndex: number = 0;
 
     function initialize() {
         rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
@@ -32,6 +33,14 @@ function rockPaperScissors() {
     function setPlayerSelectedIndex(newIndex: number) {
         playerSelectedSlotIndex = newIndex;
     };
+
+    function getPlayerDiscRotationIndex() {
+        return playerDiscRotationIndex;
+    }
+
+    function setPlayerDiscRotationIndex(newIndex: number) {
+        playerDiscRotationIndex = newIndex;
+    }
 
     function handleBeginRpsGame() {
         rpsEvents.endFullscreenNextStorylineLifecycle();
@@ -61,6 +70,8 @@ function rockPaperScissors() {
         getRpsSceneWrapper,
         getPlayerSelectedSlotIndex,
         setPlayerSelectedIndex,
+        getPlayerDiscRotationIndex,
+        setPlayerDiscRotationIndex,
         handleBeginRpsGame,
         handleEndRpsGame
     }

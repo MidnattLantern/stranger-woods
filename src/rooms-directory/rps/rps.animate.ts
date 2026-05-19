@@ -1,9 +1,9 @@
 import gsap from "gsap";
 import { rps } from "./rps";
 
-function spinToSlot(slotIndex: number = rps.getPlayerSelectedSlotIndex()) {
+function spinToSlot(slotIndex: number = rps.getPlayerDiscRotationIndex()) {
     const rotateDeg = slotIndex * 30;
-    const rotateDuration: number = 0.4;
+    const rotateDuration: number = 0.5;
     const rotateEasing: string = "back.out";
 
     gsap.to("#playerTransOriginWheel", {
