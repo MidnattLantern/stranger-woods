@@ -1,83 +1,31 @@
 import './main-menu-scene.scss';
-import { state } from '../../state/gamestate';
-import { loadGameFromLocalStorage, clearLocalStorageSave } from '../../store/database/local-storage-database';
-import { startStatusBarTimers, stopAllStatusBarTimers, refetchGamestate, resetStatusBarProgress } from '../../components/status-bar/status-bar';
+import { startStatusBarTimers, resetStatusBarProgress } from '../../components/status-bar/status-bar';
+import { getSessionState } from '../../store/session-memory/session-state';
+import { mainMenuUI } from './main-menu.ui';
+import { sceneWrapper } from '../scene-handler';
 
-export function renderMainMenuScene(
-    sceneWrapper: HTMLDivElement | null,
-    render: () => void
-) {
-    if (!sceneWrapper) return;
+export function renderMainMenuScene() {
 
-    sceneWrapper.innerHTML = ''; // reset
+    const uiMasterContainer = mainMenuUI.masterContainer();
+    const startGameButton = mainMenuUI.startGameButton();
+    const profileSelectionButton = mainMenuUI.profileSelectionButton();
+    const saveProfileName = mainMenuUI.saveProfileName();
 
-    sceneWrapper.innerHTML = `
-        <div class="main-menu">
-            <div class="menu-buttons">
-                <button id="startGame" class="menu-btn primary">New game</button>
-                ${state.isReturningPlayer ? '<button id="loadGame" class="menu-btn">Load game</button>' : ''}
-                <button id="about" class="menu-btn">About</button>
-                <button id="logout" class="menu-btn secondary">Log out</button>
-            </div>
-        </div>
-    `;
+    uiMasterContainer.append(saveProfileName, startGameButton, profileSelectionButton);
+    sceneWrapper.append(uiMasterContainer);
 
-    // --------------- DOM ELEMENTS ----------------
-    // ----------------------------------------------
+    const currentUserHeading = document.getElementById("currentUserHeading");
+    const currentScene = getSessionState();
 
-    const startGameBtn = document.getElementById('startGame') as HTMLButtonElement | null;
-    const loadGameBtn = document.getElementById('loadGame') as HTMLButtonElement | null;
-    const aboutBtn = document.getElementById('about') as HTMLButtonElement | null;
-    const logoutBtn = document.getElementById('logout') as HTMLButtonElement | null;
+    if (!currentUserHeading) return;
+    const userID = getSessionState();
+    currentUserHeading.textContent = userID.userProfileID;
 
-    // ------ EVENT HANDLERS & FUNCTIONS ---------
-    // ----------------------------------------------
+    startGameButton?.addEventListener('click', () => {
 
-    startGameBtn?.addEventListener('click', () => { //? betyder om det inte är null
-        if (state.screen === 'menu') {
+        if (currentScene.scene === 'menu') {
             resetStatusBarProgress();
-            clearLocalStorageSave();
-
-            state.currentRoom = 0; // Starta från första rummet
-            state.completed = [false, false, false, false, false, false];
-            state.highestRoom = 0;
-            state.codes = [];
-            state.artifacts = [];
-            state.questionIndex = [];
-            state.room2Path = null;
-
-            state.screen = 'room';
-            render();               // Kör render() som kommer anropa renderNextRoom()
-
             startStatusBarTimers();
-        }
-    });
-
-    loadGameBtn?.addEventListener('click', () => {
-        if (state.screen === 'menu') {
-            loadGameFromLocalStorage();
-            refetchGamestate();
-
-            stopAllStatusBarTimers();
-
-            state.screen = 'room';
-            render();
-
-            startStatusBarTimers();
-        }
-    });
-
-    aboutBtn?.addEventListener('click', () => {
-        if (state.screen === 'menu') {
-            state.screen = 'about';
-            render();
-        }
-    });
-
-    logoutBtn?.addEventListener('click', () => {
-        if (state.screen === 'menu') {
-            state.screen = 'login';  // Byt till login skärmen
-            render();
         }
     });
 }

@@ -1,16 +1,8 @@
-import { state } from '../../state/gamestate';
-import { render } from '../../main';
+
+import { renderScene, sceneWrapper } from '../scene-handler';
 import './about-scene.scss';
 
-const sceneWrapper = document.getElementById(
-    'sceneWrapper',
-) as HTMLDivElement | null;
-
 export function renderAboutScene() {
-    if (!sceneWrapper) {
-        console.error('sceneWrapper element not found');
-        return;
-    }
     sceneWrapper.innerHTML = ''; // reset
 
     // Container
@@ -102,8 +94,8 @@ export function renderAboutScene() {
     backBtn.id = 'backToMenuBtn';
     backBtn.textContent = 'Back to main menu';
     backBtn.addEventListener('click', () => {
-        state.screen = 'menu';
-        render();
+        //state.screen = 'menu';
+        renderScene();
     });
 
     // Lägg till alla sektioner i containern och sedan i wrapper

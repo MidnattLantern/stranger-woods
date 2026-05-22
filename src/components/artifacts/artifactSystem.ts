@@ -1,8 +1,6 @@
 import artifactDataRaw from './artifacts.json';
 import './artifacts.scss';
 import { addArtifactToStatusBar } from '../status-bar/status-bar';
-import { state } from '../../state/gamestate';
-import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
 
 export interface Artifact {
     id: string;
@@ -88,13 +86,7 @@ export function triggerArtifact(
         closeBtn.addEventListener('click', () => {
             overlay.remove(); // ta bort popup från DOM
             previouslyFocused?.focus(); // återställ fokus till föregående element
-            addArtifactToStatusBar(artifact); // visa artefakt i statusbar
-
-            // Lägg till i state om artfekten inte redan finns (förhindrar dubbletter)
-            if (!state.artifacts.find(a => a.id === artifact.id)) {
-                state.artifacts.push(artifact);
-            }
-            saveGameToLocalStorage(); 
+            addArtifactToStatusBar(artifact);
         });
     }, delay); // Här används fördröjningen (i millisekunder)
 }
