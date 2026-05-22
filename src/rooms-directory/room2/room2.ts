@@ -124,215 +124,215 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
         */
     }
 
-    function saveCode(code: string) {
-        /*
-        if (!state.codes[state.currentRoom]) state.codes[state.currentRoom] = [];
-        state.codes[state.currentRoom].push(code);
-        collectedCodes = state.codes[state.currentRoom];
-        saveGameToLocalStorage();
-        */
-    }
+    // function saveCode(code: string) {
+    //     /*
+    //     if (!state.codes[state.currentRoom]) state.codes[state.currentRoom] = [];
+    //     state.codes[state.currentRoom].push(code);
+    //     collectedCodes = state.codes[state.currentRoom];
+    //     saveGameToLocalStorage();
+    //     */
+    // }
 
     //-------------- 2. MINI GAMES - in order they appear on path A ---------------
 
-    function riddleGame() {
-        if (!sceneWrapper) return;
+    // function riddleGame() {
+    //     if (!sceneWrapper) return;
 
-        updateUI(`
-            <h2 class="room-title-text">The Brass Plaque</h2>
+    //     updateUI(`
+    //         <h2 class="room-title-text">The Brass Plaque</h2>
 
-            <div class="game-wrapper riddle-game-wrapper">
-                <p class="event-text">"I am the mirror that never breaks, I cradle the giant but have no arms. What am I?"</p>
-                <p class="event-text game-message hidden"></p>
-                <div class="riddle-game-btns">
-                    <button id= "roof" class="answer-btn interaction-button">The Glass Roof</button>
-                    <button id= "surface" class="answer-btn interaction-button">The Water's Surface</button>
-                    <button id= "shadows" class="answer-btn interaction-button">The Deep Shadows</button>
-                </div>
-            </div>
-        `);
+    //         <div class="game-wrapper riddle-game-wrapper">
+    //             <p class="event-text">"I am the mirror that never breaks, I cradle the giant but have no arms. What am I?"</p>
+    //             <p class="event-text game-message hidden"></p>
+    //             <div class="riddle-game-btns">
+    //                 <button id= "roof" class="answer-btn interaction-button">The Glass Roof</button>
+    //                 <button id= "surface" class="answer-btn interaction-button">The Water's Surface</button>
+    //                 <button id= "shadows" class="answer-btn interaction-button">The Deep Shadows</button>
+    //             </div>
+    //         </div>
+    //     `);
 
-        const answerBtns = sceneWrapper.querySelectorAll('.answer-btn');
-        const message: HTMLParagraphElement | null = sceneWrapper.querySelector('.game-message');
+    //     const answerBtns = sceneWrapper.querySelectorAll('.answer-btn');
+    //     const message: HTMLParagraphElement | null = sceneWrapper.querySelector('.game-message');
 
-        answerBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
+    //     answerBtns.forEach(btn => {
+    //         btn.addEventListener('click', () => {
 
-                if (btn.id === 'surface') {
-                    saveCode('11');
-                    fragmentFound('11', 'Your sharp mind saw through the mystery of the brass plaque.');
-                }
+    //             if (btn.id === 'surface') {
+    //                 saveCode('11');
+    //                 fragmentFound('11', 'Your sharp mind saw through the mystery of the brass plaque.');
+    //             }
 
-                else {
+    //             else {
 
-                    if (message) {
-                        if (btn.id === 'roof') {
-                            message.classList.remove('hidden');
-                            message.textContent = 'You look up at the glass panes, but they remain silent. The glass reflects the sky, but it does not cradle the life within the water.';
-                        } else if (btn.id === 'shadows') {
-                            message.classList.remove('hidden');
-                            message.textContent = 'The shadows grow longer as you speak, but they offer no reflection. Look where the light meets the water.';
-                        }
+    //                 if (message) {
+    //                     if (btn.id === 'roof') {
+    //                         message.classList.remove('hidden');
+    //                         message.textContent = 'You look up at the glass panes, but they remain silent. The glass reflects the sky, but it does not cradle the life within the water.';
+    //                     } else if (btn.id === 'shadows') {
+    //                         message.classList.remove('hidden');
+    //                         message.textContent = 'The shadows grow longer as you speak, but they offer no reflection. Look where the light meets the water.';
+    //                     }
 
-                        setTimeout(() => {
-                            message.classList.add('hidden');
-                        }, 3000);
-                    }
-                }
-            });
-        });
-    }
+    //                     setTimeout(() => {
+    //                         message.classList.add('hidden');
+    //                     }, 3000);
+    //                 }
+    //             }
+    //         });
+    //     });
+    // }
 
-    function sequenceGame() {
-        if (!sceneWrapper) return;
+    // function sequenceGame() {
+    //     if (!sceneWrapper) return;
 
-        type GameObject = 'flower' | 'lilyLeaf' | 'hangingFern' | 'sign' | 'ceiling' | 'redPlant';
-        const correctOrder: GameObject[] = ['flower', 'hangingFern', 'ceiling'];
-        let playerChoice: GameObject[] = [];
+    //     type GameObject = 'flower' | 'lilyLeaf' | 'hangingFern' | 'sign' | 'ceiling' | 'redPlant';
+    //     const correctOrder: GameObject[] = ['flower', 'hangingFern', 'ceiling'];
+    //     let playerChoice: GameObject[] = [];
 
-        updateUI(`
-            <h2 class="room-title-text">The Watcher of Victoria House</h2>
+    //     updateUI(`
+    //         <h2 class="room-title-text">The Watcher of Victoria House</h2>
 
-            <div class="game-wrapper sequence-game-wrapper">
-                <p class="event-text">The greenhouse holds a secret order. Seek out the flower closest to the ground, then follow the hanging ferns reaching upward, and finally touch the glass ceiling above. Find them and click them in order!</p>
-                <button id="startSequenceBtn" class="interaction-button">Begin</button>
-            </div>
-        `);
+    //         <div class="game-wrapper sequence-game-wrapper">
+    //             <p class="event-text">The greenhouse holds a secret order. Seek out the flower closest to the ground, then follow the hanging ferns reaching upward, and finally touch the glass ceiling above. Find them and click them in order!</p>
+    //             <button id="startSequenceBtn" class="interaction-button">Begin</button>
+    //         </div>
+    //     `);
 
-        const startSequenceBtn = sceneWrapper.querySelector('#startSequenceBtn');
-        startSequenceBtn?.addEventListener('click', () => {
+    //     const startSequenceBtn = sceneWrapper.querySelector('#startSequenceBtn');
+    //     startSequenceBtn?.addEventListener('click', () => {
 
-            updateUI(`
-                <div class="sequence-overlay-wrapper">
-                    <div class="sequence-wrapper">
-                        <img src="./roompic/isabelleroom2.png" loading="lazy" aria-label="Inside a greenhouse with a pink flower, a hanging fern, a giant lily, an info sign, a glass ceiling, and a red plant">
-                        <button id="redPlant" class="sequence-btn invisible-btn" aria-label="Red Plant"></button>
-                        <button id="flower" class="sequence-btn invisible-btn" aria-label="Pink Flower"></button>
-                        <button id="hangingFern" class="sequence-btn invisible-btn" aria-label="Hanging Fern"></button>
-                        <button id="lilyLeaf" class="sequence-btn invisible-btn" aria-label="Giant Lily"></button>
-                        <button id="sign" class="sequence-btn invisible-btn" aria-label="Info sign"></button>
-                        <button id="ceiling" class="sequence-btn invisible-btn" aria-label="Glass ceiling"></button>
+    //         updateUI(`
+    //             <div class="sequence-overlay-wrapper">
+    //                 <div class="sequence-wrapper">
+    //                     <img src="./roompic/isabelleroom2.png" loading="lazy" aria-label="Inside a greenhouse with a pink flower, a hanging fern, a giant lily, an info sign, a glass ceiling, and a red plant">
+    //                     <button id="redPlant" class="sequence-btn invisible-btn" aria-label="Red Plant"></button>
+    //                     <button id="flower" class="sequence-btn invisible-btn" aria-label="Pink Flower"></button>
+    //                     <button id="hangingFern" class="sequence-btn invisible-btn" aria-label="Hanging Fern"></button>
+    //                     <button id="lilyLeaf" class="sequence-btn invisible-btn" aria-label="Giant Lily"></button>
+    //                     <button id="sign" class="sequence-btn invisible-btn" aria-label="Info sign"></button>
+    //                     <button id="ceiling" class="sequence-btn invisible-btn" aria-label="Glass ceiling"></button>
                         
-                    </div>
-                    <p class="event-text game-message">Interact with the image</p>
-                </div>         
-            `);
+    //                 </div>
+    //                 <p class="event-text game-message">Interact with the image</p>
+    //             </div>         
+    //         `);
 
-            const message: HTMLParagraphElement | null = sceneWrapper.querySelector('.game-message');
-            const gameBtns = sceneWrapper.querySelectorAll('.sequence-btn');
+    //         const message: HTMLParagraphElement | null = sceneWrapper.querySelector('.game-message');
+    //         const gameBtns = sceneWrapper.querySelectorAll('.sequence-btn');
 
-            gameBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
+    //         gameBtns.forEach(btn => {
+    //             btn.addEventListener('click', () => {
 
-                    const id = btn.id as GameObject;
-                    const nextCorrrectObject = correctOrder[playerChoice.length];
+    //                 const id = btn.id as GameObject;
+    //                 const nextCorrrectObject = correctOrder[playerChoice.length];
 
-                    if (id === nextCorrrectObject) {
-                        playerChoice.push(id);
+    //                 if (id === nextCorrrectObject) {
+    //                     playerChoice.push(id);
 
-                        if (message) {
-                            if (playerChoice.length === 1) {
-                                message.textContent = 'The plants lean closer...';
-                            }
-                            else if (playerChoice.length === 2) {
-                                message.textContent = 'The air grows heavy. You are almost there, the hierarchy is nearly complete...';
-                            }
-                            else if (playerChoice.length === correctOrder.length) {
-                                message.textContent = 'The glass ceiling shimmers. You have mastered the hierarchy of growth!';
-                                saveCode('24');
-                                fragmentFound('24', 'The numbers emerged from the leaves as you followed the path of growth.');
-                            }
-                        }
-                    } else {
-                        playerChoice = [];
+    //                     if (message) {
+    //                         if (playerChoice.length === 1) {
+    //                             message.textContent = 'The plants lean closer...';
+    //                         }
+    //                         else if (playerChoice.length === 2) {
+    //                             message.textContent = 'The air grows heavy. You are almost there, the hierarchy is nearly complete...';
+    //                         }
+    //                         else if (playerChoice.length === correctOrder.length) {
+    //                             message.textContent = 'The glass ceiling shimmers. You have mastered the hierarchy of growth!';
+    //                             saveCode('24');
+    //                             fragmentFound('24', 'The numbers emerged from the leaves as you followed the path of growth.');
+    //                         }
+    //                     }
+    //                 } else {
+    //                     playerChoice = [];
 
-                        if (message) {
-                            message.classList.remove('hidden');
+    //                     if (message) {
+    //                         message.classList.remove('hidden');
 
-                            if (id === 'lilyLeaf') {
-                                message.textContent = 'The lily pad sways beneath your feet — it is your foundation, not your destination.';
-                            } else if (id === 'redPlant') {
-                                message.textContent = 'The red leaves reach high, but they are not the final boundary.';
-                            } else if (id === 'sign') {
-                                message.textContent = 'The faded sign offers no guidance. The cycle is broken.';
-                            } else {
-                                message.textContent = 'The cycle of growth has been broken—start again from the roots.';
-                            }
-                        }
-                    }
-                });
-            });
-        });
-    }
+    //                         if (id === 'lilyLeaf') {
+    //                             message.textContent = 'The lily pad sways beneath your feet — it is your foundation, not your destination.';
+    //                         } else if (id === 'redPlant') {
+    //                             message.textContent = 'The red leaves reach high, but they are not the final boundary.';
+    //                         } else if (id === 'sign') {
+    //                             message.textContent = 'The faded sign offers no guidance. The cycle is broken.';
+    //                         } else {
+    //                             message.textContent = 'The cycle of growth has been broken—start again from the roots.';
+    //                         }
+    //                     }
+    //                 }
+    //             });
+    //         });
+    //     });
+    // }
 
-    function numberGuessGame() {
-        if (!sceneWrapper) return;
+    // function numberGuessGame() {
+    //     if (!sceneWrapper) return;
 
-        let attempts = 0;
+    //     let attempts = 0;
 
-        updateUI(`
-            <h2 class="room-title-text">The Foggy Window</h2>
+    //     updateUI(`
+    //         <h2 class="room-title-text">The Foggy Window</h2>
 
-            <div class="game-wrapper number-guess-wrapper">
-                <p class="event-text">The glass is fogged up. Adjust the humidity (1-20) to see the code.</p>
-                <p class="event-text game-message hidden"></p>  
-                <div class="input-wrapper">
-                    <input type="text" inputmode="numeric" id="guessInput" class="guess-input" maxlength="2" pattern="[0-9]*">
-                    <button id="guessBtn" class="interaction-button">Adjust</button>
-                </div>
-            </div>
-        `);
+    //         <div class="game-wrapper number-guess-wrapper">
+    //             <p class="event-text">The glass is fogged up. Adjust the humidity (1-20) to see the code.</p>
+    //             <p class="event-text game-message hidden"></p>  
+    //             <div class="input-wrapper">
+    //                 <input type="text" inputmode="numeric" id="guessInput" class="guess-input" maxlength="2" pattern="[0-9]*">
+    //                 <button id="guessBtn" class="interaction-button">Adjust</button>
+    //             </div>
+    //         </div>
+    //     `);
 
-        const guessBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#guessBtn');
-        const guessInput: HTMLInputElement | null = sceneWrapper.querySelector('#guessInput');
-        guessInput?.focus();
-        const message: HTMLParagraphElement | null = sceneWrapper.querySelector('.game-message');
+    //     const guessBtn: HTMLButtonElement | null = sceneWrapper.querySelector('#guessBtn');
+    //     const guessInput: HTMLInputElement | null = sceneWrapper.querySelector('#guessInput');
+    //     guessInput?.focus();
+    //     const message: HTMLParagraphElement | null = sceneWrapper.querySelector('.game-message');
 
-        guessBtn?.addEventListener('click', () => {
-            if (guessInput?.value.trim() === '') return;
+    //     guessBtn?.addEventListener('click', () => {
+    //         if (guessInput?.value.trim() === '') return;
 
-            const inputValue = Number(guessInput?.value);
+    //         const inputValue = Number(guessInput?.value);
 
-            if (isNaN(inputValue) || inputValue < 1 || inputValue > 20) {
-                if (message) {
-                    message.classList.remove('hidden');
-                    message.innerHTML = 'Please enter a number between 1 and 20.';
-                }
-                return;
-            }
+    //         if (isNaN(inputValue) || inputValue < 1 || inputValue > 20) {
+    //             if (message) {
+    //                 message.classList.remove('hidden');
+    //                 message.innerHTML = 'Please enter a number between 1 and 20.';
+    //             }
+    //             return;
+    //         }
 
-            if (inputValue === 12) {
-                saveCode('55');
-                fragmentFound('55', 'The fog clears!');
+    //         if (inputValue === 12) {
+    //             saveCode('55');
+    //             fragmentFound('55', 'The fog clears!');
 
-            } else {
-                attempts++;
+    //         } else {
+    //             attempts++;
 
-                if (attempts >= 5) {
-                    if (message) {
-                        message.classList.remove('hidden');
-                        message.innerHTML = 'The fog thickens. You can no longer breathe.<br> Game over!';
-                    }
-                    setTimeout(() => {
-                        stopAllStatusBarTimers();
-                        renderScene();
-                    }, 3000);
+    //             if (attempts >= 5) {
+    //                 if (message) {
+    //                     message.classList.remove('hidden');
+    //                     message.innerHTML = 'The fog thickens. You can no longer breathe.<br> Game over!';
+    //                 }
+    //                 setTimeout(() => {
+    //                     stopAllStatusBarTimers();
+    //                     renderScene();
+    //                 }, 3000);
 
-                } else if (inputValue < 12) {
-                    if (message) {
-                        message.classList.remove('hidden');
-                        message.innerHTML = `Too dry. Increase the humidity. <br> Attempts left: ${5 - attempts}`;
-                    }
+    //             } else if (inputValue < 12) {
+    //                 if (message) {
+    //                     message.classList.remove('hidden');
+    //                     message.innerHTML = `Too dry. Increase the humidity. <br> Attempts left: ${5 - attempts}`;
+    //                 }
 
-                } else if (inputValue > 12) {
-                    if (message) {
-                        message.classList.remove('hidden');
-                        message.innerHTML = `Too damp. The glass is dripping! <br> Attempts left: ${5 - attempts}`;
-                    }
-                }
-            }
-        });
-    }
+    //             } else if (inputValue > 12) {
+    //                 if (message) {
+    //                     message.classList.remove('hidden');
+    //                     message.innerHTML = `Too damp. The glass is dripping! <br> Attempts left: ${5 - attempts}`;
+    //                 }
+    //             }
+    //         }
+    //     });
+    // }
 
     function finalCodeGame() {
         const correctExitCode = ['55', '11', '24'];
@@ -430,26 +430,26 @@ export function room2(sceneWrapper: HTMLDivElement | null, next: () => void) {
 
     //------------------- 3. VICTORY SCREEN -------------------
 
-    function fragmentFound(code: string, specificText: string) {
+    // function fragmentFound(code: string, specificText: string) {
 
-        if (!sceneWrapper) return;
+    //     if (!sceneWrapper) return;
 
-        updateUI(`
-            <div class="game-wrapper fragment-found-wrapper">
-                <p class="event-text fragment-found-text">
-                <span>${specificText} Fragment found: <strong>${code}</strong></span>
-                </p>
+    //     updateUI(`
+    //         <div class="game-wrapper fragment-found-wrapper">
+    //             <p class="event-text fragment-found-text">
+    //             <span>${specificText} Fragment found: <strong>${code}</strong></span>
+    //             </p>
                     
-                <button id="continueBtn" class="interaction-button continue-btn">Continue</button>
-            </div>    
-            `);
+    //             <button id="continueBtn" class="interaction-button continue-btn">Continue</button>
+    //         </div>    
+    //         `);
 
-        const continueBtn = sceneWrapper?.querySelector('#continueBtn');
+    //     const continueBtn = sceneWrapper?.querySelector('#continueBtn');
 
-        continueBtn?.addEventListener('click', () => {
-            nextGame();
-        });
-    }
+    //     continueBtn?.addEventListener('click', () => {
+    //         nextGame();
+    //     });
+    // }
 
     //---------------------- 4. START -------------------------
     showRoomIntro(

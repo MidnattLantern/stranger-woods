@@ -3,7 +3,7 @@
  */
 
 const SECRET_PASSWORD = 'dopefish';
-const TRIPLE_CLICK_MS = 400;
+// const TRIPLE_CLICK_MS = 400;
 
 type DetachFn = () => void; //remove listener when done
 type SuccessCallback = () => void; //call if hack sucess
@@ -13,24 +13,24 @@ export function attachHighscoreHack(
     onSuccess: SuccessCallback,
 ): DetachFn {
     let clicks = 0;
-    let resetTimer: number | null = null;
+    // let resetTimer: number | null = null;
 
     function handleClick(): void {
         clicks++; // add click-counter when click
 
-        if (resetTimer) clearTimeout(resetTimer); // if running-timer stop
-        resetTimer = setTimeout(() => {
-            //start new timer if user to slow timer reset clicks
-            clicks = 0;
-            resetTimer = null;
-        }, TRIPLE_CLICK_MS);
+        // if (resetTimer) clearTimeout(resetTimer); // if running-timer stop
+        // resetTimer = setTimeout(() => {
+        //     //start new timer if user to slow timer reset clicks
+        //     clicks = 0;
+        //     // resetTimer = null;
+        // }, TRIPLE_CLICK_MS);
 
         if (clicks >= 3) {
             clicks = 0;
-            if (resetTimer) {
-                clearTimeout(resetTimer);
-                resetTimer = null;
-            }
+            // if (resetTimer) {
+                // clearTimeout(resetTimer);
+                // resetTimer = null;
+            // }
             askForPassword();
         }
     }

@@ -35,16 +35,16 @@ export function enableKeyboardNavigation() {
         }
     }, true);
 
-    const observer = new MutationObserver(() => {
-        setTimeout(() => {
-            const firstBtn = document.querySelector<HTMLButtonElement>(
-                '#sceneWrapper button:not(:disabled), .room-intro-overlay button:not(:disabled)'
-            );
-            if (document.activeElement === document.body || document.activeElement === null) {
-                firstBtn?.focus();
-            }
-        }, 300);
-    });
+    // const observer = new MutationObserver(() => {
+    //     setTimeout(() => {
+    //         const firstBtn = document.querySelector<HTMLButtonElement>(
+    //             '#sceneWrapper button:not(:disabled), .room-intro-overlay button:not(:disabled)'
+    //         );
+    //         if (document.activeElement === document.body || document.activeElement === null) {
+    //             firstBtn?.focus();
+    //         }
+    //     }, 300);
+    // });
 
     // observer.observe(sceneWrapper ?? document.body, { childList: true, subtree: true });
 }
