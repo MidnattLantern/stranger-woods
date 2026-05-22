@@ -20,7 +20,7 @@ function rockPaperScissors() {
         rpsEvents.beginFullscreenNextStorylineLifecycle();
         rpsResources = { rpsSceneWrapper };
         rpsSceneWrapper.focus();
-    }
+    };
 
     function getRpsSceneWrapper() {
         return rpsSceneWrapper;

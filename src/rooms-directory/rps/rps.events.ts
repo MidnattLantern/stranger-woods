@@ -9,13 +9,6 @@ import { rpsStoryController } from "./rps.story";
 // ==============
 // event handlers
 // ==============
-function handleClickRotateDisc(event: MouseEvent) {
-    const target = event.currentTarget as HTMLElement;
-    const playerSlotIndex: number = Number(target.getAttribute("data-player-slot"));
-    rps.setPlayerSelectedIndex(playerSlotIndex);
-    rpsAnimate.spinToSlot();
-}
-
 function handleKeyboardRotateDisc(event: KeyboardEvent) {
     const MIN_EDGE_INDEX: number = 0;
     const MAX_EDGE_INDEX: number = 11;
@@ -26,7 +19,7 @@ function handleKeyboardRotateDisc(event: KeyboardEvent) {
         const newPlayerDiscRotationIndex: number = currentPlayerDiscRotationIndex + (1 * directionMultiplier);
 
         console.log(newPlayerSelectedSlotIndex);
-        rpsAnimate.spinToSlot(newPlayerDiscRotationIndex);
+        rpsAnimate.playerSpinToSlot(newPlayerDiscRotationIndex);
         if (newPlayerSelectedSlotIndex < MIN_EDGE_INDEX) {
             newPlayerSelectedSlotIndex = MAX_EDGE_INDEX;
         }
@@ -62,14 +55,14 @@ function handleSelectSlot(event: KeyboardEvent) {
         if (playerSelectedSlotIndex == slotIndexMinRange) return;
         rps.setPlayerSelectedIndex(playerSelectedSlotIndex - 1);
         playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-        rpsAnimate.spinToSlot(playerSelectedSlotIndex);
+        rpsAnimate.playerSpinToSlot(playerSelectedSlotIndex);
         rpsGame.initiateDuel(playerSelectedSlotIndex);
     }
     if (event.key === 'ArrowRight') {
         if (playerSelectedSlotIndex == slotIndexMaxRange) return;
         rps.setPlayerSelectedIndex(playerSelectedSlotIndex + 1);
         playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-        rpsAnimate.spinToSlot(playerSelectedSlotIndex);
+        rpsAnimate.playerSpinToSlot(playerSelectedSlotIndex);
         rpsGame.initiateDuel(playerSelectedSlotIndex);
     }
     console.log(playerSelectedSlotIndex);
@@ -86,13 +79,9 @@ function beginFullscreenNextStorylineLifecycle() {
 function beginPlayerSlotsLifecycle() {
     const slotsRange: number = 12 -1; // -1 counters back to 0 base index
     for (let i: number = 0; i <= slotsRange; i++) {
-        const playerSlotI = document.getElementById(`playerSlot${i}`);
         const playerSlotIImage = document.getElementById(`playerSlot${i}Image`);
-        if (!playerSlotI) return;
         if (!playerSlotIImage) return;
         playerSlotIImage.setAttribute("href", fireElement);
-        // playerSlotI.dataset.playerSlot = i.toString();
-        // playerSlotI.addEventListener("click", handleClickRotateDisc);
     }
     rps.getRpsSceneWrapper().addEventListener("keydown", handleKeyboardRotateDisc);
 }

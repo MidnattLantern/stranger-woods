@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { rps } from "./rps";
 
-function spinToSlot(slotIndex: number = rps.getPlayerDiscRotationIndex()) {
+function playerSpinToSlot(slotIndex: number = rps.getPlayerDiscRotationIndex()) {
     const rotateDeg = slotIndex * 30;
     const rotateDuration: number = 0.5;
     const rotateEasing: string = "back.out";
@@ -21,6 +21,11 @@ function spinToSlot(slotIndex: number = rps.getPlayerDiscRotationIndex()) {
     })
 }
 
+function spinToSlotCpu() {
+
+}
+
 export const rpsAnimate = {
-    spinToSlot
+    playerSpinToSlot,
+    spinToSlotCpu
 }

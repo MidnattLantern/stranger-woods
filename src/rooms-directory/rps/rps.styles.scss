@@ -14,14 +14,9 @@
     height: 100%;
 }
 
-.player-slot-1-image,
-.player-slot-2-image,
-.player-slot-3-image {
-    fill: none;
-}
-
-#playerDiscBody {
+.player-disc-body {
     fill: var(--color-surface-body);
+    pointer-events: none;
 }
 
 .rock-paper-scissors__buttons-table {
@@ -40,8 +35,31 @@
         overflow: hidden;
     }
 
-    .playerSlotI:hover {
-        cursor: pointer;
+    .playerSlotI {
+        pointer-events: none;
+    }
+
+    .disc-pointing-arrow {
+        fill: var(--color-interactive-body);
+    }
+
+    .sel-slot-btn-visual {
+        fill: var(--color-clear);
+    }
+    .sel-slot-btn-foc-area {
+        fill: var(--color-clear);
+
+        &:hover {
+            cursor: pointer;
+            .sel-slot-btn-visual {
+                fill: var(--color-interactive-body);
+                transition: all 0.15s ease;
+            }
+
+            .disc-pointing-arrow {
+                fill: var(--color-interactive-text-body);
+            }
+        }
     }
 }
 

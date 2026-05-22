@@ -8,11 +8,11 @@ let rpsStoryIndex: number = 0;
 
 function getStoryToUse() {
     return rpsStoryToUse;
-};
+}
 
 function getStoryIndex() {
     return rpsStoryIndex;
-};
+}
 
 function setNextStoryIndex() {
     rpsStoryIndex++;
