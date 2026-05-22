@@ -9,6 +9,58 @@ import { rpsStoryController } from "./rps.story";
 // ==============
 // event handlers
 // ==============
+function handleClickTapRotateDiscLeft(event: Event) {
+    const MIN_EDGE_INDEX: number = 0;
+    const MAX_EDGE_INDEX: number = 11;
+    function handleRotate() {
+        const currentPlayerSelectedSlotIndex: number = rps.getPlayerSelectedSlotIndex();
+        const currentPlayerDiscRotationIndex: number = rps.getPlayerDiscRotationIndex();
+        let newPlayerSelectedSlotIndex: number = currentPlayerSelectedSlotIndex - 1;
+        const newPlayerDiscRotationIndex: number = currentPlayerDiscRotationIndex - 1;
+
+        console.log(newPlayerSelectedSlotIndex);
+        rpsAnimate.playerSpinToSlot(newPlayerDiscRotationIndex);
+        if (newPlayerSelectedSlotIndex < MIN_EDGE_INDEX) {
+            newPlayerSelectedSlotIndex = MAX_EDGE_INDEX;
+        }
+        if (newPlayerSelectedSlotIndex > MAX_EDGE_INDEX) {
+            newPlayerSelectedSlotIndex = MIN_EDGE_INDEX;
+        }
+        rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
+        rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
+        console.log("selected slot index", rps.getPlayerSelectedSlotIndex());
+        console.log("disc rotation index", newPlayerDiscRotationIndex);
+    }
+    event.preventDefault();
+    handleRotate();
+}
+
+function handleClickTapRotateDiscRight(event: Event) {
+    const MIN_EDGE_INDEX: number = 0;
+    const MAX_EDGE_INDEX: number = 11;
+    function handleRotate() {
+        const currentPlayerSelectedSlotIndex: number = rps.getPlayerSelectedSlotIndex();
+        const currentPlayerDiscRotationIndex: number = rps.getPlayerDiscRotationIndex();
+        let newPlayerSelectedSlotIndex: number = currentPlayerSelectedSlotIndex + 1;
+        const newPlayerDiscRotationIndex: number = currentPlayerDiscRotationIndex + 1;
+
+        console.log(newPlayerSelectedSlotIndex);
+        rpsAnimate.playerSpinToSlot(newPlayerDiscRotationIndex);
+        if (newPlayerSelectedSlotIndex < MIN_EDGE_INDEX) {
+            newPlayerSelectedSlotIndex = MAX_EDGE_INDEX;
+        }
+        if (newPlayerSelectedSlotIndex > MAX_EDGE_INDEX) {
+            newPlayerSelectedSlotIndex = MIN_EDGE_INDEX;
+        }
+        rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
+        rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
+        console.log("selected slot index", rps.getPlayerSelectedSlotIndex());
+        console.log("disc rotation index", newPlayerDiscRotationIndex);
+    }
+    event.preventDefault();
+    handleRotate();
+}
+
 function handleKeyboardRotateDisc(event: KeyboardEvent) {
     const MIN_EDGE_INDEX: number = 0;
     const MAX_EDGE_INDEX: number = 11;
@@ -45,7 +97,7 @@ function handleFullscreenNextStoryline(event: KeyboardEvent) {
 
 }
 
-function handleSelectSlot(event: KeyboardEvent) {
+function handleSelectSlot(event: KeyboardEvent) { // depricated?
     event.preventDefault();
     const slotIndexMinRange = 1;
     const slotIndexMaxRange = 3;
@@ -84,6 +136,15 @@ function beginPlayerSlotsLifecycle() {
         playerSlotIImage.setAttribute("href", fireElement);
     }
     rps.getRpsSceneWrapper().addEventListener("keydown", handleKeyboardRotateDisc);
+    beginMouseTapInputLifecycle();
+}
+
+function beginMouseTapInputLifecycle() {
+    const selLSlotBtnFocArea = document.getElementById("selLSlotBtnFocArea"); // element from the SVG
+    const selRSlotBtnFocArea = document.getElementById("selRSlotBtnFocArea"); // element from the SVG
+
+    selLSlotBtnFocArea?.addEventListener("click", handleClickTapRotateDiscLeft);
+    selRSlotBtnFocArea?.addEventListener("click", handleClickTapRotateDiscRight);
 }
 
 function beginKeyboardInputLifecycle() {
@@ -106,6 +167,7 @@ function endKeyboardInputLifecycle() {
 export const rpsEvents = {
     beginPlayerSlotsLifecycle,
     beginFullscreenNextStorylineLifecycle,
+    beginMouseTapInputLifecycle,
     beginKeyboardInputLifecycle,
     endFullscreenNextStorylineLifecycle,
     endKeyboardInputLifecycle
