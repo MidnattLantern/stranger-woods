@@ -1,13 +1,8 @@
 import './game-over-scene.scss';
-import { roomTimes, state, setRoomTime } from '../../state/gamestate';
-import { render } from '../../main';
-import { loadGameFromLocalStorage, saveGameToLocalStorage, clearLocalStorageSave } from '../../store/database/local-storage-database';
-import { refetchGamestate, stopAllStatusBarTimers, startStatusBarTimers, resetStatusBarProgress } from '../../components/status-bar/status-bar';
-
-const sceneWrapper = document.getElementById('sceneWrapper') as HTMLDivElement | null;
+import { stopAllStatusBarTimers, startStatusBarTimers } from '../../components/status-bar/status-bar';
+import { renderScene, sceneWrapper } from '../scene-handler';
 
 export function renderGameOverScene() {
-    if (!sceneWrapper) return;
     stopAllStatusBarTimers();
 
     sceneWrapper.innerHTML = ''; // reset
@@ -23,8 +18,9 @@ export function renderGameOverScene() {
 
     retryButton.addEventListener('click', () => {
         stopAllStatusBarTimers(); // stoppar alla timers 
-        const reason = state.gameOverReason;
+        //const reason = state.gameOverReason;
 
+        /*
         if (reason === 'total-timeout') {
             clearLocalStorageSave();
             resetStatusBarProgress();
@@ -44,35 +40,40 @@ export function renderGameOverScene() {
             loadGameFromLocalStorage(); // läser in all data från localstorage och lägger tillbaka i state
             refetchGamestate();
         }
+        */
 
-        state.screen = 'room';
-        render();
+        //state.screen = 'room';
+        renderScene();
         startStatusBarTimers(); // startar timers igen när spelare klickat på retry
     });
 
     const mainMenuButton = document.createElement('button');
     mainMenuButton.textContent = 'Main Menu';
     mainMenuButton.addEventListener('click', () => {
+        /*
         if (state.gameOverReason === 'total-timeout') {
             clearLocalStorageSave();
         } else {
             saveGameToLocalStorage();
         }
-        state.screen = 'menu';
-        render();
+        */
+        //state.screen = 'menu';
+        renderScene();
     });
 
     const logOutButton = document.createElement('button');
     logOutButton.textContent = 'End Game';
     logOutButton.addEventListener('click', () => {
 
+        /*
         if (state.gameOverReason === 'total-timeout') {
             clearLocalStorageSave();
         } else {
             saveGameToLocalStorage();
         }
         state.screen = 'login';
-        render();
+        */
+        renderScene();
     });
 
     const title = document.createElement('h2');
@@ -80,6 +81,7 @@ export function renderGameOverScene() {
 
     const gameOverText = document.createElement('p');
 
+    /*
     if (state.gameOverReason === 'total-timeout') {
         gameOverText.textContent = 'You ran out of time. The forest claims you forever.';
     } else if (state.gameOverReason === 'room-timeout') {
@@ -87,6 +89,7 @@ export function renderGameOverScene() {
     } else {
         gameOverText.textContent = 'You failed too many times. Try again.';
     }
+    */
 
     buttonsContainer.appendChild(retryButton);
     buttonsContainer.appendChild(mainMenuButton);

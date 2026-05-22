@@ -1,17 +1,11 @@
 
 import './victory-scene.scss';
-import { renderHighScore, saveHighscore } from '../../components/high-score/high-score';
+import { renderHighScore } from '../../components/high-score/high-score';
 import { getSecondsElapsed, stopAllStatusBarTimers } from '../../components/status-bar/status-bar';
-import { render } from '../../main';
-import { state } from '../../state/gamestate';
 import { attachHack } from '../../components/high-score/high-score';
-import { saveGameToLocalStorage } from '../../store/database/local-storage-database';
-
-const sceneWrapper: HTMLDivElement | null =
-    document.querySelector('#sceneWrapper');
+import { renderScene, sceneWrapper } from '../scene-handler';
 
 export function renderVictoryScene() {
-    if (!sceneWrapper) return;
     stopAllStatusBarTimers();
     const minutes = Math.floor(getSecondsElapsed() / 60);
     const seconds = getSecondsElapsed() % 60;
@@ -43,9 +37,8 @@ export function renderVictoryScene() {
     const mainMenuButton = document.createElement('button');
     mainMenuButton.textContent = 'Main Menu';
     mainMenuButton.addEventListener('click', () => {
-        saveGameToLocalStorage();
-        state.screen = 'menu';
-        render();
+
+        renderScene();
     });
 
     const highScoreWrapper = document.createElement('div');
@@ -61,7 +54,7 @@ export function renderVictoryScene() {
     sceneWrapper.append(victorySceneWrapperElement, highScoreWrapper);
     // ==========
 
-    saveHighscore(state.username, getSecondsElapsed());
+    //saveHighscore(state.username, getSecondsElapsed());
     renderHighScore();
     attachHack();
 
@@ -69,9 +62,9 @@ export function renderVictoryScene() {
         document.querySelector('#backToMenu');
 
     backToMenuBtn?.addEventListener('click', () => {
-        state.currentRoom = 0;
-        state.screen = 'menu';
-        render();
+        //state.currentRoom = 0;
+        //state.screen = 'menu';
+        renderScene();
     });
 }
 
