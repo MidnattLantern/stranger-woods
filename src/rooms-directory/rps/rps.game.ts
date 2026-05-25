@@ -2,19 +2,29 @@ import playerBatchData from "./player-batch.json";
 import cpuBatchData from "./cpu-batch.json";
 import { rps } from "./rps";
 import type { ISlot } from "./models";
+import { rpsELifecycle } from "./rps.elifecycle";
+import { rpsEvents } from "./rps.events";
 
 function initiateDuel(
-    playerSlotIndex: number = rps.getPlayerSelectedSlotIndex(),
-    cpuSlotIndex: number = rps.getCpuSelectedSlotIndex(),
+    playerSlotIndex: number = rps.getPlayerSelectedSlotIndex(), // 0 - 11
+    cpuSlotIndex: number = rps.getCpuSelectedSlotIndex(), // 0 - 11
     playerBatch = playerBatchData as ISlot[],
     cpuBatch = cpuBatchData as ISlot[],
     playerSlotElementType: "fire" | "water" | "earth" = playerBatch[playerSlotIndex].element,
     cpuSlotElementType: "fire" | "water" | "earth" = cpuBatch[cpuSlotIndex].element,
     winner: "player" | "cpu" | null = null
 ) {
-    console.log("Player used a", playerSlotElementType);
-    console.log("Cpu used a", cpuSlotElementType);
-
+    let timeout;
+    function myTimeout() {
+        timeout = setTimeout(resume, 500);
+    }
+    function resume() {
+        rpsELifecycle.resumeMouseTapInputLifecycle();
+        rpsELifecycle.resumePlayerSlotsLifecycle();
+        rpsEvents.handleCpuRotateDisc();
+    }
+    rpsELifecycle.pauseMouseTapInputLifecycle();
+    rpsELifecycle.pausePlayerSlotsLifecycle();
     /*
     - Fire beats earth
     - Water beats fire
@@ -51,8 +61,9 @@ function initiateDuel(
         default:
             break;
     }
-    
+
     console.log("Winner:", winner);
+    myTimeout();
 }
 
 export const rpsGame = {

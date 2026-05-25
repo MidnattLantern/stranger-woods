@@ -1,16 +1,21 @@
-import { rpsEvents } from "./rps.elifecycle";
+import { rpsELifecycle } from "./rps.elifecycle";
 import { rpsStoryController } from "./rps.story";
 import "./rps.styles.scss";
 import { rpsUI } from "./rps.ui";
 import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
 import { sceneWrapper } from "@/scenes/scene-handler";
 
-function rockPaperScissors() {
-    let rpsSceneWrapper: any = null;
-    let playerSelectedSlotIndex: number = 0;
-    let playerDiscRotationIndex: number = 0;
-    let cpuSelectedSlotIndex: number = 0;
-    let cpuDiscRotationIndex: number = 0;
+function rockPaperScissors(
+    rpsSceneWrapper: any = null,
+    playerSelectedSlotIndex: number = 0,
+    playerDiscRotationIndex: number = 0,
+    cpuSelectedSlotIndex: number = 0,
+    cpuDiscRotationIndex: number = 0
+) {
+    const gameSessionWrapper = rpsUI.gameSessionWrapper();
+    const buttonsTable = rpsUI.buttonsTable();
+    const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
+    const rpsCpuButtons = rpsUI.rpsCpuButtons();
 
     function initialize() {
         rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
@@ -18,7 +23,7 @@ function rockPaperScissors() {
         rpsSceneWrapper.setAttribute("tabindex", 0);
         sceneWrapper.append(rpsSceneWrapper);
         rpsStoryController.handleInitializeStoryline();
-        rpsEvents.beginFullscreenNextStorylineLifecycle();
+        rpsELifecycle.beginFullscreenNextStorylineLifecycle();
         rpsSceneWrapper.focus();
     };
 
@@ -44,6 +49,10 @@ function rockPaperScissors() {
     function setPlayerDiscRotationIndex(newIndex: number) {
         playerDiscRotationIndex = newIndex;
     }
+
+    function getRpsPlayerButtons() {
+        return rpsPlayerButtons;
+    }
     // ======
 
     // ===
@@ -67,14 +76,9 @@ function rockPaperScissors() {
     // ===
 
     function handleBeginRpsGame() {
-        rpsEvents.endFullscreenNextStorylineLifecycle();
+        rpsELifecycle.endFullscreenNextStorylineLifecycle();
         dialogueBox.hideDialogueBox();
         rpsSceneWrapper.focus();
-
-        const gameSessionWrapper = rpsUI.gameSessionWrapper();
-        const buttonsTable = rpsUI.buttonsTable();
-        const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
-        const rpsCpuButtons = rpsUI.rpsCpuButtons();
 
         rpsSceneWrapper.append(gameSessionWrapper);
         gameSessionWrapper.append(buttonsTable);
@@ -83,8 +87,8 @@ function rockPaperScissors() {
             rpsCpuButtons
         );
 
-        rpsEvents.beginPlayerSlotsLifecycle();
-        rpsEvents.beginCpuSlotsLifecycle();
+        rpsELifecycle.beginPlayerSlotsLifecycle();
+        rpsELifecycle.beginCpuSlotsLifecycle();
     }
 
     function handleEndRpsGame() {
@@ -99,6 +103,7 @@ function rockPaperScissors() {
         setPlayerSelectedIndex,
         getPlayerDiscRotationIndex,
         setPlayerDiscRotationIndex,
+        getRpsPlayerButtons,
         getCpuSelectedSlotIndex,
         setCpuSelectedIndex,
         getCpuDiscRotationIndex,

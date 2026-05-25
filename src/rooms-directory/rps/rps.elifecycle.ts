@@ -1,5 +1,5 @@
 import { rps } from "./rps";
-import { lifecycleEvents } from "./rps.lifecycle-events";
+import { rpsEvents } from "./rps.events";
 import cpuBatchData from "./cpu-batch.json";
 import playerBatchData from "./player-batch.json";
 
@@ -7,7 +7,7 @@ import playerBatchData from "./player-batch.json";
 // begin
 // =====
 function beginFullscreenNextStorylineLifecycle() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", lifecycleEvents.handleFullscreenNextStoryline);
+    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleFullscreenNextStoryline);
 }
 
 function beginPlayerSlotsLifecycle() {
@@ -21,7 +21,7 @@ function beginPlayerSlotsLifecycle() {
         if (!playerSlotIImage) return;
         playerSlotIImage.setAttribute("href", playerBatchData[i].assetSource);
     }
-    rps.getRpsSceneWrapper().addEventListener("keydown", lifecycleEvents.handleKeyboardRotateDisc);
+    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleKeyboardRotateDisc);
     beginMouseTapInputLifecycle();
 }
 
@@ -42,33 +42,77 @@ function beginMouseTapInputLifecycle() {
     const selLSlotBtnFocArea = document.getElementById("selLSlotBtnFocArea"); // element from the SVG
     const selRSlotBtnFocArea = document.getElementById("selRSlotBtnFocArea"); // element from the SVG
 
-    selLSlotBtnFocArea?.addEventListener("click", lifecycleEvents.handleClickTapRotateDiscLeft);
-    selRSlotBtnFocArea?.addEventListener("click", lifecycleEvents.handleClickTapRotateDiscRight);
+    selLSlotBtnFocArea?.addEventListener("click", rpsEvents.handleClickTapRotateDiscLeft);
+    selRSlotBtnFocArea?.addEventListener("click", rpsEvents.handleClickTapRotateDiscRight);
 }
 
 function beginKeyboardInputLifecycle() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", lifecycleEvents.handleSelectSlot);
+    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleSelectSlot);
 }
 // =====
+
+// =====
+// pause
+// =====
+function pausePlayerSlotsLifecycle() {
+    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleKeyboardRotateDisc);
+    rps.getRpsPlayerButtons().classList.add("element-events-paused");
+}
+
+function pauseMouseTapInputLifecycle() {
+    const selLSlotBtnFocArea = document.getElementById("selLSlotBtnFocArea"); // element from the SVG
+    const selRSlotBtnFocArea = document.getElementById("selRSlotBtnFocArea"); // element from the SVG
+    if ( !selLSlotBtnFocArea || !selRSlotBtnFocArea) return;
+
+    selLSlotBtnFocArea.removeEventListener("click", rpsEvents.handleClickTapRotateDiscLeft);
+    selRSlotBtnFocArea.removeEventListener("click", rpsEvents.handleClickTapRotateDiscRight);
+    selLSlotBtnFocArea.classList.add("element-events-paused");
+    selRSlotBtnFocArea.classList.add("element-events-paused");
+}
+// =====
+
+// ======
+// resume
+// ======
+function resumePlayerSlotsLifecycle() {
+    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleKeyboardRotateDisc);
+    rps.getRpsPlayerButtons().classList.remove("element-events-paused");
+}
+
+function resumeMouseTapInputLifecycle() {
+    const selLSlotBtnFocArea = document.getElementById("selLSlotBtnFocArea"); // element from the SVG
+    const selRSlotBtnFocArea = document.getElementById("selRSlotBtnFocArea"); // element from the SVG
+    if ( !selLSlotBtnFocArea || !selRSlotBtnFocArea) return;
+
+    selLSlotBtnFocArea.addEventListener("click", rpsEvents.handleClickTapRotateDiscLeft);
+    selRSlotBtnFocArea.addEventListener("click", rpsEvents.handleClickTapRotateDiscRight);
+    selLSlotBtnFocArea.classList.remove("element-events-paused");
+    selRSlotBtnFocArea.classList.remove("element-events-paused");
+}
+// ======
 
 // ===
 // end
 // ===
 function endFullscreenNextStorylineLifecycle() {
-    rps.getRpsSceneWrapper().removeEventListener("keydown", lifecycleEvents.handleFullscreenNextStoryline);
+    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleFullscreenNextStoryline);
 }
 
 function endKeyboardInputLifecycle() {
-    rps.getRpsSceneWrapper().removeEventListener("keydown", lifecycleEvents.handleSelectSlot);
+    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleSelectSlot);
 }
 // ===
 
-export const rpsEvents = {
+export const rpsELifecycle = {
     beginPlayerSlotsLifecycle,
     beginCpuSlotsLifecycle,
     beginFullscreenNextStorylineLifecycle,
     beginMouseTapInputLifecycle,
     beginKeyboardInputLifecycle,
+    pausePlayerSlotsLifecycle,
+    pauseMouseTapInputLifecycle,
+    resumePlayerSlotsLifecycle,
+    resumeMouseTapInputLifecycle,
     endFullscreenNextStorylineLifecycle,
     endKeyboardInputLifecycle
 }

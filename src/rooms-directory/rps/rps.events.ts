@@ -1,4 +1,3 @@
-// May only be used for elifecycle
 import { rpsAnimate } from "./rps.animate";
 import { rpsGame } from "./rps.game";
 import { rps } from "./rps";
@@ -24,8 +23,6 @@ function handleClickTapRotateDiscLeft(event: Event) {
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
         console.log("Player selected slot index:", rps.getPlayerSelectedSlotIndex());
         console.log("Player disc rotation index:", newPlayerDiscRotationIndex);
-        handleCpuRotateDisc();
-        
     }
     event.preventDefault();
     handleRotate();
@@ -51,7 +48,6 @@ function handleClickTapRotateDiscRight(event: Event) {
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
         console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
         console.log("Player disc rotation index", newPlayerDiscRotationIndex);
-        handleCpuRotateDisc();
     }
     event.preventDefault();
     handleRotate();
@@ -77,7 +73,6 @@ function handleKeyboardRotateDisc(event: KeyboardEvent) {
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
         console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
         console.log("Player disc rotation index", newPlayerDiscRotationIndex);
-        handleCpuRotateDisc();
     }
     event.preventDefault();
 
@@ -145,8 +140,7 @@ function handleSelectSlot(event: KeyboardEvent) {
     }
 }
 
-// May only be used for elifecycle
-export const lifecycleEvents = {
+export const rpsEvents = {
     handleClickTapRotateDiscLeft,
     handleClickTapRotateDiscRight,
     handleKeyboardRotateDisc,
