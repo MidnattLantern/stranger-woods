@@ -1,4 +1,4 @@
-import { rpsEvents } from "./rps.events";
+import { rpsEvents } from "./rps.elifecycle";
 import { rpsStoryController } from "./rps.story";
 import "./rps.styles.scss";
 import { rpsUI } from "./rps.ui";
@@ -80,7 +80,10 @@ function rockPaperScissors() {
 
         rpsSceneWrapper.append(gameSessionWrapper);
         gameSessionWrapper.append(buttonsTable);
-        buttonsTable.append(rpsPlayerButtons, rpsCpuButtons);
+        buttonsTable.append(
+            rpsPlayerButtons,
+            rpsCpuButtons
+        );
 
         rpsResources = { gameSessionWrapper, buttonsTable };
         rpsEvents.beginPlayerSlotsLifecycle();

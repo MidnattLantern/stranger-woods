@@ -1,14 +1,9 @@
-import fireElement from "/elements/fire-icon.webp";
-// import earthElement from "/elements/earth-icon.webp";
-// import waterElement from "/elements/water-icon.webp";
+// May only be used for elifecycle
 import { rpsAnimate } from "./rps.animate";
 import { rpsGame } from "./rps.game";
 import { rps } from "./rps";
 import { rpsStoryController } from "./rps.story";
 
-// ==============
-// event handlers
-// ==============
 function handleClickTapRotateDiscLeft(event: Event) {
     const MIN_EDGE_INDEX: number = 0;
     const MAX_EDGE_INDEX: number = 11;
@@ -30,6 +25,7 @@ function handleClickTapRotateDiscLeft(event: Event) {
         console.log("Player selected slot index:", rps.getPlayerSelectedSlotIndex());
         console.log("Player disc rotation index:", newPlayerDiscRotationIndex);
         handleCpuRotateDisc();
+        
     }
     event.preventDefault();
     handleRotate();
@@ -112,10 +108,8 @@ function handleCpuRotateDisc(rotationIndex: number = Math.random()) {
     }
 
     if (rotationIndex < 0.5) { // turn left
-        console.log("Cpu disc turn left");
         handleRotate(-1);
     } else { // turn right
-        console.log("Cpu disc turn right");
         handleRotate(1);
     }
 }
@@ -148,66 +142,13 @@ function handleSelectSlot(event: KeyboardEvent) {
         rpsGame.initiateDuel(playerSelectedSlotIndex);
     }
 }
-// ==============
 
-// =====
-// begin
-// =====
-function beginFullscreenNextStorylineLifecycle() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", handleFullscreenNextStoryline);
-}
-
-function beginPlayerSlotsLifecycle() {
-    const slotsRange: number = 12 -1; // -1 counters back to 0 base index
-    for (let i: number = 0; i <= slotsRange; i++) {
-        const playerSlotIImage = document.getElementById(`playerSlot${i}Image`);
-        if (!playerSlotIImage) return;
-        playerSlotIImage.setAttribute("href", fireElement);
-    }
-    rps.getRpsSceneWrapper().addEventListener("keydown", handleKeyboardRotateDisc);
-    beginMouseTapInputLifecycle();
-}
-
-function beginCpuSlotsLifecycle() {
-    const slotsRange: number = 12 -1; // -1 counters back to 0 base index
-    for (let i: number = 0; i <= slotsRange; i++) {
-        const cpuSlotIImage = document.getElementById(`cpuSlot${i}Image`);
-        if (!cpuSlotIImage) return;
-        cpuSlotIImage.setAttribute("href", fireElement);
-    }
-}
-
-function beginMouseTapInputLifecycle() {
-    const selLSlotBtnFocArea = document.getElementById("selLSlotBtnFocArea"); // element from the SVG
-    const selRSlotBtnFocArea = document.getElementById("selRSlotBtnFocArea"); // element from the SVG
-
-    selLSlotBtnFocArea?.addEventListener("click", handleClickTapRotateDiscLeft);
-    selRSlotBtnFocArea?.addEventListener("click", handleClickTapRotateDiscRight);
-}
-
-function beginKeyboardInputLifecycle() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", handleSelectSlot);
-}
-// =====
-
-// ===
-// end
-// ===
-function endFullscreenNextStorylineLifecycle() {
-    rps.getRpsSceneWrapper().removeEventListener("keydown", handleFullscreenNextStoryline);
-}
-
-function endKeyboardInputLifecycle() {
-    rps.getRpsSceneWrapper().removeEventListener("keydown", handleSelectSlot);
-}
-// ===
-
-export const rpsEvents = {
-    beginPlayerSlotsLifecycle,
-    beginCpuSlotsLifecycle,
-    beginFullscreenNextStorylineLifecycle,
-    beginMouseTapInputLifecycle,
-    beginKeyboardInputLifecycle,
-    endFullscreenNextStorylineLifecycle,
-    endKeyboardInputLifecycle
+// May only be used for elifecycle
+export const lifecycleEvents = {
+    handleClickTapRotateDiscLeft,
+    handleClickTapRotateDiscRight,
+    handleKeyboardRotateDisc,
+    handleCpuRotateDisc,
+    handleFullscreenNextStoryline,
+    handleSelectSlot
 }

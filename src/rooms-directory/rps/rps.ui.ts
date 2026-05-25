@@ -43,7 +43,6 @@ function rpsCpuButtons() {
 }
 // =======
 
-
 export const rpsUI = {
     rockPaperScissorsSceneWrapper,
     gameSessionWrapper,
