@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Fire",
+        "element": "fire",
+        "assetSource": "elements/fire-icon.webp"
+    },
+    {
+        "name": "Earth",
+        "element": "earth",
+        "assetSource": "elements/earth-icon.webp"
+    },
+    {
+        "name": "Water",
+        "element": "water",
+        "assetSource": "elements/water-icon.webp"
+    },
+    {
+        "name": "Fire",
+        "element": "fire",
+        "assetSource": "elements/fire-icon.webp"
+    },
+    {
+        "name": "Earth",
+        "element": "earth",
+        "assetSource": "elements/earth-icon.webp"
+    },
+    {
+        "name": "Water",
+        "element": "water",
+        "assetSource": "elements/water-icon.webp"
+    },
+    {
+        "name": "Fire",
+        "element": "fire",
+        "assetSource": "elements/fire-icon.webp"
+    },
+    {
+        "name": "Earth",
+        "element": "earth",
+        "assetSource": "elements/earth-icon.webp"
+    },
+    {
+        "name": "Water",
+        "element": "water",
+        "assetSource": "elements/water-icon.webp"
+    },
+    {
+        "name": "Fire",
+        "element": "fire",
+        "assetSource": "elements/fire-icon.webp"
+    },
+    {
+        "name": "Earth",
+        "element": "earth",
+        "assetSource": "elements/earth-icon.webp"
+    },
+    {
+        "name": "Water",
+        "element": "water",
+        "assetSource": "elements/water-icon.webp"
+    }
+]

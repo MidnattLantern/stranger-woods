@@ -83,6 +83,8 @@ function handleKeyboardRotateDisc(event: KeyboardEvent) {
 
     if (event.key === "ArrowLeft") handleRotate(-1);
     if (event.key === "ArrowRight") handleRotate(1);
+    if (event.key === "ArrowUp") rpsGame.initiateDuel();
+    if (event.key === " ") rpsGame.initiateDuel();
 }
 
 function handleCpuRotateDisc(rotationIndex: number = Math.random()) {

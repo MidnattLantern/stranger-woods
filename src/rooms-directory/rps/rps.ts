@@ -6,7 +6,6 @@ import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
 import { sceneWrapper } from "@/scenes/scene-handler";
 
 function rockPaperScissors() {
-    let rpsResources = null;
     let rpsSceneWrapper: any = null;
     let playerSelectedSlotIndex: number = 0;
     let playerDiscRotationIndex: number = 0;
@@ -20,7 +19,6 @@ function rockPaperScissors() {
         sceneWrapper.append(rpsSceneWrapper);
         rpsStoryController.handleInitializeStoryline();
         rpsEvents.beginFullscreenNextStorylineLifecycle();
-        rpsResources = { rpsSceneWrapper };
         rpsSceneWrapper.focus();
     };
 
@@ -85,7 +83,6 @@ function rockPaperScissors() {
             rpsCpuButtons
         );
 
-        rpsResources = { gameSessionWrapper, buttonsTable };
         rpsEvents.beginPlayerSlotsLifecycle();
         rpsEvents.beginCpuSlotsLifecycle();
     }
@@ -93,7 +90,6 @@ function rockPaperScissors() {
     function handleEndRpsGame() {
         rpsSceneWrapper.remove();
         rpsSceneWrapper = null;
-        rpsResources = null;
     }
 
     return {

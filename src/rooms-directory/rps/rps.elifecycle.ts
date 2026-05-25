@@ -1,8 +1,7 @@
-import fireElement from "/elements/fire-icon.webp";
-// import earthElement from "/elements/earth-icon.webp";
-// import waterElement from "/elements/water-icon.webp";
 import { rps } from "./rps";
 import { lifecycleEvents } from "./rps.lifecycle-events";
+import cpuBatchData from "./cpu-batch.json";
+import playerBatchData from "./player-batch.json";
 
 // =====
 // begin
@@ -12,22 +11,30 @@ function beginFullscreenNextStorylineLifecycle() {
 }
 
 function beginPlayerSlotsLifecycle() {
-    const slotsRange: number = 12 -1; // -1 counters back to 0 base index
-    for (let i: number = 0; i <= slotsRange; i++) {
+    const batchRange: number = playerBatchData.length -1; // -1 counters back to 0 base index
+    if (playerBatchData.length !== 12) {
+        console.error("Player's batch must have 12 items");
+        return;
+    }
+    for (let i: number = 0; i <= batchRange; i++) {
         const playerSlotIImage = document.getElementById(`playerSlot${i}Image`);
         if (!playerSlotIImage) return;
-        playerSlotIImage.setAttribute("href", fireElement);
+        playerSlotIImage.setAttribute("href", playerBatchData[i].assetSource);
     }
     rps.getRpsSceneWrapper().addEventListener("keydown", lifecycleEvents.handleKeyboardRotateDisc);
     beginMouseTapInputLifecycle();
 }
 
 function beginCpuSlotsLifecycle() {
-    const slotsRange: number = 12 -1; // -1 counters back to 0 base index
-    for (let i: number = 0; i <= slotsRange; i++) {
+    const batchRange: number = cpuBatchData.length -1; // -1 counters back to 0 base index
+    if (cpuBatchData.length !== 12) {
+        console.error("Cpu's batch must have 12 items");
+        return;
+    }
+    for (let i: number = 0; i <= batchRange; i++) {
         const cpuSlotIImage = document.getElementById(`cpuSlot${i}Image`);
         if (!cpuSlotIImage) return;
-        cpuSlotIImage.setAttribute("href", fireElement);
+        cpuSlotIImage.setAttribute("href", cpuBatchData[i].assetSource);
     }
 }
 

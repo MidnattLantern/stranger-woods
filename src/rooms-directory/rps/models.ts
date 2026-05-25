@@ -9,3 +9,11 @@ export type IScriptEvent = {
     eventMarker?: string;
     buttonEvents?: IButtonEvent[];
 };
+
+type IElement = "fire" | "water" | "earth";
+
+export interface ISlot {
+  name: string;
+  element: IElement;
+  assetSource: string;
+}
