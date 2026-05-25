@@ -1,4 +1,5 @@
 import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
+import pseudoElementalsCpuDisc from "@assets/pseudoelementals-cpu-disc.svg?raw";
 
 function rockPaperScissorsSceneWrapper() {
     const rpsSceneWrapper = document.createElement("div");
@@ -30,9 +31,23 @@ function rpsPlayerButtons() {
 }
 // ==========
 
+// =======
+// cpu rps
+// =======
+function rpsCpuButtons() {
+    const container = document.createElement("div");
+    container.classList.add("rock-paper-scissors__cpu-buttons-container");
+    container.id = "rpsCpuButtons";
+    container.innerHTML = pseudoElementalsCpuDisc;
+    return container;
+}
+// =======
+
+
 export const rpsUI = {
     rockPaperScissorsSceneWrapper,
     gameSessionWrapper,
     buttonsTable,
-    rpsPlayerButtons
+    rpsPlayerButtons,
+    rpsCpuButtons
 }

@@ -21,11 +21,27 @@ function playerSpinToSlot(slotIndex: number = rps.getPlayerDiscRotationIndex()) 
     })
 }
 
-function spinToSlotCpu() {
+function cpuSpinToSlot(slotIndex: number = rps.getCpuDiscRotationIndex()) {
+    const rotateDeg = slotIndex * 30;
+    const rotateDuration: number = 0.5;
+    const rotateEasing: string = "back.out";
 
+    gsap.to("#cpuTransOriginWheel", {
+        rotate: -rotateDeg,
+        duration: rotateDuration,
+        transformOrigin: "center",
+        ease: rotateEasing
+    });
+
+    gsap.to(".cpuSlotI", {
+        rotate: rotateDeg,
+        duration: rotateDuration,
+        transformOrigin: "center",
+        ease: rotateEasing
+    })
 }
 
 export const rpsAnimate = {
     playerSpinToSlot,
-    spinToSlotCpu
+    cpuSpinToSlot
 }

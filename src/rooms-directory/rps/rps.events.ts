@@ -18,7 +18,6 @@ function handleClickTapRotateDiscLeft(event: Event) {
         let newPlayerSelectedSlotIndex: number = currentPlayerSelectedSlotIndex - 1;
         const newPlayerDiscRotationIndex: number = currentPlayerDiscRotationIndex - 1;
 
-        console.log(newPlayerSelectedSlotIndex);
         rpsAnimate.playerSpinToSlot(newPlayerDiscRotationIndex);
         if (newPlayerSelectedSlotIndex < MIN_EDGE_INDEX) {
             newPlayerSelectedSlotIndex = MAX_EDGE_INDEX;
@@ -28,8 +27,9 @@ function handleClickTapRotateDiscLeft(event: Event) {
         }
         rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
-        console.log("selected slot index", rps.getPlayerSelectedSlotIndex());
-        console.log("disc rotation index", newPlayerDiscRotationIndex);
+        console.log("Player selected slot index:", rps.getPlayerSelectedSlotIndex());
+        console.log("Player disc rotation index:", newPlayerDiscRotationIndex);
+        handleCpuRotateDisc();
     }
     event.preventDefault();
     handleRotate();
@@ -44,7 +44,6 @@ function handleClickTapRotateDiscRight(event: Event) {
         let newPlayerSelectedSlotIndex: number = currentPlayerSelectedSlotIndex + 1;
         const newPlayerDiscRotationIndex: number = currentPlayerDiscRotationIndex + 1;
 
-        console.log(newPlayerSelectedSlotIndex);
         rpsAnimate.playerSpinToSlot(newPlayerDiscRotationIndex);
         if (newPlayerSelectedSlotIndex < MIN_EDGE_INDEX) {
             newPlayerSelectedSlotIndex = MAX_EDGE_INDEX;
@@ -54,8 +53,9 @@ function handleClickTapRotateDiscRight(event: Event) {
         }
         rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
-        console.log("selected slot index", rps.getPlayerSelectedSlotIndex());
-        console.log("disc rotation index", newPlayerDiscRotationIndex);
+        console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
+        console.log("Player disc rotation index", newPlayerDiscRotationIndex);
+        handleCpuRotateDisc();
     }
     event.preventDefault();
     handleRotate();
@@ -70,7 +70,6 @@ function handleKeyboardRotateDisc(event: KeyboardEvent) {
         let newPlayerSelectedSlotIndex: number = currentPlayerSelectedSlotIndex + (1 * directionMultiplier);
         const newPlayerDiscRotationIndex: number = currentPlayerDiscRotationIndex + (1 * directionMultiplier);
 
-        console.log(newPlayerSelectedSlotIndex);
         rpsAnimate.playerSpinToSlot(newPlayerDiscRotationIndex);
         if (newPlayerSelectedSlotIndex < MIN_EDGE_INDEX) {
             newPlayerSelectedSlotIndex = MAX_EDGE_INDEX;
@@ -80,13 +79,45 @@ function handleKeyboardRotateDisc(event: KeyboardEvent) {
         }
         rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
-        console.log("selected slot index", rps.getPlayerSelectedSlotIndex());
-        console.log("disc rotation index", newPlayerDiscRotationIndex);
+        console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
+        console.log("Player disc rotation index", newPlayerDiscRotationIndex);
+        handleCpuRotateDisc();
     }
     event.preventDefault();
 
     if (event.key === "ArrowLeft") handleRotate(-1);
     if (event.key === "ArrowRight") handleRotate(1);
+}
+
+function handleCpuRotateDisc(rotationIndex: number = Math.random()) {
+    const MIN_EDGE_INDEX: number = 0;
+    const MAX_EDGE_INDEX: number = 11;
+
+    function handleRotate(directionMultiplier: 1 | -1) {
+        const currentCpuSelectedSlotIndex: number = rps.getCpuSelectedSlotIndex();
+        const currentCpuDiscRotationIndex: number = rps.getCpuDiscRotationIndex();
+        let newCpuSelectedSlotIndex: number = currentCpuSelectedSlotIndex + (1 * directionMultiplier);
+        const newCpuDiscRotationIndex: number = currentCpuDiscRotationIndex + (1 * directionMultiplier);
+        rpsAnimate.cpuSpinToSlot(newCpuDiscRotationIndex);
+        if (newCpuSelectedSlotIndex < MIN_EDGE_INDEX) {
+            newCpuSelectedSlotIndex = MAX_EDGE_INDEX;
+        }
+        if (newCpuSelectedSlotIndex > MAX_EDGE_INDEX) {
+            newCpuSelectedSlotIndex = MIN_EDGE_INDEX;
+        }
+        rps.setCpuSelectedIndex(newCpuSelectedSlotIndex);
+        rps.setCpuDiscRotationIndex(newCpuDiscRotationIndex);
+        console.log("Cpu selected slot index", rps.getCpuSelectedSlotIndex());
+        console.log("Cpu disc rotation index", newCpuDiscRotationIndex);
+    }
+
+    if (rotationIndex < 0.5) { // turn left
+        console.log("Cpu disc turn left");
+        handleRotate(-1);
+    } else { // turn right
+        console.log("Cpu disc turn right");
+        handleRotate(1);
+    }
 }
 
 function handleFullscreenNextStoryline(event: KeyboardEvent) {
@@ -97,12 +128,11 @@ function handleFullscreenNextStoryline(event: KeyboardEvent) {
 
 }
 
-function handleSelectSlot(event: KeyboardEvent) { // depricated?
+function handleSelectSlot(event: KeyboardEvent) {
     event.preventDefault();
     const slotIndexMinRange = 1;
     const slotIndexMaxRange = 3;
     let playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-    console.log(event);
     if (event.key === 'ArrowLeft') {
         if (playerSelectedSlotIndex == slotIndexMinRange) return;
         rps.setPlayerSelectedIndex(playerSelectedSlotIndex - 1);
@@ -117,7 +147,6 @@ function handleSelectSlot(event: KeyboardEvent) { // depricated?
         rpsAnimate.playerSpinToSlot(playerSelectedSlotIndex);
         rpsGame.initiateDuel(playerSelectedSlotIndex);
     }
-    console.log(playerSelectedSlotIndex);
 }
 // ==============
 
@@ -137,6 +166,15 @@ function beginPlayerSlotsLifecycle() {
     }
     rps.getRpsSceneWrapper().addEventListener("keydown", handleKeyboardRotateDisc);
     beginMouseTapInputLifecycle();
+}
+
+function beginCpuSlotsLifecycle() {
+    const slotsRange: number = 12 -1; // -1 counters back to 0 base index
+    for (let i: number = 0; i <= slotsRange; i++) {
+        const cpuSlotIImage = document.getElementById(`cpuSlot${i}Image`);
+        if (!cpuSlotIImage) return;
+        cpuSlotIImage.setAttribute("href", fireElement);
+    }
 }
 
 function beginMouseTapInputLifecycle() {
@@ -166,6 +204,7 @@ function endKeyboardInputLifecycle() {
 
 export const rpsEvents = {
     beginPlayerSlotsLifecycle,
+    beginCpuSlotsLifecycle,
     beginFullscreenNextStorylineLifecycle,
     beginMouseTapInputLifecycle,
     beginKeyboardInputLifecycle,

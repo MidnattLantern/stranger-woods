@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 701 701" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-889.906407,-1654.753221)">
+        <g id="cpuTransOriginPosition" transform="matrix(1.400641,0,0,1.400641,-495.640349,1184.494839)">
+            <rect x="989.224" y="335.745" width="500.13" height="500.13" style="fill:none;"/>
+            <clipPath id="_clip1">
+                <rect x="989.224" y="335.745" width="500.13" height="500.13"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g id="cpuTransOriginWheel" transform="matrix(0.713959,0,0,0.713959,353.866899,154.578879)">
+                    <ellipse cx="1240.157" cy="604" rx="350.251" ry="350.251" style="fill:none;"/>
+                    <clipPath id="_clip2">
+                        <ellipse cx="1240.157" cy="604" rx="350.251" ry="350.251"/>
+                    </clipPath>
+                    <g clip-path="url(#_clip2)">
+                        <g id="cpuDiscBody" class="cpu-disc-body" transform="matrix(0.84195,0,0,0.84195,196.007261,-131.444872)">
+                            <path d="M897.006,803.057C899.807,789.36 903.409,775.953 907.761,762.887C916.631,766.895 926.473,769.126 936.831,769.126C975.879,769.126 1007.58,737.424 1007.58,698.377C1007.58,674.796 996.019,653.894 978.26,641.036C987.482,630.655 997.311,620.827 1007.691,611.605C1020.55,629.363 1041.451,640.925 1065.032,640.925C1104.079,640.925 1135.781,609.223 1135.781,570.176C1135.781,559.817 1133.55,549.976 1129.543,541.106C1142.624,536.749 1156.046,533.144 1169.76,530.341C1173.321,566.065 1203.503,594 1240.157,594C1276.812,594 1306.994,566.065 1310.555,530.341C1324.269,533.144 1337.691,536.749 1350.772,541.106C1346.765,549.976 1344.534,559.817 1344.534,570.176C1344.534,609.223 1376.236,640.925 1415.283,640.925C1438.864,640.925 1459.765,629.363 1472.624,611.605C1483.004,620.827 1492.833,630.655 1502.055,641.036C1484.296,653.894 1472.735,674.796 1472.735,698.377C1472.735,737.424 1504.436,769.126 1543.484,769.126C1553.842,769.126 1563.684,766.895 1572.554,762.887C1576.911,775.968 1580.516,789.391 1583.319,803.105C1547.595,806.666 1519.66,836.847 1519.66,873.502C1519.66,910.157 1547.595,940.338 1583.319,943.9C1580.516,957.613 1576.911,971.036 1572.554,984.117C1563.684,980.11 1553.842,977.879 1543.484,977.879C1504.436,977.879 1472.735,1009.58 1472.735,1048.628C1472.735,1072.208 1484.296,1093.11 1502.055,1105.969C1492.833,1116.349 1483.004,1126.178 1472.624,1135.4C1459.765,1117.641 1438.864,1106.08 1415.283,1106.08C1376.236,1106.08 1344.534,1137.781 1344.534,1176.828C1344.534,1187.187 1346.765,1197.029 1350.772,1205.899C1337.691,1210.255 1324.269,1213.861 1310.555,1216.663C1306.994,1180.94 1276.812,1153.004 1240.157,1153.004C1203.503,1153.004 1173.321,1180.94 1169.76,1216.663C1156.046,1213.861 1142.624,1210.255 1129.543,1205.899C1133.55,1197.029 1135.781,1187.187 1135.781,1176.828C1135.781,1137.781 1104.079,1106.08 1065.032,1106.08C1041.451,1106.08 1020.55,1117.641 1007.691,1135.4C997.283,1126.153 987.429,1116.296 978.185,1105.884C995.954,1093.027 1007.524,1072.119 1007.524,1048.53C1007.524,1009.482 975.822,977.781 936.775,977.781C926.424,977.781 916.59,980.008 907.725,984.01C903.38,970.948 899.783,957.544 896.986,943.852C932.715,940.295 960.655,910.111 960.655,873.453C960.655,836.802 932.725,806.623 897.006,803.057Z"/>
+                        </g>
+                        <g id="cpuSlot0" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,269.799915,489.477525)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip3">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip3)">
+                                <g id="Background" transform="matrix(0.144386,0,0,0.144386,-4633.736041,-6200.784641)">
+                                    <image id="cpuSlot0Image" x="40191" y="46079" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot1" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,122.35298,449.96923)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip5">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip5)">
+                                <g id="Background1" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-4818.549563,-6274.71005)">
+                                    <image id="cpuSlot1Image" x="41471" y="46591" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot2" class="cpuSlotI" transform="matrix(0.783119,0,0,0.783119,13.533649,341.596715)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip6">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip6)">
+                                <g id="Background2" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-4966.40038,-6385.598163)">
+                                    <image id="cpuSlot2Image" x="42495" y="47359" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot3" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,-25.093863,194.54256)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip7">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip7)">
+                                <g id="Background3" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-5003.363085,-6607.37439)">
+                                    <image id="cpuSlot3Image" x="42751" y="48895" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot4" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,14.414413,47.136846)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip8">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip8)">
+                                <g id="Background4" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-4966.40038,-6792.187912)">
+                                    <image id="cpuSlot4Image" x="42495" y="50175" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot5" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,122.353075,-60.801748)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip9">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip9)">
+                                <g id="Background5" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-4818.549563,-6903.076025)">
+                                    <image id="cpuSlot5Image" x="41471" y="50943" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot6" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,269.799924,-100.310047)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip10">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip10)">
+                                <g id="Background6" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-1787.607803,-2504.514203)">
+                                    <image id="cpuSlot6Image" x="20479" y="20479" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot7" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,417.246867,-60.801748)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip11">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip11)">
+                                <g id="Background7" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-4448.922519,-6903.076025)">
+                                    <image id="cpuSlot7Image" x="38911" y="50943" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot8" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,525.185481,47.136867)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip12">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip12)">
+                                <g id="Background8" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-4301.071701,-6792.187912)">
+                                    <image id="cpuSlot8Image" x="37887" y="50175" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot9" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,564.693707,194.583739)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip13">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip13)">
+                                <g id="Background9" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-4264.108997,-6607.37439)">
+                                    <image id="cpuSlot9Image" x="37631" y="48895" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot10" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,525.185434,342.030632)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip14">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip14)">
+                                <g id="Background10" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-4301.071701,-6422.560868)">
+                                    <image id="cpuSlot10Image" x="37887" y="47615" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="cpuSlot11" class="cpuSlotI" transform="matrix(0.782447,0,0,0.782447,417.246814,449.969249)">
+                            <circle cx="1240.157" cy="523.251" r="70.749" style="fill:none;"/>
+                            <clipPath id="_clip15">
+                                <circle cx="1240.157" cy="523.251" r="70.749"/>
+                            </clipPath>
+                            <g clip-path="url(#_clip15)">
+                                <g id="Background11" serif:id="Background" transform="matrix(0.144386,0,0,0.144386,-4448.922519,-6274.71005)">
+                                    <image id="cpuSlot11Image" x="38911" y="46591" width="982px" height="982px"/>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

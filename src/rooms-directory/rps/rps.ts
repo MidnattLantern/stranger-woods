@@ -10,6 +10,8 @@ function rockPaperScissors() {
     let rpsSceneWrapper: any = null;
     let playerSelectedSlotIndex: number = 0;
     let playerDiscRotationIndex: number = 0;
+    let cpuSelectedSlotIndex: number = 0;
+    let cpuDiscRotationIndex: number = 0;
 
     function initialize() {
         rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
@@ -26,6 +28,9 @@ function rockPaperScissors() {
         return rpsSceneWrapper;
     };
 
+    // ======
+    // player
+    // ======
     function getPlayerSelectedSlotIndex() {
         return playerSelectedSlotIndex;
     };
@@ -41,6 +46,27 @@ function rockPaperScissors() {
     function setPlayerDiscRotationIndex(newIndex: number) {
         playerDiscRotationIndex = newIndex;
     }
+    // ======
+
+    // ===
+    // cpu
+    // ===
+    function getCpuSelectedSlotIndex() {
+        return cpuSelectedSlotIndex;
+    };
+
+    function setCpuSelectedIndex(newIndex: number) {
+        cpuSelectedSlotIndex = newIndex;
+    };
+
+    function getCpuDiscRotationIndex() {
+        return cpuDiscRotationIndex;
+    }
+
+    function setCpuDiscRotationIndex(newIndex: number) {
+        cpuDiscRotationIndex = newIndex;
+    }
+    // ===
 
     function handleBeginRpsGame() {
         rpsEvents.endFullscreenNextStorylineLifecycle();
@@ -50,13 +76,15 @@ function rockPaperScissors() {
         const gameSessionWrapper = rpsUI.gameSessionWrapper();
         const buttonsTable = rpsUI.buttonsTable();
         const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
+        const rpsCpuButtons = rpsUI.rpsCpuButtons();
 
         rpsSceneWrapper.append(gameSessionWrapper);
         gameSessionWrapper.append(buttonsTable);
-        buttonsTable.append(rpsPlayerButtons);
+        buttonsTable.append(rpsPlayerButtons, rpsCpuButtons);
 
-        rpsResources = { gameSessionWrapper, buttonsTable, rpsPlayerButtons };
+        rpsResources = { gameSessionWrapper, buttonsTable };
         rpsEvents.beginPlayerSlotsLifecycle();
+        rpsEvents.beginCpuSlotsLifecycle();
     }
 
     function handleEndRpsGame() {
@@ -72,6 +100,10 @@ function rockPaperScissors() {
         setPlayerSelectedIndex,
         getPlayerDiscRotationIndex,
         setPlayerDiscRotationIndex,
+        getCpuSelectedSlotIndex,
+        setCpuSelectedIndex,
+        getCpuDiscRotationIndex,
+        setCpuDiscRotationIndex,
         handleBeginRpsGame,
         handleEndRpsGame
     }

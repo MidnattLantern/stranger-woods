@@ -14,7 +14,8 @@
     height: 100%;
 }
 
-.player-disc-body {
+.player-disc-body,
+.cpu-disc-body {
     fill: var(--color-surface-body);
     pointer-events: none;
 }
@@ -26,13 +27,19 @@
     width: 100%;
     height: 100%;
 
-    .rock-paper-scissors__player-buttons-container {
+    .rock-paper-scissors__player-buttons-container,
+    .rock-paper-scissors__cpu-buttons-container {
         display: flex;
         justify-content: center;
-        align-items: baseline;
         width: 100%;
         aspect-ratio: 4/1;
         overflow: hidden;
+    }
+    .rock-paper-scissors__player-buttons-container {
+        align-items: baseline;
+    }
+    .rock-paper-scissors__cpu-buttons-container {
+        align-items: end;
     }
 
     .playerSlotI {

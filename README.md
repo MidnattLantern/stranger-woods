@@ -50,6 +50,9 @@ As part of my mission to design digital experiences that can convince the user t
 
 ## Code base & architectire
 
+### Variable scope
+Variables should never live on a global scope, instead, make getters and setters.
+
 ### Dialogue handling
 Any dialogue should be stored as json data inside the stories-data directory.
 
