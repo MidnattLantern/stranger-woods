@@ -21,8 +21,8 @@ function handleClickTapRotateDiscLeft(event: Event) {
         }
         rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
-        console.log("Player selected slot index:", rps.getPlayerSelectedSlotIndex());
-        console.log("Player disc rotation index:", newPlayerDiscRotationIndex);
+        // console.log("Player selected slot index:", rps.getPlayerSelectedSlotIndex());
+        // console.log("Player disc rotation index:", newPlayerDiscRotationIndex);
     }
     event.preventDefault();
     handleRotate();
@@ -46,8 +46,8 @@ function handleClickTapRotateDiscRight(event: Event) {
         }
         rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
-        console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
-        console.log("Player disc rotation index", newPlayerDiscRotationIndex);
+        // console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
+        // console.log("Player disc rotation index", newPlayerDiscRotationIndex);
     }
     event.preventDefault();
     handleRotate();
@@ -71,8 +71,8 @@ function handleKeyboardRotateDisc(event: KeyboardEvent) {
         }
         rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
-        console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
-        console.log("Player disc rotation index", newPlayerDiscRotationIndex);
+        // console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
+        // console.log("Player disc rotation index", newPlayerDiscRotationIndex);
     }
     event.preventDefault();
 
@@ -100,8 +100,8 @@ function handleCpuRotateDisc(rotationIndex: number = Math.random()) {
         }
         rps.setCpuSelectedIndex(newCpuSelectedSlotIndex);
         rps.setCpuDiscRotationIndex(newCpuDiscRotationIndex);
-        console.log("Cpu selected slot index", rps.getCpuSelectedSlotIndex());
-        console.log("Cpu disc rotation index", newCpuDiscRotationIndex);
+        // console.log("Cpu selected slot index", rps.getCpuSelectedSlotIndex());
+        // console.log("Cpu disc rotation index", newCpuDiscRotationIndex);
     }
 
     if (rotationIndex < 0.5) { // turn left

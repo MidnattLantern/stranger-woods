@@ -34,6 +34,13 @@ Stranger Woods is a part of vocational training in frontend development. This ga
 - Collect the artifacts hidden in each of the first five rooms. The artifacts are required to complete the Final Room.
 - Complete the game fast enough and you may earn a place on the Top 10 Highscore — and share your results with the world.
 
+### Controls
+There are several input methods:
+- Mouse: Point and click to perform actions.
+- Keyboard: Using a 2D hotseat layout, where you navigate options with Arrow Keys, and perform actions with Z, X, C, and Spacebar.
+- Gamepad is not supported as of writing this, but remain considered as a future feature.
+- Accessible one handed keyboard input is not supported as of writing this, but remain considered as a future feature. Left handed layout would be: Z, X, C, Spacebar and WASD. Right handed layout would be: Arrow Keys, Del, End, Pgdn, Enter, and 8, 9, 0 as optional for Del, End, and Pgdn.
+
 ## Philosphy
 
 ### Kinesthesic oriented design

@@ -21,12 +21,14 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    max-width: 700px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100%;
+    width: calc(100% - 30px);
+    aspect-ratio: 5 / 3;
+    max-width: calc(min(100vw, 100vh * (5 / 3)) - 30px);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .event-text {
@@ -87,3 +89,27 @@
 .hidden {
     display: none !important;
 }
+
+// @media screen and (min-width: 500px) {
+//     .room-frame {
+//         height: 290px;
+//     }
+// }
+
+// @media screen and (min-width: 775px) {
+//     .room-frame {
+//         height: 450px;
+//     }
+// }
+
+// @media screen and (min-width: 1150px) {
+//     .room-frame {
+//         height: 660px;
+//     }
+// }
+
+// @media screen and (min-width: 1350px) {
+//     .room-frame {
+//         height: 660px;
+//     }
+// }
