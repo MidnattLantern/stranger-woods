@@ -48,13 +48,13 @@ function rpsCpuButtons() {
 // ===============
 function duelRailway() {
     const container = document.createElement("duel-railway");
-    container.className = "duel-railway";
+    container.classList.add("duel-railway", "hidden");
     return container;
 }
 
 function playerRailwayItem() {
     const item = document.createElement("img");
-    item.src = "elements/fire-icon.webp";
+    item.src = "elements/fire-icon.webp"; // placeholder default
     item.id = "playerRailwayItem";
     item.className = "player-railway-item";
     return item;
@@ -62,7 +62,7 @@ function playerRailwayItem() {
 
 function cpuRailwayItem() {
     const item = document.createElement("img");
-    item.src = "elements/fire-icon.webp";
+    item.src = "elements/fire-icon.webp"; // placeholder default
     item.id = "cpuRailwayItem";
     item.className = "cpu-railway-item";
     return item;

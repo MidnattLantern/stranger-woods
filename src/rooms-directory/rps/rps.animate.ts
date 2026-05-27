@@ -47,12 +47,12 @@ function runPlayerRailItemWin() {
 
     cpuTimeline
     .to("#cpuRailwayItem", {
-        y: "-110%",
+        y: "110%",
         duration: 0.3,
         ease: "power1.in"
     })
     .to("#cpuRailwayItem", {
-        y: "-150%",
+        y: "150%",
         duration: 0.1,
         ease: "none"
     })
@@ -64,7 +64,7 @@ function runPlayerRailItemWin() {
 
     playerTimeline
     .to("#playerRailwayItem", {
-        y: "110%",
+        y: "-110%",
         duration: 0.3,
         ease: "power1.in"
     })
@@ -81,12 +81,12 @@ function runCpuRailItemWin() {
 
     playerTimeline
     .to("#playerRailwayItem", {
-        y: "110%",
+        y: "-110%",
         duration: 0.3,
         ease: "power1.in"
     })
     .to("#playerRailwayItem", {
-        y: "150%",
+        y: "-150%",
         duration: 0.1,
         ease: "none"
     })
@@ -98,7 +98,7 @@ function runCpuRailItemWin() {
 
     cpuTimeline
     .to("#cpuRailwayItem", {
-        y: "-110%",
+        y: "110%",
         duration: 0.3,
         ease: "power1.in"
     })
@@ -115,7 +115,7 @@ function runRailDraw() {
 
     playerTimeline
     .to("#playerRailwayItem", {
-        y: "110%",
+        y: "-110%",
         duration: 0.7,
         ease: "bounce.out"
     })
@@ -127,7 +127,7 @@ function runRailDraw() {
 
     cpuTimeline
     .to("#cpuRailwayItem", {
-        y: "-110%",
+        y: "110%",
         duration: 0.7,
         ease: "bounce.out"
     })

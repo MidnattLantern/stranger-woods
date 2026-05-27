@@ -13,19 +13,36 @@ function initiateDuel(
     cpuBatch = cpuBatchData as ISlot[],
     playerSlotElementType: "fire" | "water" | "earth" = playerBatch[playerSlotIndex].element,
     cpuSlotElementType: "fire" | "water" | "earth" = cpuBatch[cpuSlotIndex].element,
-    winner: "player" | "cpu" | null = null
+    winner: "player" | "cpu" | null = null,
+    playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex(),
+    playerSelectedSlotItem = document.getElementById(`playerSlot${playerSelectedSlotIndex}`),
+    playerRailwayItem = rps.getPlayerRailwayItem(),
+    playerRailwayIconToUse = playerBatchData[playerSelectedSlotIndex].assetSource,
+    cpuSelectedSlotIndex = rps.getCpuSelectedSlotIndex(),
+    cpuSelectedSlotItem = document.getElementById(`cpuSlot${cpuSelectedSlotIndex}`),
+    cpuRailwayItem = rps.getCpuRailwayItem(),
+    cpuRailwayIconToUse = cpuBatchData[cpuSelectedSlotIndex].assetSource
 ) {
     let timeout;
     function myTimeout() {
         timeout = setTimeout(resume, 1000);
     }
     function resume() {
+        rps.getDuelRailway().classList.add("hidden");
         rpsELifecycle.resumeMouseTapInputLifecycle();
         rpsELifecycle.resumePlayerSlotsLifecycle();
         rpsEvents.handleCpuRotateDisc();
+        playerSelectedSlotItem?.classList.remove("hidden");
+        cpuSelectedSlotItem?.classList.remove("hidden");
     }
     rpsELifecycle.pauseMouseTapInputLifecycle();
     rpsELifecycle.pausePlayerSlotsLifecycle();
+    playerRailwayItem.src = playerRailwayIconToUse;
+    cpuRailwayItem.src = cpuRailwayIconToUse;
+    rps.getDuelRailway().classList.remove("hidden");
+    playerSelectedSlotItem?.classList.add("hidden");
+    cpuSelectedSlotItem?.classList.add("hidden");
+
     /*
     - Fire beats earth
     - Water beats fire

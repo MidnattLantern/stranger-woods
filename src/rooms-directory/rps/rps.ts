@@ -28,11 +28,15 @@ function rockPaperScissors(
         rpsStoryController.handleInitializeStoryline();
         rpsELifecycle.beginFullscreenNextStorylineLifecycle();
         rpsSceneWrapper.focus();
-    };
+    }
 
     function getRpsSceneWrapper() {
         return rpsSceneWrapper;
-    };
+    }
+
+    function getDuelRailway() {
+        return duelRailway;
+    }
 
     // ======
     // player
@@ -56,6 +60,10 @@ function rockPaperScissors(
     function getRpsPlayerButtons() {
         return rpsPlayerButtons;
     }
+
+    function getPlayerRailwayItem() {
+        return playerRailwayItem;
+    }
     // ======
 
     // ===
@@ -63,11 +71,11 @@ function rockPaperScissors(
     // ===
     function getCpuSelectedSlotIndex() {
         return cpuSelectedSlotIndex;
-    };
+    }
 
     function setCpuSelectedIndex(newIndex: number) {
         cpuSelectedSlotIndex = newIndex;
-    };
+    }
 
     function getCpuDiscRotationIndex() {
         return cpuDiscRotationIndex;
@@ -75,6 +83,10 @@ function rockPaperScissors(
 
     function setCpuDiscRotationIndex(newIndex: number) {
         cpuDiscRotationIndex = newIndex;
+    }
+
+    function getCpuRailwayItem() {
+        return cpuRailwayItem;
     }
     // ===
 
@@ -107,15 +119,18 @@ function rockPaperScissors(
     return {
         initialize,
         getRpsSceneWrapper,
+        getDuelRailway,
         getPlayerSelectedSlotIndex,
         setPlayerSelectedIndex,
         getPlayerDiscRotationIndex,
         setPlayerDiscRotationIndex,
         getRpsPlayerButtons,
+        getPlayerRailwayItem,
         getCpuSelectedSlotIndex,
         setCpuSelectedIndex,
         getCpuDiscRotationIndex,
         setCpuDiscRotationIndex,
+        getCpuRailwayItem,
         handleBeginRpsGame,
         handleEndRpsGame
     }

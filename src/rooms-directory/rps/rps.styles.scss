@@ -165,14 +165,16 @@
     .player-railway-item {
         width: 100%;
         position: absolute;
-        // top: 26%;
-        top: 0%;
+        bottom: 0%;
     }
 
     .cpu-railway-item {
         width: 100%;
         position: absolute;
-        // bottom: 26%;
-        bottom: 0%;
+        top: 0%;
     }
+}
+
+.hidden {
+    visibility: none;
 }
