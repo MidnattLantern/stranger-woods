@@ -16,6 +16,9 @@ function rockPaperScissors(
     const buttonsTable = rpsUI.buttonsTable();
     const rpsPlayerButtons = rpsUI.rpsPlayerButtons();
     const rpsCpuButtons = rpsUI.rpsCpuButtons();
+    const duelRailway = rpsUI.duelRailway();
+    const playerRailwayItem = rpsUI.playerRailwayItem();
+    const cpuRailwayItem = rpsUI.cpuRailwayItem();
 
     function initialize() {
         rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
@@ -84,7 +87,12 @@ function rockPaperScissors(
         gameSessionWrapper.append(buttonsTable);
         buttonsTable.append(
             rpsPlayerButtons,
-            rpsCpuButtons
+            rpsCpuButtons,
+            duelRailway
+        );
+        duelRailway.append(
+            playerRailwayItem,
+            cpuRailwayItem
         );
 
         rpsELifecycle.beginPlayerSlotsLifecycle();

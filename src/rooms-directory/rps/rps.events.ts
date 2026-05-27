@@ -79,7 +79,9 @@ function handleKeyboardRotateDisc(event: KeyboardEvent) {
     if (event.key === "ArrowLeft") handleRotate(-1);
     if (event.key === "ArrowRight") handleRotate(1);
     if (event.key === "ArrowUp") rpsGame.initiateDuel();
-    if (event.key === " ") rpsGame.initiateDuel();
+    if (event.key === " ") {
+        rpsGame.initiateDuel();
+    };
 }
 
 function handleCpuRotateDisc(rotationIndex: number = Math.random()) {
@@ -119,26 +121,26 @@ function handleFullscreenNextStoryline(event: KeyboardEvent) {
 
 }
 
-function handleSelectSlot(event: KeyboardEvent) {
-    event.preventDefault();
-    const slotIndexMinRange = 1;
-    const slotIndexMaxRange = 3;
-    let playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-    if (event.key === 'ArrowLeft') {
-        if (playerSelectedSlotIndex == slotIndexMinRange) return;
-        rps.setPlayerSelectedIndex(playerSelectedSlotIndex - 1);
-        playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-        rpsAnimate.playerSpinToSlot(playerSelectedSlotIndex);
-        rpsGame.initiateDuel(playerSelectedSlotIndex);
-    }
-    if (event.key === 'ArrowRight') {
-        if (playerSelectedSlotIndex == slotIndexMaxRange) return;
-        rps.setPlayerSelectedIndex(playerSelectedSlotIndex + 1);
-        playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-        rpsAnimate.playerSpinToSlot(playerSelectedSlotIndex);
-        rpsGame.initiateDuel(playerSelectedSlotIndex);
-    }
-}
+// function handleSelectSlot(event: KeyboardEvent) {
+//     event.preventDefault();
+//     const slotIndexMinRange = 1;
+//     const slotIndexMaxRange = 3;
+//     let playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
+//     if (event.key === 'ArrowLeft') {
+//         if (playerSelectedSlotIndex == slotIndexMinRange) return;
+//         rps.setPlayerSelectedIndex(playerSelectedSlotIndex - 1);
+//         playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
+//         rpsAnimate.playerSpinToSlot(playerSelectedSlotIndex);
+//         rpsGame.initiateDuel(playerSelectedSlotIndex);
+//     }
+//     if (event.key === 'ArrowRight') {
+//         if (playerSelectedSlotIndex == slotIndexMaxRange) return;
+//         rps.setPlayerSelectedIndex(playerSelectedSlotIndex + 1);
+//         playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
+//         rpsAnimate.playerSpinToSlot(playerSelectedSlotIndex);
+//         rpsGame.initiateDuel(playerSelectedSlotIndex);
+//     }
+// }
 
 export const rpsEvents = {
     handleClickTapRotateDiscLeft,
@@ -146,5 +148,5 @@ export const rpsEvents = {
     handleKeyboardRotateDisc,
     handleCpuRotateDisc,
     handleFullscreenNextStoryline,
-    handleSelectSlot
+    // handleSelectSlot
 }

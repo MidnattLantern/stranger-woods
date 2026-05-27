@@ -43,10 +43,39 @@ function rpsCpuButtons() {
 }
 // =======
 
+// ===============
+// experimentation
+// ===============
+function duelRailway() {
+    const container = document.createElement("duel-railway");
+    container.className = "duel-railway";
+    return container;
+}
+
+function playerRailwayItem() {
+    const item = document.createElement("img");
+    item.src = "elements/fire-icon.webp";
+    item.id = "playerRailwayItem";
+    item.className = "player-railway-item";
+    return item;
+}
+
+function cpuRailwayItem() {
+    const item = document.createElement("img");
+    item.src = "elements/fire-icon.webp";
+    item.id = "cpuRailwayItem";
+    item.className = "cpu-railway-item";
+    return item;
+}
+// ===============
+
 export const rpsUI = {
     rockPaperScissorsSceneWrapper,
     gameSessionWrapper,
     buttonsTable,
     rpsPlayerButtons,
-    rpsCpuButtons
+    rpsCpuButtons,
+    duelRailway,
+    playerRailwayItem,
+    cpuRailwayItem
 }

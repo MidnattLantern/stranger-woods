@@ -38,6 +38,7 @@ h1 {
     z-index: 1;
     font-size: 1.6rem;
     text-align: center;
+    pointer-events: none;
 
     overflow: hidden; // prevent pulsing animation from causing a horizontal scroll
 }
