@@ -21,8 +21,6 @@ function handleClickTapRotateDiscLeft(event: Event) {
         }
         rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
-        // console.log("Player selected slot index:", rps.getPlayerSelectedSlotIndex());
-        // console.log("Player disc rotation index:", newPlayerDiscRotationIndex);
     }
     event.preventDefault();
     handleRotate();
@@ -46,33 +44,41 @@ function handleClickTapRotateDiscRight(event: Event) {
         }
         rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
-        // console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
-        // console.log("Player disc rotation index", newPlayerDiscRotationIndex);
     }
     event.preventDefault();
     handleRotate();
 }
 
-function handleKeyboardRotateDisc(event: KeyboardEvent) {
+function handleKeyboardRotateDisc(event: KeyboardEvent, spinCpu: boolean = false) {
     const MIN_EDGE_INDEX: number = 0;
     const MAX_EDGE_INDEX: number = 11;
     function handleRotate(directionMultiplier: 1 | -1) {
         const currentPlayerSelectedSlotIndex: number = rps.getPlayerSelectedSlotIndex();
         const currentPlayerDiscRotationIndex: number = rps.getPlayerDiscRotationIndex();
         let newPlayerSelectedSlotIndex: number = currentPlayerSelectedSlotIndex + (1 * directionMultiplier);
-        const newPlayerDiscRotationIndex: number = currentPlayerDiscRotationIndex + (1 * directionMultiplier);
+        let newPlayerDiscRotationIndex: number = currentPlayerDiscRotationIndex + (1 * directionMultiplier);
 
-        rpsAnimate.playerSpinToSlot(newPlayerDiscRotationIndex);
-        if (newPlayerSelectedSlotIndex < MIN_EDGE_INDEX) {
-            newPlayerSelectedSlotIndex = MAX_EDGE_INDEX;
-        }
-        if (newPlayerSelectedSlotIndex > MAX_EDGE_INDEX) {
-            newPlayerSelectedSlotIndex = MIN_EDGE_INDEX;
-        }
+        if (newPlayerSelectedSlotIndex < MIN_EDGE_INDEX) newPlayerSelectedSlotIndex = MAX_EDGE_INDEX;
+        if (newPlayerSelectedSlotIndex > MAX_EDGE_INDEX) newPlayerSelectedSlotIndex = MIN_EDGE_INDEX;
+
         rps.setPlayerSelectedIndex(newPlayerSelectedSlotIndex);
         rps.setPlayerDiscRotationIndex(newPlayerDiscRotationIndex);
-        // console.log("Player selected slot index", rps.getPlayerSelectedSlotIndex());
-        // console.log("Player disc rotation index", newPlayerDiscRotationIndex);
+        rpsAnimate.playerSpinToSlot(newPlayerDiscRotationIndex);
+
+        if (spinCpu) {
+            const currentCpuSelectedSlotIndex: number = rps.getCpuSelectedSlotIndex();
+            const currentCpuDiscRotationIndex: number = rps.getCpuDiscRotationIndex();
+            let newCpuSelectedSlotIndex: number = currentCpuSelectedSlotIndex + (1 * directionMultiplier);
+            let newCpuDiscRotationIndex: number = currentCpuDiscRotationIndex + (1 * directionMultiplier);
+
+            if (newCpuSelectedSlotIndex < MIN_EDGE_INDEX) newCpuSelectedSlotIndex = MAX_EDGE_INDEX;
+            if (newCpuSelectedSlotIndex > MAX_EDGE_INDEX) newCpuSelectedSlotIndex = MIN_EDGE_INDEX;
+
+            rps.setCpuSelectedIndex(newCpuSelectedSlotIndex);
+            rps.setCpuDiscRotationIndex(newCpuDiscRotationIndex);
+            rpsAnimate.cpuSpinToSlot(newCpuDiscRotationIndex);
+        }
+
     }
     event.preventDefault();
 
@@ -88,11 +94,12 @@ function handleCpuRotateDisc(rotationIndex: number = Math.random()) {
     const MIN_EDGE_INDEX: number = 0;
     const MAX_EDGE_INDEX: number = 11;
 
-    function handleRotate(directionMultiplier: 1 | -1) {
+    function handleRotate(directionMultiplier: -1 | 1) {
         const currentCpuSelectedSlotIndex: number = rps.getCpuSelectedSlotIndex();
         const currentCpuDiscRotationIndex: number = rps.getCpuDiscRotationIndex();
         let newCpuSelectedSlotIndex: number = currentCpuSelectedSlotIndex + (1 * directionMultiplier);
         const newCpuDiscRotationIndex: number = currentCpuDiscRotationIndex + (1 * directionMultiplier);
+
         rpsAnimate.cpuSpinToSlot(newCpuDiscRotationIndex);
         if (newCpuSelectedSlotIndex < MIN_EDGE_INDEX) {
             newCpuSelectedSlotIndex = MAX_EDGE_INDEX;
@@ -102,13 +109,17 @@ function handleCpuRotateDisc(rotationIndex: number = Math.random()) {
         }
         rps.setCpuSelectedIndex(newCpuSelectedSlotIndex);
         rps.setCpuDiscRotationIndex(newCpuDiscRotationIndex);
-        // console.log("Cpu selected slot index", rps.getCpuSelectedSlotIndex());
-        // console.log("Cpu disc rotation index", newCpuDiscRotationIndex);
     }
 
-    if (rotationIndex < 0.5) { // turn left
+    if (rotationIndex < 0.25) {
         handleRotate(-1);
-    } else { // turn right
+        handleRotate(-1);
+    } else if (rotationIndex > 0.25 && rotationIndex < 0.5) {
+        handleRotate(-1);
+    } else if (rotationIndex > 0.5 && rotationIndex < 0.75) {
+        handleRotate(1);
+    } else {
+        handleRotate(1);
         handleRotate(1);
     }
 }
@@ -118,35 +129,12 @@ function handleFullscreenNextStoryline(event: KeyboardEvent) {
     if (event.key === "Enter" || event.key === " ") {
         rpsStoryController.handleNextStoryline();
     }
-
 }
-
-// function handleSelectSlot(event: KeyboardEvent) {
-//     event.preventDefault();
-//     const slotIndexMinRange = 1;
-//     const slotIndexMaxRange = 3;
-//     let playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-//     if (event.key === 'ArrowLeft') {
-//         if (playerSelectedSlotIndex == slotIndexMinRange) return;
-//         rps.setPlayerSelectedIndex(playerSelectedSlotIndex - 1);
-//         playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-//         rpsAnimate.playerSpinToSlot(playerSelectedSlotIndex);
-//         rpsGame.initiateDuel(playerSelectedSlotIndex);
-//     }
-//     if (event.key === 'ArrowRight') {
-//         if (playerSelectedSlotIndex == slotIndexMaxRange) return;
-//         rps.setPlayerSelectedIndex(playerSelectedSlotIndex + 1);
-//         playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex();
-//         rpsAnimate.playerSpinToSlot(playerSelectedSlotIndex);
-//         rpsGame.initiateDuel(playerSelectedSlotIndex);
-//     }
-// }
 
 export const rpsEvents = {
     handleClickTapRotateDiscLeft,
     handleClickTapRotateDiscRight,
     handleKeyboardRotateDisc,
     handleCpuRotateDisc,
-    handleFullscreenNextStoryline,
-    // handleSelectSlot
+    handleFullscreenNextStoryline
 }

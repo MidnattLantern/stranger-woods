@@ -46,9 +46,6 @@ function beginMouseTapInputLifecycle() {
     selRSlotBtnFocArea?.addEventListener("click", rpsEvents.handleClickTapRotateDiscRight);
 }
 
-function beginKeyboardInputLifecycle() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleSelectSlot);
-}
 // =====
 
 // =====
@@ -97,10 +94,6 @@ function resumeMouseTapInputLifecycle() {
 function endFullscreenNextStorylineLifecycle() {
     rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleFullscreenNextStoryline);
 }
-
-function endKeyboardInputLifecycle() {
-    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleSelectSlot);
-}
 // ===
 
 export const rpsELifecycle = {
@@ -108,11 +101,9 @@ export const rpsELifecycle = {
     beginCpuSlotsLifecycle,
     beginFullscreenNextStorylineLifecycle,
     beginMouseTapInputLifecycle,
-    beginKeyboardInputLifecycle,
     pausePlayerSlotsLifecycle,
     pauseMouseTapInputLifecycle,
     resumePlayerSlotsLifecycle,
     resumeMouseTapInputLifecycle,
-    endFullscreenNextStorylineLifecycle,
-    endKeyboardInputLifecycle
+    endFullscreenNextStorylineLifecycle
 }

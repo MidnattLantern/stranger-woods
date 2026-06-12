@@ -41,7 +41,7 @@ function cpuSpinToSlot(slotIndex: number = rps.getCpuDiscRotationIndex()) {
     })
 }
 
-function runPlayerRailItemWin() {
+function runCpuRailItemWin() {
     let playerTimeline = gsap.timeline();
     let cpuTimeline = gsap.timeline();
 
@@ -75,7 +75,7 @@ function runPlayerRailItemWin() {
     });
 }
 
-function runCpuRailItemWin() {
+function runPlayerRailItemWin() {
     let playerTimeline = gsap.timeline();
     let cpuTimeline = gsap.timeline();
 

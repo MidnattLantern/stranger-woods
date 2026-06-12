@@ -28,12 +28,12 @@ function initiateDuel(
         timeout = setTimeout(resume, 1000);
     }
     function resume() {
-        rps.getDuelRailway().classList.add("hidden");
-        rpsELifecycle.resumeMouseTapInputLifecycle();
-        rpsELifecycle.resumePlayerSlotsLifecycle();
         rpsEvents.handleCpuRotateDisc();
+        rps.getDuelRailway().classList.add("hidden");
         playerSelectedSlotItem?.classList.remove("hidden");
         cpuSelectedSlotItem?.classList.remove("hidden");
+        rpsELifecycle.resumeMouseTapInputLifecycle();
+        rpsELifecycle.resumePlayerSlotsLifecycle();
     }
     rpsELifecycle.pauseMouseTapInputLifecycle();
     rpsELifecycle.pausePlayerSlotsLifecycle();

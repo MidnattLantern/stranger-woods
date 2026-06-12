@@ -11,3 +11,15 @@ The game board has six slots. One of which is water, fire, or earth. The goal of
 
 ## Game-state index & GUI visual index
 Working with this component taught me to seperate source-of-truth-state from the visual corresponding state.
+
+## Technical
+### function handleCpuRotateDisc at rps.events
+The handleRotate function may only accept 1 or -1. Passing another value such as 2 will cause issues with the transition between the roof and the floor values, creating a mismatch. To make it spin further than just one slot, simply call the function twice or more.
+```js
+// incorrect ❌
+handleRotate(-2);
+
+// correct ✅
+handleRotate(-1);
+handleRotate(-1);
+```
