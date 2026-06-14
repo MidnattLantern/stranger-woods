@@ -33,7 +33,8 @@ function rockPaperScissors(
         rpsELifecycle.beginFullscreenNextStorylineLifecycle();
         rpsSceneWrapper.focus();
         // test
-        rpsBatch.shuffleBatch();
+        setPlayerRpsBatch(rpsBatch.shuffleBatch("earth"));
+        setCpuRpsBatch(rpsBatch.shuffleBatch("fire"));
     }
 
     function getRpsSceneWrapper() {
