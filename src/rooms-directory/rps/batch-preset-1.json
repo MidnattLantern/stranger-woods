@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Fire",
+        "element": "fire",
+        "assetSource": "elements/fire-icon.webp"
+    },
+    {
+        "name": "Earth",
+        "element": "earth",
+        "assetSource": "elements/earth-icon.webp"
+    },
+    {
+        "name": "Amethyst",
+        "element": "fire",
+        "assetSource": "artifacts/amethyst.webp"
+    },
+    {
+        "name": "Walking pot",
+        "element": "earth",
+        "assetSource": "artifacts/walking-pot.webp"
+    },
+    {
+        "name": "Brother's sunflower",
+        "element": "earth",
+        "assetSource": "artifacts/brothers-sunflower.webp"
+    },
+    {
+        "name": "Key",
+        "element": "water",
+        "assetSource": "artifacts/key.webp"
+    },
+    {
+        "name": "Cursed egg",
+        "element": "water",
+        "assetSource": "artifacts/cursed-egg.webp"
+    },
+    {
+        "name": "Feather",
+        "element": "earth",
+        "assetSource": "artifacts/feather.webp"
+    },
+    {
+        "name": "Fish statue",
+        "element": "water",
+        "assetSource": "artifacts/fish-statue.webp"
+    },
+    {
+        "name": "Tiny cyclope",
+        "element": "earth",
+        "assetSource": "artifacts/tiny-cyclope.webp"
+    },
+    {
+        "name": "Twilight feline",
+        "element": "earth",
+        "assetSource": "artifacts/twilight-feline.webp"
+    },
+    {
+        "name": "Water",
+        "element": "water",
+        "assetSource": "elements/water-icon.webp"
+    }
+]

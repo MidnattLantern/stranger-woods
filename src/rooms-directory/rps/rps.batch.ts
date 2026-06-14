@@ -7,6 +7,10 @@ import walkingPot from "/artifacts/walking-pot.webp";
 import brothersSunflower from "/artifacts/brothers-sunflower.webp";
 import key from "/artifacts/key.webp";
 import cursedEgg from "/artifacts/cursed-egg.webp";
+// import feather from "/artifacts/feather.webp";
+// import fishStatue from "/artifacts/fish-statue.webp";
+// import tinyCyclope from "/artifacts/tiny-cyclope.webp";
+// import twilightFeline from "/artifacts/twilight-feline.webp";
 import type { ISlot } from "./models";
 
 function shuffleBatch(includeRawElement: false | "fire" | "water" | "earth" = false) {

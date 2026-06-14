@@ -6,6 +6,7 @@ import "./rps.styles.scss";
 import { rpsUI } from "./rps.ui";
 import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
 import { sceneWrapper } from "@/scenes/scene-handler";
+import batchPreset1 from "./batch-preset-1.json";
 
 function rockPaperScissors(
     rpsSceneWrapper: any = null,
@@ -33,7 +34,8 @@ function rockPaperScissors(
         rpsELifecycle.beginFullscreenNextStorylineLifecycle();
         rpsSceneWrapper.focus();
         // test
-        setPlayerRpsBatch(rpsBatch.shuffleBatch("earth"));
+        // setPlayerRpsBatch(rpsBatch.shuffleBatch("earth"));
+        setPlayerRpsBatch(batchPreset1);
         setCpuRpsBatch(rpsBatch.shuffleBatch("fire"));
     }
 
@@ -76,7 +78,7 @@ function rockPaperScissors(
         return playerRpsBatch;
     }
 
-    function setPlayerRpsBatch(newBatch: ISlot[]) {
+    function setPlayerRpsBatch(newBatch: ISlot[] | any) {
         playerRpsBatch = newBatch;
     }
     // ======
