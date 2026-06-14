@@ -1,3 +1,5 @@
+import type { ISlot } from "./models";
+import { rpsBatch } from "./rps.batch";
 import { rpsELifecycle } from "./rps.elifecycle";
 import { rpsStoryController } from "./rps.story";
 import "./rps.styles.scss";
@@ -9,8 +11,10 @@ function rockPaperScissors(
     rpsSceneWrapper: any = null,
     playerSelectedSlotIndex: number = 0,
     playerDiscRotationIndex: number = 0,
+    playerRpsBatch: ISlot[],
     cpuSelectedSlotIndex: number = 0,
-    cpuDiscRotationIndex: number = 0
+    cpuDiscRotationIndex: number = 0,
+    cpuRpsBatch: ISlot[]
 ) {
     const gameSessionWrapper = rpsUI.gameSessionWrapper();
     const buttonsTable = rpsUI.buttonsTable();
@@ -28,6 +32,8 @@ function rockPaperScissors(
         rpsStoryController.handleInitializeStoryline();
         rpsELifecycle.beginFullscreenNextStorylineLifecycle();
         rpsSceneWrapper.focus();
+        // test
+        rpsBatch.shuffleBatch();
     }
 
     function getRpsSceneWrapper() {
@@ -64,6 +70,14 @@ function rockPaperScissors(
     function getPlayerRailwayItem() {
         return playerRailwayItem;
     }
+
+    function getPlayerRpsBatch() {
+        return playerRpsBatch;
+    }
+
+    function setPlayerRpsBatch(newBatch: ISlot[]) {
+        playerRpsBatch = newBatch;
+    }
     // ======
 
     // ===
@@ -87,6 +101,14 @@ function rockPaperScissors(
 
     function getCpuRailwayItem() {
         return cpuRailwayItem;
+    }
+
+    function getCpuRpsBatch() {
+        return cpuRpsBatch;
+    }
+
+    function setCpuRpsBatch(newBatch: ISlot[]) {
+        cpuRpsBatch = newBatch;
     }
     // ===
 
@@ -126,11 +148,15 @@ function rockPaperScissors(
         setPlayerDiscRotationIndex,
         getRpsPlayerButtons,
         getPlayerRailwayItem,
+        getPlayerRpsBatch,
+        setPlayerRpsBatch,
         getCpuSelectedSlotIndex,
         setCpuSelectedIndex,
         getCpuDiscRotationIndex,
         setCpuDiscRotationIndex,
         getCpuRailwayItem,
+        getCpuRpsBatch,
+        setCpuRpsBatch,
         handleBeginRpsGame,
         handleEndRpsGame
     }

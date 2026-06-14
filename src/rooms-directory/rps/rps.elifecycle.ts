@@ -1,7 +1,7 @@
 import { rps } from "./rps";
 import { rpsEvents } from "./rps.events";
-import cpuBatchData from "./cpu-batch.json";
-import playerBatchData from "./player-batch.json";
+// import cpuBatchData from "./cpu-batch.json";
+// import playerBatchData from "./player-batch.json";
 
 // =====
 // begin
@@ -11,6 +11,7 @@ function beginFullscreenNextStorylineLifecycle() {
 }
 
 function beginPlayerSlotsLifecycle() {
+    const playerBatchData = rps.getPlayerRpsBatch();
     const batchRange: number = playerBatchData.length -1; // -1 counters back to 0 base index
     if (playerBatchData.length !== 12) {
         console.error("Player's batch must have 12 items");
@@ -26,6 +27,7 @@ function beginPlayerSlotsLifecycle() {
 }
 
 function beginCpuSlotsLifecycle() {
+    const cpuBatchData = rps.getCpuRpsBatch();
     const batchRange: number = cpuBatchData.length -1; // -1 counters back to 0 base index
     if (cpuBatchData.length !== 12) {
         console.error("Cpu's batch must have 12 items");

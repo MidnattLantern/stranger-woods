@@ -1,5 +1,5 @@
-import playerBatchData from "./player-batch.json";
-import cpuBatchData from "./cpu-batch.json";
+// import playerBatchData from "./player-batch.json";
+// import cpuBatchData from "./cpu-batch.json";
 import { rps } from "./rps";
 import type { ISlot } from "./models";
 import { rpsELifecycle } from "./rps.elifecycle";
@@ -9,19 +9,23 @@ import { rpsAnimate } from "./rps.animate";
 function initiateDuel(
     playerSlotIndex: number = rps.getPlayerSelectedSlotIndex(), // 0 - 11
     cpuSlotIndex: number = rps.getCpuSelectedSlotIndex(), // 0 - 11
-    playerBatch = playerBatchData as ISlot[],
-    cpuBatch = cpuBatchData as ISlot[],
+    // playerBatch = playerBatchData as ISlot[],
+    // cpuBatch = cpuBatchData as ISlot[],
+    playerBatch = rps.getPlayerRpsBatch(),
+    cpuBatch = rps.getCpuRpsBatch(),
     playerSlotElementType: "fire" | "water" | "earth" = playerBatch[playerSlotIndex].element,
     cpuSlotElementType: "fire" | "water" | "earth" = cpuBatch[cpuSlotIndex].element,
     winner: "player" | "cpu" | null = null,
     playerSelectedSlotIndex = rps.getPlayerSelectedSlotIndex(),
     playerSelectedSlotItem = document.getElementById(`playerSlot${playerSelectedSlotIndex}`),
     playerRailwayItem = rps.getPlayerRailwayItem(),
-    playerRailwayIconToUse = playerBatchData[playerSelectedSlotIndex].assetSource,
+    // playerRailwayIconToUse = playerBatchData[playerSelectedSlotIndex].assetSource,
+    playerRailwayIconToUse = playerBatch[playerSelectedSlotIndex].assetSource,
     cpuSelectedSlotIndex = rps.getCpuSelectedSlotIndex(),
     cpuSelectedSlotItem = document.getElementById(`cpuSlot${cpuSelectedSlotIndex}`),
     cpuRailwayItem = rps.getCpuRailwayItem(),
-    cpuRailwayIconToUse = cpuBatchData[cpuSelectedSlotIndex].assetSource
+    // cpuRailwayIconToUse = cpuBatchData[cpuSelectedSlotIndex].assetSource
+    cpuRailwayIconToUse = cpuBatch[cpuSelectedSlotIndex].assetSource
 ) {
     let timeout;
     function myTimeout() {
