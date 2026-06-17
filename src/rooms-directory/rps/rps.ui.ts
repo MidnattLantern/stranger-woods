@@ -43,9 +43,9 @@ function rpsCpuButtons() {
 }
 // =======
 
-// ===============
-// experimentation
-// ===============
+// =======
+// railway
+// =======
 function duelRailway() {
     const container = document.createElement("duel-railway");
     container.classList.add("duel-railway", "hidden");
@@ -67,7 +67,29 @@ function cpuRailwayItem() {
     item.className = "cpu-railway-item";
     return item;
 }
-// ===============
+// =======
+
+// ================
+// assignment table
+// ================
+function assignTableWrapper() {
+    const container = document.createElement("div");
+    container.className = "assign-table";
+    return container;
+}
+
+function assignTableTableContainer() {
+    const table = document.createElement("div");
+    return table;
+}
+
+function showHideAssignTableButton() {
+    const button = document.createElement("button");
+    button.className = "show-hide-assign-table-button";
+    button.textContent = "x";
+    return button;
+}
+// ================
 
 export const rpsUI = {
     rockPaperScissorsSceneWrapper,
@@ -78,4 +100,10 @@ export const rpsUI = {
     duelRailway,
     playerRailwayItem,
     cpuRailwayItem
+}
+
+export const rpsUIAssignTable = {
+    assignTableWrapper,
+    assignTableTableContainer,
+    showHideAssignTableButton
 }

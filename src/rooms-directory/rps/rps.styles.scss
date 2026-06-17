@@ -157,10 +157,11 @@
 
 .duel-railway {
     position: absolute;
-    top: 11%;
+    top: 10.5%;
     width: 16%;
-    height: 78%;
+    height: 78.8%;
     pointer-events: none;
+    box-sizing: content-box;
 
     .player-railway-item {
         width: 100%;
@@ -177,4 +178,63 @@
 
 .hidden {
     visibility: none;
+    display: none;
+}
+
+// assign table
+.assign-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 1;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transition: width 0.3s ease;
+    border: 1px solid var(--color-border-transparent);
+    border-radius: 5px;
+    background-color: var(--color-surface-body);
+    backdrop-filter: blur(10px);
+
+    button {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        position: absolute;
+        left: 4px;
+    }
+
+    table {
+        position: absolute;
+        right: 0;
+        top: 10px;
+        width: 140px;
+        height: calc(100% - 20px);
+        border-left: 1px dashed var(--color-border-transparent);
+        padding: 5px;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+
+    .hide-table {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+}
+.assign-table__expanded {
+    width: 200px;
+    transition: width 0.3s ease;
+}
+
+.show-hide-assign-table-button {
+
+}
+
+.assign-table__item-image {
+    width: auto;
+    height: 50px;
 }

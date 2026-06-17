@@ -3,10 +3,11 @@ import { rpsBatch } from "./rps.batch";
 import { rpsELifecycle } from "./rps.elifecycle";
 import { rpsStoryController } from "./rps.story";
 import "./rps.styles.scss";
-import { rpsUI } from "./rps.ui";
+import { rpsUI, rpsUIAssignTable } from "./rps.ui";
 import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
 import { sceneWrapper } from "@/scenes/scene-handler";
 import batchPreset1 from "./batch-preset-1.json";
+import { rpsAssignTable } from "./rps.assign-table";
 
 function rockPaperScissors(
     rpsSceneWrapper: any = null,
@@ -15,7 +16,8 @@ function rockPaperScissors(
     playerRpsBatch: ISlot[],
     cpuSelectedSlotIndex: number = 0,
     cpuDiscRotationIndex: number = 0,
-    cpuRpsBatch: ISlot[]
+    cpuRpsBatch: ISlot[],
+    assignTableOpen: boolean = false
 ) {
     const gameSessionWrapper = rpsUI.gameSessionWrapper();
     const buttonsTable = rpsUI.buttonsTable();
@@ -24,6 +26,43 @@ function rockPaperScissors(
     const duelRailway = rpsUI.duelRailway();
     const playerRailwayItem = rpsUI.playerRailwayItem();
     const cpuRailwayItem = rpsUI.cpuRailwayItem();
+
+    // Assign table
+    const assignTableWrapper = rpsUIAssignTable.assignTableWrapper();
+    const assignTableTableContainer = rpsUIAssignTable.assignTableTableContainer();
+    const showHideAssignTableButton = rpsUIAssignTable.showHideAssignTableButton();
+    const rpsAssignTableTable = rpsAssignTable.rpsAssignTableTable();
+
+    // assignTableWrapper.addEventListener("click", rpsAssignTable.handleToggleAssignTable);
+    showHideAssignTableButton.addEventListener("click", rpsAssignTable.handleToggleAssignTable);
+
+    assignTableWrapper.append(assignTableTableContainer, showHideAssignTableButton);
+
+    function getShowHideAssignTableButton() {
+        return showHideAssignTableButton;
+    };
+
+    function getAssignTableOpen() {
+        return assignTableOpen;
+    };
+
+    function toggleAssignTableOpen() {
+        console.log("foo");
+        assignTableOpen = !assignTableOpen;
+        if (assignTableOpen) {
+            setTimeout(() => {
+                rpsAssignTableTable.classList.remove("hide-table");
+            }, 150);
+            assignTableTableContainer.append(rpsAssignTableTable);
+            assignTableWrapper.classList.add("assign-table__expanded");
+        } else {
+            setTimeout(() => {
+                assignTableTableContainer.innerHTML = '';
+                assignTableWrapper.classList.remove("assign-table__expanded");
+            }, 150);
+            rpsAssignTableTable.classList.add("hide-table");
+        }
+    };
 
     function initialize() {
         rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
@@ -34,7 +73,6 @@ function rockPaperScissors(
         rpsELifecycle.beginFullscreenNextStorylineLifecycle();
         rpsSceneWrapper.focus();
         // test
-        // setPlayerRpsBatch(rpsBatch.shuffleBatch("earth"));
         setPlayerRpsBatch(batchPreset1);
         setCpuRpsBatch(rpsBatch.shuffleBatch("fire"));
     }
@@ -121,7 +159,7 @@ function rockPaperScissors(
         rpsSceneWrapper.focus();
 
         rpsSceneWrapper.append(gameSessionWrapper);
-        gameSessionWrapper.append(buttonsTable);
+        gameSessionWrapper.append(buttonsTable, assignTableWrapper);
         buttonsTable.append(
             rpsPlayerButtons,
             rpsCpuButtons,
@@ -161,7 +199,10 @@ function rockPaperScissors(
         getCpuRpsBatch,
         setCpuRpsBatch,
         handleBeginRpsGame,
-        handleEndRpsGame
+        handleEndRpsGame,
+        getShowHideAssignTableButton,
+        getAssignTableOpen,
+        toggleAssignTableOpen
     }
 }
 
