@@ -8,6 +8,8 @@ import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
 import { sceneWrapper } from "@/scenes/scene-handler";
 import batchPreset1 from "./batch-preset-1.json";
 import { rpsAssignTable } from "./rps.assign-table";
+import expandTableIcon from "@assets/expand-table-icon.svg?raw";
+import closeTableIcon from "@assets/close-table-icon.svg?raw";
 
 function rockPaperScissors(
     rpsSceneWrapper: any = null,
@@ -36,7 +38,7 @@ function rockPaperScissors(
     // assignTableWrapper.addEventListener("click", rpsAssignTable.handleToggleAssignTable);
     showHideAssignTableButton.addEventListener("click", rpsAssignTable.handleToggleAssignTable);
 
-    assignTableWrapper.append(assignTableTableContainer, showHideAssignTableButton);
+    assignTableWrapper.append(showHideAssignTableButton, assignTableTableContainer);
 
     function getShowHideAssignTableButton() {
         return showHideAssignTableButton;
@@ -52,14 +54,16 @@ function rockPaperScissors(
         if (assignTableOpen) {
             setTimeout(() => {
                 rpsAssignTableTable.classList.remove("hide-table");
-            }, 150);
+            }, 100);
+            showHideAssignTableButton.innerHTML = `Hide assign table ${closeTableIcon}`;
             assignTableTableContainer.append(rpsAssignTableTable);
             assignTableWrapper.classList.add("assign-table__expanded");
         } else {
             setTimeout(() => {
                 assignTableTableContainer.innerHTML = '';
                 assignTableWrapper.classList.remove("assign-table__expanded");
-            }, 150);
+            }, 100);
+            showHideAssignTableButton.innerHTML = `Show assign table ${expandTableIcon}`;
             rpsAssignTableTable.classList.add("hide-table");
         }
     };

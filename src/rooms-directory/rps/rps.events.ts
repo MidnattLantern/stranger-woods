@@ -2,6 +2,7 @@ import { rpsAnimate } from "./rps.animate";
 import { rpsGame } from "./rps.game";
 import { rps } from "./rps";
 import { rpsStoryController } from "./rps.story";
+import { rpsAssignTable } from "./rps.assign-table";
 
 function handleClickTapRotateDiscLeft(event: Event) {
     const MIN_EDGE_INDEX: number = 0;
@@ -85,9 +86,10 @@ function handleKeyboardRotateDisc(event: KeyboardEvent, spinCpu: boolean = false
     if (event.key === "ArrowLeft") handleRotate(-1);
     if (event.key === "ArrowRight") handleRotate(1);
     if (event.key === "ArrowUp") rpsGame.initiateDuel();
-    if (event.key === " ") {
-        rpsGame.initiateDuel();
-    };
+    if (event.key === " ") rpsGame.initiateDuel();
+    if (event.key === "x") rpsGame.initiateDuel();
+    // inventory open/ close
+    if (event.key === "z") rpsAssignTable.handleToggleAssignTable();
 }
 
 function handleCpuRotateDisc(rotationIndex: number = Math.random()) {

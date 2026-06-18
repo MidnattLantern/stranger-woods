@@ -80,13 +80,14 @@ function assignTableWrapper() {
 
 function assignTableTableContainer() {
     const table = document.createElement("div");
+    table.className = "assign-table__table-container";
     return table;
 }
 
 function showHideAssignTableButton() {
     const button = document.createElement("button");
     button.className = "show-hide-assign-table-button";
-    button.textContent = "x";
+    button.textContent = "Show assign table";
     return button;
 }
 // ================

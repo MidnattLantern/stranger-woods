@@ -194,18 +194,32 @@
     z-index: 1;
     overflow-x: hidden;
     overflow-y: hidden;
-    transition: width 0.3s ease;
+    transition: width 0.2s ease;
     border: 1px solid var(--color-border-transparent);
     border-radius: 5px;
     background-color: var(--color-surface-body);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(50px);
 
     button {
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
+        width: 60px;
+        height: 100%;
         position: absolute;
-        left: 4px;
+        left: 0;
+        z-index: 1;
+        border: none;
+        background: var(--color-clear);
+        backdrop-filter: none;
+        box-shadow: none;
+        writing-mode: sideways-lr;
+        text-orientation: sideways;
+
+        svg {
+            position: absolute;
+            bottom: 100px;
+            left: 10px;
+            width: 40px;
+            fill: var(--color-interactive-text-body);
+        }
     }
 
     table {
@@ -217,24 +231,42 @@
         border-left: 1px dashed var(--color-border-transparent);
         padding: 5px;
         opacity: 1;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.2s ease;
     }
 
     .hide-table {
         opacity: 0;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.2s ease;
     }
 }
-.assign-table__expanded {
-    width: 200px;
-    transition: width 0.3s ease;
+
+.assign-table__table-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
 }
 
-.show-hide-assign-table-button {
-
+.assign-table__expanded {
+    width: 200px;
+    transition: width 0.2s ease;
 }
 
 .assign-table__item-image {
     width: auto;
     height: 50px;
+}
+
+@media screen and (max-width: 1250px) {
+    .assign-table__table-container {
+        overflow-y: scroll;
+    }
+    .assign-table__expanded {
+        width: 225px;
+
+        table {
+            width: 150px;
+        }
+    }
+    
 }
