@@ -1,5 +1,6 @@
 import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
 import pseudoElementalsCpuDisc from "@assets/pseudoelementals-cpu-disc.svg?raw";
+import expandTableIcon from "@assets/expand-table-icon.svg?raw";
 
 function rockPaperScissorsSceneWrapper() {
     const rpsSceneWrapper = document.createElement("div");
@@ -87,7 +88,7 @@ function assignTableTableContainer() {
 function showHideAssignTableButton() {
     const button = document.createElement("button");
     button.className = "show-hide-assign-table-button";
-    button.textContent = "Show assign table";
+    button.innerHTML = `Show assign table ${expandTableIcon}`;
     return button;
 }
 // ================

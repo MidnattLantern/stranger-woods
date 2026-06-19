@@ -19,7 +19,8 @@ function rockPaperScissors(
     cpuSelectedSlotIndex: number = 0,
     cpuDiscRotationIndex: number = 0,
     cpuRpsBatch: ISlot[],
-    assignTableOpen: boolean = false
+    assignTableOpen: boolean = false,
+    assignTableSelectedIndex: number = 0
 ) {
     const gameSessionWrapper = rpsUI.gameSessionWrapper();
     const buttonsTable = rpsUI.buttonsTable();
@@ -48,13 +49,27 @@ function rockPaperScissors(
         return assignTableOpen;
     };
 
+    function getAssignTableSelectedIndex() {
+        return assignTableSelectedIndex;
+    };
+
+    function setAssignTableSelectedIndex(newIndex: number) {
+        assignTableSelectedIndex = newIndex;
+    };
+
     function toggleAssignTableOpen() {
         console.log("foo");
         assignTableOpen = !assignTableOpen;
         if (assignTableOpen) {
             setTimeout(() => {
                 rpsAssignTableTable.classList.remove("hide-table");
+                const focusAssignItem = document.getElementById(`assign-item-index-${assignTableSelectedIndex}`);
+                if (!focusAssignItem) return;
+                focusAssignItem.focus();
             }, 100);
+            rpsELifecycle.pauseMouseTapInputLifecycle();
+            rpsELifecycle.pausePlayerSlotsLifecycle();
+            rpsELifecycle.resumeAssignTableInputLifecycle();
             showHideAssignTableButton.innerHTML = `Hide assign table ${closeTableIcon}`;
             assignTableTableContainer.append(rpsAssignTableTable);
             assignTableWrapper.classList.add("assign-table__expanded");
@@ -62,6 +77,10 @@ function rockPaperScissors(
             setTimeout(() => {
                 assignTableTableContainer.innerHTML = '';
                 assignTableWrapper.classList.remove("assign-table__expanded");
+                rpsELifecycle.resumeMouseTapInputLifecycle();
+                rpsELifecycle.resumePlayerSlotsLifecycle();
+                rpsELifecycle.pauseAssignTableInputLifecycle();
+                rpsSceneWrapper.focus();
             }, 100);
             showHideAssignTableButton.innerHTML = `Show assign table ${expandTableIcon}`;
             rpsAssignTableTable.classList.add("hide-table");
@@ -176,6 +195,7 @@ function rockPaperScissors(
 
         rpsELifecycle.beginPlayerSlotsLifecycle();
         rpsELifecycle.beginCpuSlotsLifecycle();
+        rpsELifecycle.beginCanToggleAssignTable();
     }
 
     function handleEndRpsGame() {
@@ -206,7 +226,9 @@ function rockPaperScissors(
         handleEndRpsGame,
         getShowHideAssignTableButton,
         getAssignTableOpen,
-        toggleAssignTableOpen
+        toggleAssignTableOpen,
+        getAssignTableSelectedIndex,
+        setAssignTableSelectedIndex
     }
 }
 

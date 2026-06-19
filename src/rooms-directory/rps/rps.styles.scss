@@ -245,6 +245,30 @@
     width: 100%;
     height: 100%;
     overflow-y: hidden;
+
+    table {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        tr {
+            background-color: var(--color-surface-body);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            td {
+                display: flex;
+            }
+
+            &:focus {
+                outline: 3px solid var(--color-interactive-body-highlighted);
+            }
+        }
+    }
+
 }
 
 .assign-table__expanded {
@@ -253,6 +277,13 @@
 }
 
 .assign-table__item-image {
+    position: relative;
+    width: auto;
+    height: 50px;
+}
+
+.assign-table__item-icon {
+    position: relative;
     width: auto;
     height: 50px;
 }

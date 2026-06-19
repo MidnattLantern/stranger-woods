@@ -1,7 +1,5 @@
 import { rps } from "./rps";
 import { rpsEvents } from "./rps.events";
-// import cpuBatchData from "./cpu-batch.json";
-// import playerBatchData from "./player-batch.json";
 
 // =====
 // begin
@@ -48,6 +46,13 @@ function beginMouseTapInputLifecycle() {
     selRSlotBtnFocArea?.addEventListener("click", rpsEvents.handleClickTapRotateDiscRight);
 }
 
+function beginCanToggleAssignTable() {
+    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleToggleAssignTable);
+}
+
+function beginAssignTableInputLifecycle() {
+    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleNavigateAssignTable);
+}
 // =====
 
 // =====
@@ -67,6 +72,10 @@ function pauseMouseTapInputLifecycle() {
     selRSlotBtnFocArea.removeEventListener("click", rpsEvents.handleClickTapRotateDiscRight);
     selLSlotBtnFocArea.classList.add("element-events-paused");
     selRSlotBtnFocArea.classList.add("element-events-paused");
+}
+
+function pauseAssignTableInputLifecycle() {
+    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleNavigateAssignTable);
 }
 // =====
 
@@ -88,6 +97,10 @@ function resumeMouseTapInputLifecycle() {
     selLSlotBtnFocArea.classList.remove("element-events-paused");
     selRSlotBtnFocArea.classList.remove("element-events-paused");
 }
+
+function resumeAssignTableInputLifecycle() {
+    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleNavigateAssignTable);
+}
 // ======
 
 // ===
@@ -96,6 +109,10 @@ function resumeMouseTapInputLifecycle() {
 function endFullscreenNextStorylineLifecycle() {
     rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleFullscreenNextStoryline);
 }
+
+function endCanToggleAssignTable() {
+    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleToggleAssignTable);
+}
 // ===
 
 export const rpsELifecycle = {
@@ -103,9 +120,17 @@ export const rpsELifecycle = {
     beginCpuSlotsLifecycle,
     beginFullscreenNextStorylineLifecycle,
     beginMouseTapInputLifecycle,
+    beginCanToggleAssignTable,
+    beginAssignTableInputLifecycle,
+
     pausePlayerSlotsLifecycle,
     pauseMouseTapInputLifecycle,
+    pauseAssignTableInputLifecycle,
+
     resumePlayerSlotsLifecycle,
     resumeMouseTapInputLifecycle,
-    endFullscreenNextStorylineLifecycle
+    resumeAssignTableInputLifecycle,
+
+    endFullscreenNextStorylineLifecycle,
+    endCanToggleAssignTable
 }

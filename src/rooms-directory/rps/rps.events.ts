@@ -83,13 +83,9 @@ function handleKeyboardRotateDisc(event: KeyboardEvent, spinCpu: boolean = false
     }
     event.preventDefault();
 
-    if (event.key === "ArrowLeft") handleRotate(-1);
-    if (event.key === "ArrowRight") handleRotate(1);
-    if (event.key === "ArrowUp") rpsGame.initiateDuel();
-    if (event.key === " ") rpsGame.initiateDuel();
-    if (event.key === "x") rpsGame.initiateDuel();
-    // inventory open/ close
-    if (event.key === "z") rpsAssignTable.handleToggleAssignTable();
+    if (event.key === "ArrowLeft" || event.key === "a") handleRotate(-1);
+    if (event.key === "ArrowRight" || event.key === "d") handleRotate(1);
+    if (event.key === " "|| event.key === "x") rpsGame.initiateDuel();
 }
 
 function handleCpuRotateDisc(rotationIndex: number = Math.random()) {
@@ -133,10 +129,48 @@ function handleFullscreenNextStoryline(event: KeyboardEvent) {
     }
 }
 
+function handleToggleAssignTable(event: KeyboardEvent) {
+    if (event.key === "z") rpsAssignTable.handleToggleAssignTable();
+    if (event.key === "e") rpsAssignTable.handleToggleAssignTable();
+}
+
+function handleNavigateAssignTable(event: KeyboardEvent) {
+    event.preventDefault();
+    const TABLE_MIN_INDEX = 0;
+    const TABLE_MAX_INDEX = 11;
+
+    if (event.key === "ArrowUp" || event.key === "w") {
+        console.log("select above item");
+        let newFocusIndex = rps.getAssignTableSelectedIndex() - 1;
+        if (newFocusIndex < TABLE_MIN_INDEX) newFocusIndex = TABLE_MAX_INDEX;
+        rps.setAssignTableSelectedIndex(newFocusIndex);
+        const belowItem = document.getElementById(`assign-item-index-${newFocusIndex}`);
+        if (!belowItem) return;
+        belowItem.focus();
+    }
+    if (event.key === "ArrowDown" || event.key === "s") {
+        console.log("select below item");
+        let newFocusIndex = rps.getAssignTableSelectedIndex() + 1;
+        if (newFocusIndex > TABLE_MAX_INDEX) newFocusIndex = TABLE_MIN_INDEX;
+        rps.setAssignTableSelectedIndex(newFocusIndex);
+        const belowItem = document.getElementById(`assign-item-index-${newFocusIndex}`);
+        if (!belowItem) return;
+        belowItem.focus();
+    }
+    if (event.key === "ArrowLeft" || event.key === "a") {
+        console.log("select left item");
+    }
+    if (event.key === "ArrowRight" || event.key === "d") {
+        console.log("select right item");
+    }
+}
+
 export const rpsEvents = {
     handleClickTapRotateDiscLeft,
     handleClickTapRotateDiscRight,
     handleKeyboardRotateDisc,
     handleCpuRotateDisc,
-    handleFullscreenNextStoryline
+    handleFullscreenNextStoryline,
+    handleToggleAssignTable,
+    handleNavigateAssignTable
 }
