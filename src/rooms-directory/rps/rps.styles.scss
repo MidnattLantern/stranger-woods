@@ -271,10 +271,13 @@
     }
 
     .assign-table__focused-item {
-        outline: 3px solid var(--color-interactive-body-highlighted);
+        outline: 2px solid var(--color-interactive-body-highlighted);
         box-shadow: 0 0 15px var(--color-interactive-body-highlighted);
         width: 230px;
-        transition: width 0.2s ease;
+        transition:
+            width 0.2s ease,
+            box-shadow 0.5s ease,
+            outline 0.2s ease;
     }
 }
 
