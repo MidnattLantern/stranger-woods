@@ -4,6 +4,7 @@ import fireIcon from "/elements/fire-icon.webp";
 import waterIcon from "/elements/water-icon.webp";
 import earthIcon from "/elements/earth-icon.webp";
 import elementSelectorSVG from "@assets/element-selector.svg?raw";
+import gsap from "gsap";
 
 function rpsAssignTableTable() {
     const test = mockData;
@@ -114,8 +115,39 @@ function elementSelector() {
     return container;
 };
 
+function slidePrevElementFrame() {
+    const DELAY_DURATION = 0.5;
+
+    gsap.from("#prevElementRail", {
+        x: "65px",
+        duration: DELAY_DURATION
+    });
+
+    gsap.from("#prevElementRailClip", {
+        x: "65px",
+        duration: DELAY_DURATION
+    });
+
+    gsap.from("#nextElementRail", {
+        x: "-65px",
+        duration: DELAY_DURATION
+    });
+
+    gsap.from("#nextElementRailClip", {
+        x: "-65px",
+        duration: DELAY_DURATION
+    });
+
+    gsap.from(".element-selector-body", {
+        opacity: 0,
+        delay: DELAY_DURATION,
+        duration: DELAY_DURATION
+    });
+}
+
 export const rpsAssignTable = {
     rpsAssignTableTable,
     handleToggleAssignTable,
-    elementSelector
+    elementSelector,
+    slidePrevElementFrame
 }

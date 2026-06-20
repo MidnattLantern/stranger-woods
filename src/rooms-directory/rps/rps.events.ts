@@ -155,6 +155,7 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         aboveItem.focus();
         switchElementVesselToActivate?.append(rpsAssignTable.elementSelector());
         // belowItem.append(rpsAssignTable.elementSelector());
+        rpsAssignTable.slidePrevElementFrame();
     }
     if (event.key === "ArrowDown" || event.key === "s") {
         const prevFocusIndex = rps.getAssignTableSelectedIndex();
@@ -171,6 +172,7 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         if (!belowItem) return;
         belowItem.focus();
         switchElementVesselToActivate?.append(rpsAssignTable.elementSelector());
+        rpsAssignTable.slidePrevElementFrame();
     }
     if (event.key === "ArrowLeft" || event.key === "a") {
         console.log("select left item");
