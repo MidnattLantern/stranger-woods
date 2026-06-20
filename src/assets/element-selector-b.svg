@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 170 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-415,-475)">
+        <g id="element-selector">
+            <g id="elementSelectorBodyContainer" transform="matrix(1.29771,0,0,0.714286,-361.030534,117.857143)">
+                <path id="elementSelectorBody" class="element-selector-body" d="M729,535C729,554.317 720.368,570 709.735,570L617.265,570C606.632,570 598,554.317 598,535C598,515.683 606.632,500 617.265,500L709.735,500C720.368,500 729,515.683 729,535Z"/>
+            </g>
+            <g id="el-selector_arrows" class="el-selector__arrows" transform="matrix(0.666667,0,0,0.666667,157.666667,166.666667)">
+                <path d="M472.21,509.79L467.79,514.21L453.581,500L467.79,485.79L472.21,490.21L462.419,500L472.21,509.79ZM554.569,490.21L558.989,485.79L573.198,500L558.989,514.21L554.569,509.79L564.36,500L554.569,490.21Z"/>
+            </g>
+            <circle id="selected-item" cx="500" cy="500" r="25"/>
+            <clipPath id="el-selector_clip1">
+                <circle id="selected-item1" serif:id="selected-item" cx="500" cy="500" r="25"/>
+            </clipPath>
+            <g clip-path="url(#el-selector_clip1)">
+                <g id="selectedElementSlotContainer" transform="matrix(0.05102,0,0,0.05102,475,475)">
+                    <image id="selectedElementSlot" x="0" y="0" width="980px" height="980px"/>
+                </g>
+            </g>
+            <g id="next-item" transform="matrix(0.706968,0,0,0.706968,206.515936,146.515936)">
+                <circle cx="500" cy="500" r="25"/>
+                <clipPath id="el-selector_clip3">
+                    <circle cx="500" cy="500" r="25"/>
+                </clipPath>
+                <g clip-path="url(#el-selector_clip3)">
+                    <g id="prevElementSlotContainer" transform="matrix(0.041667,0,0,0.041667,475,475)">
+                        <image id="prevElementSlot" x="0" y="0" width="1200px" height="1200px"/>
+                    </g>
+                </g>
+            </g>
+            <g id="prev-item" transform="matrix(0.701074,0,0,0.701074,89.462783,149.462783)">
+                <circle cx="500" cy="500" r="25"/>
+                <clipPath id="el-selector_clip5">
+                    <circle cx="500" cy="500" r="25"/>
+                </clipPath>
+                <g clip-path="url(#el-selector_clip5)">
+                    <g id="nextElementSlotContainer" transform="matrix(0.152439,0,0,0.152439,474.771341,475)">
+                        <image id="nextElementSlot" x="0" y="0" width="331px" height="328px"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

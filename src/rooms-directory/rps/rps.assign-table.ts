@@ -80,17 +80,36 @@ function elementSelector() {
 
     container.innerHTML = elementSelectorSVG;
 
-    const selectedElementSlotImage = container.querySelector("#selectedElementSlot");
-    if (!selectedElementSlotImage) return;
-    selectedElementSlotImage.setAttribute("href", waterIcon);
+    // prev
+    const prevElementPrevSlotImage = container.querySelector("#prevElementPrevSlotImage");
+    if (!prevElementPrevSlotImage) return;
+    // prevElementPrevSlotImage.setAttribute("href", earthIcon);
 
-    const prevElementSlotImage = container.querySelector("#prevElementSlot");
-    if (!prevElementSlotImage) return;
-    prevElementSlotImage.setAttribute("href", earthIcon);
+    const prevElementCurrentSlotImage = container.querySelector("#prevElementCurrentSlotImage");
+    if (!prevElementCurrentSlotImage) return;
 
-    const nextElementSlotImage = container.querySelector("#nextElementSlot");
-    if (!nextElementSlotImage) return;
-    nextElementSlotImage.setAttribute("href", fireIcon);
+    const prevElementNextSlot = container.querySelector("#prevElementNextSlot");
+    if (!prevElementNextSlot) return;
+
+    // next
+    const nextItemPrevSlotImage = container.querySelector("#nextItemPrevSlotImage");
+    if (!nextItemPrevSlotImage) return;
+
+    const nextElementCurrentSlotImage = container.querySelector("#nextElementCurrentSlotImage");
+    if (!nextElementCurrentSlotImage) return;
+
+    const nextElementNextSlotImage = container.querySelector("#nextElementNextSlotImage");
+    if (!nextElementNextSlotImage) return;
+
+    // current
+    const selectedElementPrevSlotImage = container.querySelector("#selectedElementPrevSlotImage");
+    if (!selectedElementPrevSlotImage) return;
+
+    const selectedElementCurrentSlotImage = container.querySelector("#selectedElementCurrentSlotImage");
+    if (!selectedElementCurrentSlotImage) return;
+
+    const selectedElementNextSlotImage = container.querySelector("#selectedElementNextSlotImage");
+    if (!selectedElementNextSlotImage) return;
 
     return container;
 };
