@@ -135,27 +135,42 @@ function handleToggleAssignTable(event: KeyboardEvent) {
 }
 
 function handleNavigateAssignTable(event: KeyboardEvent) {
-    event.preventDefault();
+    event.preventDefault(); // arrows mess with scrolling
     const TABLE_MIN_INDEX = 0;
     const TABLE_MAX_INDEX = 11;
 
     if (event.key === "ArrowUp" || event.key === "w") {
-        console.log("select above item");
+        const prevFocusIndex = rps.getAssignTableSelectedIndex();
+        const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${prevFocusIndex}`);
+        if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
         let newFocusIndex = rps.getAssignTableSelectedIndex() - 1;
         if (newFocusIndex < TABLE_MIN_INDEX) newFocusIndex = TABLE_MAX_INDEX;
+        const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${newFocusIndex}`);
         rps.setAssignTableSelectedIndex(newFocusIndex);
-        const belowItem = document.getElementById(`assign-item-index-${newFocusIndex}`);
-        if (!belowItem) return;
-        belowItem.focus();
+        const prevItem = document.getElementById(`assign-item-index-${prevFocusIndex}`);
+        const aboveItem = document.getElementById(`assign-item-index-${newFocusIndex}`);
+        aboveItem?.classList.add("assign-table__focused-item");
+        prevItem?.classList.remove("assign-table__focused-item");
+        if (!aboveItem) return;
+        aboveItem.focus();
+        switchElementVesselToActivate?.append(rpsAssignTable.elementSelector());
+        // belowItem.append(rpsAssignTable.elementSelector());
     }
     if (event.key === "ArrowDown" || event.key === "s") {
-        console.log("select below item");
+        const prevFocusIndex = rps.getAssignTableSelectedIndex();
+        const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${prevFocusIndex}`);
+        if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
         let newFocusIndex = rps.getAssignTableSelectedIndex() + 1;
         if (newFocusIndex > TABLE_MAX_INDEX) newFocusIndex = TABLE_MIN_INDEX;
+        const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${newFocusIndex}`);
         rps.setAssignTableSelectedIndex(newFocusIndex);
+        const prevItem = document.getElementById(`assign-item-index-${prevFocusIndex}`);
         const belowItem = document.getElementById(`assign-item-index-${newFocusIndex}`);
+        belowItem?.classList.add("assign-table__focused-item");
+        prevItem?.classList.remove("assign-table__focused-item");
         if (!belowItem) return;
         belowItem.focus();
+        switchElementVesselToActivate?.append(rpsAssignTable.elementSelector());
     }
     if (event.key === "ArrowLeft" || event.key === "a") {
         console.log("select left item");
