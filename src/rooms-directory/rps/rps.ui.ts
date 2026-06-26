@@ -1,6 +1,11 @@
 import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
 import pseudoElementalsCpuDisc from "@assets/pseudoelementals-cpu-disc.svg?raw";
 import expandTableIcon from "@assets/expand-table-icon.svg?raw";
+import batchPreset1 from "./batch-preset-1.json";
+import fireIcon from "/elements/fire-icon.webp";
+import waterIcon from "/elements/water-icon.webp";
+import earthIcon from "/elements/earth-icon.webp";
+import elementSelectorSVG from "@assets/element-selector.svg?raw";
 
 function rockPaperScissorsSceneWrapper() {
     const rpsSceneWrapper = document.createElement("div");
@@ -91,6 +96,63 @@ function showHideAssignTableButton() {
     button.innerHTML = `Show assign table ${expandTableIcon}`;
     return button;
 }
+
+function assignTableContents() {
+    const mockData = batchPreset1;
+    let contentsTable = document.createElement("table");
+    contentsTable.classList.add("hide-table");
+
+    mockData.map((i, index) => {
+        const iRow = document.createElement("tr");
+        const iImageContainer = document.createElement("td");
+
+        iRow.id = `assign-item-index-${index.toString()}`;
+
+        const iImage = document.createElement("img");
+        iImage.src = i.assetSource;
+        iImage.alt = i.name;
+        iImage.className = "assign-table__item-image";
+
+        const iElementIconContainer = document.createElement("td");
+        iElementIconContainer.className = "assign-table__icon-container";
+
+        const elementIcon = document.createElement("img");
+        elementIcon.src = fireIcon;
+        elementIcon.alt = "Fire";
+        elementIcon.className = "assign-table__element-icon";
+
+        const switchElementVessel = document.createElement("div");
+        switchElementVessel.id = `switch-element-vessel-${index}`;
+
+        iImageContainer.append(iImage);
+        iElementIconContainer.append(elementIcon, switchElementVessel);
+
+        const iDropdownContainer = document.createElement("td");
+        const iDropdown = document.createElement("select");
+
+        const nonSelectedOption = document.createElement("option");
+        nonSelectedOption.value = "Unsigned";
+        nonSelectedOption.textContent = "------";
+
+        const fireOption = document.createElement("option");
+        fireOption.value = "Fire";
+        fireOption.textContent = "Fire";
+
+        const waterOption = document.createElement("option");
+        waterOption.value = "Water";
+        waterOption.textContent = "Water";
+
+        const earthOption = document.createElement("option");
+        earthOption.value = "Earth";
+        earthOption.textContent = "Earth";
+
+        iDropdown.append(nonSelectedOption, fireOption, waterOption, earthOption);
+        iDropdownContainer.append(iDropdown);
+        iRow.append(iImageContainer, iElementIconContainer);
+        contentsTable.append(iRow);
+    });
+    return contentsTable;
+}
 // ================
 
 export const rpsUI = {
@@ -107,5 +169,6 @@ export const rpsUI = {
 export const rpsUIAssignTable = {
     assignTableWrapper,
     assignTableTableContainer,
-    showHideAssignTableButton
+    showHideAssignTableButton,
+    assignTableContents
 }

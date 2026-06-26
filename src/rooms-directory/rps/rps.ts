@@ -10,6 +10,7 @@ import batchPreset1 from "./batch-preset-1.json";
 import { rpsAssignTable } from "./rps.assign-table";
 import expandTableIcon from "@assets/expand-table-icon.svg?raw";
 import closeTableIcon from "@assets/close-table-icon.svg?raw";
+import { rpsAnimate } from "./rps.animate";
 
 function rockPaperScissors(
     rpsSceneWrapper: any = null,
@@ -34,10 +35,9 @@ function rockPaperScissors(
     const assignTableWrapper = rpsUIAssignTable.assignTableWrapper();
     const assignTableTableContainer = rpsUIAssignTable.assignTableTableContainer();
     const showHideAssignTableButton = rpsUIAssignTable.showHideAssignTableButton();
-    const rpsAssignTableTable = rpsAssignTable.rpsAssignTableTable();
+    const rpsAssignTableTable = rpsUIAssignTable.assignTableContents();
 
-    // assignTableWrapper.addEventListener("click", rpsAssignTable.handleToggleAssignTable);
-    showHideAssignTableButton.addEventListener("click", rpsAssignTable.handleToggleAssignTable);
+    showHideAssignTableButton.addEventListener("click", toggleAssignTableOpen);
 
     assignTableWrapper.append(showHideAssignTableButton, assignTableTableContainer);
 
@@ -58,14 +58,17 @@ function rockPaperScissors(
     };
 
     function toggleAssignTableOpen() {
-        console.log("foo");
         assignTableOpen = !assignTableOpen;
         if (assignTableOpen) {
             setTimeout(() => {
                 rpsAssignTableTable.classList.remove("hide-table");
                 const focusAssignItem = document.getElementById(`assign-item-index-${assignTableSelectedIndex}`);
+                const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
+                switchElementVesselToActivate?.append(rpsAssignTable.elementSelector());
                 if (!focusAssignItem) return;
+                focusAssignItem.classList.add("assign-table__focused-item");
                 focusAssignItem.focus();
+                rpsAnimate.openElementSlider();
             }, 100);
             rpsELifecycle.pauseMouseTapInputLifecycle();
             rpsELifecycle.pausePlayerSlotsLifecycle();
@@ -95,7 +98,7 @@ function rockPaperScissors(
         rpsStoryController.handleInitializeStoryline();
         rpsELifecycle.beginFullscreenNextStorylineLifecycle();
         rpsSceneWrapper.focus();
-        // test
+        // mock data
         setPlayerRpsBatch(batchPreset1);
         setCpuRpsBatch(rpsBatch.shuffleBatch("fire"));
     }

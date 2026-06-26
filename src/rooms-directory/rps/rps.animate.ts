@@ -138,10 +138,52 @@ function runRailDraw() {
     });
 }
 
+function openElementSlider() {
+    const INIT_DELAY = 0.2;
+    const DELAY_DURATION = 0.3;
+
+    gsap.from("#elementSelectorContainer", {
+        opacity: 0,
+        delay: INIT_DELAY,
+        duration: 0.1
+    });
+
+    gsap.from("#prevElementRail", {
+        x: "65px",
+        delay: INIT_DELAY,
+        duration: DELAY_DURATION
+    });
+
+    gsap.from("#prevElementRailClip", {
+        x: "65px",
+        delay: INIT_DELAY,
+        duration: DELAY_DURATION
+    });
+
+    gsap.from("#nextElementRail", {
+        x: "-65px",
+        delay: INIT_DELAY,
+        duration: DELAY_DURATION
+    });
+
+    gsap.from("#nextElementRailClip", {
+        x: "-65px",
+        delay: INIT_DELAY,
+        duration: DELAY_DURATION
+    });
+
+    gsap.from(".element-selector-body", {
+        opacity: 0,
+        delay: DELAY_DURATION,
+        duration: DELAY_DURATION
+    });
+}
+
 export const rpsAnimate = {
     playerSpinToSlot,
     cpuSpinToSlot,
     runPlayerRailItemWin,
     runCpuRailItemWin,
-    runRailDraw
+    runRailDraw,
+    openElementSlider
 }

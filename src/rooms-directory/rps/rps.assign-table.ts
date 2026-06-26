@@ -1,71 +1,9 @@
 import { rps } from "./rps";
-import mockData from "./batch-preset-1.json";
+import batchPreset1 from "./batch-preset-1.json";
 import fireIcon from "/elements/fire-icon.webp";
 import waterIcon from "/elements/water-icon.webp";
 import earthIcon from "/elements/earth-icon.webp";
 import elementSelectorSVG from "@assets/element-selector.svg?raw";
-import gsap from "gsap";
-
-function rpsAssignTableTable() {
-    const test = mockData;
-    let testTable = document.createElement("table");
-    testTable.classList.add("hide-table");
-
-    test.map((i, index) => {
-        const iRow = document.createElement("tr");
-        const iImageContainer = document.createElement("td");
-
-        iRow.id = `assign-item-index-${index.toString()}`;
-
-        const iImage = document.createElement("img");
-        iImage.src = i.assetSource;
-        iImage.alt = i.name;
-        iImage.className = "assign-table__item-image";
-
-        const iElementIconContainer = document.createElement("td");
-        iElementIconContainer.className = "assign-table__icon-container";
-
-        const elementIcon = document.createElement("img");
-        elementIcon.src = fireIcon;
-        elementIcon.alt = "Fire";
-        elementIcon.className = "assign-table__element-icon";
-
-        const switchElementVessel = document.createElement("div");
-        switchElementVessel.id = `switch-element-vessel-${index}`;
-
-        iImageContainer.append(iImage);
-        iElementIconContainer.append(elementIcon, switchElementVessel);
-
-        const iDropdownContainer = document.createElement("td");
-        const iDropdown = document.createElement("select");
-
-        const nonSelectedOption = document.createElement("option");
-        nonSelectedOption.value = "Unsigned";
-        nonSelectedOption.textContent = "------";
-
-        const fireOption = document.createElement("option");
-        fireOption.value = "Fire";
-        fireOption.textContent = "Fire";
-
-        const waterOption = document.createElement("option");
-        waterOption.value = "Water";
-        waterOption.textContent = "Water";
-
-        const earthOption = document.createElement("option");
-        earthOption.value = "Earth";
-        earthOption.textContent = "Earth";
-
-        iDropdown.append(nonSelectedOption, fireOption, waterOption, earthOption);
-        iDropdownContainer.append(iDropdown);
-        iRow.append(iImageContainer, iElementIconContainer);
-        testTable.append(iRow);
-    });
-    return testTable;
-}
-
-function handleToggleAssignTable() {
-    rps.toggleAssignTableOpen();
-};
 
 function elementSelector() {
     const container = document.createElement("div");
@@ -84,7 +22,6 @@ function elementSelector() {
     // prev
     const prevElementPrevSlotImage = container.querySelector("#prevElementPrevSlotImage");
     if (!prevElementPrevSlotImage) return;
-    // prevElementPrevSlotImage.setAttribute("href", earthIcon);
 
     const prevElementCurrentSlotImage = container.querySelector("#prevElementCurrentSlotImage");
     if (!prevElementCurrentSlotImage) return;
@@ -115,50 +52,6 @@ function elementSelector() {
     return container;
 };
 
-function slidePrevElementFrame() {
-    const INIT_DELAY = 0.2;
-    const DELAY_DURATION = 0.3;
-
-    gsap.from("#elementSelectorContainer", {
-        opacity: 0,
-        delay: INIT_DELAY,
-        duration: 0.1
-    });
-
-    gsap.from("#prevElementRail", {
-        x: "65px",
-        delay: INIT_DELAY,
-        duration: DELAY_DURATION
-    });
-
-    gsap.from("#prevElementRailClip", {
-        x: "65px",
-        delay: INIT_DELAY,
-        duration: DELAY_DURATION
-    });
-
-    gsap.from("#nextElementRail", {
-        x: "-65px",
-        delay: INIT_DELAY,
-        duration: DELAY_DURATION
-    });
-
-    gsap.from("#nextElementRailClip", {
-        x: "-65px",
-        delay: INIT_DELAY,
-        duration: DELAY_DURATION
-    });
-
-    gsap.from(".element-selector-body", {
-        opacity: 0,
-        delay: DELAY_DURATION,
-        duration: DELAY_DURATION
-    });
-}
-
 export const rpsAssignTable = {
-    rpsAssignTableTable,
-    handleToggleAssignTable,
-    elementSelector,
-    slidePrevElementFrame
+    elementSelector
 }

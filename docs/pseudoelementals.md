@@ -1,5 +1,13 @@
 # Pseudoelementals
 
+## Table of contents
+1. [About Pseudoelementals](#about-pseudoelementals)
+
+## About pseudoelementals
+This project explores the concept of toggling between a 2-dimensional set of objects in a playful and engaging way that brings a positive experience for the user, while adding practical functionality of an infinite scroll, the transition between the last and the first object, in a seamless manner.
+
+For Pseudoelementals, the objects are used for a rock-paper-scissors context, as this is a project exploring the mechanic itself. This could be used for other contexts too, as the core mechanic of the disc is about highlighting an object.
+
 ## Rock Paper Scissors
 Pseudoelementals is rock paper scissors with a twist. Only one object is a rock, paper, scissors. By playing as many duels as the player wants, they have to identify aliases, to be either rock paper or scissors.
 

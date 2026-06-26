@@ -5,10 +5,11 @@ Live link: [MidnattLantern.github.io/stranger-woods](https://MidnattLantern.gith
 1. [Initial source & acknowledgement](#initial-source--acknowledgement)
 2. [About the game](#about-the-game)
 3. [How to play](#how-to-play)
-4. [Philosophy](#philosphy)
-5. [Code base & architectire](#code-base--architectire)
-6. [Technologies](#technologies)
-7. [Acknowledgements](#acknowledgements)
+4. [About the project](#about-the-project)
+5. [Philosophy](#philosphy)
+6. [Code base & architectire](#code-base--architectire)
+7. [Technologies](#technologies)
+8. [Acknowledgements](#acknowledgements)
 
 ## Initial source & acknowledgement
 This is Midnatt Lantern's forked edition, expanded and refactored solo according to their direction. The initial source can be found at: [github.com/Medieinstitutet/fed25d-js-intro-grupparbete-the-dopefish-admirers](https://github.com/Medieinstitutet/fed25d-js-intro-grupparbete-the-dopefish-admirers)
@@ -40,6 +41,9 @@ There are several input methods:
 - Keyboard: Using a 2D hotseat layout, where you navigate options with Arrow Keys, and perform actions with Z, X, C, and Spacebar.
 - Gamepad is not supported as of writing this, but remain considered as a future feature.
 - Accessible one handed keyboard input is not supported as of writing this, but remain considered as a future feature. Left handed layout would be: Z, X, C, Spacebar and WASD. Right handed layout would be: Arrow Keys, Del, End, Pgdn, Enter, and 8, 9, 0 as optional for Del, End, and Pgdn.
+
+## About the project
+
 
 ## Philosphy
 
