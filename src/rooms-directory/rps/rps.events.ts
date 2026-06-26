@@ -154,7 +154,10 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         prevItem?.classList.remove("assign-table__focused-item");
         if (!nextItem) return;
         nextItem.focus();
-        switchElementVesselToActivate?.append(rpsAssignTable.elementSelector());
+        switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
+        setTimeout(() => {
+            rpsAssignTable.updateElementSelector();
+        }, 300);
         rpsAnimate.openElementSlider();
     };
 
@@ -165,12 +168,48 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         handleNavigate(1);
     }
     if (event.key === "ArrowLeft" || event.key === "a") {
-        console.log("select left item");
+        const itemTargetIndex = rps.getAssignTableSelectedIndex();
+        const itemTargetElement = rps.getAssignedElementItem(itemTargetIndex).element;
+        let newItemAssignedElement: null | "fire" | "water" | "earth" = null;
+        console.log(itemTargetElement);
+
+        // if (itemTargetElement === null) newItemAssignedElement = "water"
+        if (itemTargetElement === "fire") newItemAssignedElement = "water"
+        else if (itemTargetElement === "water") newItemAssignedElement = "earth"
+        else if (itemTargetElement === "earth") newItemAssignedElement = "fire"
+        else newItemAssignedElement = null;
+
         rpsAnimate.slideElementSelector(1);
+        rps.setAssignedElementTable(
+            itemTargetIndex,
+            newItemAssignedElement
+        );
+        console.log(rps.getAssignedElementTable());
+        setTimeout(() => {
+            rpsAssignTable.updateElementSelector();
+        }, 300);
     }
     if (event.key === "ArrowRight" || event.key === "d") {
-        console.log("select right item");
+        const itemTargetIndex = rps.getAssignTableSelectedIndex();
+        const itemTargetElement = rps.getAssignedElementItem(itemTargetIndex).element;
+        let newItemAssignedElement: null | "fire" | "water" | "earth" = null;
+        console.log(itemTargetElement);
+
+        // if (itemTargetElement === null) newItemAssignedElement = "earth"
+        if (itemTargetElement === "fire") newItemAssignedElement = "earth"
+        else if (itemTargetElement === "earth") newItemAssignedElement = "water"
+        else if (itemTargetElement === "water") newItemAssignedElement = "fire"
+        else newItemAssignedElement = null;
+
         rpsAnimate.slideElementSelector(-1);
+        rps.setAssignedElementTable(
+            itemTargetIndex,
+            newItemAssignedElement
+        );
+        console.log(rps.getAssignedElementTable());
+        setTimeout(() => {
+            rpsAssignTable.updateElementSelector();
+        }, 300);
     }
 }
 

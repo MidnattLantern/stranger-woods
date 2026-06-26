@@ -11,6 +11,7 @@ import { rpsAssignTable } from "./rps.assign-table";
 import expandTableIcon from "@assets/expand-table-icon.svg?raw";
 import closeTableIcon from "@assets/close-table-icon.svg?raw";
 import { rpsAnimate } from "./rps.animate";
+import type { IAssignedElementTable } from "./models";
 
 function rockPaperScissors(
     rpsSceneWrapper: any = null,
@@ -36,6 +37,31 @@ function rockPaperScissors(
     const assignTableTableContainer = rpsUIAssignTable.assignTableTableContainer();
     const showHideAssignTableButton = rpsUIAssignTable.showHideAssignTableButton();
     const rpsAssignTableTable = rpsUIAssignTable.assignTableContents();
+
+    // Assign table assigned elements for items
+    let assignedElementTable: IAssignedElementTable[] = [
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"},
+        { element: "fire"}
+    ];
+    function getAssignedElementTable() {
+        return assignedElementTable;
+    };
+    function getAssignedElementItem(targetIndex: number) {
+        return assignedElementTable[targetIndex];
+    };
+    function setAssignedElementTable(targetIndex: number, value: null | "fire" | "water" | "earth") {
+        assignedElementTable[targetIndex].element = value;
+    };
 
     showHideAssignTableButton.addEventListener("click", toggleAssignTableOpen);
 
@@ -64,7 +90,8 @@ function rockPaperScissors(
                 rpsAssignTableTable.classList.remove("hide-table");
                 const focusAssignItem = document.getElementById(`assign-item-index-${assignTableSelectedIndex}`);
                 const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
-                switchElementVesselToActivate?.append(rpsAssignTable.elementSelector());
+                switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
+                rpsAssignTable.updateElementSelector();
                 if (!focusAssignItem) return;
                 focusAssignItem.classList.add("assign-table__focused-item");
                 focusAssignItem.focus();
@@ -231,7 +258,10 @@ function rockPaperScissors(
         getAssignTableOpen,
         toggleAssignTableOpen,
         getAssignTableSelectedIndex,
-        setAssignTableSelectedIndex
+        setAssignTableSelectedIndex,
+        getAssignedElementTable,
+        getAssignedElementItem,
+        setAssignedElementTable
     }
 };
 

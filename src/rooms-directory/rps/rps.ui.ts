@@ -120,6 +120,7 @@ function assignTableContents() {
         elementIcon.src = fireIcon;
         elementIcon.alt = "Fire";
         elementIcon.className = "assign-table__element-icon";
+        elementIcon.id = `assign-table-image-item-${index}`;
 
         const switchElementVessel = document.createElement("div");
         switchElementVessel.id = `switch-element-vessel-${index}`;

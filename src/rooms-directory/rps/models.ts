@@ -17,3 +17,8 @@ export interface ISlot {
   element: IElement;
   assetSource: string;
 }
+
+
+export interface IAssignedElementTable {
+    element: null | "fire" | "water" | "earth"
+}
