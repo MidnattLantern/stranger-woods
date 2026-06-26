@@ -124,27 +124,27 @@ function rockPaperScissors(
 
     function getPlayerDiscRotationIndex() {
         return playerDiscRotationIndex;
-    }
+    };
 
     function setPlayerDiscRotationIndex(newIndex: number) {
         playerDiscRotationIndex = newIndex;
-    }
+    };
 
     function getRpsPlayerButtons() {
         return rpsPlayerButtons;
-    }
+    };
 
     function getPlayerRailwayItem() {
         return playerRailwayItem;
-    }
+    };
 
     function getPlayerRpsBatch() {
         return playerRpsBatch;
-    }
+    };
 
     function setPlayerRpsBatch(newBatch: ISlot[] | any) {
         playerRpsBatch = newBatch;
-    }
+    };
     // ======
 
     // ===
@@ -152,31 +152,31 @@ function rockPaperScissors(
     // ===
     function getCpuSelectedSlotIndex() {
         return cpuSelectedSlotIndex;
-    }
+    };
 
     function setCpuSelectedIndex(newIndex: number) {
         cpuSelectedSlotIndex = newIndex;
-    }
+    };
 
     function getCpuDiscRotationIndex() {
         return cpuDiscRotationIndex;
-    }
+    };
 
     function setCpuDiscRotationIndex(newIndex: number) {
         cpuDiscRotationIndex = newIndex;
-    }
+    };
 
     function getCpuRailwayItem() {
         return cpuRailwayItem;
-    }
+    };
 
     function getCpuRpsBatch() {
         return cpuRpsBatch;
-    }
+    };
 
     function setCpuRpsBatch(newBatch: ISlot[]) {
         cpuRpsBatch = newBatch;
-    }
+    };
     // ===
 
     function handleBeginRpsGame() {
@@ -199,12 +199,12 @@ function rockPaperScissors(
         rpsELifecycle.beginPlayerSlotsLifecycle();
         rpsELifecycle.beginCpuSlotsLifecycle();
         rpsELifecycle.beginCanToggleAssignTable();
-    }
+    };
 
     function handleEndRpsGame() {
         rpsSceneWrapper.remove();
         rpsSceneWrapper = null;
-    }
+    };
 
     return {
         initialize,
@@ -233,6 +233,6 @@ function rockPaperScissors(
         getAssignTableSelectedIndex,
         setAssignTableSelectedIndex
     }
-}
+};
 
 export const rps = rockPaperScissors();

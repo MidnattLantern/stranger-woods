@@ -166,9 +166,11 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
     }
     if (event.key === "ArrowLeft" || event.key === "a") {
         console.log("select left item");
+        rpsAnimate.slideElementSelector(1);
     }
     if (event.key === "ArrowRight" || event.key === "d") {
         console.log("select right item");
+        rpsAnimate.slideElementSelector(-1);
     }
 }
 
