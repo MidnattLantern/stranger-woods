@@ -3,6 +3,10 @@ import { rpsGame } from "./rps.game";
 import { rps } from "./rps";
 import { rpsStoryController } from "./rps.story";
 import { rpsAssignTable } from "./rps.assign-table";
+import { rpsUIAssignTable } from "./rps.ui";
+import { rpsELifecycle } from "./rps.elifecycle";
+import expandTableIcon from "@assets/expand-table-icon.svg?raw";
+import closeTableIcon from "@assets/close-table-icon.svg?raw";
 
 function handleClickTapRotateDiscLeft(event: Event) {
     const MIN_EDGE_INDEX: number = 0;
@@ -135,7 +139,7 @@ function handleToggleAssignTable(event: KeyboardEvent) {
 }
 
 function handleNavigateAssignTable(event: KeyboardEvent) {
-    event.preventDefault(); // arrows mess with scrolling
+    event.preventDefault(); // prevent arrows messing with scrolling
     const TABLE_MIN_INDEX = 0;
     const TABLE_MAX_INDEX = 11;
 
@@ -213,6 +217,62 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
     }
 }
 
+function handleOpenAssignTable() {
+    console.log("open assign table");
+    const assignTableContainer = rps.getAssignTableContainer();
+    const assignTableWrapper = rps.getAssignTableWrapper();
+    const showHideAssignTableButton = rps.getShowHideAssignTableButton();
+    const rpsAssignTableTable = rps.getAssignTableContents();
+    const assignTableSelectedIndex = rps.getAssignTableSelectedIndex();
+
+    setTimeout(() => {
+        const focusAssignItem = document.getElementById(`assign-item-index-${assignTableSelectedIndex}`);
+        // const focusAssignItem = rps.getAssignItems[assignTableSelectedIndex];
+        const currentFocusIndex = rps.getAssignTableSelectedIndex();
+        const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${currentFocusIndex}`);
+        const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
+
+        if (rpsAssignTableTable) rpsAssignTableTable.classList.remove("hide-table");
+        if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
+        switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
+        rpsAssignTable.updateElementSelector();
+        if (!focusAssignItem) {
+            console.error("focusAssignItem is not accessible");
+            console.log(assignTableSelectedIndex);
+            return;
+        }
+        focusAssignItem.classList.add("assign-table__focused-item");
+        focusAssignItem.focus();
+    }, 100);
+    rpsAnimate.openElementSlider();
+    rpsELifecycle.pauseMouseTapInputLifecycle();
+    rpsELifecycle.pausePlayerSlotsLifecycle();
+    rpsELifecycle.resumeAssignTableInputLifecycle();
+    showHideAssignTableButton.innerHTML = `Hide assign table ${closeTableIcon}`;
+    if (assignTableContainer) assignTableContainer.append(rpsAssignTableTable);
+    if (assignTableWrapper) assignTableWrapper.classList.add("assign-table__expanded");
+}
+
+function handleCloseAssignTable() {
+    console.log("close assign table");
+    const rpsSceneWrapper = rps.getRpsSceneWrapper();
+    const assignTableContainer = rps.getAssignTableContainer();
+    const assignTableWrapper = rps.getAssignTableWrapper();
+    const showHideAssignTableButton = rps.getShowHideAssignTableButton();
+    const rpsAssignTable = rpsUIAssignTable.assignTableContents();
+
+    setTimeout(() => {
+        if (assignTableContainer) assignTableContainer.innerHTML = '';
+        if (assignTableWrapper) assignTableWrapper.classList.remove("assign-table__expanded");
+        rpsELifecycle.resumeMouseTapInputLifecycle();
+        rpsELifecycle.resumePlayerSlotsLifecycle();
+        rpsELifecycle.pauseAssignTableInputLifecycle();
+        rpsSceneWrapper.focus();
+    }, 100);
+    showHideAssignTableButton.innerHTML = `Show assign table ${expandTableIcon}`;
+    rpsAssignTable.classList.add("hide-table");
+}
+
 export const rpsEvents = {
     handleClickTapRotateDiscLeft,
     handleClickTapRotateDiscRight,
@@ -220,5 +280,7 @@ export const rpsEvents = {
     handleCpuRotateDisc,
     handleFullscreenNextStoryline,
     handleToggleAssignTable,
-    handleNavigateAssignTable
+    handleNavigateAssignTable,
+    handleOpenAssignTable,
+    handleCloseAssignTable
 }

@@ -6,6 +6,7 @@ import fireIcon from "/elements/fire-icon.webp";
 import waterIcon from "/elements/water-icon.webp";
 import earthIcon from "/elements/earth-icon.webp";
 import elementSelectorSVG from "@assets/element-selector.svg?raw";
+import { rps } from "./rps";
 
 function rockPaperScissorsSceneWrapper() {
     const rpsSceneWrapper = document.createElement("div");
@@ -84,7 +85,7 @@ function assignTableWrapper() {
     return container;
 }
 
-function assignTableTableContainer() {
+function assignTableContainer() {
     const table = document.createElement("div");
     table.className = "assign-table__table-container";
     return table;
@@ -93,6 +94,7 @@ function assignTableTableContainer() {
 function showHideAssignTableButton() {
     const button = document.createElement("button");
     button.className = "show-hide-assign-table-button";
+    button.id = "showHideAssignTableButton";
     button.innerHTML = `Show assign table ${expandTableIcon}`;
     return button;
 }
@@ -151,6 +153,7 @@ function assignTableContents() {
         iDropdownContainer.append(iDropdown);
         iRow.append(iImageContainer, iElementIconContainer);
         contentsTable.append(iRow);
+        rps.appendAssignItem(iRow);
     });
     return contentsTable;
 }
@@ -169,7 +172,7 @@ export const rpsUI = {
 
 export const rpsUIAssignTable = {
     assignTableWrapper,
-    assignTableTableContainer,
+    assignTableContainer,
     showHideAssignTableButton,
     assignTableContents
 }

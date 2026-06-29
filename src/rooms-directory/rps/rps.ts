@@ -7,11 +7,8 @@ import { rpsUI, rpsUIAssignTable } from "./rps.ui";
 import { dialogueBox } from "@/components/dialogue-box/dialogue-box";
 import { sceneWrapper } from "@/scenes/scene-handler";
 import batchPreset1 from "./batch-preset-1.json";
-import { rpsAssignTable } from "./rps.assign-table";
-import expandTableIcon from "@assets/expand-table-icon.svg?raw";
-import closeTableIcon from "@assets/close-table-icon.svg?raw";
-import { rpsAnimate } from "./rps.animate";
 import type { IAssignedElementTable } from "./models";
+import { rpsEvents } from "./rps.events";
 
 function rockPaperScissors(
     rpsSceneWrapper: any = null,
@@ -22,7 +19,8 @@ function rockPaperScissors(
     cpuDiscRotationIndex: number = 0,
     cpuRpsBatch: ISlot[],
     assignTableOpen: boolean = false,
-    assignTableSelectedIndex: number = 0
+    assignTableSelectedIndex: number = 0,
+    assignItems: HTMLTableRowElement[] = []
 ) {
     const gameSessionWrapper = rpsUI.gameSessionWrapper();
     const buttonsTable = rpsUI.buttonsTable();
@@ -34,9 +32,9 @@ function rockPaperScissors(
 
     // Assign table
     const assignTableWrapper = rpsUIAssignTable.assignTableWrapper();
-    const assignTableTableContainer = rpsUIAssignTable.assignTableTableContainer();
+    const assignTableContainer = rpsUIAssignTable.assignTableContainer();
     const showHideAssignTableButton = rpsUIAssignTable.showHideAssignTableButton();
-    const rpsAssignTableTable = rpsUIAssignTable.assignTableContents();
+    let assignTableContents: null | HTMLTableElement;
 
     // Assign table assigned elements for items
     let assignedElementTable: IAssignedElementTable[] = [
@@ -53,6 +51,31 @@ function rockPaperScissors(
         { element: "fire"},
         { element: "fire"}
     ];
+
+    function getAssignTableWrapper() {
+        if (assignTableWrapper) {
+            return assignTableWrapper;
+        } else {
+            console.error("assignTableWrapper either hasn't been initialized or couldn't be found");
+        }
+    }
+
+    function getAssignTableContainer() {
+        if (assignTableContainer) {
+            return assignTableContainer;
+        } else {
+            console.error("assignTableContainer either hasn't been initialized or couldn't be found");
+        }
+    }
+
+    function getAssignTableContents() {
+        if (assignTableContents) {
+            return assignTableContents;
+        } else {
+            console.error("assignTableContents either hasn't been initialized or couldn't be found");
+        }
+    };
+
     function getAssignedElementTable() {
         return assignedElementTable;
     };
@@ -63,9 +86,17 @@ function rockPaperScissors(
         assignedElementTable[targetIndex].element = value;
     };
 
+    function getAssignItems() {
+        return assignItems;
+    };
+
+    function appendAssignItem(newItem: HTMLTableRowElement) {
+        assignItems.push(newItem);
+    }
+
     showHideAssignTableButton.addEventListener("click", toggleAssignTableOpen);
 
-    assignTableWrapper.append(showHideAssignTableButton, assignTableTableContainer);
+    assignTableWrapper.append(showHideAssignTableButton, assignTableContainer);
 
     function getShowHideAssignTableButton() {
         return showHideAssignTableButton;
@@ -86,34 +117,9 @@ function rockPaperScissors(
     function toggleAssignTableOpen() {
         assignTableOpen = !assignTableOpen;
         if (assignTableOpen) {
-            setTimeout(() => {
-                rpsAssignTableTable.classList.remove("hide-table");
-                const focusAssignItem = document.getElementById(`assign-item-index-${assignTableSelectedIndex}`);
-                const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
-                switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
-                rpsAssignTable.updateElementSelector();
-                if (!focusAssignItem) return;
-                focusAssignItem.classList.add("assign-table__focused-item");
-                focusAssignItem.focus();
-                rpsAnimate.openElementSlider();
-            }, 100);
-            rpsELifecycle.pauseMouseTapInputLifecycle();
-            rpsELifecycle.pausePlayerSlotsLifecycle();
-            rpsELifecycle.resumeAssignTableInputLifecycle();
-            showHideAssignTableButton.innerHTML = `Hide assign table ${closeTableIcon}`;
-            assignTableTableContainer.append(rpsAssignTableTable);
-            assignTableWrapper.classList.add("assign-table__expanded");
+            rpsEvents.handleOpenAssignTable();
         } else {
-            setTimeout(() => {
-                assignTableTableContainer.innerHTML = '';
-                assignTableWrapper.classList.remove("assign-table__expanded");
-                rpsELifecycle.resumeMouseTapInputLifecycle();
-                rpsELifecycle.resumePlayerSlotsLifecycle();
-                rpsELifecycle.pauseAssignTableInputLifecycle();
-                rpsSceneWrapper.focus();
-            }, 100);
-            showHideAssignTableButton.innerHTML = `Show assign table ${expandTableIcon}`;
-            rpsAssignTableTable.classList.add("hide-table");
+            rpsEvents.handleCloseAssignTable();
         }
     };
 
@@ -125,9 +131,9 @@ function rockPaperScissors(
         rpsStoryController.handleInitializeStoryline();
         rpsELifecycle.beginFullscreenNextStorylineLifecycle();
         rpsSceneWrapper.focus();
-        // mock data
         setPlayerRpsBatch(batchPreset1);
         setCpuRpsBatch(rpsBatch.shuffleBatch("fire"));
+        assignTableContents = rpsUIAssignTable.assignTableContents();
     }
 
     function getRpsSceneWrapper() {
@@ -261,7 +267,12 @@ function rockPaperScissors(
         setAssignTableSelectedIndex,
         getAssignedElementTable,
         getAssignedElementItem,
-        setAssignedElementTable
+        setAssignedElementTable,
+        getAssignItems,
+        appendAssignItem,
+        getAssignTableContents,
+        getAssignTableContainer,
+        getAssignTableWrapper
     }
 };
 
