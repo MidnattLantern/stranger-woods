@@ -145,9 +145,10 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
 
     function handleNavigate(directionMultiplier: -1 | 1) {
         const prevFocusIndex = rps.getAssignTableSelectedIndex();
-        const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${prevFocusIndex}`);
-        if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
         let newFocusIndex = rps.getAssignTableSelectedIndex() + ( 1 * directionMultiplier);
+        const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${prevFocusIndex}`); // TODO: refactor to use variable(s)
+
+        if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
         if (newFocusIndex < TABLE_MIN_INDEX) newFocusIndex = TABLE_MAX_INDEX;
         if (newFocusIndex > TABLE_MAX_INDEX) newFocusIndex = TABLE_MIN_INDEX;
         const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${newFocusIndex}`);
@@ -163,6 +164,10 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
             rpsAssignTable.updateElementSelector();
         }, 300);
         rpsAnimate.openElementSlider();
+        const assignedImageToShow = document.getElementById(`assign-table-image-item-${prevFocusIndex}`);
+        const assignedImageToHide = document.getElementById(`assign-table-image-item-${newFocusIndex}`);
+        assignedImageToShow?.classList.remove("hidden");
+        assignedImageToHide?.classList.add("hidden");
     };
 
     if (event.key === "ArrowUp" || event.key === "w") {
@@ -191,7 +196,7 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         console.log(rps.getAssignedElementTable());
         setTimeout(() => {
             rpsAssignTable.updateElementSelector();
-        }, 300);
+        }, 200);
     }
     if (event.key === "ArrowRight" || event.key === "d") {
         const itemTargetIndex = rps.getAssignTableSelectedIndex();
@@ -213,7 +218,7 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         console.log(rps.getAssignedElementTable());
         setTimeout(() => {
             rpsAssignTable.updateElementSelector();
-        }, 300);
+        }, 200);
     }
 }
 
@@ -223,12 +228,13 @@ function handleOpenAssignTable() {
     const showHideAssignTableButton = rps.getShowHideAssignTableButton();
     const rpsAssignTableTable = rps.getAssignTableContents();
     const assignTableSelectedIndex = rps.getAssignTableSelectedIndex();
+    const currentFocusIndex = rps.getAssignTableSelectedIndex();
 
     setTimeout(() => {
         const focusAssignItem = rps.getAssignItemRows()[assignTableSelectedIndex];
-        const currentFocusIndex = rps.getAssignTableSelectedIndex();
         const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${currentFocusIndex}`);
         const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
+        const assignedImageToHide = document.getElementById(`assign-table-image-item-${currentFocusIndex}`);
 
         if (rpsAssignTableTable) rpsAssignTableTable.classList.remove("hide-table");
         if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
@@ -238,6 +244,7 @@ function handleOpenAssignTable() {
         focusAssignItem.classList.add("assign-table__focused-item");
         rpsAnimate.openElementSlider();
         focusAssignItem.focus();
+        assignedImageToHide?.classList.add("hidden");
     }, 100);
     rpsELifecycle.pauseMouseTapInputLifecycle();
     rpsELifecycle.pausePlayerSlotsLifecycle();
@@ -252,8 +259,11 @@ function handleCloseAssignTable() {
     const assignTableContainer = rps.getAssignTableContainer();
     const assignTableWrapper = rps.getAssignTableWrapper();
     const showHideAssignTableButton = rps.getShowHideAssignTableButton();
-    // const rpsAssignTable = rpsUIAssignTable.assignTableContents();
     const rpsAssignTable = rps.getAssignTableContents();
+    const currentFocusIndex = rps.getAssignTableSelectedIndex();
+    const assignedImageToReveal = document.getElementById(`assign-table-image-item-${currentFocusIndex}`);
+
+    console.log(currentFocusIndex);
 
     setTimeout(() => {
         if (assignTableContainer) assignTableContainer.innerHTML = '';
@@ -265,6 +275,7 @@ function handleCloseAssignTable() {
     }, 100);
     showHideAssignTableButton.innerHTML = `Show assign table ${expandTableIcon}`;
     rpsAssignTable?.classList.add("hide-table");
+    assignedImageToReveal?.classList.remove("hidden");
 }
 
 export const rpsEvents = {

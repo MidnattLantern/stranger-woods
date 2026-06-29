@@ -180,7 +180,7 @@ function openElementSlider() {
 }
 
 function slideElementSelector(directionMultiplier: -1 | 1) {
-    const SLIDE_DURATION = 0.3;
+    const SLIDE_DURATION = 0.2;
     let prevElementTimeline = gsap.timeline();
     let selectedElementTimeline = gsap.timeline();
     let nextElementTimeline = gsap.timeline();

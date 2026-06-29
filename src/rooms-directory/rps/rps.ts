@@ -9,6 +9,9 @@ import { sceneWrapper } from "@/scenes/scene-handler";
 import batchPreset1 from "./batch-preset-1.json";
 import type { IAssignedElementTable } from "./models";
 import { rpsEvents } from "./rps.events";
+import fireIcon from "/elements/fire-icon.webp";
+import waterIcon from "/elements/water-icon.webp";
+import earthIcon from "/elements/earth-icon.webp";
 
 function rockPaperScissors(
     rpsSceneWrapper: any = null,
@@ -20,7 +23,8 @@ function rockPaperScissors(
     cpuRpsBatch: ISlot[],
     assignTableOpen: boolean = false,
     assignTableSelectedIndex: number = 0,
-    assignItemRows: HTMLTableRowElement[] = []
+    assignItemRows: HTMLTableRowElement[] = [],
+    assignItemAssignmentImages: HTMLImageElement[] = []
 ) {
     const gameSessionWrapper = rpsUI.gameSessionWrapper();
     const buttonsTable = rpsUI.buttonsTable();
@@ -83,7 +87,24 @@ function rockPaperScissors(
         return assignedElementTable[targetIndex];
     };
     function setAssignedElementTable(targetIndex: number, value: null | "fire" | "water" | "earth") {
+        const assignedItemImageToUpdate = document.getElementById(`assign-table-image-item-${assignTableSelectedIndex}`);
         assignedElementTable[targetIndex].element = value;
+        switch (value) {
+            case "earth":
+                assignedItemImageToUpdate?.setAttribute("src", earthIcon);
+                assignedItemImageToUpdate?.setAttribute("alt", "Earth icon");
+                break;
+            case "fire":
+                assignedItemImageToUpdate?.setAttribute("src", fireIcon);
+                assignedItemImageToUpdate?.setAttribute("alt", "Fire icon");
+                break;
+            case "water":
+                assignedItemImageToUpdate?.setAttribute("alt", "Water icon");
+                assignedItemImageToUpdate?.setAttribute("src", waterIcon);
+                break;
+            default:
+                break;
+        }
     };
 
     function getAssignItemRows() {
