@@ -106,7 +106,6 @@ function shuffleBatch(includeRawElement: false | "fire" | "water" | "earth" = fa
         }
         if (included.size === INCLUDED_SIZE_REQ) allIncluded = true;
     }
-    console.log("batch ok", batch);
     return batch;
 }
 

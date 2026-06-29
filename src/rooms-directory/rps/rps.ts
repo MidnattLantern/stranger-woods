@@ -20,7 +20,7 @@ function rockPaperScissors(
     cpuRpsBatch: ISlot[],
     assignTableOpen: boolean = false,
     assignTableSelectedIndex: number = 0,
-    assignItems: HTMLTableRowElement[] = []
+    assignItemRows: HTMLTableRowElement[] = []
 ) {
     const gameSessionWrapper = rpsUI.gameSessionWrapper();
     const buttonsTable = rpsUI.buttonsTable();
@@ -86,12 +86,12 @@ function rockPaperScissors(
         assignedElementTable[targetIndex].element = value;
     };
 
-    function getAssignItems() {
-        return assignItems;
+    function getAssignItemRows() {
+        return assignItemRows;
     };
 
-    function appendAssignItem(newItem: HTMLTableRowElement) {
-        assignItems.push(newItem);
+    function appendAssignItemRow(newItem: HTMLTableRowElement) {
+        assignItemRows.push(newItem);
     }
 
     showHideAssignTableButton.addEventListener("click", toggleAssignTableOpen);
@@ -268,8 +268,8 @@ function rockPaperScissors(
         getAssignedElementTable,
         getAssignedElementItem,
         setAssignedElementTable,
-        getAssignItems,
-        appendAssignItem,
+        getAssignItemRows,
+        appendAssignItemRow,
         getAssignTableContents,
         getAssignTableContainer,
         getAssignTableWrapper

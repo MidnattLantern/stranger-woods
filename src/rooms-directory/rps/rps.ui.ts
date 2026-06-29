@@ -153,7 +153,7 @@ function assignTableContents() {
         iDropdownContainer.append(iDropdown);
         iRow.append(iImageContainer, iElementIconContainer);
         contentsTable.append(iRow);
-        rps.appendAssignItem(iRow);
+        rps.appendAssignItemRow(iRow);
     });
     return contentsTable;
 }

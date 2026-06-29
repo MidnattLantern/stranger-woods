@@ -6,7 +6,6 @@ import earthIcon from "/elements/earth-icon.webp";
 import elementSelectorSVG from "@assets/element-selector.svg?raw";
 
 function initializeElementSelector() {
-    console.log("elementSelector init function");
     const container = document.createElement("div");
     container.className = "element-selector";
     container.id = "elementSelectorContainer";
@@ -66,7 +65,6 @@ function initializeElementSelector() {
 function updateElementSelector() {
     const selectedItemIndex = rps.getAssignTableSelectedIndex();
     const currentAssignment = rps.getAssignedElementItem(selectedItemIndex).element;
-    console.log("currentAssignment", currentAssignment);
 
     const container = document.getElementById("elementSelectorContainer");
     if (!container) return;

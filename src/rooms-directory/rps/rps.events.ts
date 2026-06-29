@@ -218,7 +218,6 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
 }
 
 function handleOpenAssignTable() {
-    console.log("open assign table");
     const assignTableContainer = rps.getAssignTableContainer();
     const assignTableWrapper = rps.getAssignTableWrapper();
     const showHideAssignTableButton = rps.getShowHideAssignTableButton();
@@ -226,8 +225,7 @@ function handleOpenAssignTable() {
     const assignTableSelectedIndex = rps.getAssignTableSelectedIndex();
 
     setTimeout(() => {
-        const focusAssignItem = document.getElementById(`assign-item-index-${assignTableSelectedIndex}`);
-        // const focusAssignItem = rps.getAssignItems[assignTableSelectedIndex];
+        const focusAssignItem = rps.getAssignItemRows()[assignTableSelectedIndex];
         const currentFocusIndex = rps.getAssignTableSelectedIndex();
         const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${currentFocusIndex}`);
         const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
@@ -236,15 +234,11 @@ function handleOpenAssignTable() {
         if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
         switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
         rpsAssignTable.updateElementSelector();
-        if (!focusAssignItem) {
-            console.error("focusAssignItem is not accessible");
-            console.log(assignTableSelectedIndex);
-            return;
-        }
+        if (!focusAssignItem) return;
         focusAssignItem.classList.add("assign-table__focused-item");
+        rpsAnimate.openElementSlider();
         focusAssignItem.focus();
     }, 100);
-    rpsAnimate.openElementSlider();
     rpsELifecycle.pauseMouseTapInputLifecycle();
     rpsELifecycle.pausePlayerSlotsLifecycle();
     rpsELifecycle.resumeAssignTableInputLifecycle();
@@ -254,12 +248,12 @@ function handleOpenAssignTable() {
 }
 
 function handleCloseAssignTable() {
-    console.log("close assign table");
     const rpsSceneWrapper = rps.getRpsSceneWrapper();
     const assignTableContainer = rps.getAssignTableContainer();
     const assignTableWrapper = rps.getAssignTableWrapper();
     const showHideAssignTableButton = rps.getShowHideAssignTableButton();
-    const rpsAssignTable = rpsUIAssignTable.assignTableContents();
+    // const rpsAssignTable = rpsUIAssignTable.assignTableContents();
+    const rpsAssignTable = rps.getAssignTableContents();
 
     setTimeout(() => {
         if (assignTableContainer) assignTableContainer.innerHTML = '';
@@ -270,7 +264,7 @@ function handleCloseAssignTable() {
         rpsSceneWrapper.focus();
     }, 100);
     showHideAssignTableButton.innerHTML = `Show assign table ${expandTableIcon}`;
-    rpsAssignTable.classList.add("hide-table");
+    rpsAssignTable?.classList.add("hide-table");
 }
 
 export const rpsEvents = {
