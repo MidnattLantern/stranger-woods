@@ -1,5 +1,6 @@
 import { rps } from "./rps";
 import batchPreset1 from "./batch-preset-1.json";
+import nullPlaceholder from "/elements/null-placeholder.webp";
 import fireIcon from "/elements/fire-icon.webp";
 import waterIcon from "/elements/water-icon.webp";
 import earthIcon from "/elements/earth-icon.webp";
@@ -23,41 +24,32 @@ function initializeElementSelector() {
     // prev
     const prevElementPrevSlotImage = container.querySelector("#prevElementPrevSlotImage");
     if (!prevElementPrevSlotImage) return;
-    // prevElementPrevSlotImage.setAttribute("href", earthIcon);
 
     const prevElementCurrentSlotImage = container.querySelector("#prevElementCurrentSlotImage");
     if (!prevElementCurrentSlotImage) return;
-    // prevElementCurrentSlotImage.setAttribute("href", waterIcon);
 
     const prevElementNextSlotImage = container.querySelector("#prevElementNextSlotImage");
     if (!prevElementNextSlotImage) return;
-    // prevElementNextSlotImage.setAttribute("href", fireIcon);
 
     // next
     const nextItemPrevSlotImage = container.querySelector("#nextItemPrevSlotImage");
     if (!nextItemPrevSlotImage) return;
-    // nextItemPrevSlotImage.setAttribute("href", fireIcon);
 
     const nextElementCurrentSlotImage = container.querySelector("#nextElementCurrentSlotImage");
     if (!nextElementCurrentSlotImage) return;
-    // nextElementCurrentSlotImage.setAttribute("href", earthIcon);
 
     const nextElementNextSlotImage = container.querySelector("#nextElementNextSlotImage");
     if (!nextElementNextSlotImage) return;
-    // nextElementNextSlotImage.setAttribute("href", waterIcon);
 
     // current
     const selectedElementPrevSlotImage = container.querySelector("#selectedElementPrevSlotImage");
     if (!selectedElementPrevSlotImage) return;
-    // selectedElementPrevSlotImage.setAttribute("href", waterIcon);
 
     const selectedElementCurrentSlotImage = container.querySelector("#selectedElementCurrentSlotImage");
     if (!selectedElementCurrentSlotImage) return;
-    // selectedElementCurrentSlotImage.setAttribute("href", fireIcon);
 
     const selectedElementNextSlotImage = container.querySelector("#selectedElementNextSlotImage");
     if (!selectedElementNextSlotImage) return;
-    // selectedElementNextSlotImage.setAttribute("href", earthIcon);
 
     return container;
 };
@@ -138,7 +130,18 @@ function updateElementSelector() {
             nextElementCurrentSlotImage.setAttribute("href", fireIcon);
             nextElementNextSlotImage.setAttribute("href", earthIcon);
             break;
-        default:
+        default: // is null
+            prevElementPrevSlotImage.setAttribute("href", earthIcon);
+            prevElementCurrentSlotImage.setAttribute("href", waterIcon);
+            prevElementNextSlot.setAttribute("href", fireIcon);
+
+            selectedElementPrevSlotImage.setAttribute("href", waterIcon);
+            selectedElementCurrentSlotImage.setAttribute("href", nullPlaceholder);
+            selectedElementNextSlotImage.setAttribute("href", earthIcon);
+
+            nextItemPrevSlotImage.setAttribute("href", fireIcon);
+            nextElementCurrentSlotImage.setAttribute("href", earthIcon);
+            nextElementNextSlotImage.setAttribute("href", waterIcon);
             break;
     };
 };

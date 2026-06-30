@@ -2,6 +2,7 @@ import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg
 import pseudoElementalsCpuDisc from "@assets/pseudoelementals-cpu-disc.svg?raw";
 import expandTableIcon from "@assets/expand-table-icon.svg?raw";
 import batchPreset1 from "./batch-preset-1.json";
+import nullPlaceholder from "/elements/null-placeholder.webp";
 import fireIcon from "/elements/fire-icon.webp";
 import waterIcon from "/elements/water-icon.webp";
 import earthIcon from "/elements/earth-icon.webp";
@@ -119,8 +120,8 @@ function assignTableContents() {
         iElementIconContainer.className = "assign-table__icon-container";
 
         const elementIcon = document.createElement("img");
-        elementIcon.src = fireIcon;
-        elementIcon.alt = "Fire";
+        elementIcon.src = nullPlaceholder;
+        elementIcon.alt = "Unsigned";
         elementIcon.className = "assign-table__element-icon";
         elementIcon.id = `assign-table-image-item-${index}`;
 

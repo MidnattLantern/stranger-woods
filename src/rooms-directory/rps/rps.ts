@@ -42,18 +42,18 @@ function rockPaperScissors(
 
     // Assign table assigned elements for items
     let assignedElementTable: IAssignedElementTable[] = [
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"},
-        { element: "fire"}
+        { element: null},
+        { element: null},
+        { element: null},
+        { element: null},
+        { element: null},
+        { element: null},
+        { element: null},
+        { element: null},
+        { element: null},
+        { element: null},
+        { element: null},
+        { element: null}
     ];
 
     function getAssignTableWrapper() {
@@ -135,7 +135,7 @@ function rockPaperScissors(
         assignTableSelectedIndex = newIndex;
     };
 
-    function toggleAssignTableOpen() {
+    function toggleAssignTableOpen() { // Consider moving to rpsEvents
         assignTableOpen = !assignTableOpen;
         if (assignTableOpen) {
             rpsEvents.handleOpenAssignTable();

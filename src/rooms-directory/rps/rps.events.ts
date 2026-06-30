@@ -182,8 +182,8 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         let newItemAssignedElement: null | "fire" | "water" | "earth" = null;
         console.log(itemTargetElement);
 
-        // if (itemTargetElement === null) newItemAssignedElement = "water"
-        if (itemTargetElement === "fire") newItemAssignedElement = "water"
+        if (itemTargetElement === null) newItemAssignedElement = "water"
+        else if (itemTargetElement === "fire") newItemAssignedElement = "water"
         else if (itemTargetElement === "water") newItemAssignedElement = "earth"
         else if (itemTargetElement === "earth") newItemAssignedElement = "fire"
         else newItemAssignedElement = null;
@@ -204,8 +204,8 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         let newItemAssignedElement: null | "fire" | "water" | "earth" = null;
         console.log(itemTargetElement);
 
-        // if (itemTargetElement === null) newItemAssignedElement = "earth"
-        if (itemTargetElement === "fire") newItemAssignedElement = "earth"
+        if (itemTargetElement === null) newItemAssignedElement = "earth"
+        else if (itemTargetElement === "fire") newItemAssignedElement = "earth"
         else if (itemTargetElement === "earth") newItemAssignedElement = "water"
         else if (itemTargetElement === "water") newItemAssignedElement = "fire"
         else newItemAssignedElement = null;
@@ -223,35 +223,33 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
 }
 
 function handleOpenAssignTable() {
-    const assignTableContainer = rps.getAssignTableContainer();
-    const assignTableWrapper = rps.getAssignTableWrapper();
-    const showHideAssignTableButton = rps.getShowHideAssignTableButton();
-    const rpsAssignTableTable = rps.getAssignTableContents();
+    const wrapper = rps.getAssignTableWrapper();
+    const container = rps.getAssignTableContainer();
+    const showHideContainerButton = rps.getShowHideAssignTableButton();
+    const assignTable = rps.getAssignTableContents();
     const assignTableSelectedIndex = rps.getAssignTableSelectedIndex();
-    const currentFocusIndex = rps.getAssignTableSelectedIndex();
+    const focusAssignItem = rps.getAssignItemRows()[assignTableSelectedIndex]; // returns a <tr>
 
-    setTimeout(() => {
-        const focusAssignItem = rps.getAssignItemRows()[assignTableSelectedIndex];
-        const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${currentFocusIndex}`);
+    setTimeout(() => {        
+        const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
         const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
-        const assignedImageToHide = document.getElementById(`assign-table-image-item-${currentFocusIndex}`);
+        const assignTableImageItemToHide = document.getElementById(`assign-table-image-item-${assignTableSelectedIndex}`);
 
-        if (rpsAssignTableTable) rpsAssignTableTable.classList.remove("hide-table");
         if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
-        switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
+        if (switchElementVesselToActivate) switchElementVesselToActivate.append(rpsAssignTable.initializeElementSelector());
+        if (assignTableImageItemToHide) assignTableImageItemToHide.classList.add("hidden");
+        if (assignTable) assignTable.classList.remove("hide-table");
         rpsAssignTable.updateElementSelector();
-        if (!focusAssignItem) return;
-        focusAssignItem.classList.add("assign-table__focused-item");
         rpsAnimate.openElementSlider();
+        focusAssignItem.classList.add("assign-table__focused-item");
         focusAssignItem.focus();
-        assignedImageToHide?.classList.add("hidden");
     }, 100);
     rpsELifecycle.pauseMouseTapInputLifecycle();
     rpsELifecycle.pausePlayerSlotsLifecycle();
     rpsELifecycle.resumeAssignTableInputLifecycle();
-    showHideAssignTableButton.innerHTML = `Hide assign table ${closeTableIcon}`;
-    if (assignTableContainer) assignTableContainer.append(rpsAssignTableTable);
-    if (assignTableWrapper) assignTableWrapper.classList.add("assign-table__expanded");
+    showHideContainerButton.innerHTML = `Hide assign table ${closeTableIcon}`;
+    if (container) container.append(assignTable);
+    if (wrapper) wrapper.classList.add("assign-table__expanded");
 }
 
 function handleCloseAssignTable() {
