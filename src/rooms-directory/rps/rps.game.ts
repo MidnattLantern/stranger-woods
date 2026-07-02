@@ -29,8 +29,10 @@ function initiateDuel(
         rps.getDuelRailway().classList.add("hidden");
         playerSelectedSlotItem?.classList.remove("hidden");
         cpuSelectedSlotItem?.classList.remove("hidden");
-        rpsELifecycle.resumeMouseTapInputLifecycle();
-        rpsELifecycle.resumePlayerSlotsLifecycle();
+        if (!rps.getAssignTableOpen()) { // Prevent bug where player disc would be active when assign table is open
+            rpsELifecycle.resumeMouseTapInputLifecycle();
+            rpsELifecycle.resumePlayerSlotsLifecycle();
+        }
     }
     rpsELifecycle.pauseMouseTapInputLifecycle();
     rpsELifecycle.pausePlayerSlotsLifecycle();

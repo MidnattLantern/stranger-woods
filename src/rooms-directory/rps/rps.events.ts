@@ -296,6 +296,7 @@ function handleOpenAssignTable() {
     showHideContainerButton.innerHTML = `Hide assign table ${closeTableIcon}`;
     if (container) container.append(assignTable);
     if (wrapper) wrapper.classList.add("assign-table__expanded");
+    rpsELifecycle.pausePlayerSlotsLifecycle();
 }
 
 function handleCloseAssignTable() {
