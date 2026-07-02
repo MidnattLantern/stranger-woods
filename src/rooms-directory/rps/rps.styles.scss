@@ -302,7 +302,6 @@
     position: absolute;
     top: 0;
     left: 120px;
-    // border: 1px solid red;
     width: 50px;
     height: 50px;
     object-fit: contain;
@@ -312,13 +311,12 @@
     position: absolute;
     top: 0;
     right: 0;
-    // width: 170px;
     height: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    // border: 1px solid red;
+    z-index: 1;
 
     img {
         width: 50px;
@@ -329,9 +327,26 @@
 .element-selector-body {
     fill: var(--color-interactive-body);
 }
+.element-selector-body-left:hover {
+    fill: var(--color-interactive-body-highlighted);
+    cursor: pointer;
+}
+.element-selector-body-right:hover {
+    fill: var(--color-interactive-body-highlighted);
+    cursor: pointer;
+}
 
 .el-selector__arrows {
     fill: var(--color-interactive-body-highlighted);
+    pointer-events: none;
+}
+
+#nextElementCurrentSlotImage {
+    pointer-events: none;
+}
+
+#prevElementCurrentSlotImage {
+    pointer-events: none;
 }
 
 @media screen and (max-width: 1250px) {

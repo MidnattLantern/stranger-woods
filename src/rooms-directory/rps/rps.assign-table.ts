@@ -5,6 +5,7 @@ import fireIcon from "/elements/fire-icon.webp";
 import waterIcon from "/elements/water-icon.webp";
 import earthIcon from "/elements/earth-icon.webp";
 import elementSelectorSVG from "@assets/element-selector.svg?raw";
+import { rpsELifecycle } from "./rps.elifecycle";
 
 function initializeElementSelector() {
     const container = document.createElement("div");
@@ -130,7 +131,7 @@ function updateElementSelector() {
             nextElementCurrentSlotImage.setAttribute("href", fireIcon);
             nextElementNextSlotImage.setAttribute("href", earthIcon);
             break;
-        default: // is null
+        default: // is null (at initialization)
             prevElementPrevSlotImage.setAttribute("href", earthIcon);
             prevElementCurrentSlotImage.setAttribute("href", waterIcon);
             prevElementNextSlot.setAttribute("href", fireIcon);
@@ -144,6 +145,7 @@ function updateElementSelector() {
             nextElementNextSlotImage.setAttribute("href", waterIcon);
             break;
     };
+    rpsELifecycle.resumeClickAssignTableInputLifecycle();
 };
 
 export const rpsAssignTable = {

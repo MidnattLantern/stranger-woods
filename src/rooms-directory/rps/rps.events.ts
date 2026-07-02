@@ -138,16 +138,55 @@ function handleToggleAssignTable(event: KeyboardEvent) {
     if (event.key === "e") rps.toggleAssignTableOpen();
 }
 
+function handleClickNavigateAssignTable(directionMultiplier: -1 | 1) {
+    const itemTargetIndex = rps.getAssignTableSelectedIndex();
+    const itemTargetElement = rps.getAssignedElementItem(itemTargetIndex).element;
+    let newItemAssignedElement: null | "fire" | "water" | "earth" = null;
+    console.log(itemTargetElement);
+
+    if (directionMultiplier === 1) { // different rules depending on direction
+        if (itemTargetElement === null) newItemAssignedElement = "water"
+        else if (itemTargetElement === "fire") newItemAssignedElement = "water"
+        else if (itemTargetElement === "water") newItemAssignedElement = "earth"
+        else if (itemTargetElement === "earth") newItemAssignedElement = "fire"
+        else newItemAssignedElement = null;
+    } else {
+        if (itemTargetElement === null) newItemAssignedElement = "earth"
+        else if (itemTargetElement === "fire") newItemAssignedElement = "earth"
+        else if (itemTargetElement === "earth") newItemAssignedElement = "water"
+        else if (itemTargetElement === "water") newItemAssignedElement = "fire"
+        else newItemAssignedElement = null;
+    }
+
+    rpsAnimate.slideElementSelector(directionMultiplier);
+    rps.setAssignedElementTable(
+        itemTargetIndex,
+        newItemAssignedElement
+    );
+    console.log(rps.getAssignedElementTable());
+    setTimeout(() => {
+        rpsAssignTable.updateElementSelector();
+    }, 200);
+};
+function handleClickNavigateAssignTableLeft() {
+    handleClickNavigateAssignTable(1);
+};
+function handleClickNavigateAssignTableRight() {
+    handleClickNavigateAssignTable(-1);
+};
+
 function handleNavigateAssignTable(event: KeyboardEvent) {
     event.preventDefault(); // prevent arrows messing with scrolling
     const TABLE_MIN_INDEX = 0;
     const TABLE_MAX_INDEX = 11;
 
     function handleNavigate(directionMultiplier: -1 | 1) {
+
         const prevFocusIndex = rps.getAssignTableSelectedIndex();
         let newFocusIndex = rps.getAssignTableSelectedIndex() + ( 1 * directionMultiplier);
         const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${prevFocusIndex}`); // TODO: refactor to use variable(s)
 
+        rpsELifecycle.pauseClickAssignTableInputLifecycle();
         if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
         if (newFocusIndex < TABLE_MIN_INDEX) newFocusIndex = TABLE_MAX_INDEX;
         if (newFocusIndex > TABLE_MAX_INDEX) newFocusIndex = TABLE_MIN_INDEX;
@@ -160,14 +199,8 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         if (!nextItem) return;
         nextItem.focus();
         switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
-        setTimeout(() => {
-            rpsAssignTable.updateElementSelector();
-        }, 300);
+        rpsAssignTable.updateElementSelector();
         rpsAnimate.openElementSlider();
-        const assignedImageToShow = document.getElementById(`assign-table-image-item-${prevFocusIndex}`);
-        const assignedImageToHide = document.getElementById(`assign-table-image-item-${newFocusIndex}`);
-        assignedImageToShow?.classList.remove("hidden");
-        assignedImageToHide?.classList.add("hidden");
     };
 
     if (event.key === "ArrowUp" || event.key === "w") {
@@ -180,8 +213,9 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         const itemTargetIndex = rps.getAssignTableSelectedIndex();
         const itemTargetElement = rps.getAssignedElementItem(itemTargetIndex).element;
         let newItemAssignedElement: null | "fire" | "water" | "earth" = null;
-        console.log(itemTargetElement);
 
+        rpsELifecycle.pauseAssignTableInputLifecycle();
+        rpsELifecycle.pauseClickAssignTableInputLifecycle();
         if (itemTargetElement === null) newItemAssignedElement = "water"
         else if (itemTargetElement === "fire") newItemAssignedElement = "water"
         else if (itemTargetElement === "water") newItemAssignedElement = "earth"
@@ -193,7 +227,6 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
             itemTargetIndex,
             newItemAssignedElement
         );
-        console.log(rps.getAssignedElementTable());
         setTimeout(() => {
             rpsAssignTable.updateElementSelector();
         }, 200);
@@ -202,7 +235,6 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         const itemTargetIndex = rps.getAssignTableSelectedIndex();
         const itemTargetElement = rps.getAssignedElementItem(itemTargetIndex).element;
         let newItemAssignedElement: null | "fire" | "water" | "earth" = null;
-        console.log(itemTargetElement);
 
         if (itemTargetElement === null) newItemAssignedElement = "earth"
         else if (itemTargetElement === "fire") newItemAssignedElement = "earth"
@@ -215,11 +247,29 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
             itemTargetIndex,
             newItemAssignedElement
         );
-        console.log(rps.getAssignedElementTable());
         setTimeout(() => {
             rpsAssignTable.updateElementSelector();
         }, 200);
     }
+}
+
+function handleMouseNavigateAssignTable(newFocusIndex: number) {
+    const prevFocusIndex = rps.getAssignTableSelectedIndex();
+    if (prevFocusIndex === newFocusIndex) return; // Prevent bug when selecting the already selected
+
+    const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${prevFocusIndex}`); // TODO: refactor to use variable(s)
+    if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
+    const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${newFocusIndex}`);
+    rps.setAssignTableSelectedIndex(newFocusIndex);
+    const prevItem = document.getElementById(`assign-item-index-${prevFocusIndex}`);
+    const nextItem = document.getElementById(`assign-item-index-${newFocusIndex}`);
+    nextItem?.classList.add("assign-table__focused-item");
+    prevItem?.classList.remove("assign-table__focused-item");
+    if (!nextItem) return;
+    nextItem.focus();
+    switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
+    rpsAssignTable.updateElementSelector();
+    rpsAnimate.openElementSlider();
 }
 
 function handleOpenAssignTable() {
@@ -233,47 +283,41 @@ function handleOpenAssignTable() {
     setTimeout(() => {        
         const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
         const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
-        const assignTableImageItemToHide = document.getElementById(`assign-table-image-item-${assignTableSelectedIndex}`);
 
         if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
         if (switchElementVesselToActivate) switchElementVesselToActivate.append(rpsAssignTable.initializeElementSelector());
-        if (assignTableImageItemToHide) assignTableImageItemToHide.classList.add("hidden");
         if (assignTable) assignTable.classList.remove("hide-table");
-        rpsAssignTable.updateElementSelector();
         rpsAnimate.openElementSlider();
+        rpsAssignTable.updateElementSelector();
         focusAssignItem.classList.add("assign-table__focused-item");
+        rpsELifecycle.resumeAssignTableInputLifecycle();
         focusAssignItem.focus();
     }, 100);
-    rpsELifecycle.pauseMouseTapInputLifecycle();
-    rpsELifecycle.pausePlayerSlotsLifecycle();
-    rpsELifecycle.resumeAssignTableInputLifecycle();
     showHideContainerButton.innerHTML = `Hide assign table ${closeTableIcon}`;
     if (container) container.append(assignTable);
     if (wrapper) wrapper.classList.add("assign-table__expanded");
 }
 
 function handleCloseAssignTable() {
+    const wrapper = rps.getAssignTableWrapper();
+    const container = rps.getAssignTableContainer();
     const rpsSceneWrapper = rps.getRpsSceneWrapper();
-    const assignTableContainer = rps.getAssignTableContainer();
-    const assignTableWrapper = rps.getAssignTableWrapper();
-    const showHideAssignTableButton = rps.getShowHideAssignTableButton();
-    const rpsAssignTable = rps.getAssignTableContents();
-    const currentFocusIndex = rps.getAssignTableSelectedIndex();
-    const assignedImageToReveal = document.getElementById(`assign-table-image-item-${currentFocusIndex}`);
-
-    console.log(currentFocusIndex);
+    const showHideContainerButton = rps.getShowHideAssignTableButton();
+    const assignTable = rps.getAssignTableContents();
+    const assignTableSelectedIndex = rps.getAssignTableSelectedIndex();
+    const assignTableImageItemToReveal = document.getElementById(`assign-table-image-item-${assignTableSelectedIndex}`);
 
     setTimeout(() => {
-        if (assignTableContainer) assignTableContainer.innerHTML = '';
-        if (assignTableWrapper) assignTableWrapper.classList.remove("assign-table__expanded");
+        if (container) container.innerHTML = '';
+        if (wrapper) wrapper.classList.remove("assign-table__expanded");
         rpsELifecycle.resumeMouseTapInputLifecycle();
         rpsELifecycle.resumePlayerSlotsLifecycle();
-        rpsELifecycle.pauseAssignTableInputLifecycle();
         rpsSceneWrapper.focus();
     }, 100);
-    showHideAssignTableButton.innerHTML = `Show assign table ${expandTableIcon}`;
-    rpsAssignTable?.classList.add("hide-table");
-    assignedImageToReveal?.classList.remove("hidden");
+    rpsELifecycle.pauseAssignTableInputLifecycle();
+    showHideContainerButton.innerHTML = `Show assign table ${expandTableIcon}`;
+    assignTable?.classList.add("hide-table");
+    assignTableImageItemToReveal?.classList.remove("hidden");
 }
 
 export const rpsEvents = {
@@ -284,6 +328,10 @@ export const rpsEvents = {
     handleFullscreenNextStoryline,
     handleToggleAssignTable,
     handleNavigateAssignTable,
+    handleClickNavigateAssignTable,
+    handleClickNavigateAssignTableLeft,
+    handleClickNavigateAssignTableRight,
+    handleMouseNavigateAssignTable,
     handleOpenAssignTable,
     handleCloseAssignTable
 }

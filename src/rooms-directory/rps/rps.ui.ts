@@ -3,11 +3,12 @@ import pseudoElementalsCpuDisc from "@assets/pseudoelementals-cpu-disc.svg?raw";
 import expandTableIcon from "@assets/expand-table-icon.svg?raw";
 import batchPreset1 from "./batch-preset-1.json";
 import nullPlaceholder from "/elements/null-placeholder.webp";
-import fireIcon from "/elements/fire-icon.webp";
-import waterIcon from "/elements/water-icon.webp";
-import earthIcon from "/elements/earth-icon.webp";
-import elementSelectorSVG from "@assets/element-selector.svg?raw";
+// import fireIcon from "/elements/fire-icon.webp";
+// import waterIcon from "/elements/water-icon.webp";
+// import earthIcon from "/elements/earth-icon.webp";
+// import elementSelectorSVG from "@assets/element-selector.svg?raw";
 import { rps } from "./rps";
+import { rpsEvents } from "./rps.events";
 
 function rockPaperScissorsSceneWrapper() {
     const rpsSceneWrapper = document.createElement("div");
@@ -109,7 +110,13 @@ function assignTableContents() {
         const iRow = document.createElement("tr");
         const iImageContainer = document.createElement("td");
 
-        iRow.id = `assign-item-index-${index.toString()}`;
+        iRow.id = `assign-item-index-${index.toString()}`; // consider move to lifecycle
+        iRow.addEventListener("mouseenter", () => {
+            rpsEvents.handleMouseNavigateAssignTable(index);
+        });
+        iRow.addEventListener("click", () => { // for touch screen
+            rpsEvents.handleMouseNavigateAssignTable(index);
+        });
 
         const iImage = document.createElement("img");
         iImage.src = i.assetSource;

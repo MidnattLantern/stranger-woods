@@ -74,6 +74,13 @@ function pauseMouseTapInputLifecycle() {
     selRSlotBtnFocArea.classList.add("element-events-paused");
 }
 
+function pauseClickAssignTableInputLifecycle() {
+    const elementSelectorBodyLeft = document.getElementById("elementSelectorBodyLeft");
+    elementSelectorBodyLeft?.removeEventListener("click", rpsEvents.handleClickNavigateAssignTableLeft);
+    const elementSelectorBodyRight = document.getElementById("elementSelectorBodyRight");
+    elementSelectorBodyRight?.removeEventListener("click", rpsEvents.handleClickNavigateAssignTableRight);
+}
+
 function pauseAssignTableInputLifecycle() {
     rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleNavigateAssignTable);
 }
@@ -96,6 +103,13 @@ function resumeMouseTapInputLifecycle() {
     selRSlotBtnFocArea.addEventListener("click", rpsEvents.handleClickTapRotateDiscRight);
     selLSlotBtnFocArea.classList.remove("element-events-paused");
     selRSlotBtnFocArea.classList.remove("element-events-paused");
+}
+
+function resumeClickAssignTableInputLifecycle() {
+    const elementSelectorBodyLeft = document.getElementById("elementSelectorBodyLeft");
+    elementSelectorBodyLeft?.addEventListener("click", rpsEvents.handleClickNavigateAssignTableLeft);
+    const elementSelectorBodyRight = document.getElementById("elementSelectorBodyRight");
+    elementSelectorBodyRight?.addEventListener("click", rpsEvents.handleClickNavigateAssignTableRight);
 }
 
 function resumeAssignTableInputLifecycle() {
@@ -125,10 +139,12 @@ export const rpsELifecycle = {
 
     pausePlayerSlotsLifecycle,
     pauseMouseTapInputLifecycle,
+    pauseClickAssignTableInputLifecycle,
     pauseAssignTableInputLifecycle,
 
     resumePlayerSlotsLifecycle,
     resumeMouseTapInputLifecycle,
+    resumeClickAssignTableInputLifecycle,
     resumeAssignTableInputLifecycle,
 
     endFullscreenNextStorylineLifecycle,

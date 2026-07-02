@@ -6,14 +6,15 @@
         <rect id="elementSelector1" serif:id="elementSelector" x="0" y="0" width="170" height="50"/>
     </clipPath>
     <g id="elementSelectorContainer" clip-path="url(#el-selector__clip1)">
-        <path id="element-selector-body" class="element-selector-body" d="M72.385,50L25,50C11.202,50 0,38.798 0,25C0,11.202 11.202,-0 25,-0L72.385,-0C63.261,4.617 57,14.083 57,25C57,35.917 63.261,45.383 72.385,50ZM97.615,-0L145,-0C158.798,-0 170,11.202 170,25C170,38.798 158.798,50 145,50L97.615,50C106.739,45.383 113,35.917 113,25C113,14.083 106.739,4.617 97.615,-0Z"/>
+        <!-- <path id="elementSelectorBody" class="element-selector-body" d="M72.385,50L25,50C11.202,50 0,38.798 0,25C0,11.202 11.202,-0 25,-0L72.385,-0C63.261,4.617 57,14.083 57,25C57,35.917 63.261,45.383 72.385,50ZM97.615,-0L145,-0C158.798,-0 170,11.202 170,25C170,38.798 158.798,50 145,50L97.615,50C106.739,45.383 113,35.917 113,25C113,14.083 106.739,4.617 97.615,-0Z"/> -->
+        <path id="elementSelectorBodyLeft" class="element-selector-body element-selector-body-left" d="M72.385,50L25,50C11.202,50 0,38.798 0,25C0,11.202 11.202,0 25,0L72.385,0C63.261,4.617 57,14.083 57,25C57,35.917 63.261,45.383 72.385,50Z" role="button" aria-label="Element selector, select left element"/>
+        <path id="elementSelectorBodyRight" class="element-selector-body element-selector-body-right" d="M97.615,0L145,0C158.798,0 170,11.202 170,25C170,38.798 158.798,50 145,50L97.615,50C106.739,45.383 113,35.917 113,25C113,14.083 106.739,4.617 97.615,0Z" role="button" aria-label="Element selector, select right element"/>
         <path id="el-selector_arrows" class="el-selector__arrows" d="M54.162,30.149L51.838,32.473L44.365,25L51.838,17.527L54.162,19.851L49.013,25L54.162,30.149ZM115.838,19.851L118.162,17.527L125.635,25L118.162,32.473L115.838,30.149L120.987,25L115.838,19.851Z"/>
         <rect id="prevNextElementRail" x="7.473" y="7.473" width="157.875" height="35.054" style="fill:none;"/>
         <clipPath id="el-selector__clip2">
             <rect x="7.473" y="7.473" width="157.875" height="35.054"/>
         </clipPath>
         <g clip-path="url(#el-selector__clip2)">
-            <!-- <circle id="prevElementFrame" cx="25" cy="25" r="17.527" style="fill:blue;"/> -->
             <clipPath id="el-selector__clip3">
                 <circle id="prevElementRailClip" cx="25" cy="25" r="17.527"/>
             </clipPath>

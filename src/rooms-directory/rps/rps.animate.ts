@@ -172,7 +172,12 @@ function openElementSlider() {
         duration: DELAY_DURATION
     });
 
-    gsap.from(".element-selector-body", {
+    gsap.from("#elementSelectorBodyLeft", {
+        opacity: 0,
+        delay: DELAY_DURATION,
+        duration: DELAY_DURATION
+    });
+    gsap.from("#elementSelectorBodyRight", {
         opacity: 0,
         delay: DELAY_DURATION,
         duration: DELAY_DURATION
