@@ -250,6 +250,8 @@
     table {
         display: flex;
         flex-direction: column;
+        justify-content: baseline;
+        align-items: baseline;
         gap: 10px;
         margin-right: 30px;
 

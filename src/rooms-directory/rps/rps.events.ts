@@ -168,9 +168,11 @@ function handleClickNavigateAssignTable(directionMultiplier: -1 | 1) {
         rpsAssignTable.updateElementSelector();
     }, 200);
 };
+
 function handleClickNavigateAssignTableLeft() {
     handleClickNavigateAssignTable(1);
 };
+
 function handleClickNavigateAssignTableRight() {
     handleClickNavigateAssignTable(-1);
 };
@@ -201,6 +203,23 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
         rpsAssignTable.updateElementSelector();
         rpsAnimate.openElementSlider();
+
+        //test
+        const assignTableContainer = rps.getAssignTableContainer();
+        const assignTableContainerScrollHeight = assignTableContainer?.scrollHeight;
+        const assignTableContainerClientHeight = assignTableContainer?.clientHeight;
+        if (assignTableContainerScrollHeight && assignTableContainerClientHeight) {
+            if ( assignTableContainerScrollHeight > assignTableContainerClientHeight ) {
+                console.log("Assign table container is overflowing");
+                console.log(newFocusIndex);
+                assignTableContainer.scrollTo({
+                    top: (50 * newFocusIndex), // 50 makes 375px wide possible
+                    behavior: "smooth"
+                });
+            } else {
+                console.log("Assign table container is not overflowing");
+            }
+        }
     };
 
     if (event.key === "ArrowUp" || event.key === "w") {
@@ -214,8 +233,6 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         const itemTargetElement = rps.getAssignedElementItem(itemTargetIndex).element;
         let newItemAssignedElement: null | "fire" | "water" | "earth" = null;
 
-        rpsELifecycle.pauseAssignTableInputLifecycle();
-        rpsELifecycle.pauseClickAssignTableInputLifecycle();
         if (itemTargetElement === null) newItemAssignedElement = "water"
         else if (itemTargetElement === "fire") newItemAssignedElement = "water"
         else if (itemTargetElement === "water") newItemAssignedElement = "earth"
