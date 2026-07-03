@@ -1,4 +1,5 @@
-import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
+// import pseudoElementalsPlayerDisc from "@assets/pseudoelementals-player-disc.svg?raw";
+import pseudoElementalsPlayerDisc from "@assets/pseudoelementals.svg?raw";
 import pseudoElementalsCpuDisc from "@assets/pseudoelementals-cpu-disc.svg?raw";
 import expandTableIcon from "@assets/expand-table-icon.svg?raw";
 import batchPreset1 from "./batch-preset-1.json";

@@ -35,13 +35,23 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        aspect-ratio: 4/1;
+        // aspect-ratio: 4/1;
         overflow: hidden;
     }
     .rock-paper-scissors__player-buttons-container {
+        aspect-ratio: 19/8;
         align-items: baseline;
+
+        //test
+        // display: flex;
+        // justify-content: center;
+        // width: 100%;
+        // aspect-ratio: 2/1;
+        // overflow: hidden;
+        // border: 1px solid red;
     }
     .rock-paper-scissors__cpu-buttons-container {
+        aspect-ratio: 4/1;
         align-items: end;
     }
 
@@ -58,7 +68,8 @@
         fill: var(--color-clear);
     }
     .sel-slot-btn-foc-area {
-        fill: var(--color-clear);
+        // fill: var(--color-clear);
+        fill: red;
 
         &:hover {
             cursor: pointer;
@@ -70,6 +81,24 @@
             .disc-pointing-arrow {
                 fill: var(--color-interactive-text-body);
             }
+        }
+    }
+
+    .double-arrow {
+        fill: var(--color-interactive-body);
+    }
+
+    .initiate-button-visual {
+        fill: rgba(0,0,0,0);
+    }
+
+    .initiate-button-foc-area:hover {
+        cursor: pointer;
+        .initiate-button-visual {
+            fill: var(--color-interactive-body);
+        }
+        .double-arrow {
+            fill: var(--color-interactive-text-body);
         }
     }
 }
