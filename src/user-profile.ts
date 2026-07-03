@@ -8,11 +8,11 @@ function handleExitSession() {
     renderScene();
 }
 
-function handleSetUserProfile(username: string) {
-    setSessionState.setUserProfile(username);
-}
+// function handleSetUserProfile(username: string) {
+    // setSessionState.setUserProfile(username);
+// }
 
 export const userProfile = {
     handleExitSession,
-    handleSetUserProfile
+    // handleSetUserProfile
 }

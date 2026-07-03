@@ -41,7 +41,7 @@ const spanRoomsElement = document.createElement('span');
 const roomSelectElement = document.createElement('select');
 roomSelectElement.id = 'roomSelect';
 
-const labelElement = document.createElement('span');
+// const labelElement = document.createElement('span');
 //spanRoomsElement.appendChild(labelElement);
 spanRoomsElement.appendChild(roomSelectElement);
 
@@ -314,36 +314,36 @@ export function setSecondsElapsed(value: number) {
 
 // room-dropdown
 
-function showConfirmDialog(message: string, onConfirm: () => void, onCancel: () => void): void {
-    const overlay = document.createElement('div');
-    overlay.classList.add('room-intro-overlay');
-    overlay.innerHTML = `
-        <div class="room-intro-card">
-            <p class="room-intro-description">${message}</p>
-            <div style="display: flex; gap: 0.5rem; width: 100%;">
-                <button class="confirm-cancel-btn">Cancel</button>
-                <button class="confirm-ok-btn">OK</button>
-            </div>
-        </div>
-    `;
+// function showConfirmDialog(message: string, onConfirm: () => void, onCancel: () => void): void {
+//     const overlay = document.createElement('div');
+//     overlay.classList.add('room-intro-overlay');
+//     overlay.innerHTML = `
+//         <div class="room-intro-card">
+//             <p class="room-intro-description">${message}</p>
+//             <div style="display: flex; gap: 0.5rem; width: 100%;">
+//                 <button class="confirm-cancel-btn">Cancel</button>
+//                 <button class="confirm-ok-btn">OK</button>
+//             </div>
+//         </div>
+//     `;
 
-    document.body.appendChild(overlay);
+//     document.body.appendChild(overlay);
 
-    setTimeout(() => {
-        const okBtn = overlay.querySelector('.confirm-ok-btn') as HTMLButtonElement;
-        okBtn?.focus();
-    }, 100);
+//     setTimeout(() => {
+//         const okBtn = overlay.querySelector('.confirm-ok-btn') as HTMLButtonElement;
+//         okBtn?.focus();
+//     }, 100);
 
-    overlay.querySelector('.confirm-ok-btn')!.addEventListener('click', () => {
-        overlay.remove();
-        onConfirm();
-    });
+//     overlay.querySelector('.confirm-ok-btn')!.addEventListener('click', () => {
+//         overlay.remove();
+//         onConfirm();
+//     });
 
-    overlay.querySelector('.confirm-cancel-btn')!.addEventListener('click', () => {
-        overlay.remove();
-        onCancel();
-    });
-}
+//     overlay.querySelector('.confirm-cancel-btn')!.addEventListener('click', () => {
+//         overlay.remove();
+//         onCancel();
+//     });
+// }
 
 /*
 roomSelectElement.addEventListener('change', () => {

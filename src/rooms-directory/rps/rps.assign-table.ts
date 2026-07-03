@@ -1,5 +1,4 @@
 import { rps } from "./rps";
-import batchPreset1 from "./batch-preset-1.json";
 import nullPlaceholder from "/elements/null-placeholder.webp";
 import fireIcon from "/elements/fire-icon.webp";
 import waterIcon from "/elements/water-icon.webp";

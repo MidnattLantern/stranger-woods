@@ -20,10 +20,7 @@ function initiateDuel(
     cpuRailwayItem = rps.getCpuRailwayItem(),
     cpuRailwayIconToUse = cpuBatch[cpuSelectedSlotIndex].assetSource
 ) {
-    let timeout;
-    function myTimeout() {
-        timeout = setTimeout(resume, 1000);
-    }
+    setTimeout(resume, 1000);
     function resume() {
         rpsEvents.handleCpuRotateDisc();
         rps.getDuelRailway().classList.add("hidden");
@@ -89,7 +86,6 @@ function initiateDuel(
     }
 
     console.log("Winner:", winner);
-    myTimeout();
 }
 
 export const rpsGame = {

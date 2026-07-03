@@ -6,7 +6,7 @@ import { rpsGame } from "./rps.game";
 // begin
 // =====
 function beginFullscreenNextStorylineLifecycle() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleFullscreenNextStoryline);
+    rps.getRpsSceneWrapper()?.addEventListener("keydown", rpsEvents.handleFullscreenNextStoryline);
 }
 
 function beginPlayerSlotsLifecycle() {
@@ -21,7 +21,7 @@ function beginPlayerSlotsLifecycle() {
         if (!playerSlotIImage) return;
         playerSlotIImage.setAttribute("href", playerBatchData[i].assetSource);
     }
-    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleKeyboardRotateDisc);
+    rps.getRpsSceneWrapper()?.addEventListener("keydown", rpsEvents.handleKeyboardRotateDisc);
     beginMouseTapInputLifecycle();
 }
 
@@ -53,11 +53,11 @@ function beginMouseTapInputLifecycle() {
 }
 
 function beginCanToggleAssignTable() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleToggleAssignTable);
+    rps.getRpsSceneWrapper()?.addEventListener("keydown", rpsEvents.handleToggleAssignTable);
 }
 
 function beginAssignTableInputLifecycle() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleNavigateAssignTable);
+    rps.getRpsSceneWrapper()?.addEventListener("keydown", rpsEvents.handleNavigateAssignTable);
 }
 // =====
 
@@ -65,7 +65,7 @@ function beginAssignTableInputLifecycle() {
 // pause
 // =====
 function pausePlayerSlotsLifecycle() {
-    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleKeyboardRotateDisc);
+    rps.getRpsSceneWrapper()?.removeEventListener("keydown", rpsEvents.handleKeyboardRotateDisc);
     rps.getRpsPlayerButtons().classList.add("element-events-paused");
 }
 
@@ -88,7 +88,7 @@ function pauseClickAssignTableInputLifecycle() {
 }
 
 function pauseAssignTableInputLifecycle() {
-    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleNavigateAssignTable);
+    rps.getRpsSceneWrapper()?.removeEventListener("keydown", rpsEvents.handleNavigateAssignTable);
 }
 // =====
 
@@ -96,7 +96,7 @@ function pauseAssignTableInputLifecycle() {
 // resume
 // ======
 function resumePlayerSlotsLifecycle() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleKeyboardRotateDisc);
+    rps.getRpsSceneWrapper()?.addEventListener("keydown", rpsEvents.handleKeyboardRotateDisc);
     rps.getRpsPlayerButtons().classList.remove("element-events-paused");
 }
 
@@ -119,7 +119,7 @@ function resumeClickAssignTableInputLifecycle() {
 }
 
 function resumeAssignTableInputLifecycle() {
-    rps.getRpsSceneWrapper().addEventListener("keydown", rpsEvents.handleNavigateAssignTable);
+    rps.getRpsSceneWrapper()?.addEventListener("keydown", rpsEvents.handleNavigateAssignTable);
 }
 // ======
 
@@ -127,11 +127,11 @@ function resumeAssignTableInputLifecycle() {
 // end
 // ===
 function endFullscreenNextStorylineLifecycle() {
-    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleFullscreenNextStoryline);
+    rps.getRpsSceneWrapper()?.removeEventListener("keydown", rpsEvents.handleFullscreenNextStoryline);
 }
 
 function endCanToggleAssignTable() {
-    rps.getRpsSceneWrapper().removeEventListener("keydown", rpsEvents.handleToggleAssignTable);
+    rps.getRpsSceneWrapper()?.removeEventListener("keydown", rpsEvents.handleToggleAssignTable);
 }
 // ===
 

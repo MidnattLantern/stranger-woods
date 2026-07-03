@@ -14,7 +14,7 @@ import waterIcon from "/elements/water-icon.webp";
 import earthIcon from "/elements/earth-icon.webp";
 
 function rockPaperScissors(
-    rpsSceneWrapper: any = null,
+    rpsSceneWrapper: null | HTMLDivElement = null,
     playerSelectedSlotIndex: number = 0,
     playerDiscRotationIndex: number = 0,
     playerRpsBatch: ISlot[],
@@ -115,6 +115,10 @@ function rockPaperScissors(
         assignItemRows.push(newItem);
     }
 
+    function getAssignItemAssignmentImages() {
+        return assignItemAssignmentImages;
+    };
+
     showHideAssignTableButton.addEventListener("click", toggleAssignTableOpen);
 
     assignTableWrapper.append(showHideAssignTableButton, assignTableContainer);
@@ -147,7 +151,7 @@ function rockPaperScissors(
     function initialize() {
         rpsSceneWrapper = rpsUI.rockPaperScissorsSceneWrapper();
         rpsSceneWrapper.append(dialogueBox.dialogueBoxContainer);
-        rpsSceneWrapper.setAttribute("tabindex", 0);
+        rpsSceneWrapper.setAttribute("tabindex", "0");
         sceneWrapper.append(rpsSceneWrapper);
         rpsStoryController.handleInitializeStoryline();
         rpsELifecycle.beginFullscreenNextStorylineLifecycle();
@@ -155,6 +159,7 @@ function rockPaperScissors(
         setPlayerRpsBatch(batchPreset1);
         setCpuRpsBatch(rpsBatch.shuffleBatch("fire"));
         assignTableContents = rpsUIAssignTable.assignTableContents();
+        console.log("rpsSceneWrapper", rpsSceneWrapper);
     }
 
     function getRpsSceneWrapper() {
@@ -236,9 +241,9 @@ function rockPaperScissors(
     function handleBeginRpsGame() {
         rpsELifecycle.endFullscreenNextStorylineLifecycle();
         dialogueBox.hideDialogueBox();
-        rpsSceneWrapper.focus();
+        rpsSceneWrapper?.focus();
 
-        rpsSceneWrapper.append(gameSessionWrapper);
+        rpsSceneWrapper?.append(gameSessionWrapper);
         gameSessionWrapper.append(buttonsTable, assignTableWrapper);
         buttonsTable.append(
             rpsPlayerButtons,
@@ -256,7 +261,7 @@ function rockPaperScissors(
     };
 
     function handleEndRpsGame() {
-        rpsSceneWrapper.remove();
+        rpsSceneWrapper?.remove();
         rpsSceneWrapper = null;
     };
 
@@ -291,10 +296,23 @@ function rockPaperScissors(
         setAssignedElementTable,
         getAssignItemRows,
         appendAssignItemRow,
+        getAssignItemAssignmentImages,
         getAssignTableContents,
         getAssignTableContainer,
         getAssignTableWrapper
     }
 };
 
-export const rps = rockPaperScissors();
+export const rps = rockPaperScissors(
+    null,
+    0,
+    0,
+    [],
+    0,
+    0,
+    [],
+    false,
+    0,
+    [],
+    []
+);

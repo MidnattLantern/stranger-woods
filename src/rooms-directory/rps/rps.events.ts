@@ -3,7 +3,6 @@ import { rpsGame } from "./rps.game";
 import { rps } from "./rps";
 import { rpsStoryController } from "./rps.story";
 import { rpsAssignTable } from "./rps.assign-table";
-import { rpsUIAssignTable } from "./rps.ui";
 import { rpsELifecycle } from "./rps.elifecycle";
 import expandTableIcon from "@assets/expand-table-icon.svg?raw";
 import closeTableIcon from "@assets/close-table-icon.svg?raw";
@@ -196,11 +195,12 @@ function handleNavigateAssignTable(event: KeyboardEvent) {
         rps.setAssignTableSelectedIndex(newFocusIndex);
         const prevItem = document.getElementById(`assign-item-index-${prevFocusIndex}`);
         const nextItem = document.getElementById(`assign-item-index-${newFocusIndex}`);
+        const initializeElementSelector = rpsAssignTable.initializeElementSelector()
         nextItem?.classList.add("assign-table__focused-item");
         prevItem?.classList.remove("assign-table__focused-item");
         if (!nextItem) return;
         nextItem.focus();
-        switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
+        if (switchElementVesselToActivate && initializeElementSelector) switchElementVesselToActivate.append(initializeElementSelector);
         rpsAssignTable.updateElementSelector();
         rpsAnimate.openElementSlider();
 
@@ -280,11 +280,12 @@ function handleMouseNavigateAssignTable(newFocusIndex: number) {
     rps.setAssignTableSelectedIndex(newFocusIndex);
     const prevItem = document.getElementById(`assign-item-index-${prevFocusIndex}`);
     const nextItem = document.getElementById(`assign-item-index-${newFocusIndex}`);
+    const initializeElementSelector = rpsAssignTable.initializeElementSelector();
     nextItem?.classList.add("assign-table__focused-item");
     prevItem?.classList.remove("assign-table__focused-item");
     if (!nextItem) return;
     nextItem.focus();
-    switchElementVesselToActivate?.append(rpsAssignTable.initializeElementSelector());
+    if (switchElementVesselToActivate && initializeElementSelector) switchElementVesselToActivate.append(initializeElementSelector);
     rpsAssignTable.updateElementSelector();
     rpsAnimate.openElementSlider();
 }
@@ -300,9 +301,10 @@ function handleOpenAssignTable() {
     setTimeout(() => {        
         const switchElementVesselToClear = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
         const switchElementVesselToActivate = document.getElementById(`switch-element-vessel-${assignTableSelectedIndex}`);
+        const initializeElementSelector = rpsAssignTable.initializeElementSelector();
 
         if (switchElementVesselToClear) switchElementVesselToClear.innerHTML = "";
-        if (switchElementVesselToActivate) switchElementVesselToActivate.append(rpsAssignTable.initializeElementSelector());
+        if (switchElementVesselToActivate && initializeElementSelector) switchElementVesselToActivate.append(initializeElementSelector);
         if (assignTable) assignTable.classList.remove("hide-table");
         rpsAnimate.openElementSlider();
         rpsAssignTable.updateElementSelector();
@@ -311,7 +313,7 @@ function handleOpenAssignTable() {
         focusAssignItem.focus();
     }, 100);
     showHideContainerButton.innerHTML = `Hide assign table ${closeTableIcon}`;
-    if (container) container.append(assignTable);
+    if (container && assignTable) container.append(assignTable);
     if (wrapper) wrapper.classList.add("assign-table__expanded");
     rpsELifecycle.pausePlayerSlotsLifecycle();
 }
@@ -330,7 +332,7 @@ function handleCloseAssignTable() {
         if (wrapper) wrapper.classList.remove("assign-table__expanded");
         rpsELifecycle.resumeMouseTapInputLifecycle();
         rpsELifecycle.resumePlayerSlotsLifecycle();
-        rpsSceneWrapper.focus();
+        rpsSceneWrapper?.focus();
     }, 100);
     rpsELifecycle.pauseAssignTableInputLifecycle();
     showHideContainerButton.innerHTML = `Show assign table ${expandTableIcon}`;
