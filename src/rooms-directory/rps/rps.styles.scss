@@ -35,20 +35,11 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        // aspect-ratio: 4/1;
         overflow: hidden;
     }
     .rock-paper-scissors__player-buttons-container {
         aspect-ratio: 19/8;
         align-items: baseline;
-
-        //test
-        // display: flex;
-        // justify-content: center;
-        // width: 100%;
-        // aspect-ratio: 2/1;
-        // overflow: hidden;
-        // border: 1px solid red;
     }
     .rock-paper-scissors__cpu-buttons-container {
         aspect-ratio: 4/1;
@@ -68,8 +59,7 @@
         fill: var(--color-clear);
     }
     .sel-slot-btn-foc-area {
-        // fill: var(--color-clear);
-        fill: red;
+        fill: var(--color-clear);
 
         &:hover {
             cursor: pointer;

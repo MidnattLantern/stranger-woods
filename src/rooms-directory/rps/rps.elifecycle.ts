@@ -1,5 +1,6 @@
 import { rps } from "./rps";
 import { rpsEvents } from "./rps.events";
+import { rpsGame } from "./rps.game";
 
 // =====
 // begin
@@ -41,9 +42,14 @@ function beginCpuSlotsLifecycle() {
 function beginMouseTapInputLifecycle() {
     const selLSlotBtnFocArea = document.getElementById("selLSlotBtnFocArea"); // element from the SVG
     const selRSlotBtnFocArea = document.getElementById("selRSlotBtnFocArea"); // element from the SVG
+    const initiateButtonFocArea = document.getElementById("initiateButtonFocArea"); // element from the SVG
+    function handleInitiateDuel() {
+        rpsGame.initiateDuel();
+    }
 
     selLSlotBtnFocArea?.addEventListener("click", rpsEvents.handleClickTapRotateDiscLeft);
     selRSlotBtnFocArea?.addEventListener("click", rpsEvents.handleClickTapRotateDiscRight);
+    initiateButtonFocArea?.addEventListener("click", handleInitiateDuel);
 }
 
 function beginCanToggleAssignTable() {
